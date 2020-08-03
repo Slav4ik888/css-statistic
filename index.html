@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Расчёт статистики техподдержки</title>
+    <script src="app.js" type="module"></script>
+    
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+  </head>
+  <body>
+    <div id="floating-panel">
+      <label for="start">От:</label>
+      <input class="start-date" id="start" type="date" value="" /> 00:00:01
+      <br/>
+      <label for="end">До:</label>
+      <input class="end-date" id="end" type="date" value="" /> 23:59:59
+      <br/>
+      <button class="button-start">Рассчитать</button>
+    </div>
+    <div id="root"></div>
+
+  </body>
+</html>
