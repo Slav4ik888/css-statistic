@@ -8,7 +8,15 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
   <body>
-    <div id="floating-panel">
+    <div class="floating-panel">
+      <br/>
+      <button class="button-load-db">Загрузить из Гугл</button>
+      <button class="button-load-local">Загрузить из LocalStorage</button>
+      <br/>
+      <br/>
+      <br/>
+    </div>
+    <div class="floating-panel">
       <label for="start">От:</label>
       <input class="start-date" id="start" type="date" value="" /> 00:00:01
       <br/>
@@ -17,7 +25,15 @@
       <br/>
       <button class="button-start">Рассчитать</button>
     </div>
+
+    <div class="floating-panel">
+      <div class="result-table"></div>
+    </div>
+    
+
     <div id="root"></div>
+
+    
 
   </body>
 </html>

@@ -17,4 +17,9 @@ export const createPersonNames = db => {
   }
 
   return names;
-}
+};
+
+
+export const delDublePersons = arr => {
+  return [...new Set(arr)];
+};

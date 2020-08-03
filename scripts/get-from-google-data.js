@@ -8,5 +8,5 @@
 export const getFromGoogleData = (url) => {
   return fetch(url)
     .then(response => response.json())
-    .then(res => res.result);
+    .then(res => res.DATA777);
 };
