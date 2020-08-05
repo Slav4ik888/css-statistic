@@ -2,38 +2,66 @@
 <html lang="ru">
   <head>
     <title>Расчёт статистики техподдержки</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <script src="app.js" type="module"></script>
     
     <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="./style.css" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
   <body>
-    <div class="floating-panel">
-      <br/>
-      <button class="button-load-db">Загрузить из Гугл</button>
-      <button class="button-load-local">Загрузить из LocalStorage</button>
-      <br/>
-      <br/>
-      <br/>
-    </div>
-    <div class="floating-panel">
-      <label for="start">От:</label>
-      <input class="start-date" id="start" type="date" value="" /> 00:00:01
-      <br/>
-      <label for="end">До:</label>
-      <input class="end-date" id="end" type="date" value="" /> 23:59:59
-      <br/>
-      <button class="button-start">Рассчитать</button>
+    <div class="navigation">
+      <img src="./img/favicon.png" class="logo">
+      <div class="title">Статистика технических специалистов</div>
+      <button class="button-head button-load-db">Загрузить из Гугл</button>
+      <button class="button-head button-load-local">Загрузить из LocalStorage</button>
     </div>
 
-    <div class="floating-panel">
-      <div class="result-table"></div>
-    </div>
+    <div class="main-container">
+      <div class="left-container">
+        <div class="panel-get-date">
+          <img src="./img/stats_icon.png" class="input-icon ">
+          <span class="title">Выберите даты</span>
+          <div class="line"></div>
+          
+          <div class="floating-panel">
+            <label for="start"><div class="label-start">С:</div></label>
+            <input class="start-date input" id="start" type="date" value="2020-07-27" /><span class="label-end">00:00:01</span>
+            <br/>
+            <label for="end"><div class="label-start">По:</div></label>
+            <input class="end-date input" id="end" type="date" value="2020-07-31" /><span class="label-end">23:59:59</span>
+            <br/>
+            <input type="button" class="button-start input-button" value="Рассчитать" />
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="table-container hide">
+        <div class="panel-table">
+          <div class="floating-panel">
+            <div class="result-table"></div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal__item hide">
+        <div class="modal__block">
+          <div class="modal__content">
+            <div class="lds-dual-ring"></div>
+            <div class="modal__description"></div>
+          </div>
+        </div>
+      </div>
     
+    </div>
 
-    <div id="root"></div>
-
-    
-
+    <div class="footer">
+      Badcom © 2020 Created by Slav4ik888 - version 2020-08-05 14:32
+    </div>
   </body>
 </html>

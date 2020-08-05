@@ -1,10 +1,190 @@
 /* Optional: Makes the sample page fill the window. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 html,
 body {
   height: 100%;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  background-color: #f5f7f8;
+  font-family: "Open Sans", sans-serif;
 }
+
+.hide {
+  display: none;
+}
+
+.navigation {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  background-color: #98b7c9;
+}
+
+  .logo {
+    margin-left: 16px;
+    height: 50px;
+    width: 50px;
+    position: relative;
+  }
+  .navigation .title {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    margin: 0 20px 0 30px;
+    padding: 14px 24px;
+    font-size: 18px;
+    position: relative;
+    color: #fff;
+  }
+  .button-head {
+    text-align: center;
+    background-color: #98b7c9;
+    cursor: pointer;
+    border: none;
+    width: auto;
+    color: #52696e;
+    font-size: 18px;
+    padding: 12px 24px;
+    outline: none;
+  }
+  .button-head:hover {
+    color: #000;
+    background-color: #b0d0e2;
+  }
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+
+  padding: 16px 0;
+  margin: auto;
+  max-width: 960px;
+  min-height: calc(100vh - 140px);
+}
+
+  .left-container {
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 400px;
+    flex-basis: 100%;
+  }
+    .panel-get-date {
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      background-color: #fff;
+      border-radius: 2%;
+      margin-top: 16px;
+      padding: 10px 16px;
+      position: relative;
+    }
+      .input-icon {
+        height: 40px;
+        width: 40px;
+        /* border-radius:30%; */
+        position: relative;
+        margin-right: 16px;
+      }
+      .panel-get-date .title {
+        margin-bottom: 20px;
+
+        text-align: center;
+        font-weight: lighter;
+        margin: 18px 0;
+        font-size: 20px;
+        position: absolute;
+      }
+      .line {
+        margin-top: 10px;
+        border-top: 1px solid #eee;
+      }
+      .floating-panel {
+        font-weight: lighter;
+        margin: 20px 0;
+        text-align: left;
+        line-height: 30px;
+      } 
+      .panel-get-date .input-button {
+        border: none;
+        width: 100%;
+        height: 36px;
+        padding: 2px;
+        background-color: #c6d6df;
+        font-size: 16px;
+        font-weight: 400;
+        margin: 20px 0 10px 0;
+        text-align: center;
+      }
+      .panel-get-date .input-button:hover {
+        color: black;
+        background-color: #98b7c9;
+        cursor: pointer;
+      }
+
+  .table-container {
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 100%;
+    flex-basis: 100%;
+  }
+    .panel-table {
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      background-color: #fff;
+      border-radius: 2%;
+      margin-top: 16px;
+      padding: 10px 16px;
+      position: relative;
+
+      
+    }
+
+.input {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.label-start {
+  display: inline-block;
+  margin-left: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
+.label-end {
+  margin-left: 20px;
+}
+
+
+.footer {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  background-color: #98b7c9;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  padding-left: 16px;
+  margin-top: 10px;
+}
+
+
+@media (max-width: 600px) {
+  .main-container {
+      padding: 2px;
+      flex-direction: column;
+      width: 100%;
+      margin: 0;
+  }
+    .left-container {
+      flex-direction: column;
+      align-items: center;
+      max-width: 100%;
+    }
+      .panel-get-date {
+        width: 100%;
+      }
+}
+
 /* 
 #floating-panel {
   position: absolute;
@@ -21,16 +201,7 @@ body {
 }       */
 
 
-.floating-panel {
-  margin: 10px;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  text-align: center;
-  font-family: "Roboto", "sans-serif";
-  line-height: 30px;
-  padding-left: 10px;
-} 
+
 /* label {
   display: block;
   font: 1rem 'Fira Sans', sans-serif;
@@ -44,6 +215,7 @@ label {
 
 
 /* ТАБЛИЦА */
+
 
 .result-table {
   margin: 20px;
@@ -60,40 +232,110 @@ label {
   table-layout: fixed;
   border-collapse: collapse;
   /* height: 100vh; */
-  font-size: 14px;
+  font-size: 12px;
   width: 800px;
+  line-height: 14px;
+
 }
-.table tbody tr:nth-child(even) {
-  background: #ebecec;
-}
+/* .table tbody tr:nth-child(even) {
+  background: #e6e9eb;
+} */
 
 .table th {
-  font-weight: 900;
+  font-weight: 200;
 } 
 
 .table th,
 .table td {
   border: 1px solid #cecfd5;
   padding: 5px 10px;
+  text-align: center;
+
 }
 .table td {
   width: 80px;
 }
+/* .table tr:hover {
+  background-color: #bdcace;
+} */
 
 .main-head {
-  background-color: #646468;
+  background-color: #dae2e4;
+  color: #818181;
 }
 .t-head {
-  background-color: #cecfd5;
+  background-color: #edf1f3;
+  font-size: 10px;
+
 }
 .t-result {
-  background-color: #646468;
+  background-color: #dae2e4;
   font-weight: 900;
 }
-.t-thead-odd {
-  background-color: #a0a0a5;
-}
+/* .t-thead-odd {
+  background-color: #dadfe0;
+} */
 .fio {
   display: inline-block;
   width: 250px;
+}
+
+
+/* МОДАЛЬНОЕ ОКНО */
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(152, 183, 201, 0.7);
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal__block {
+  /* background-color: rgb(255, 255, 255); */
+  padding: 30px;
+  max-width: 600px;
+  margin: 30px;
+  position: relative;
+}
+.modal__image {
+  max-width: 200px;
+  /* border: 1px solid #ccc; */
+  margin-right: 15px;
+}
+
+/* LOADER */
+
+.lds-dual-ring {
+  width: 64px;
+  height: 64px;
+  margin: auto;
+  /* position: absolute;
+  top: 50%;
+  left: 50%; */
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #2678af;
+  border-color: #2678af transparent #2678af transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

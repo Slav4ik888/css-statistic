@@ -7,7 +7,7 @@
  * @return {number}
  */
 
-export const calculateNumberOf = (arr, param, person) => {
+export const calcNumberOf = (arr, param, person) => {
   let result = 0;
   if (arr) {
     arr.forEach(obj => {
@@ -23,19 +23,71 @@ export const calculateNumberOf = (arr, param, person) => {
 
 
 /**
- * Возвращает сумму баллов по сотруднику
+ * Возвращает сумму баллов по сотруднику за указанные Param
  * @param {Array} arr - массив в котором искать
- * @param {string} param - по какому элементу искать
+ * @param {string} param - по какому элементу искать совпадения Person (имя сотрудника)
  * @param {string} person - имя
  *
  * @return {number}
  */
 
-export const calculateValueOf = (arr, param, person) => {
+export const calcValueOf = (arr, param, person) => {
+  // const result = arr.reduce((sum, obj) => obj[param] === person ? sum + +obj.balls : 0, 0);
   let result = 0;
-  result = arr.reduce((sum, obj) => obj[param] === person ? sum + obj.balls : null, 0);
+  if (arr) {
+    arr.forEach(obj => {
+      if (obj[param] === person) {
+        result += +obj.balls;
+      }
+    });
+  };
+
+  console.log(`result balls: ${person}`, result);
+  if (result) {
+    return result
+  }
   
-  console.log('result balls: ', result);
+  return 0;
+};
+
+/**
+ * Возвращает итоговую сумму баллов по сотруднику
+ * @param {Object} o - объект сотрудника который посчитать
+ * @param {string} param - по какому элементу искать совпадения Person (имя сотрудника)
+ * @param {string} person - имя
+ *
+ * @return {number}
+ */
+
+export const calcResultBalls = o => {
+  let result = 0;
+  result =
+    o.numberSupportReg * 15 +
+    o.valueSupportForEnd +
+    o.numberInstallReg * 15 +
+    o.valueInstallForEnd +
+    o.valueExperiencesForEnd +
+    o.numberBadcomReg * 15 +
+    o.valueBadcomForEnd;
+  return result;
+};
+
+/**
+ * Возвращает итоговую сумму баллов по сотруднику
+ * @param {Array} arr - объект сотрудника который посчитать
+ * @param {string} param - по какому элементу искать совпадения Person (имя сотрудника)
+ * @param {string} person - имя
+ *
+ * @return {number}
+ */
+
+export const calcResultTD = arr => {
+  let result = 0;
+  if (arr) {
+    arr.forEach(obj => result += +obj.ballsTD);
+  };
+
+  console.log(`result TD:`, result);
   if (result) {
     return result
   }

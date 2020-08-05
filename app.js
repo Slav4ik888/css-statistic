@@ -1,28 +1,39 @@
 import {getFromGoogleData} from './scripts/get-from-google-data.js';
 import {createPersonNames, delDublePersons} from './scripts/persons.js';
 import {createResultArr} from './scripts/create-result-arr.js';
-import {calculateNumberOf, calculateValueOf} from './scripts/calculates.js';
-import {renderReaultTableTr, renderReaultTableHead} from './scripts/render-table.js';
+import {calcNumberOf, calcValueOf, calcResultBalls, calcResultTD} from './scripts/calculates.js';
+import {renderReaultTableTr, renderReaultTableHead, renderReaultTableEmptyTr, renderReaultTableTechDir} from './scripts/render-table.js';
 import {filtredBetweenDatesReg, filtredBetweenDatesEnd} from './scripts/filters.js';
+import {createParseDB} from './scripts/create-DB-parse-empty.js';
+import {DB_NAME} from './scripts/consts.js';
 
- 
+
 const URL_G_CSS = `https://script.google.com/macros/s/AKfycbzOgGruy924eOim0YPS7I4VruiRWzKQhNvFh45o3kar1XBdLdo/exec`;
-
+const URL_G_BADCOM = `https://script.google.com/macros/s/AKfycbyjZjLgAKkUcjltvH2x6CuOVCMtZ6gF3L5v7DQJmnEM5K00yqg/exec`;
 
 const startDate = document.querySelector(`.start-date`);
 const endDate = document.querySelector(`.end-date`);
 const buttonStart = document.querySelector(`.button-start`);
 const buttonLoadDb = document.querySelector(`.button-load-db`);
 const buttonLoadLocal = document.querySelector(`.button-load-local`);
+const tableView = document.querySelector(`.table-container`);
+const modalLoad = document.querySelector(`.modal__item`);
+const modalDescription = document.querySelector(`.modal__description`);
 
 
-// имена для сохранения в localStorage
-const saveName = {
-  CssDB: `CssDB`,
-  CssInstDB: `CssInstDB`,
-  CssExpDB: `CssExpDB`,
-  badcom: `badcom`,
+
+const loaderStart = text => {
+  modalLoad.classList.add(`modal`);
+  modalLoad.classList.remove(`hide`);
+  modalDescription.textContent = text;
 };
+
+const loaderStop = () => {
+  modalLoad.classList.add(`hide`);
+  modalLoad.classList.remove(`modal`);
+  modalDescription.textContent = ``;
+}
+
 
 
 // Массивы для работы
@@ -54,107 +65,69 @@ let BadcomDBFiltredBetweenDatesEnd = [];
 const saveDB = (strAddress, bd) => localStorage.setItem(strAddress, JSON.stringify(bd));
 
 
-// Читаем данные из Гугл и сохраняем в LocalStorage
+// Читаем данные из Гугл CSS и сохраняем в LocalStorage
 async function getDataFromGoogleCSS(url) {
-  console.log(`Загружаем`);
+  loaderStart(`Загружаем CSS...`);
   const DB = await getFromGoogleData(url);
-
-  console.log(`Получили данные`, DB);
+  loaderStop();
+  console.log(`Получили данные CSS`, DB);
 
   CssDB = Array.from(DB.data1);
-  saveDB(saveName.CssDB, CssDB);
+  saveDB(DB_NAME.CssDB, CssDB);
   console.log('CssDB: ', CssDB);
 
   CssInstDB = Array.from(DB.data3)
-  saveDB(saveName.CssInstDB, CssInstDB);
+  saveDB(DB_NAME.CssInstDB, CssInstDB);
   console.log('CssInstDB: ', CssInstDB);
 
   CssExpDB = Array.from(DB.data2);
-  saveDB(saveName.CssExpDB, CssExpDB);
+  saveDB(DB_NAME.CssExpDB, CssExpDB);
   console.log('CssExpDB: ', CssExpDB);
 };
 
+// Читаем данные из Гугл BADCOM и сохраняем в LocalStorage
+async function getDataFromGoogleBadcom(url) {
+  loaderStart(`Загружаем BC...`);
+  const DB = await getFromGoogleData(url);
+  loaderStop();
 
-// Проверяем если пустой, загружаем
-const checkIsEmpty = (db, url) => {
-  if (!db.length) {
-    getDataFromGoogle(url);
-  }
+  console.log(`Получили данные BC`, DB);
+
+  BadcomDB = Array.from(DB.data1);
+  saveDB(DB_NAME.BadcomDB, BadcomDB);
+  console.log('BadcomDB: ', BadcomDB);
+
+};
+
+// Читаем данные из LocalStorage
+const getDataFromLocalStorage = () => {
+  const lsCssDB = localStorage.getItem(DB_NAME.CssDB);
+  const lsCssInstDB = localStorage.getItem(DB_NAME.CssInstDB);
+  const lsCssExpDB = localStorage.getItem(DB_NAME.CssExpDB);
+  const lsBadcomDB = localStorage.getItem(DB_NAME.BadcomDB);
+
+  lsCssDB ? CssDB = JSON.parse(lsCssDB) : CssDB = [];
+  lsCssInstDB ? CssInstDB = JSON.parse(lsCssInstDB) : CssInstDB = [];
+  lsCssExpDB ? CssExpDB = JSON.parse(lsCssExpDB) : CssExpDB = [];
+  lsBadcomDB ? BadcomDB = JSON.parse(lsBadcomDB) : BadcomDB = [];
+
+  // console.log(`From LS ${DB_NAME.CssDB} `, CssDB);
+  // console.log(`From LS ${DB_NAME.CssInstDB} `, CssInstDB);
+  // console.log(`From LS ${DB_NAME.CssExpDB} `, CssExpDB);
 };
 
 
+
 // АЛГОРИТМ
-// 5.  Загружаем данные из Гугл
+// 3. Ожидаем получение данных промежутка дат
+// 5. Загружаем данные из Гугл
 // 10. Создаём нужный массив из массива Гугл
 // 20. Создаём массив всех Person
-// 30. Ожидаем получение данных промежутка дат
 // 40. Создаём массив в промежутке по нужному столбцу (Зарегистрированные, Завершённые)
 // 50. Создаём массив по кол-ву Person, для наполнения
 // 60. Считаем данные по каждому
 //
 
-// Создаём нужный массив из массива Гугл
-const CssDBParse = () => {
-  let arr = [];
-  let obj = {};
-
-  for(let item of CssDB) {
-    obj.dateReg = Date.parse(item[1]);
-    obj.dateEnd = Date.parse(item[5]);
-    obj.personReg = item[2];
-    obj.personEnd = item[6];
-    obj.status = item[4];
-    obj.ballsTD = item[17];
-    obj.balls = item[20];
-
-    arr.push(obj);
-    obj = {};
-  }
-  arr.splice(0,1);
-  console.log('parseCssDB: ', arr);
-
-  return arr
-};
-
-const CssInstDBParse = () => {
-  let arr = [];
-  let obj = {};
-
-  for(let item of CssInstDB) {
-    obj.dateReg = Date.parse(item[1]);
-    obj.dateEnd = Date.parse(item[8]);
-    obj.personReg = item[3];
-    obj.personEnd = item[10];
-    obj.status = item[7];
-    obj.balls = item[15];
-
-    arr.push(obj);
-    obj = {};
-  }
-  arr.splice(0,1);
-  console.log('parseCssDB: ', arr);
-
-  return arr
-};
-
-const CssExpDBParse = () => {
-  let arr = [];
-  let obj = {};
-
-  for(let item of CssExpDB) {
-    obj.dateEnd = Date.parse(item[5]);
-    obj.personEnd = item[6];
-    obj.status = item[4];
-    obj.balls = item[13];
-
-    arr.push(obj);
-    obj = {};
-  }
-  arr.splice(0,1);
-  console.log('parseCssDB: ', arr);
-
-  return arr
-};
 
 
 /**************************************/
@@ -163,44 +136,44 @@ const CssExpDBParse = () => {
 
 buttonLoadDb.addEventListener(`click`, () => {
   getDataFromGoogleCSS(URL_G_CSS);
-  
+  getDataFromGoogleBadcom(URL_G_BADCOM);
 });
-
 
 buttonLoadLocal.addEventListener(`click`, () => {
-  const lsCssDB = localStorage.getItem(saveName.CssDB);
-  const lsCssInstDB = localStorage.getItem(saveName.CssInstDB);
-  const lsCssExpDB = localStorage.getItem(saveName.CssExpDB);
-
-  lsCssDB ? CssDB = JSON.parse(lsCssDB) : CssDB = [];
-  lsCssInstDB ? CssInstDB = JSON.parse(lsCssInstDB) : CssInstDB = [];
-  lsCssExpDB ? CssExpDB = JSON.parse(lsCssExpDB) : CssExpDB = [];
-
-  // console.log('From localStorage ', CssDB);
-  // console.log('From localStorage ', CssInstDB);
-  // console.log('From localStorage ', CssExpDB);
+  getDataFromLocalStorage();
 });
 
 
-// 30
+// 3
 // Ожидаем получение данных промежутка дат
 buttonStart.addEventListener(`click`, () => {
+  console.log(`СТАРТ расчёта`);
+  tableView.classList.remove(`hide`);
+
   const start = startDate.value;
   const end = endDate.value;
 
-  // 10
-  // Создаём "нужный" массив из массива Гугл
 
-  CssDB = CssDBParse();
-  CssInstDB = CssInstDBParse();
-  CssExpDB = CssExpDBParse();
+  // 5. Загружаем данные из Гугл
+  getDataFromGoogleCSS(URL_G_CSS);
+  getDataFromGoogleBadcom(URL_G_BADCOM); 
+  getDataFromLocalStorage();
+
+  // 10
+  // Создаём массивы из массива Гугла с объектами нужного формата но 0 значениями
+  
+  CssDB = createParseDB(CssDB, DB_NAME.CssDB);
+  CssInstDB = createParseDB(CssInstDB, DB_NAME.CssInstDB);
+  CssExpDB = createParseDB(CssExpDB, DB_NAME.CssExpDB);
+  BadcomDB = createParseDB(BadcomDB, DB_NAME.BadcomDB);
+
 
   // 20
   // Создаём массив уникальных Person
   persons = [...createPersonNames(CssDB), ...createPersonNames(CssInstDB), ...createPersonNames(CssExpDB), ...createPersonNames(BadcomDB)];
   // Удалим дубликаты имён
   persons = delDublePersons(persons);
-  // console.log('personsDEL: ', persons);
+  console.log('persons-with-del: ', persons);
 
   // 40
   // Создаём массив в промежутке по нужному столбцу (Зарегистрированные, Завершённые)
@@ -208,13 +181,14 @@ buttonStart.addEventListener(`click`, () => {
   CssDBFiltredBetweenDatesReg = filtredBetweenDatesReg(CssDB, start, end);
   CssDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssDB, start, end);
 
-  CssInstDBFiltredBetweenDatesReg = filtredBetweenDatesEnd(CssInstDB, start, end);
+  CssInstDBFiltredBetweenDatesReg = filtredBetweenDatesReg(CssInstDB, start, end);
   CssInstDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssInstDB, start, end);
 
   CssExpDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssExpDB, start, end);
 
-  BadcomDBFiltredBetweenDatesReg = filtredBetweenDatesEnd(BadcomDB, start, end);
+  BadcomDBFiltredBetweenDatesReg = filtredBetweenDatesReg(BadcomDB, start, end);
   BadcomDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(BadcomDB, start, end);
+
   // 50.
   // Создаём массив по кол-ву Person, для наполнения
   const {ResultArr, objIndex} = createResultArr(persons);
@@ -229,37 +203,43 @@ buttonStart.addEventListener(`click`, () => {
   
   
   persons.forEach(person => {
+    console.log('person: ', person);
     // СЕКЦИЯ ТЕХПОДДЕРЖКИ
     // КОЛ-ВО принятых и оформленных инцидентов
-    ResultArr[objIndex[person]].numberSupportReg = calculateNumberOf(CssDBFiltredBetweenDatesReg, `personReg`, person);
+    ResultArr[objIndex[person]].numberSupportReg = calcNumberOf(CssDBFiltredBetweenDatesReg, `personReg`, person);
 
     // БАЛЛЫ за завершённые инциденты
-    ResultArr[objIndex[person]].valueSupportForEnd = calculateValueOf(CssDBFiltredBetweenDatesEnd, `personEnd`, person);
+    ResultArr[objIndex[person]].valueSupportForEnd = calcValueOf(CssDBFiltredBetweenDatesEnd, `personEnd`, person);
 
     // СЕКЦИЯ ИНСТАЛЛЯЦИЙ
     // КОЛ-ВО принятых и оформленных инцидентов
-    ResultArr[objIndex[person]].numberInstallReg = calculateNumberOf(CssInstDBFiltredBetweenDatesReg, `personReg`, person);
+    ResultArr[objIndex[person]].numberInstallReg = calcNumberOf(CssInstDBFiltredBetweenDatesReg, `personReg`, person);
 
     // БАЛЛЫ за завершённые инциденты
-    ResultArr[objIndex[person]].valueInstallForEnd = calculateValueOf(CssInstDBFiltredBetweenDatesEnd, `personEnd`, person);
+    ResultArr[objIndex[person]].valueInstallForEnd = calcValueOf(CssInstDBFiltredBetweenDatesEnd, `personEnd`, person);
 
     // СЕКЦИЯ ОПЫТНОГО ПРОИЗВОДСТВА
     // БАЛЛЫ за завершённые задачи
-    ResultArr[objIndex[person]].valueExperiencesForEnd = calculateValueOf(CssDBFiltredBetweenDatesEnd, `personEnd`, person);
+    ResultArr[objIndex[person]].valueExperiencesForEnd = calcValueOf(CssExpDBFiltredBetweenDatesEnd, `personEnd`, person);
 
     // BADCOM
     // КОЛ-ВО принятых и оформленных инцидентов
-    // numberBadcomReg 
+    ResultArr[objIndex[person]].numberBadcomReg = calcNumberOf(BadcomDBFiltredBetweenDatesReg, `personReg`, person);
     
     // БАЛЛЫ за завершённые инциденты
-    // valueBadcomForEnd: 0,
-    
+    ResultArr[objIndex[person]].valueBadcomForEnd = calcValueOf(BadcomDBFiltredBetweenDatesEnd, `personEnd`, person);
 
-  
-
+    // СЧИТАЕМ ИТОГО
+    ResultArr[objIndex[person]].result = calcResultBalls(ResultArr[objIndex[person]]);
 
     // СОЗДАЁМ TR ИТОГОВОЙ ТАБЛИЦЫ
     renderReaultTableTr(ResultArr[objIndex[person]]);
   });
-  console.log(ResultArr);
+
+  // Считаем баллы ТД и выводим в таблицее
+  renderReaultTableEmptyTr();
+
+  renderReaultTableTechDir(calcResultTD(CssDBFiltredBetweenDatesEnd), calcResultTD(BadcomDBFiltredBetweenDatesEnd));
+
+  console.log('Итоговая завершённая: ', ResultArr);
 });

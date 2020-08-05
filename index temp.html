@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Social Media</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: #f5f7f8;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .navigation {
+            display: flex;
+            width: 100%;
+            height: 50px;
+            background-color: #4d636f;
+        }
+
+        .button {
+            text-align: center;
+            background-color: #3a4b53;
+            cursor: pointer;
+            border: none;
+            width: auto;
+            color: #fff;
+            font-size: 18px;
+            padding: 12px 24px;
+            outline: none;
+        }
+
+        .button:hover {
+            color: #000;
+            background-color: #ccc;
+        }
+
+        .container-with-picture {
+            padding: 12px 24px;
+            margin-left: auto;
+            height: 50px;
+            width: 72px;
+        }
+
+        .avatar-image {
+            border-radius: 50%;
+            vertical-align: middle;
+            height: 23px;
+            width: 23px;
+            border-style: none;
+        }
+
+        .container-with-picture:hover {
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .fa-globe-asia {
+            vertical-align: middle;
+        }
+
+        .fa-user {
+            vertical-align: middle;
+        }
+
+        .fa-envelope {
+            vertical-align: middle;
+        }
+
+        .bfa-bell {
+            vertical-align: middle;
+        }
+
+        .picture-world {
+            padding: 12px 24px;
+            height: 50px;
+            width: 72px;
+            color: #fff;
+        }
+
+        .picture-user {
+            padding: 12px 24px;
+            height: 50px;
+            width: 72px;
+            color: #fff;
+        }
+
+        .picture-envelope {
+            padding: 12px 24px;
+            height: 50px;
+            width: 72px;
+            color: #fff;
+        }
+
+        .picture-bell {
+            padding: 12px 24px;
+            height: 50px;
+            display: flex;
+            color: #fff;
+        }
+
+        .picture-world:hover {
+            color: black;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .picture-user:hover {
+            color: black;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .picture-envelope:hover {
+            color: black;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .picture-bell:hover {
+            color: black;
+            background-color: #ccc;
+            cursor: pointer;
+
+        }
+
+        .notifications {
+            background-color: #4CAF50;
+            width: 24px;
+            height: 18px;
+            font-size: 12px;
+            border-radius: 50%;
+            text-align: center;
+            position: relative;
+            top: -6px;
+            line-height: 18px;
+        }
+
+        .avatar-profile {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            padding: 16px 16px;
+            margin: 16px 0;
+            border-radius: 2%;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .description {
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: lighter;
+            font-size: 20px;
+        }
+
+        .avatar-picture {
+            height: 106px;
+            width: 106px;
+            border-radius: 50%;
+            border-style: none;
+            margin: auto;
+        }
+
+        .information-profile {
+            text-align: left;
+            color: #607d8b;
+            font-family: Verdana, sans-serif;
+            font-size: 15px;
+        }
+
+        .border_one {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 20px 0;
+        }
+
+        .characteristic {
+            margin-left: 24px;
+            border: none;
+        }
+
+        .user-function {
+            background-color: #7d97a5;
+            border-radius: 2%;
+            color: #fff;
+            font-family: Verdana, sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .fa-circle-notch {
+            margin-right: 24px;
+            margin-left: 10px;
+        }
+
+        .fa-calendar-check {
+            margin-right: 26px;
+            margin-left: 10px;
+        }
+
+        .fa-users {
+            margin-right: 22px;
+            margin-left: 10px;
+        }
+
+        .my-functions {
+            width: 100%;
+            height: 36px;
+            padding: 6px;
+        }
+
+        .my-functions:hover {
+            color: black;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        .interests {
+            background-color: #fff;
+            border-radius: 2%;
+            margin-top: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .interests-tags {
+            font-family: Verdana, sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .news-tag {
+            color: #fff;
+            padding: 2px 4px;
+            font-size: 16px;
+            background-color: #303e45;
+            line-height: 1.5;
+        }
+
+        .W3Schools-tag {
+            color: #fff;
+            padding: 2px 4px;
+            font-size: 16px;
+            background-color: #3a4b53;
+            line-height: 1.5;
+        }
+
+        .labels-tag {
+            color: #fff;
+            padding: 2px 4px;
+            font-size: 16px;
+            background-color: #435761;
+            line-height: 1.5;
+        }
+
+        .games-tag {
+            color: #fff;
+            padding: 2px 4px;
+            font-size: 16px;
+            background-color: #4d636f;
+            line-height: 1.5;
+        }
+
+        .friends-tag {
+            color: #fff;
+            padding: 2px 4px;
+            font-size: 16px;
+            background-color: #57707d;
+            line-height: 1.5;
+        }
+
+        .new-games-tag {
+            color: #fff;
+            padding: 2px 4px;
+            font-size: 16px;
+            background-color: #607d8b;
+            line-height: 1.5;
+        }
+
+        .new-friends-tag {
+            color: #fff;
+            padding: 2px 4px;
+            font-size: 16px;
+            background-color: #7d97a5;
+            line-height: 1.5;
+        }
+
+        .food-tag {
+            color: #fff;
+            padding: 2px 4px;
+            font-size: 16px;
+            background-color: #9eb1bb;
+            line-height: 1.5;
+        }
+
+        .design-tag {
+            color: #fff;
+            padding: 2px 4px;
+            font-size: 16px;
+            background-color: #becbd2;
+            line-height: 1.5;
+        }
+
+        .art-tag {
+            color: #fff;
+            padding: 2px 4px;
+            font-size: 16px;
+            background-color: #dfe5e8;
+            line-height: 1.5;
+        }
+
+        .photos-tag {
+            color: #fff;
+            padding: 2px 4px;
+            font-size: 16px;
+            background-color: #f5f7f8;
+            line-height: 1.5;
+        }
+
+        .notify {
+            background-color: #dfe5e8;
+            border-radius: 2%;
+            margin-top: 20px;
+            padding: 10px 16px;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+
+        .strong {
+            font-weight: bold;
+            color: #000;
+            font-family: "Open Sans", sans-serif;
+            font-size: 15px;
+        }
+
+        .description-notification {
+            color: #000;
+            font-family: Verdana, sans-serif;
+            font-size: 15px;
+        }
+
+        .notify-cross {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: #000;
+            background-color: #becbd2;
+            border: none;
+            cursor: pointer;
+            width: 50px;
+            height: 38px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .main-container {
+            display: flex;
+            padding: 16px 0;
+            margin: auto;
+            max-width: 960px;
+        }
+
+        .center-container {
+            margin: 16px 0;
+        }
+
+        .container-for-publication {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            border-radius: 2%;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-bottom: 16px;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .template {
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            opacity: 0.60;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .input {
+            padding: 8px 16px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .post-one {
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            background-color: #fff;
+            border-radius: 2%;
+            margin-top: 16px;
+            padding: 10px 16px;
+            position: relative;
+        }
+
+        .avatar-of-John {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            position: relative;
+            margin-right: 16px;
+        }
+
+        .username-one {
+            font-family: "Open Sans", sans-serif;
+            font-weight: 400;
+            margin: 18px 0;
+            font-size: 20px;
+            position: absolute;
+        }
+
+        .lorem-ipsum {
+            border-top: 1px solid #eee;
+            margin: 20px 0;
+            padding-top: 26px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .time-one {
+            position: absolute;
+            top: 0;
+            right: 16px;
+            opacity: 0.60;
+            margin-top: 20px;
+        }
+
+        .lights-image {
+            width: 49%;
+        }
+
+        .nature-image {
+            width: 49%;
+        }
+
+        .images {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .button-comment {
+            height: 38px;
+            padding: 10px 10px;
+            color: #fff;
+            background-color: #57707d;
+            border: none;
+            font-size: 15px;
+        }
+
+        .button-comment:hover {
+            color: #000;
+            background-color: #ccc;
+        }
+
+        .fa-thumbs-up {
+            margin-right: 8px;
+        }
+
+        .fa-comment {
+            margin-right: 8px;
+        }
+
+        .post-two {
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            background-color: #fff;
+            border-radius: 2%;
+            margin-top: 16px;
+            padding: 10px 16px;
+            position: relative;
+        }
+
+        .post-three {
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            background-color: #fff;
+            border-radius: 2%;
+            margin-top: 16px;
+            padding: 10px 16px;
+            position: relative;
+        }
+
+        .nature-one-image {
+            width: 100%;
+        }
+
+        .lorem-ipsum-two {
+            margin: 10px 0;
+            padding-top: 26px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .events {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            border-radius: 2%;
+            padding-top: 10px;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-bottom: 16px;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            text-align: center;
+            font-family: "Open Sans", sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .holiday {
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .forest-image {
+            height: 108px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .button-info {
+            color: #000;
+            background-color: #dfe5e8;
+            display: block;
+            width: 100%;
+            height: 38px;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .button-info:hover {
+            background-color: #ccc;
+        }
+
+        .friend-request {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            background-color: #fff;
+            margin-top: 20px;
+            border-radius: 2%;
+            padding-top: 10px;
+            padding-left: 16px;
+            padding-right: 16px;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            text-align: center;
+            font-family: "Open Sans", sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .avatar6-image {
+            height: 84px;
+            width: 84px;
+            margin: auto;
+        }
+
+        .jane {
+            border: none;
+        }
+
+        .button-check-mark {
+            height: 38px;
+            width: 98px;
+            color: #fff;
+            background-color: #4CAF50;
+            margin-top: 16px;
+            margin-bottom: 16px;
+            border: none;
+            font-size: 15px;
+        }
+
+        .button-cross {
+            height: 38px;
+            width: 98px;
+            color: #fff;
+            background-color: #f44336;
+            margin-top: 16px;
+            margin-bottom: 16px;
+            border: none;
+            font-size: 15px;
+        }
+
+        .buttons {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .button-check-mark:hover {
+            color: #000;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        .button-cross:hover {
+            color: #000;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        .ads {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 84px;
+            height: 84px;
+            background-color: #fff;
+            margin-top: 20px;
+            border-radius: 2%;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            font-family: "Open Sans", sans-serif;
+            font-size: 15px;
+        }
+
+        .bug {
+            text-align: center;
+            line-height: 130px;
+            background-color: #fff;
+            margin-top: 20px;
+            border-radius: 2%;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .fa-bug {
+            font-size: 36px;
+        }
+
+        .logo {
+            margin-left: 16px;
+        }
+
+        .left-container {
+            padding-left: 16px;
+            padding-right: 16px;
+            max-width: 302px;
+            flex-basis: 100%;
+        }
+
+        .center-container {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .right-container {
+            padding-left: 16px;
+            padding-right: 16px;
+            max-width: 200px;
+            flex-basis: 100%;
+            margin-top: 16px;
+        }
+
+        .footer {
+            display: flex;
+            align-items: center;
+            height: 80px;
+            background-color: #4d636f;
+            color: #fff;
+            font-family: "Open Sans", sans-serif;
+            font-weight: 400;
+            padding-left: 16px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .main-container {
+                padding: 2px;
+                flex-direction: column;
+                width: 100%;
+                margin: 0;
+            }
+
+            .left-container {
+                flex-direction: column;
+                align-items: center;
+                max-width: 100%;
+            }
+
+            .interests {
+                display: none;
+            }
+
+            .notify {
+                display: none;
+            }
+
+            .right-container {
+                flex-direction: column;
+                align-items: center;
+                max-width: 100%;
+
+            }
+
+            .center-container {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .container-for-publication {
+                width: 100%;
+            }
+
+            .post-one {
+                width: 100%;
+            }
+
+            .post-two {
+                width: 100%;
+            }
+
+            .post-three {
+                width: 100%;
+            }
+
+            .nature-one-image {
+                width: 100%;
+            }
+
+            .events {
+                width: 100%;
+            }
+
+            .friend-request {
+                width: 100%;
+                align-items: center;
+            }
+
+            .ads {
+                width: 100%;
+            }
+
+            .bug {
+                width: 100%;
+            }
+
+            .picture-world {
+                display: none;
+            }
+
+            .picture-user {
+                display: none;
+            }
+
+            .picture-envelope {
+                display: none;
+            }
+
+            .picture-bell {
+                display: none;
+            }
+
+            .container-with-picture {
+                display: none;
+            }
+
+            .avatar-profile {
+                width: 100%;
+            }
+
+            .user-function {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navigation">
+        <button class="button">
+            <i class="fas fa-home"></i>
+            <span class="logo">Logo</span>
+        </button>
+        <div class="picture-world">
+            <i class="fas fa-globe-asia"></i>
+        </div>
+        <div class="picture-user">
+            <i class="far fa-user"></i>
+        </div>
+        <div class="picture-envelope">
+            <i class="far fa-envelope"></i>
+        </div>
+        <div class="picture-bell">
+            <i class="far fa-bell"></i>
+            <span class="notifications">
+                3
+            </span>
+        </div>
+        <div class="container-with-picture">
+            <img src="./img/avatar2.png" class="avatar-image">
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="left-container">
+            <div class="avatar-profile">
+                <div class="description">My profile</div>
+                <img src="./img/avatar3.png" class="avatar-picture">
+                <div class="border_one"></div>
+                <div class="information-profile">
+                    <i class="fas fa-pencil-alt"></i>
+                    <span class="characteristic">Designer, UI</span>
+                    <p>
+                        <i class="fas fa-home"></i>
+                        <span class="characteristic">London, UK</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-birthday-cake"></i>
+                        <span class="characteristic">April 1, 1988</span>
+                    </p>
+                </div>
+            </div>
+            <div class="user-function">
+                <div class="my-functions">
+                    <i class="fas fa-circle-notch"></i>
+                    My Groups
+                </div>
+                <div class="my-functions">
+                    <i class="far fa-calendar-check"></i>
+                    My Events
+                </div>
+                <div class="my-functions">
+                    <i class="fas fa-users"></i>
+                    My Photos
+                </div>
+            </div>
+            <div class="interests">
+                <div class="interests-tags">Interests</div>
+                <div class="different-tags">
+                    <span class="news-tag">News</span>
+                    <span class="W3Schools-tag">W3Schools</span>
+                    <span class="labels-tag">Labels</span>
+                    <span class="games-tag">Games</span>
+                    <span class="friends-tag">Friends</span>
+                    <span class="new-games-tag">Games</span>
+                    <span class="new-friends-tag">Friends</span>
+                    <span class="food-tag">Food</span>
+                    <span class="design-tag">Design</span>
+                    <span class="art-tag">Art</span>
+                    <span class="photos-tag">Photos</span>
+                </div>
+            </div>
+            <div class="notify">
+                <p>
+                    <strong>Hey!</strong>
+                </p>
+                <p class="description-notification">People are looking at your profile. Find out who.</p>
+                <button class="notify-cross">&times;</button>
+            </div>
+        </div>
+        <div class="center-container">
+            <div class="container-for-publication">
+                <div class="template">Social Media template by w3.css</div>
+                <input class="input" type="text" id="post" name="post" required="required"
+                    placeholder="Status: Feeling Blue">
+                <div>
+                    <button class="button-comment"><i class="fas fa-pencil-alt"></i>&nbsp;<span
+                            class="description-button">
+                            Post</span></button>
+                </div>
+            </div>
+            <div class="post-one">
+                <img src="./img/avatar2.png" class="avatar-of-John">
+                <span class="username-one">John Doe</span>
+                <div class="time-one">1 min</div>
+                <p class="lorem-ipsum">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.
+                </p>
+                <div class="images">
+                    <img src="./img/lights.jpg" class="lights-image">
+                    <img src="./img/nature.jpg" class="nature-image">
+                </div>
+                <button class="button-comment"><i class="fas fa-thumbs-up"></i>Like</button>
+                <button class="button-comment"><i class="far fa-comment"></i>Comment</button>
+            </div>
+            <div class="post-two">
+                <img src="./img/avatar5.png" class="avatar-of-John">
+                <span class="username-one">Jane Doe</span>
+                <div class="time-one">16 min</div>
+                <p class="lorem-ipsum">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.
+                </p>
+                <button class="button-comment"><i class="fas fa-thumbs-up"></i>Like</button>
+                <button class="button-comment"><i class="far fa-comment"></i>Comment</button>
+            </div>
+            <div class="post-three">
+                <img src="./img/avatar6.png" class="avatar-of-John">
+                <span class="username-one">Angie Jane</span>
+                <div class="time-one">32 min</div>
+                <p class="lorem-ipsum">
+                    Have you seen this?
+                </p>
+                <img src="./img/nature (1).jpg" class="nature-one-image">
+                <p class="lorem-ipsum-two">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.
+                </p>
+                <button class="button-comment"><i class="fas fa-thumbs-up"></i>Like</button>
+                <button class="button-comment"><i class="far fa-comment"></i>Comment</button>
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="events">
+                Upcoming Events:
+                <img src="./img/forest.jpg" class="forest-image">
+                <div class="holiday">Holiday</div>
+                Friday 15:00
+                <button class="button-info">Info</button>
+            </div>
+            <div class="friend-request">
+                Friend Request
+                <img src="./img/avatar6.png" class="avatar6-image">
+                Jane Doe
+                <div class="buttons">
+                    <button class="button-check-mark"><i class="fas fa-check"></i></button>
+                    <button class="button-cross"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="ads">
+                ADS
+            </div>
+            <div class="bug">
+                <i class="fas fa-bug"></i>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        Footer
+    </div>    
+</body>
+
+</html>
