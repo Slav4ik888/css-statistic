@@ -155,91 +155,93 @@ buttonStart.addEventListener(`click`, () => {
 
 
   // 5. Загружаем данные из Гугл
-  getDataFromGoogleCSS(URL_G_CSS);
-  getDataFromGoogleBadcom(URL_G_BADCOM); 
-  getDataFromLocalStorage();
+  getDataFromGoogleCSS(URL_G_CSS)
+  .then(() => getDataFromGoogleBadcom(URL_G_BADCOM))
+  .then(() => { 
+    // getDataFromLocalStorage();
 
-  // 10
-  // Создаём массивы из массива Гугла с объектами нужного формата но 0 значениями
-  
-  CssDB = createParseDB(CssDB, DB_NAME.CssDB);
-  CssInstDB = createParseDB(CssInstDB, DB_NAME.CssInstDB);
-  CssExpDB = createParseDB(CssExpDB, DB_NAME.CssExpDB);
-  BadcomDB = createParseDB(BadcomDB, DB_NAME.BadcomDB);
-
-
-  // 20
-  // Создаём массив уникальных Person
-  persons = [...createPersonNames(CssDB), ...createPersonNames(CssInstDB), ...createPersonNames(CssExpDB), ...createPersonNames(BadcomDB)];
-  // Удалим дубликаты имён
-  persons = delDublePersons(persons);
-  console.log('persons-with-del: ', persons);
-
-  // 40
-  // Создаём массив в промежутке по нужному столбцу (Зарегистрированные, Завершённые)
-
-  CssDBFiltredBetweenDatesReg = filtredBetweenDatesReg(CssDB, start, end);
-  CssDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssDB, start, end);
-
-  CssInstDBFiltredBetweenDatesReg = filtredBetweenDatesReg(CssInstDB, start, end);
-  CssInstDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssInstDB, start, end);
-
-  CssExpDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssExpDB, start, end);
-
-  BadcomDBFiltredBetweenDatesReg = filtredBetweenDatesReg(BadcomDB, start, end);
-  BadcomDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(BadcomDB, start, end);
-
-  // 50.
-  // Создаём массив по кол-ву Person, для наполнения
-  const {ResultArr, objIndex} = createResultArr(persons);
-  // console.log('objIndex: ', objIndex);
-  console.log('Итоговая шаблон: ', ResultArr);
-
-
-  // СОЗДАЁМ HEAD ИТОГОВОЙ ТАБЛИЦЫ
-  renderReaultTableHead();
-
-  // 60. Считаем данные по каждому Person и каждому значению
-  
-  
-  persons.forEach(person => {
-    console.log('person: ', person);
-    // СЕКЦИЯ ТЕХПОДДЕРЖКИ
-    // КОЛ-ВО принятых и оформленных инцидентов
-    ResultArr[objIndex[person]].numberSupportReg = calcNumberOf(CssDBFiltredBetweenDatesReg, `personReg`, person);
-
-    // БАЛЛЫ за завершённые инциденты
-    ResultArr[objIndex[person]].valueSupportForEnd = calcValueOf(CssDBFiltredBetweenDatesEnd, `personEnd`, person);
-
-    // СЕКЦИЯ ИНСТАЛЛЯЦИЙ
-    // КОЛ-ВО принятых и оформленных инцидентов
-    ResultArr[objIndex[person]].numberInstallReg = calcNumberOf(CssInstDBFiltredBetweenDatesReg, `personReg`, person);
-
-    // БАЛЛЫ за завершённые инциденты
-    ResultArr[objIndex[person]].valueInstallForEnd = calcValueOf(CssInstDBFiltredBetweenDatesEnd, `personEnd`, person);
-
-    // СЕКЦИЯ ОПЫТНОГО ПРОИЗВОДСТВА
-    // БАЛЛЫ за завершённые задачи
-    ResultArr[objIndex[person]].valueExperiencesForEnd = calcValueOf(CssExpDBFiltredBetweenDatesEnd, `personEnd`, person);
-
-    // BADCOM
-    // КОЛ-ВО принятых и оформленных инцидентов
-    ResultArr[objIndex[person]].numberBadcomReg = calcNumberOf(BadcomDBFiltredBetweenDatesReg, `personReg`, person);
+    // 10
+    // Создаём массивы из массива Гугла с объектами нужного формата но 0 значениями
     
-    // БАЛЛЫ за завершённые инциденты
-    ResultArr[objIndex[person]].valueBadcomForEnd = calcValueOf(BadcomDBFiltredBetweenDatesEnd, `personEnd`, person);
+    CssDB = createParseDB(CssDB, DB_NAME.CssDB);
+    CssInstDB = createParseDB(CssInstDB, DB_NAME.CssInstDB);
+    CssExpDB = createParseDB(CssExpDB, DB_NAME.CssExpDB);
+    BadcomDB = createParseDB(BadcomDB, DB_NAME.BadcomDB);
 
-    // СЧИТАЕМ ИТОГО
-    ResultArr[objIndex[person]].result = calcResultBalls(ResultArr[objIndex[person]]);
 
-    // СОЗДАЁМ TR ИТОГОВОЙ ТАБЛИЦЫ
-    renderReaultTableTr(ResultArr[objIndex[person]]);
-  });
+    // 20
+    // Создаём массив уникальных Person
+    persons = [...createPersonNames(CssDB), ...createPersonNames(CssInstDB), ...createPersonNames(CssExpDB), ...createPersonNames(BadcomDB)];
+    // Удалим дубликаты имён
+    persons = delDublePersons(persons);
+    console.log('persons-with-del: ', persons);
 
-  // Считаем баллы ТД и выводим в таблицее
-  renderReaultTableEmptyTr();
+    // 40
+    // Создаём массив в промежутке по нужному столбцу (Зарегистрированные, Завершённые)
 
-  renderReaultTableTechDir(calcResultTD(CssDBFiltredBetweenDatesEnd), calcResultTD(BadcomDBFiltredBetweenDatesEnd));
+    CssDBFiltredBetweenDatesReg = filtredBetweenDatesReg(CssDB, start, end);
+    CssDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssDB, start, end);
 
-  console.log('Итоговая завершённая: ', ResultArr);
+    CssInstDBFiltredBetweenDatesReg = filtredBetweenDatesReg(CssInstDB, start, end);
+    CssInstDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssInstDB, start, end);
+
+    CssExpDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssExpDB, start, end);
+
+    BadcomDBFiltredBetweenDatesReg = filtredBetweenDatesReg(BadcomDB, start, end);
+    BadcomDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(BadcomDB, start, end);
+
+    // 50.
+    // Создаём массив по кол-ву Person, для наполнения
+    const {ResultArr, objIndex} = createResultArr(persons);
+    // console.log('objIndex: ', objIndex);
+    console.log('Итоговая шаблон: ', ResultArr);
+
+
+    // СОЗДАЁМ HEAD ИТОГОВОЙ ТАБЛИЦЫ
+    renderReaultTableHead();
+
+    // 60. Считаем данные по каждому Person и каждому значению
+    
+    
+    persons.forEach(person => {
+      console.log('person: ', person);
+      // СЕКЦИЯ ТЕХПОДДЕРЖКИ
+      // КОЛ-ВО принятых и оформленных инцидентов
+      ResultArr[objIndex[person]].numberSupportReg = calcNumberOf(CssDBFiltredBetweenDatesReg, `personReg`, person);
+
+      // БАЛЛЫ за завершённые инциденты
+      ResultArr[objIndex[person]].valueSupportForEnd = calcValueOf(CssDBFiltredBetweenDatesEnd, `personEnd`, person);
+
+      // СЕКЦИЯ ИНСТАЛЛЯЦИЙ
+      // КОЛ-ВО принятых и оформленных инцидентов
+      ResultArr[objIndex[person]].numberInstallReg = calcNumberOf(CssInstDBFiltredBetweenDatesReg, `personReg`, person);
+
+      // БАЛЛЫ за завершённые инциденты
+      ResultArr[objIndex[person]].valueInstallForEnd = calcValueOf(CssInstDBFiltredBetweenDatesEnd, `personEnd`, person);
+
+      // СЕКЦИЯ ОПЫТНОГО ПРОИЗВОДСТВА
+      // БАЛЛЫ за завершённые задачи
+      ResultArr[objIndex[person]].valueExperiencesForEnd = calcValueOf(CssExpDBFiltredBetweenDatesEnd, `personEnd`, person);
+
+      // BADCOM
+      // КОЛ-ВО принятых и оформленных инцидентов
+      ResultArr[objIndex[person]].numberBadcomReg = calcNumberOf(BadcomDBFiltredBetweenDatesReg, `personReg`, person);
+      
+      // БАЛЛЫ за завершённые инциденты
+      ResultArr[objIndex[person]].valueBadcomForEnd = calcValueOf(BadcomDBFiltredBetweenDatesEnd, `personEnd`, person);
+
+      // СЧИТАЕМ ИТОГО
+      ResultArr[objIndex[person]].result = calcResultBalls(ResultArr[objIndex[person]]);
+
+      // СОЗДАЁМ TR ИТОГОВОЙ ТАБЛИЦЫ
+      renderReaultTableTr(ResultArr[objIndex[person]]);
+    });
+
+    // Считаем баллы ТД и выводим в таблицее
+    renderReaultTableEmptyTr();
+
+    renderReaultTableTechDir(calcResultTD(CssDBFiltredBetweenDatesEnd), calcResultTD(BadcomDBFiltredBetweenDatesEnd));
+
+    console.log('Итоговая завершённая: ', ResultArr);
+  }); // <-- конец then
 });
