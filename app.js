@@ -14,8 +14,8 @@ const URL_G_BADCOM = `https://script.google.com/macros/s/AKfycbyjZjLgAKkUcjltvH2
 const startDate = document.querySelector(`.start-date`);
 const endDate = document.querySelector(`.end-date`);
 const buttonStart = document.querySelector(`.button-start`);
-const buttonLoadDb = document.querySelector(`.button-load-db`);
-const buttonLoadLocal = document.querySelector(`.button-load-local`);
+// const buttonLoadDb = document.querySelector(`.button-load-db`);
+// const buttonLoadLocal = document.querySelector(`.button-load-local`);
 const tableView = document.querySelector(`.table-container`);
 const modalLoad = document.querySelector(`.modal__item`);
 const modalDescription = document.querySelector(`.modal__description`);
@@ -134,14 +134,14 @@ const getDataFromLocalStorage = () => {
 /*            СЛУШАТЕЛИ               */
 /**************************************/
 
-buttonLoadDb.addEventListener(`click`, () => {
-  getDataFromGoogleCSS(URL_G_CSS);
-  getDataFromGoogleBadcom(URL_G_BADCOM);
-});
+// buttonLoadDb.addEventListener(`click`, () => {
+//   getDataFromGoogleCSS(URL_G_CSS);
+//   getDataFromGoogleBadcom(URL_G_BADCOM);
+// });
 
-buttonLoadLocal.addEventListener(`click`, () => {
-  getDataFromLocalStorage();
-});
+// buttonLoadLocal.addEventListener(`click`, () => {
+//   getDataFromLocalStorage();
+// });
 
 
 // 3
