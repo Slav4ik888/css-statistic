@@ -2,7 +2,8 @@ import {getFromGoogleData} from './scripts/get-from-google-data.js';
 import {createPersonNames, delDublePersons} from './scripts/persons.js';
 import {createResultArr} from './scripts/create-result-arr.js';
 import {calcNumberOf, calcValueOf, calcResultBalls, calcResultTD} from './scripts/calculates.js';
-import {renderReaultTableTr, renderReaultTableHead, renderReaultTableEmptyTr, renderReaultTableTechDir} from './scripts/render-table.js';
+import {renderReaultTableTr, renderReaultTableHead, renderReaultTableEmptyTr,
+  renderReaultTableTechDir, renderReaultTableAllCountsTech} from './scripts/render-table.js';
 import {filtredBetweenDatesReg, filtredBetweenDatesEnd} from './scripts/filters.js';
 import {createParseDB} from './scripts/create-DB-parse-empty.js';
 import {DB_NAME} from './scripts/consts.js';
@@ -242,6 +243,14 @@ buttonStart.addEventListener(`click`, () => {
 
     renderReaultTableTechDir(calcResultTD(CssDBFiltredBetweenDatesEnd), calcResultTD(BadcomDBFiltredBetweenDatesEnd));
 
+    // Кол-во завершённых инцидентов всего
+    // Кол-во инсталляций 
+    renderReaultTableEmptyTr();
+
+    renderReaultTableAllCountsTech(
+      CssDBFiltredBetweenDatesEnd.length + BadcomDBFiltredBetweenDatesEnd.length, CssInstDBFiltredBetweenDatesEnd.length 
+      );
+    
     console.log('Итоговая завершённая: ', ResultArr);
   }); // <-- конец then
 });

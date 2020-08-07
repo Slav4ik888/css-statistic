@@ -121,7 +121,19 @@ body {
         background-color: #98b7c9;
         cursor: pointer;
       }
-
+      /* .form__submit {
+        padding: 16px 20px 13px;
+        color: #fff;
+        background-color: #4481c3;
+        border-radius: 3px;
+      }
+      .form__submit:focus,
+      .form__submit:hover {
+        background-color: #3069a6;
+      }
+      .form__submit:disabled {
+        background-color: #c7c7c7;
+      } */
   .table-container {
     padding-left: 16px;
     padding-right: 16px;

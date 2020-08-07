@@ -91,3 +91,32 @@ export const renderReaultTableTechDir = (cssBalls, BcBalls) => {
   `);
   tableBody.insertAdjacentElement('beforeend',tr);
 };
+
+// Кол-во завершённых инцидентов всего
+// Кол-во инсталляций 
+
+export const renderReaultTableAllCountsTech = (All, Istall) => {
+  const tableBody = document.querySelector(`.t-body`);
+  const th = document.createElement('tr');
+  th.classList.add(`main-head`);
+  th.insertAdjacentHTML('beforeend', `
+            <td colspan="9">ИТОГОВЫЕ ЗНАЧЕНИЯ ПО ТЕХПОДДЕРЖКЕ</td>
+          `);
+  tableBody.insertAdjacentElement('beforeend',th);
+
+  const tr1 = document.createElement('tr');
+  tr1.insertAdjacentHTML('beforeend', `
+            <td>Кол-во завершённых инцидентов</td>
+            <td colspan="7"></td>
+            <td class="t-result">${All}</td>
+  `);
+  tableBody.insertAdjacentElement('beforeend',tr1);
+
+  const tr2 = document.createElement('tr');
+  tr2.insertAdjacentHTML('beforeend', `
+            <td>Кол-во завершённых инсталляций</td>
+            <td colspan="7"></td>
+            <td class="t-result">${Istall}</td>
+  `);
+  tableBody.insertAdjacentElement('beforeend',tr2);
+};
