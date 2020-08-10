@@ -1,10 +1,10 @@
 import {getFromGoogleData} from './scripts/get-from-google-data.js';
 import {createPersonNames, delDublePersons} from './scripts/persons.js';
 import {createResultArr} from './scripts/create-result-arr.js';
-import {calcNumberOf, calcValueOf, calcResultBalls, calcResultTD} from './scripts/calculates.js';
+import {calcNumberOf, calcValueOf, calcResultBalls, calcResultTD, calcResultIncInWork} from './scripts/calculates.js';
 import {renderReaultTableTr, renderReaultTableHead, renderReaultTableEmptyTr,
-  renderReaultTableTechDir, renderReaultTableAllCountsTech} from './scripts/render-table.js';
-import {filtredBetweenDatesReg, filtredBetweenDatesEnd} from './scripts/filters.js';
+  renderReaultTableTechDir, renderReaultTableAllCountsTech, renderReaultTableIncInWork} from './scripts/render-table.js';
+import {filtredBetweenDatesReg, filtredBetweenDatesEnd, filtredBeforDate} from './scripts/filters.js';
 import {createParseDB} from './scripts/create-DB-parse-empty.js';
 import {DB_NAME} from './scripts/consts.js';
 
@@ -71,34 +71,34 @@ async function getDataFromGoogleCSS(url) {
   loaderStart(`Загружаем CSS...`);
   const DB = await getFromGoogleData(url);
   loaderStop();
-  console.log(`Получили данные CSS`, DB);
+  // console.log(`Получили данные CSS`, DB);
 
   CssDB = Array.from(DB.data1);
   saveDB(DB_NAME.CssDB, CssDB);
-  console.log('CssDB: ', CssDB);
+  // console.log('CssDB: ', CssDB);
 
   CssInstDB = Array.from(DB.data3)
   saveDB(DB_NAME.CssInstDB, CssInstDB);
-  console.log('CssInstDB: ', CssInstDB);
+  // console.log('CssInstDB: ', CssInstDB);
 
   CssExpDB = Array.from(DB.data2);
   saveDB(DB_NAME.CssExpDB, CssExpDB);
-  console.log('CssExpDB: ', CssExpDB);
+  // console.log('CssExpDB: ', CssExpDB);
 };
+
 
 // Читаем данные из Гугл BADCOM и сохраняем в LocalStorage
 async function getDataFromGoogleBadcom(url) {
   loaderStart(`Загружаем BC...`);
   const DB = await getFromGoogleData(url);
   loaderStop();
-
-  console.log(`Получили данные BC`, DB);
+  // console.log(`Получили данные BC`, DB);
 
   BadcomDB = Array.from(DB.data1);
   saveDB(DB_NAME.BadcomDB, BadcomDB);
-  console.log('BadcomDB: ', BadcomDB);
-
+  // console.log('BadcomDB: ', BadcomDB);
 };
+
 
 // Читаем данные из LocalStorage
 const getDataFromLocalStorage = () => {
@@ -148,12 +148,11 @@ const getDataFromLocalStorage = () => {
 // 3
 // Ожидаем получение данных промежутка дат
 buttonStart.addEventListener(`click`, () => {
-  console.log(`СТАРТ расчёта`);
+  // console.log(`СТАРТ расчёта`);
   tableView.classList.remove(`hide`);
 
-  const start = startDate.value;
-  const end = endDate.value;
-
+  const dateStart = startDate.value;
+  const dateEnd = endDate.value;
 
   // 5. Загружаем данные из Гугл
   getDataFromGoogleCSS(URL_G_CSS)
@@ -175,27 +174,26 @@ buttonStart.addEventListener(`click`, () => {
     persons = [...createPersonNames(CssDB), ...createPersonNames(CssInstDB), ...createPersonNames(CssExpDB), ...createPersonNames(BadcomDB)];
     // Удалим дубликаты имён
     persons = delDublePersons(persons);
-    console.log('persons-with-del: ', persons);
 
     // 40
     // Создаём массив в промежутке по нужному столбцу (Зарегистрированные, Завершённые)
 
-    CssDBFiltredBetweenDatesReg = filtredBetweenDatesReg(CssDB, start, end);
-    CssDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssDB, start, end);
+    CssDBFiltredBetweenDatesReg = filtredBetweenDatesReg(CssDB, dateStart, dateEnd);
+    CssDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssDB, dateStart, dateEnd);
 
-    CssInstDBFiltredBetweenDatesReg = filtredBetweenDatesReg(CssInstDB, start, end);
-    CssInstDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssInstDB, start, end);
+    CssInstDBFiltredBetweenDatesReg = filtredBetweenDatesReg(CssInstDB, dateStart, dateEnd);
+    CssInstDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssInstDB, dateStart, dateEnd);
 
-    CssExpDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssExpDB, start, end);
+    CssExpDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(CssExpDB, dateStart, dateEnd);
 
-    BadcomDBFiltredBetweenDatesReg = filtredBetweenDatesReg(BadcomDB, start, end);
-    BadcomDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(BadcomDB, start, end);
+    BadcomDBFiltredBetweenDatesReg = filtredBetweenDatesReg(BadcomDB, dateStart, dateEnd);
+    BadcomDBFiltredBetweenDatesEnd = filtredBetweenDatesEnd(BadcomDB, dateStart, dateEnd);
 
     // 50.
     // Создаём массив по кол-ву Person, для наполнения
     const {ResultArr, objIndex} = createResultArr(persons);
     // console.log('objIndex: ', objIndex);
-    console.log('Итоговая шаблон: ', ResultArr);
+    // console.log('Итоговая шаблон: ', ResultArr);
 
 
     // СОЗДАЁМ HEAD ИТОГОВОЙ ТАБЛИЦЫ
@@ -205,7 +203,8 @@ buttonStart.addEventListener(`click`, () => {
     
     
     persons.forEach(person => {
-      console.log('person: ', person);
+      // console.log('person: ', person);
+
       // СЕКЦИЯ ТЕХПОДДЕРЖКИ
       // КОЛ-ВО принятых и оформленных инцидентов
       ResultArr[objIndex[person]].numberSupportReg = calcNumberOf(CssDBFiltredBetweenDatesReg, `personReg`, person);
@@ -238,19 +237,22 @@ buttonStart.addEventListener(`click`, () => {
       renderReaultTableTr(ResultArr[objIndex[person]]);
     });
 
-    // Считаем баллы ТД и выводим в таблицее
-    renderReaultTableEmptyTr();
-
-    renderReaultTableTechDir(calcResultTD(CssDBFiltredBetweenDatesEnd), calcResultTD(BadcomDBFiltredBetweenDatesEnd));
-
     // Кол-во завершённых инцидентов всего
     // Кол-во инсталляций 
     renderReaultTableEmptyTr();
-
     renderReaultTableAllCountsTech(
       CssDBFiltredBetweenDatesEnd.length + BadcomDBFiltredBetweenDatesEnd.length, CssInstDBFiltredBetweenDatesEnd.length 
       );
     
-    console.log('Итоговая завершённая: ', ResultArr);
+    // Кол-во инцидентов находящихся в работе (отриц.) (Горбунов)
+    renderReaultTableEmptyTr();
+    renderReaultTableIncInWork(calcResultIncInWork(filtredBeforDate(CssDB, dateEnd), filtredBeforDate(BadcomDB, dateEnd)));
+
+
+    // Считаем баллы ТД и выводим в таблицее
+    renderReaultTableEmptyTr();
+    renderReaultTableTechDir(calcResultTD(CssDBFiltredBetweenDatesEnd), calcResultTD(BadcomDBFiltredBetweenDatesEnd));
+
+    // console.log('Итоговая завершённая: ', ResultArr);
   }); // <-- конец then
 });

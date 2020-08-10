@@ -12,7 +12,7 @@ export const calcNumberOf = (arr, param, person) => {
   if (arr) {
     arr.forEach(obj => {
       if (obj[param] === person) {
-        console.log(obj[param]);
+        // console.log(obj[param]);
 
         result++;
       }
@@ -42,7 +42,7 @@ export const calcValueOf = (arr, param, person) => {
     });
   };
 
-  console.log(`result balls: ${person}`, result);
+  // console.log(`result balls: ${person}`, result);
   if (result) {
     return result
   }
@@ -87,7 +87,43 @@ export const calcResultTD = arr => {
     arr.forEach(obj => result += +obj.ballsTD);
   };
 
-  console.log(`result TD:`, result);
+  // console.log(`result TD:`, result);
+  if (result) {
+    return result
+  }
+  
+  return 0;
+};
+
+
+/**
+ * Возвращает Кол-во инцидентов находящихся в работе -1 день
+ * @param {Array} arr - объект сотрудника который посчитать
+ * @param {string} param - по какому элементу искать совпадения Person (имя сотрудника)
+ * @param {string} person - имя
+ *
+ * @return {number}
+ */
+
+export const calcResultIncInWork = (arrCSS, arrBC) => {
+  let result = 0;
+  if (arrCSS) {
+    arrCSS.forEach(obj => {
+      if (obj.status === `В работе`) {
+        // console.log(`CSS`, obj);
+        result++;
+      }
+    });
+  };
+  if (arrBC) {
+    arrBC.forEach(obj => {
+      if (obj.status === `В работе`) {
+        // console.log(`BC`, obj);
+        result++;
+      }
+    });
+  };
+
   if (result) {
     return result
   }

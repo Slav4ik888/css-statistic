@@ -46,6 +46,7 @@ export const renderReaultTableEmptyTr = () => {
   tableBody.insertAdjacentElement('beforeend',tr);
 };
 
+
 // Рисует строку в таблицу по 1 person
 export const renderReaultTableTr = ({
   fioPerson, numberSupportReg, valueSupportForEnd, numberInstallReg, valueInstallForEnd,
@@ -63,6 +64,26 @@ export const renderReaultTableTr = ({
             <td class="t-thead-odd">${numberBadcomReg}</td>
             <td class="t-thead-odd">${valueBadcomForEnd}</td>
             <td class="t-result">${result}</td>
+  `);
+  tableBody.insertAdjacentElement('beforeend',tr);
+};
+
+
+// Кол-во инцидентов находящихся в работе (отриц.) (Горбунов) -1 день
+export const renderReaultTableIncInWork = (value) => {
+  const tableBody = document.querySelector(`.t-body`);
+  const th = document.createElement('tr');
+  th.classList.add(`main-head`);
+  th.insertAdjacentHTML('beforeend', `
+            <td colspan="9">${`Кол-во инцидентов находящихся в работе (отриц.) - минус 1 день`.toUpperCase()}</td>
+          `);
+  tableBody.insertAdjacentElement('beforeend',th);
+
+  const tr = document.createElement('tr');
+  tr.insertAdjacentHTML('beforeend', `
+            <td>Горбунов К.</td>
+            <td colspan="7"></td>
+            <td class="t-result">${value}</td>
   `);
   tableBody.insertAdjacentElement('beforeend',tr);
 };

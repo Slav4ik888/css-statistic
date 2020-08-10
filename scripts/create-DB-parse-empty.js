@@ -74,7 +74,7 @@ export const createParseDB = (DB, nameDB) => {
     obj = {};
   }
   arr.splice(0,1);
-  console.log(`${nameDB}`, arr);
+  // console.log(`${nameDB}`, arr);
 
   return arr
 };
