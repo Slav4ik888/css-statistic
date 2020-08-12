@@ -9,7 +9,7 @@ export const renderReaultTableHead = () => {
       <table class="table">
         <thead>
           <tr class="main-head">
-            <th></th>
+            <th colspan="2"></th>
             <th colspan="2">ТЕХПОДДЕРЖКА<br/> ДА-ТЕЛЕКОМ</th>
             <th colspan="2">ИНСТАЛЛЯЦИЯ<br/> ДА-ТЕЛЕКОМ</th>
             <th>ОПЫТНОЕ<br/> ПРОИЗВОДСТВО</th>
@@ -18,7 +18,7 @@ export const renderReaultTableHead = () => {
 
           </tr>
           <tr class="t-head">
-            <th>ФИО</th>
+            <th colspan="2">ФИО</th>
             <th>КОЛ-ВО принятых и оформленных инцидентов</th>
             <th>БАЛЛЫ за завершённые инциденты</th>
             <th class="t-thead-odd">КОЛ-ВО принятых и оформленных инцидентов</th>
@@ -42,7 +42,7 @@ export const renderReaultTableHead = () => {
 export const renderReaultTableEmptyTr = () => {
   const tableBody = document.querySelector(`.t-body`);
   const tr = document.createElement('tr');
-  tr.insertAdjacentHTML('beforeend', `<td colspan="9"></td>`);
+  tr.insertAdjacentHTML('beforeend', `<td colspan="10"></td>`);
   tableBody.insertAdjacentElement('beforeend',tr);
 };
 
@@ -55,7 +55,7 @@ export const renderReaultTableTr = ({
   const tableBody = document.querySelector(`.t-body`);
   const tr = document.createElement('tr');
   tr.insertAdjacentHTML('beforeend', `
-            <td>${fioPerson}</td>
+            <td colspan="2">${fioPerson}</td>
             <td>${numberSupportReg}</td>
             <td>${valueSupportForEnd}</td>
             <td class="t-thead-odd">${numberInstallReg}</td>
@@ -75,13 +75,13 @@ export const renderReaultTableIncInWork = (value) => {
   const th = document.createElement('tr');
   th.classList.add(`main-head`);
   th.insertAdjacentHTML('beforeend', `
-            <td colspan="9">${`Кол-во инцидентов находящихся в работе (отриц.) - минус 1 день`.toUpperCase()}</td>
+            <td colspan="10">${`Кол-во инцидентов находящихся в работе (отриц.) - минус 1 день`.toUpperCase()}</td>
           `);
   tableBody.insertAdjacentElement('beforeend',th);
 
   const tr = document.createElement('tr');
   tr.insertAdjacentHTML('beforeend', `
-            <td>Горбунов К.</td>
+            <td colspan="2">Горбунов К.</td>
             <td colspan="7"></td>
             <td class="t-result">${value}</td>
   `);
@@ -95,7 +95,7 @@ export const renderReaultTableTechDir = (cssBalls, BcBalls) => {
   const th = document.createElement('tr');
   th.classList.add(`main-head`);
   th.insertAdjacentHTML('beforeend', `
-            <td></td>
+            <td colspan="2"></td>
             <td colspan="2">ДА-ТЕЛЕКОМ</td>
             <td colspan="3"></td>
             <td colspan="2">BADCOM</td>
@@ -105,7 +105,7 @@ export const renderReaultTableTechDir = (cssBalls, BcBalls) => {
 
   const tr = document.createElement('tr');
   tr.insertAdjacentHTML('beforeend', `
-            <td>Колесов А.В.</td>
+            <td colspan="2">Колесов А.В.</td>
             <td colspan="2">${cssBalls}</td>
             <td colspan="3"></td>
             <td colspan="2" class="t-thead-odd">${BcBalls}</td>
@@ -121,13 +121,13 @@ export const renderReaultTableAllCountsTech = (All, Istall) => {
   const th = document.createElement('tr');
   th.classList.add(`main-head`);
   th.insertAdjacentHTML('beforeend', `
-            <td colspan="9">ИТОГОВЫЕ ЗНАЧЕНИЯ ПО ТЕХПОДДЕРЖКЕ</td>
+            <td colspan="10">ИТОГОВЫЕ ЗНАЧЕНИЯ ПО ТЕХПОДДЕРЖКЕ</td>
           `);
   tableBody.insertAdjacentElement('beforeend',th);
 
   const tr1 = document.createElement('tr');
   tr1.insertAdjacentHTML('beforeend', `
-            <td>Кол-во завершённых инцидентов</td>
+            <td colspan="2">Кол-во завершённых инцидентов</td>
             <td colspan="7"></td>
             <td class="t-result">${All}</td>
   `);
@@ -135,7 +135,7 @@ export const renderReaultTableAllCountsTech = (All, Istall) => {
 
   const tr2 = document.createElement('tr');
   tr2.insertAdjacentHTML('beforeend', `
-            <td>Кол-во завершённых инсталляций</td>
+            <td colspan="2">Кол-во завершённых инсталляций</td>
             <td colspan="7"></td>
             <td class="t-result">${Istall}</td>
   `);
