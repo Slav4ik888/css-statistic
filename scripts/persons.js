@@ -1,5 +1,5 @@
 // Возвращает массив уникальных имён пользователей
-export const createPersonNames = db => {
+export const createPersonNames = (db) => {
   const names = [];
   
   let result = true;
@@ -20,6 +20,20 @@ export const createPersonNames = db => {
 };
 
 
-export const delDublePersons = arr => {
-  return [...new Set(arr)];
-};
+// Удалим дубликаты имён
+export const delDublePersons = (arr) => [...new Set(arr)];
+
+
+export const getPersons = (DB) => {
+  let persons = [];
+  // Создаём массив уникальных Person
+  for (let key in DB) {
+    if (Object.prototype.hasOwnProperty.call(DB, key)) {
+      persons = [...persons, ...createPersonNames(DB[key])];
+    }
+  }
+  // Удалим дубликаты имён
+  persons = delDublePersons(persons);
+
+  return persons;
+}

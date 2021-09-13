@@ -5,7 +5,7 @@
  * @return {array} arr  
  */
 
-export const getFromGoogleData = (url) => {
+export const getFromGoogle = (url) => {
   return fetch(url)
     .then(response => response.json())
     .then(res => res.DATA777);
