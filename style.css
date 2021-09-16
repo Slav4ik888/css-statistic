@@ -220,6 +220,15 @@ body {
   box-shadow: 0 0 20px rgb(0 0 0 / 12%);
 }
 
+.hoverable {
+  transition: box-shadow 0.55s;
+}
+
+.hoverable {
+  transition: box-shadow 0.45s;
+  box-shadow: 0 8px 17px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
 /* ТАБЛИЦА */
 
 .result-table {

@@ -207,4 +207,4 @@ buttonStart.addEventListener(`click`, async () => {
   // }); // <-- конец then
 });
 
-// git add . && git commit -m "refact application" && git push origin master
+// git add . && git commit -m "fix application" && git push origin master
