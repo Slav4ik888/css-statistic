@@ -7,7 +7,7 @@ import {
 } from './scripts/render-table.js';
 import { filtredBetweenDatesReg, filtredBetweenDatesEnd, filtredBeforDate } from './scripts/filters.js';
 // Error
-import { showError } from './scripts/errors/show-error.js';
+import { showError } from './scripts/display/errors/show-error.js';
 // Data
 import { getCSSData, getBadcomData } from './scripts/data/google/get-company-data-from-google.js';
 import { getAllDBFromLocalStorage } from './scripts/data/local-storage/get-all-db-from-local-storage.js';
@@ -31,6 +31,10 @@ const buttonStart = document.querySelector(`.button-start`);
 const tableView = document.querySelector(`.table-container`);
 const leftContainer = document.querySelector(`.left-container`);
 const refreshIcon = document.querySelector(`.refresh-icon`);
+
+
+
+
 
 // Фиксируем время запроса данных
 let lastRequestTime;
