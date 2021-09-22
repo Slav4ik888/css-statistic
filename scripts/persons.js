@@ -12,9 +12,8 @@ export const createPersonNames = (db) => {
       result = names.find(it => it === obj.personInit)
       !result && obj.personInit && names.push(obj.personInit);
     }
-  } else {
-    console.log(`Массив пустой`);
   }
+  else console.log(`Массив пустой`);
 
   return names;
 };
@@ -24,12 +23,13 @@ export const createPersonNames = (db) => {
 export const delDublePersons = (arr) => [...new Set(arr)];
 
 
+// Возвращает массив уникальных Person
 export const getPersons = (DB) => {
   let persons = [];
-  // Создаём массив уникальных Person
+
   for (let key in DB) {
     if (Object.prototype.hasOwnProperty.call(DB, key)) {
-      persons = [...persons, ...createPersonNames(DB[key])];
+      persons = [...persons, ...createPersonNames(DB[key].db)];
     }
   }
   // Удалим дубликаты имён

@@ -14,42 +14,45 @@ export default function getFieldsWithIds(nameDB, ids) {
 
   switch (nameDB) {
     case DB_NAME.CssDB:
-      objIdx.dateReg   = ids[F.CssDB.dateReg];
-      objIdx.dateEnd   = ids[F.CssDB.dateEnd];
-      objIdx.personReg = ids[F.CssDB.personReg];
-      objIdx.personEnd = ids[F.CssDB.personEnd];
-      objIdx.status    = ids[F.CssDB.status];
-      objIdx.ballsTD   = ids[F.CssDB.ballsTD];
-      objIdx.balls     = ids[F.CssDB.balls];
+      objIdx.dateReg     = ids[F.CssDB.dateReg];
+      objIdx.dateEnd     = ids[F.CssDB.dateEnd];
+      objIdx.personReg   = ids[F.CssDB.personReg];
+      objIdx.personEnd   = ids[F.CssDB.personEnd];
+      objIdx.status      = ids[F.CssDB.status];
+      objIdx.ballsTD     = ids[F.CssDB.ballsTD];
+      objIdx.balls       = ids[F.CssDB.balls];
       break;
       
 
     case DB_NAME.CssInstDB:
-      objIdx.dateReg   = ids[F.CssInstDB.dateReg];
-      objIdx.dateEnd   = ids[F.CssInstDB.dateEnd];
-      objIdx.personReg = ids[F.CssInstDB.personReg];
-      objIdx.personEnd = ids[F.CssInstDB.personEnd];
-      objIdx.status    = ids[F.CssInstDB.status];
-      objIdx.balls     = ids[F.CssInstDB.balls];
+      objIdx.dateReg     = ids[F.CssInstDB.dateReg];
+      objIdx.dateEnd     = ids[F.CssInstDB.dateEnd];
+      objIdx.personReg   = ids[F.CssInstDB.personReg];
+      objIdx.personEnd   = ids[F.CssInstDB.personEnd];
+      objIdx.status      = ids[F.CssInstDB.status];
+      objIdx.balls       = ids[F.CssInstDB.balls];
+      objIdx.typeClient  = ids[F.CssInstDB.typeClient];
+      objIdx.typeInstall = ids[F.CssInstDB.typeInstall];
+      objIdx.range       = ids[F.CssInstDB.range];
       break;
       
     
     case DB_NAME.CssExpDB:
-      objIdx.dateEnd   = ids[F.CssExpDB.dateEnd];
-      objIdx.personEnd = ids[F.CssExpDB.personEnd];
-      objIdx.status    = ids[F.CssExpDB.status];
-      objIdx.balls     = ids[F.CssExpDB.balls];
+      objIdx.dateEnd     = ids[F.CssExpDB.dateEnd];
+      objIdx.personEnd   = ids[F.CssExpDB.personEnd];
+      objIdx.status      = ids[F.CssExpDB.status];
+      objIdx.balls       = ids[F.CssExpDB.balls];
       break;
 
     
     case DB_NAME.BadcomDB:
-      objIdx.dateReg   = ids[F.BadcomDB.dateReg];
-      objIdx.dateEnd   = ids[F.BadcomDB.dateEnd];
-      objIdx.personReg = ids[F.BadcomDB.personReg];
-      objIdx.personEnd = ids[F.BadcomDB.personEnd];
-      objIdx.status    = ids[F.BadcomDB.status];
-      objIdx.ballsTD   = ids[F.BadcomDB.ballsTD];
-      objIdx.balls     = ids[F.BadcomDB.balls];
+      objIdx.dateReg     = ids[F.BadcomDB.dateReg];
+      objIdx.dateEnd     = ids[F.BadcomDB.dateEnd];
+      objIdx.personReg   = ids[F.BadcomDB.personReg];
+      objIdx.personEnd   = ids[F.BadcomDB.personEnd];
+      objIdx.status      = ids[F.BadcomDB.status];
+      objIdx.ballsTD     = ids[F.BadcomDB.ballsTD];
+      objIdx.balls       = ids[F.BadcomDB.balls];
       break;
   }
 

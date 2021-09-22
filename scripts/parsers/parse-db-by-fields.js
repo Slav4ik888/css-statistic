@@ -1,4 +1,6 @@
 import getFieldsWithIds from './get-fields-with-idx.js';
+import logger from '../display/logger/logger.js';
+const log = logger(`parse-db-by-fields`);
 
 
 // Сохраняем названия полей как key, а index присваиваем как значение
@@ -31,12 +33,14 @@ export const parseDbByFields = (db, nameDB) => {
           obj[key] = item[ids[key]];
       }
     }
+
+    // Если входит в выбранный промежуток, то добавляем в базу
     parsedDB.push(obj);
     obj = {};
   }
 
   parsedDB.splice(0, 2); // Удаляем 2 верхние строки заголовков
-  // console.log(`${nameDB}`, parsedDB);
+  log(`${nameDB}`, parsedDB);
 
   return parsedDB;
 };

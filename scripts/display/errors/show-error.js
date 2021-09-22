@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @param {{ label: string, descr: string }} info 
+ * @param {*} type 
+ */
 export const showInfo = (info, type) => {
   const infoContainer = document.querySelector(`.info-container`);
   const infoTitle = document.querySelector(`.info-title`);
@@ -7,8 +11,8 @@ export const showInfo = (info, type) => {
   const infoCloseIcon = document.querySelector(`.info-close-icon`);
   
   infoContainer.classList.remove(`hide`);
-  infoTitle.textContent = type;
-  infoDescription.textContent = info;
+  infoTitle.textContent = info.label;
+  infoDescription.textContent = info.descr;
 
 
   infoCloseIcon.addEventListener(`click`, () => infoContainer.classList.add(`hide`));

@@ -1,6 +1,5 @@
-
-const modalLoad = document.querySelector(`.modal__item`);
-const modalDescription = document.querySelector(`.modal__description`);
+const modalLoad = document.querySelector(`.loader`);
+const modalDescription = document.querySelector(`.loader_description`);
 
 
 export const loaderStart = (text) => {

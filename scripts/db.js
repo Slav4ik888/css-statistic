@@ -6,10 +6,48 @@ export const DB_NAME = {
   BadcomDB: `Stat-BadcomDB`,
 };
 
+
 // Для загруженных массивов (из гугл) разделённых на группы
 export const DB = {
-  CssDB:     [], // ДТ - Инциденты
-  CssInstDB: [], // ДТ - Инсталляции
-  CssExpDB:  [], // ДТ - Опытное пр-во
-  BadcomDB:  [], // Badcom
+  CssDB: { // ДТ - Инциденты
+    db: [],
+    calc: {
+      datesReg: [],
+      datesEnd: [],
+    }
+  },
+  CssInstDB: { // ДТ - Инсталляции
+    db: [],
+    calc: {
+      datesReg: [],
+      datesEnd: [],
+    }
+  },
+  CssExpDB: { // ДТ - Опытное пр-во
+    db: [],
+    calc: {
+      datesEnd: [],
+    }
+  },
+  BadcomDB: { // Badcom
+    db: [],
+    calc: {
+      datesReg: [],
+      datesEnd: [],
+    }
+  }
 };
+
+
+// Счётчик итоговых значений
+export const COUNT = {
+  incEnd               : null, // Кол-во завершённых инцидентов всего
+  inst                 : null, // Кол-во инсталляций
+  incInWork            : null, // Кол-во инцидентов находящихся в работе (отриц.) (Горбунов)
+  costRenderedServices : null, // Стоимость оказанных услуг
+
+  tdD                  : null, // ТД Да
+  tdB                  : null, // ТД Badcom
+};
+
+

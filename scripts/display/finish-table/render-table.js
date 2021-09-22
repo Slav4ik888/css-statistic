@@ -1,5 +1,5 @@
 // Render TableHead
-export const renderReaultTableHead = () => {
+export const renderResultTableHead = () => {
   const tableBody = document.querySelector(`.result-table`);
   tableBody.textContent = ``;
   
@@ -39,7 +39,7 @@ export const renderReaultTableHead = () => {
 
 
 // Рисует пустую строку в таблицу 
-export const renderReaultTableEmptyTr = () => {
+export const renderResultTableEmptyTr = () => {
   const tableBody = document.querySelector(`.t-body`);
   const tr = document.createElement('tr');
   tr.insertAdjacentHTML('beforeend', `<td colspan="10"></td>`);
@@ -48,14 +48,14 @@ export const renderReaultTableEmptyTr = () => {
 
 
 // Рисует строку в таблицу по 1 person
-export const renderReaultTableTr = ({
+export const renderResultTableTr = ({
   fioPerson, numberSupportReg, valueSupportForEnd, numberInstallReg, valueInstallForEnd,
   valueExperiencesForEnd, numberBadcomReg, valueBadcomForEnd, result
 }) => {
   const tableBody = document.querySelector(`.t-body`);
   const tr = document.createElement('tr');
   tr.insertAdjacentHTML('beforeend', `
-            <td colspan="2">${fioPerson}</td>
+            <td colspan="2" class="t-label">${fioPerson}</td>
             <td>${numberSupportReg}</td>
             <td>${valueSupportForEnd}</td>
             <td class="t-thead-odd">${numberInstallReg}</td>
@@ -70,7 +70,7 @@ export const renderReaultTableTr = ({
 
 
 // Кол-во инцидентов находящихся в работе (отриц.) (Горбунов) -1 день
-export const renderReaultTableIncInWork = (value) => {
+export const renderResultTableIncInWork = (value) => {
   const tableBody = document.querySelector(`.t-body`);
   const th = document.createElement('tr');
   th.classList.add(`main-head`);
@@ -81,16 +81,18 @@ export const renderReaultTableIncInWork = (value) => {
 
   const tr = document.createElement('tr');
   tr.insertAdjacentHTML('beforeend', `
-            <td colspan="2">Горбунов К.</td>
-            <td colspan="7"></td>
+            <td colspan="9" class="t-label">Горбунов К.</td>
             <td class="t-result">${value}</td>
   `);
   tableBody.insertAdjacentElement('beforeend',tr);
 };
 
 
+
+
+
 // Render Table для ТД
-export const renderReaultTableTechDir = (cssBalls, BcBalls) => {
+export const renderResultTableTechDir = (cssBalls, BcBalls) => {
   const tableBody = document.querySelector(`.t-body`);
   const th = document.createElement('tr');
   th.classList.add(`main-head`);
@@ -105,7 +107,7 @@ export const renderReaultTableTechDir = (cssBalls, BcBalls) => {
 
   const tr = document.createElement('tr');
   tr.insertAdjacentHTML('beforeend', `
-            <td colspan="2">Колесов А.В.</td>
+            <td colspan="2" class="t-label">Колесов А.В.</td>
             <td colspan="2">${cssBalls}</td>
             <td colspan="3"></td>
             <td colspan="2" class="t-thead-odd">${BcBalls}</td>
@@ -115,8 +117,7 @@ export const renderReaultTableTechDir = (cssBalls, BcBalls) => {
 
 // Кол-во завершённых инцидентов всего
 // Кол-во инсталляций 
-
-export const renderReaultTableAllCountsTech = (All, Istall) => {
+export const renderResultTableAllCountsTech = (All, Istall) => {
   const tableBody = document.querySelector(`.t-body`);
   const th = document.createElement('tr');
   th.classList.add(`main-head`);
@@ -127,16 +128,14 @@ export const renderReaultTableAllCountsTech = (All, Istall) => {
 
   const tr1 = document.createElement('tr');
   tr1.insertAdjacentHTML('beforeend', `
-            <td colspan="2">Кол-во завершённых инцидентов</td>
-            <td colspan="7"></td>
+            <td colspan="9" class="t-label">Кол-во завершённых инцидентов</td>
             <td class="t-result">${All}</td>
   `);
   tableBody.insertAdjacentElement('beforeend',tr1);
 
   const tr2 = document.createElement('tr');
   tr2.insertAdjacentHTML('beforeend', `
-            <td colspan="2">Кол-во завершённых инсталляций</td>
-            <td colspan="7"></td>
+            <td colspan="9" class="t-label">Кол-во завершённых инсталляций</td>
             <td class="t-result">${Istall}</td>
   `);
   tableBody.insertAdjacentElement('beforeend',tr2);
