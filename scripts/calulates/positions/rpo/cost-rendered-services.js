@@ -53,7 +53,6 @@ export default {
       }
     }
   },
-  
   totalInstall: 0,  // Итог по инсталляциям
   total: 0  // Итог
 };

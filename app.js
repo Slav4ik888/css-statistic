@@ -17,4 +17,4 @@ buttonStart.addEventListener(`click`, processData);
 
 
 
-// git add . && git commit -m "refact calulation & add calc installation" && git push origin master
+// git add . && git commit -m "fix calulation for Installations" && git push origin master
