@@ -1,0 +1,38 @@
+import * as React from 'react';
+// Redux
+import { connect } from 'react-redux';
+import { getAuthenticated } from '../../redux/selectors/user';
+import { State } from '../../redux/redux-types';
+// Routes
+import {Route, Redirect} from 'react-router-dom';
+import { RouteType } from './routes';
+
+
+type Props = {
+  component: React.ElementType;
+  authenticated: boolean;
+  exact: boolean;
+  path: string;
+  history?: unknown;
+}
+
+const NoAuthRoute: React.FC<Props> = (props: Props) => {
+  const { component: Component, authenticated, exact } = props;
+  
+
+  return (
+    <Route
+      exact={exact}
+      render={(props) => !authenticated ?
+        <Redirect to={RouteType.LOGIN} /> :
+        <Component {...props} />
+      }
+    />
+  );
+};
+
+const mapStateToProps = (state: State) => ({
+  authenticated: getAuthenticated(state),
+});
+
+export default connect(mapStateToProps)(NoAuthRoute);

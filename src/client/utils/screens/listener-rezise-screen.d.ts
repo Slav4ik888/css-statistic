@@ -1,0 +1,1 @@
+export default function (func: Function): void;

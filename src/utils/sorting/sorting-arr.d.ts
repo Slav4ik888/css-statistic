@@ -1,0 +1,1 @@
+export function sortingArr<T> (arr: Array<T>, fieldName: string, decrease?: boolean): Array<T>;
