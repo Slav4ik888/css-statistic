@@ -1,7 +1,7 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { setSelectedDates, loadData } from '../../redux/actions/data';
+import { setSelectedDates, loadData } from '../../redux/actions/stat';
 import { setErrors } from '../../redux/actions/ui';
 // MUI Stuff
 import { Box, Paper } from '@mui/material';
@@ -16,6 +16,8 @@ import validSelectedDates from '../../../utils/validators/selected-dates';
 // Styles
 import { FlexDirection, f_c } from '../../utils/styles';
 import { useTheme } from '@emotion/react';
+import changeModule from '../../utils/hooks/change-module';
+import { cfg } from '../../../../config';
 
 
 const useStyles = (theme) => ({
@@ -42,6 +44,8 @@ const SelectDates: React.FC<Props> = ({ setSelectedDates, setErrors, loadData })
   React.useEffect(() => setErrors(null), []);
 
   const date = useModule<SelectedDates>();
+  React.useEffect(() => cfg.isDev ? changeModule(date, [cfg.devData.from, cfg.devData.to], [`from`, `to`]) : null, []);
+
 
   const handleCalc = () => {
     const { errors, valid } = validSelectedDates(date.obj);

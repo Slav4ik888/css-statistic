@@ -1,5 +1,5 @@
 // Redux
-import { dataActionType as Type } from "../../action-types";
+import { statActionType as Type } from "../../action-types";
 // Types
 import { SelectedDates } from "../../../../types";
 

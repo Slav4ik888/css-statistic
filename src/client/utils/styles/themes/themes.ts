@@ -17,7 +17,7 @@ export default {
   navbar: {
     color: `#345678`,
     hoverBg: `#d3e5f3`,
-    // background: `#e0f2f1`,
+    background: `#eaeaeb`,
   },
   main: {
     background1: `#e1f5fe`,

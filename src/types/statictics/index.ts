@@ -1,4 +1,4 @@
-import { DateItemType, SelectedDates } from './statistics';
+import { DateItemType, SelectedDates, DB_Name } from './statistics';
 
 
-export { DateItemType, SelectedDates }
+export { DateItemType, SelectedDates, DB_Name }

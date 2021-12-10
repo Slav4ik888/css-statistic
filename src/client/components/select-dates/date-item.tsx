@@ -28,6 +28,8 @@ const SelectDateItem: React.FC<Props> = ({ type, module, errors }) => {
   const startLabel = from ? `С`        : `По`;
   const endLabel   = from ? `00:00:01` : `23:59:59`;
   const error = React.useMemo(() => from ? errors?.dateFrom : errors?.dateTo, [errors]);
+  const value = React.useMemo(() => from ? module.obj.from : module.obj.to, [module.obj]);
+  console.log('value: ', value);
 
   const handleChange = (e: any) => {
     const value = e.target.value;
@@ -41,6 +43,7 @@ const SelectDateItem: React.FC<Props> = ({ type, module, errors }) => {
         <TextField
           id       = {`date-${type}`}
           // label    = {`SelectDateItem-${type}`}
+          value    = {value}
           type     = "date"
           sx       = {{ width: 170, mx: 3 }}
           onChange = {handleChange}

@@ -1,8 +1,8 @@
-import { uiActionType, userActionType, dataActionType } from './action-types';
+import { uiActionType, userActionType, statActionType } from './action-types';
 import { Message, Errors, ScreenFormats, SelectedDates } from '../../types';
 
 
-export type TypeDispatch = Function | uiActionType | userActionType | dataActionType;
+export type TypeDispatch = Function | uiActionType | userActionType | statActionType;
 
 type Payload = string | {};
 
@@ -22,7 +22,7 @@ export interface StateUser {
   authenticated   : boolean;
 };
 
-export interface StateData {
+export interface StateStat {
   loading       : boolean;
   selectedDates : SelectedDates;
 
@@ -36,5 +36,5 @@ export interface StateData {
 export interface State {
   UI        : StateUI;
   user      : StateUser;
-  data      : StateData;
+  data      : StateStat;
 };

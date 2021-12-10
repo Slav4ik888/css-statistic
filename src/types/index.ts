@@ -1,13 +1,15 @@
 import {
   Message, MessageType, Errors, ScreenFormats, Validation, ResultType,
   ResultAccess, LogoBtnType, ConfirmType, ConfirmElemType, SearchOptionType, GridStyle, ColorType, 
-  Colors, ViewType, ContextPoint, CxtMenuCustomerOrder
+  Colors, ViewType, ContextPoint, CxtMenuCustomerOrder,
+  ResGoogleCSS, ResGoogleBC
 } from "./ui";
-import { DateItemType, SelectedDates } from './statictics';
+import { DateItemType, SelectedDates, DB_Name } from './statictics';
 
 export {
   ViewType,  Message, MessageType, Errors, ScreenFormats, Validation, ResultType,
   ResultAccess, LogoBtnType, ConfirmType, ConfirmElemType, SearchOptionType, GridStyle, ColorType, 
   Colors, ContextPoint, CxtMenuCustomerOrder,
-  DateItemType, SelectedDates
+  ResGoogleCSS, ResGoogleBC,
+  DateItemType, SelectedDates, DB_Name
 };

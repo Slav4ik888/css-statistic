@@ -3,7 +3,12 @@ import axios from 'axios';
 const api = axios.create({
   baseURL: `/api`,
   timeout: 1000 * 20,
-  withCredentials: true,
+  withCredentials: true
+});
+
+export const apiWithoutCookie = axios.create({
+  baseURL: `/api`,
+  timeout: 1000 * 20
 });
 
 // const onSuccess = (response) => response;

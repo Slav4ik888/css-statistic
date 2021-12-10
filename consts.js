@@ -1,2 +1,0 @@
-export const URL_G_CSS = `https://script.google.com/macros/s/AKfycbzOgGruy924eOim0YPS7I4VruiRWzKQhNvFh45o3kar1XBdLdo/exec`;
-export const URL_G_BADCOM = `https://script.google.com/macros/s/AKfycbyjZjLgAKkUcjltvH2x6CuOVCMtZ6gF3L5v7DQJmnEM5K00yqg/exec`;

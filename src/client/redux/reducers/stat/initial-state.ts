@@ -1,7 +1,7 @@
-import { StateData } from '../../redux-types';
+import { StateStat } from '../../redux-types';
 
 
-export const initialState: StateData = {
+export const initialState: StateStat = {
   loading: false,
   selectedDates: null,
 

@@ -1,4 +1,3 @@
-// User reducer types
 export enum userActionType {
   LOADING_USER        = `LOADING_USER`,
   LOADING_USER_OFF    = `LOADING_USER_OFF`,
@@ -10,7 +9,6 @@ export enum userActionType {
 };
 
 
-// UI reducer types
 export enum uiActionType {
   LOADING_UI         = `LOADING_UI`,
   LOADING_UI_OFF     = `LOADING_UI_OFF`,
@@ -22,8 +20,7 @@ export enum uiActionType {
 };
 
 
-// Data reducer types
-export enum dataActionType {
+export enum statActionType {
   LOADING_DATA       = `LOADING_DATA`,
   LOADING_DATA_OFF   = `LOADING_DATA_OFF`,
 

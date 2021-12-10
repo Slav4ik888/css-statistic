@@ -9,6 +9,7 @@ import { GridStyle } from './grid';
 import { ColorType, Colors } from './color-type';
 import { ViewType } from './view';
 import { ContextPoint, CxtMenuCustomerOrder } from './context';
+import { ResGoogleCSS, ResGoogleBC } from './google';
 
 
 export {
@@ -17,5 +18,6 @@ export {
   LogoBtnType, ConfirmType, ConfirmElemType, SearchOptionType,
   GridStyle,
   ColorType, Colors,
-  ViewType, ContextPoint, CxtMenuCustomerOrder
+  ViewType, ContextPoint, CxtMenuCustomerOrder,
+  ResGoogleCSS, ResGoogleBC
 };

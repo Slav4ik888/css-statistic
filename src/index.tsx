@@ -8,6 +8,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import themeFile from './client/utils/styles/themes/themes';
 // Components
 import App from './client/app';
+// Config
+import { cfg } from '../config';
+console.log(cfg.assembly_time);
 
 
 const theme = createTheme(themeFile);
@@ -20,4 +23,4 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('root'));
 
-// git add . && git commit -m "[client] - change date" && git push origin update-to-react
+// git add . && git commit -m "[client] - set & get localStorage" && git push origin update-to-react

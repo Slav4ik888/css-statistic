@@ -25,7 +25,7 @@ const useStyles = (theme) => ({
     height: `50px`,
     minHeight: `50px`,
     '&.MuiAppBar-root': {
-      backgroundColor: theme.palette.primary.main
+      backgroundColor: theme.navbar.background
     }
   },
   toolBar: {

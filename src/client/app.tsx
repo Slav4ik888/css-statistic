@@ -26,9 +26,6 @@ import { isNoEmptyFields } from '../utils/objects/objects';
 import getAllObjValue from '../utils/objects/get-all-obj-value';
 // import screenListener from './utils/screens/listener-rezise-screen';
 
-// DEV
-const ASSEMBLY_TIME = `09.12.2021 12:00`;
-console.log(ASSEMBLY_TIME);
 
 
 type Props = {
