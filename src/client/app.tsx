@@ -21,10 +21,11 @@ import Navbar from './components/navbar';
 import MessageBar from './components/dialogs/message-bar';
 // Functions
 import { history } from './utils/routes/history';
-import { Errors } from '../types';
 import { isNoEmptyFields } from '../utils/objects/objects';
 import getAllObjValue from '../utils/objects/get-all-obj-value';
 // import screenListener from './utils/screens/listener-rezise-screen';
+// Types
+import { Errors } from '../types';
 
 
 
