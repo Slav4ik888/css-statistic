@@ -16,6 +16,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 // Pages
 import Root from './pages/root';
+import Statistis from './pages/statistics';
 // Components
 import Navbar from './components/navbar';
 import MessageBar from './components/dialogs/message-bar';
@@ -55,6 +56,7 @@ const App: React.FC<Props> = ({ errors, showWarning }) => {
             <NoAuthRoute exact path={RouteType.ROOT} component={Root} />
 
             <PrivateRoute exact path={RouteType.WS} component={Root} />
+            <PrivateRoute exact path={RouteType.STATS} component={Statistis} />
             <Route
               render={() => (
                 <>

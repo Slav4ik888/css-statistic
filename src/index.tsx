@@ -23,4 +23,4 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('root'));
 
-// git add . && git commit -m "[client] - set & get localStorage" && git push origin update-to-react
+// git add . && git commit -m "[client] - StatisticsCnt & stat calculates" && git push origin update-to-react

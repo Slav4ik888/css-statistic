@@ -2,7 +2,7 @@ import api from "../../api";
 import { RouteType } from "../../../utils/routes/routes";
 // Redux
 // import { loadWeeks } from "../plans/plans";
-import { userActionType, uiActionType, statActionType } from "../../action-types";
+import { userActionType, uiActionType, statsActionType } from "../../action-types";
 import { Dispatch } from "../../redux-types";
 // Functions
 import logger from "../../../utils/client-logger/client-logger";
@@ -69,7 +69,7 @@ export const sendPasswordResetEmail = (email: string) => async (dispatch: Dispat
 export const userLogout = (email: string) => async (dispatch: Dispatch) => {
   try {
     dispatch({ type: userActionType.SET_UNAUTHENTICATED });
-    dispatch({ type: statActionType.SET_INITIAL }); // Очищаем данные в data-reducer
+    dispatch({ type: statsActionType.SET_INITIAL }); // Очищаем данные в data-reducer
     dispatch({ type: uiActionType.CLEAR_ERROR });
     
     await api.post(`/userLogout`, { email });

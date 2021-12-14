@@ -2,6 +2,7 @@ import * as React from 'react';
 // MUI Stuff
 import Grid from '@mui/material/Grid';
 // Components
+import SelectDates from '../../../components/statistics/select-dates';
 // Functions
 
 
@@ -17,6 +18,7 @@ const RootAuthContainer: React.FC<Props> = ({ authenticated }) => {
       <Grid container sx={{ flexGrow: 1 }}>
         <Grid item sm />
         <Grid item sm={6}>
+          {/* <SelectDates />  */}
         </Grid>
         <Grid item sm />
       </Grid>

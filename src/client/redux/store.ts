@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import user from './reducers/user';
-import stat from './reducers/stat';
+import stats from './reducers/stats';
 import UI from './reducers/ui';
 
 let middlewares = [thunk];
@@ -18,7 +18,7 @@ const initialState = {};
 
 const reducers = combineReducers({
   user,
-  stat,
+  stats,
   UI
 });
 

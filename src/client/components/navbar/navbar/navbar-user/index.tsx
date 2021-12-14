@@ -6,9 +6,8 @@ import { State } from '../../../../redux/redux-types';
 // MUI Stuff
 import Box from '@mui/material/Box';
 // Components
-import NavBtn from '../../btns/nav-btn';
+import StatisticsMenuBtn from '../../btns/statistics';
 // Functions
-import logger from '../../../../utils/client-logger/client-logger';
 
 
 
@@ -26,12 +25,7 @@ const NavbarUser: React.FC<Props> = ({ loadingUser, authenticated, history }) =>
   
   return (
     <Box sx={{ display: `flex` }}>
-
-      {/* <NavBtn
-        label={`Отчёты`}
-        toolLabel={`Перейти в отчёты`}
-        onClick={() => {}}
-      /> */}
+      <StatisticsMenuBtn history={history} />
     </Box>
   );
 };

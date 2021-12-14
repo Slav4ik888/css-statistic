@@ -1,14 +1,14 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { State } from '../../redux/redux-types';
+import { State } from '../../../redux/redux-types';
 // MUI Stuff
 import { Box, Divider } from '@mui/material';
 // Images
-import * as ImgStat from '../../images/stats_icon.png';
+import * as ImgStat from '../../../images/stats_icon.png';
 // Components
 // Functions
-import { fcc, Position } from '../../utils/styles';
+import { fcc, Position } from '../../../utils/styles';
 
 
 const styleImg = {

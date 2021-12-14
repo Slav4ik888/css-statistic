@@ -20,7 +20,7 @@ export enum uiActionType {
 };
 
 
-export enum statActionType {
+export enum statsActionType {
   LOADING_DATA       = `LOADING_DATA`,
   LOADING_DATA_OFF   = `LOADING_DATA_OFF`,
 

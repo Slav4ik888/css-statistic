@@ -18,3 +18,9 @@ export enum DB_Name {
   CssExpDB  = `Stat-CssExpDB`,
   BadcomDB  = `Stat-BadcomDB`
 };
+
+
+export enum IncidentType {
+  REG = `dateReg`,
+  END = `dateEnd`
+}
