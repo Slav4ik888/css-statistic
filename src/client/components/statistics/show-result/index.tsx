@@ -6,6 +6,7 @@ import { getStatsLoading, getDBs, getSelectedDates } from '../../../redux/select
 // MUI Stuff
 import { Paper } from '@mui/material';
 // Components
+import TableCnt from './table-cnt';
 import CircularProgress from '../../buttons/circular-progress/circular-progress';
 // Functions
 import calcsAllResults from '../../../utils/calculations';
@@ -23,7 +24,7 @@ const useStyles = (theme) => ({
     flexDirection: FlexDirection.COLUMN,
     mt: 5,
     p: 4,
-    width: 700,
+    width: 900,
     backgroundColor: theme.paper.background
   }
 });
@@ -52,7 +53,7 @@ const ShowResult: React.FC<Props> = ({ loading, hookResult, DBs, dates }) => {
 
   return (
     <Paper sx={sx.root}>
-      Результаты...
+      <TableCnt />
     </Paper>
   );
 };

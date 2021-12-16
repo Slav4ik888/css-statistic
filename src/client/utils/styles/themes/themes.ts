@@ -13,19 +13,43 @@ export default {
       contrastText: `#000000`,
     },
   },
-
+  body: {
+    background: `floralwhite`
+  },
   navbar: {
     color: `#345678`,
     hoverBg: `#d3e5f3`,
     background: `#eaeaeb`,
   },
-  main: {
-    background1: `#e1f5fe`,
-    background2: `#b4d5e8`,
-  },
 
   paper: {
+    title: {
+      color: `#999`,
+      fontSize:  `1.4rem`
+    },
     background: `#eaeaeb`
+  },
+  table: {
+    title: {
+      color: `#999`,
+      fontSize:  `1.2rem`
+    },
+    headPrimary: {
+      color: `#4c4c4c`,
+      background: `#c7c7c7`,
+      fontSize:  `0.7rem`
+    },
+    headSecondary: {
+      color: `#4c4c4c`,
+      background: `rgb(199 199 199 / 38%)`,
+      fontSize:  `0.6rem`
+    },
+    body: {
+      color: `#404040`,
+      background: `#f9f9f9`,
+      fontSize: `0.9rem`,
+    },
+
   },
   dialog: {
     title: {

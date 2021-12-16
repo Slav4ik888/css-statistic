@@ -27,7 +27,15 @@ import getAllObjValue from '../utils/objects/get-all-obj-value';
 // import screenListener from './utils/screens/listener-rezise-screen';
 // Types
 import { Errors } from '../types';
+// Styles
+import { useTheme } from '@emotion/react';
 
+
+const useStyles = (theme) => ({
+  body: {
+    backgroundColor: theme.body.background,
+  },
+});
 
 
 type Props = {
@@ -37,13 +45,14 @@ type Props = {
 
 
 const App: React.FC<Props> = ({ errors, showWarning }) => {
+  const sx = useStyles(useTheme());
 
   // Global show errors
   React.useEffect(() => isNoEmptyFields(errors) ? showWarning(getAllObjValue(errors)) : null, [errors]);
  
 
   return (
-    <Box className="wrapper">
+    <Box sx={sx.body}>
       <CssBaseline />
 
       <Router history={history}>
@@ -70,7 +79,6 @@ const App: React.FC<Props> = ({ errors, showWarning }) => {
               )}
             />
           </Switch>
-        {/* </main> */}
         </Box>
 
       </Router>

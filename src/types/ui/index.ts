@@ -10,6 +10,7 @@ import { ColorType, Colors } from './color-type';
 import { ViewType } from './view';
 import { ContextPoint, CxtMenuCustomerOrder } from './context';
 import { ResGoogleCSS, ResGoogleBC } from './google';
+import { FillingItem, TableBody, TableData, TableStrip, TableHeadType } from './tables';
 
 
 export {
@@ -19,5 +20,6 @@ export {
   GridStyle,
   ColorType, Colors,
   ViewType, ContextPoint, CxtMenuCustomerOrder,
-  ResGoogleCSS, ResGoogleBC
+  ResGoogleCSS, ResGoogleBC,
+  FillingItem, TableBody, TableData, TableStrip, TableHeadType
 };
