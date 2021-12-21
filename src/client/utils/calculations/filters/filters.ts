@@ -5,7 +5,7 @@ import { hour, sec } from "../../../../utils/dates/base";
 /** 
  * Возвращаем массив ДО указанной даты
  **/ 
-export const filtredBeforDate = (db: Array<DbItem>, _date: string) => {
+export const filtredBeforeDate = (db: Array<DbItem>, _date: string) => {
 
   const date = Date.parse(_date) - hour(8); // Перевести в timestamp
 

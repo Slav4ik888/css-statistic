@@ -7,7 +7,7 @@ import { useTheme } from '@emotion/react';
 
 const useStyles = (theme) => ({
   root: {
-    my: 2,
+    mt: 5, mb: 2,
     color: theme.table.title.color,
     fontSize: theme.table.title.fontSize
   },

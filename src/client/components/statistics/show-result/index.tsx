@@ -10,12 +10,12 @@ import TableCnt from './table-cnt';
 import CircularProgress from '../../buttons/circular-progress/circular-progress';
 // Functions
 import calcsAllResults from '../../../utils/calculations';
-// Types
+// Types & Consts
 import { UseOpen } from '../../../utils/hooks/types';
+import { DBsType, SelectedDates } from '../../../../types';
 // Styles
 import { FlexDirection } from '../../../utils/styles';
 import { useTheme } from '@emotion/react';
-import { DBsType, SelectedDates } from '../../../../types';
 
 
 const useStyles = (theme) => ({
@@ -24,7 +24,7 @@ const useStyles = (theme) => ({
     flexDirection: FlexDirection.COLUMN,
     mt: 5,
     p: 4,
-    width: 900,
+    width: 960,
     backgroundColor: theme.paper.background
   }
 });
@@ -44,8 +44,9 @@ const ShowResult: React.FC<Props> = ({ loading, hookResult, DBs, dates }) => {
   if (loading) return <CircularProgress size={50} loading={loading} center block />;
   const sx = useStyles(useTheme());
 
-  const calcsResults = React.useMemo(() => calcsAllResults(DBs, dates.from, dates.to), [DBs, dates]);
-  console.log('calcsResults: ', calcsResults);
+  const calcResults = React.useMemo(() => calcsAllResults(DBs, dates.from, dates.to), [DBs, dates]);
+  console.log('calcResults: ', calcResults);
+
 
   const handleRefresh = () => {
     hookResult.setOpen();
@@ -53,7 +54,7 @@ const ShowResult: React.FC<Props> = ({ loading, hookResult, DBs, dates }) => {
 
   return (
     <Paper sx={sx.root}>
-      <TableCnt />
+      <TableCnt calcResults={calcResults} />
     </Paper>
   );
 };

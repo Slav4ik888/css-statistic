@@ -1,8 +1,8 @@
 import { TextAlign } from "../../client/utils/styles";
 
 export enum TableHeadType {
-  PRIMARY  = `headPrimary`,
-  SEONDARY = `headSecondary`
+  PRIMARY   = `headPrimary`,
+  SECONDARY = `headSecondary`
 };
 
 
@@ -10,7 +10,7 @@ export interface FillingItem {
   id     : string;
   label  : string | number;
   order  : number;
-  width  : number;
+  width  : string | number;
   align? : TextAlign;
   bold?  : boolean;
 };
@@ -18,12 +18,12 @@ export interface FillingItem {
 export type TableStrip = Array<FillingItem>;
 
 export type TableBody = Array<{
-  person : string;
-  strip  : TableStrip;
+  label : string;
+  strip : TableStrip;
 }>;
 
 export interface TableData {
-  headPrimary   : TableStrip;
-  headSecondary : TableStrip;
-  body          : TableBody;
+  headPrimary    : TableStrip;
+  headSecondary? : TableStrip;
+  body           : TableBody;
 };

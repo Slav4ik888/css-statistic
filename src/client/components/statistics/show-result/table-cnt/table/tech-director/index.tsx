@@ -6,9 +6,9 @@ import Title from '../../../../../tables/title';
 import Head from '../../../../../tables/head';
 import Body from '../../../../../tables/body';
 // Functions
-import getTableData from './utils/get-table-data';
+import getTableDataTotalTechDirector from './get-total-tech-director';
 // Types
-import { IndividualData, TableHeadType } from '../../../../../../../types';
+import { TableHeadType, TechDirector } from '../../../../../../../types';
 // Styles
 import { useTheme } from '@emotion/react';
 import { FlexDirection } from '../../../../../../utils/styles';
@@ -18,28 +18,35 @@ const useStyles = (theme) => ({
   root: {
     display: `flex`,
     flexDirection: FlexDirection.COLUMN
-  },
+  }
 });
 
 
 
 type Props = {
-  data: IndividualData;
+  data: TechDirector;
 };
 
 
-const TehnicalIndividual: React.FC<Props> = ({ data }) => {
+const TehnicalDirector: React.FC<Props> = ({ data }) => {
   const sx = useStyles(useTheme());
-  const tableData = getTableData(data);
+
+  const TotalTechDirector = getTableDataTotalTechDirector(data);
 
   return (
     <Box sx={sx.root}>
-      <Title title="Инженеры и техподдержка (индивидуальные)" />
-      <Head type={TableHeadType.PRIMARY}   data={tableData} />
-      <Head type={TableHeadType.SECONDARY} data={tableData} />
-      <Body data={tableData} />
+      <Title title="Технический директор" />
+
+      <Head
+        type = {TableHeadType.PRIMARY}
+        data = {TotalTechDirector}
+      />
+
+      <Body
+        data = {TotalTechDirector}
+      />
     </Box>
   );
 };
 
-export default TehnicalIndividual;
+export default TehnicalDirector;

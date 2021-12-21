@@ -1,17 +1,9 @@
-import { TableData, TableBody, IndividualData } from "../../../../../../../../../types";
-import getPersonStrip from "../get-person-strip";
+import { TableData, IndividualData, CalcResultType } from "../../../../../../../../../types";
+import getTableBody from "../../../utils/get-table-body";
 
-
-
-const createOrder = (i: number) => (i + 1) * 10;
-const createId    = (i: number) => createOrder(i).toString();
 
 
 export default function getTableData(data: IndividualData): TableData {
-  const personsStrips: TableBody = data.map(item => ({
-    person : item.person,
-    strip  : getPersonStrip(item)
-  }));
 
   return {
     headPrimary: [
@@ -97,6 +89,6 @@ export default function getTableData(data: IndividualData): TableData {
       }
     ],
 
-    body: personsStrips
+    body: getTableBody(CalcResultType.INDIVIDUAL, data)
   }
 }

@@ -5,9 +5,11 @@ import Box from '@mui/material/Box';
 import Title from './title';
 import Table from './table';
 // Types
+import { CalcResults } from '../../../../../types';
 // Styles
 import { useTheme } from '@emotion/react';
 import { FlexDirection } from '../../../../utils/styles';
+
 
 
 const useStyles = (theme) => ({
@@ -18,18 +20,18 @@ const useStyles = (theme) => ({
 
 
 type Props = {
-  
+  calcResults: CalcResults;
 };
 
 
-const TableCnt: React.FC<Props> = ({  }) => {
+const TableCnt: React.FC<Props> = ({ calcResults }) => {
   const sx = useStyles(useTheme());
 
 
   return (
     <Box sx={sx.root}>
       <Title /> 
-      <Table />
+      <Table calcResults={calcResults} />
     </Box>
   );
 };

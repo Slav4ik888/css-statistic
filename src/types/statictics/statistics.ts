@@ -23,4 +23,8 @@ export enum DB_Name {
 export enum IncidentType {
   REG = `dateReg`,
   END = `dateEnd`
+};
+
+export enum IncidentStatus {
+  IN_WORK = `В работе`
 }

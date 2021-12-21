@@ -31,22 +31,22 @@ export default {
   },
   table: {
     title: {
-      color: `#999`,
+      color: `#616170`,
       fontSize:  `1.2rem`
     },
     headPrimary: {
-      color: `#4c4c4c`,
-      background: `#c7c7c7`,
+      color: `#2e5603`,
+      background: `#b9df8d`,
       fontSize:  `0.7rem`
     },
     headSecondary: {
-      color: `#4c4c4c`,
-      background: `rgb(199 199 199 / 38%)`,
+      color: `#2e5603`,
+      background: `rgb(184 224 141 / 53%)`,
       fontSize:  `0.6rem`
     },
     body: {
-      color: `#404040`,
-      background: `#f9f9f9`,
+      color: `#555555`,
+      background: `#f7f7f9`,
       fontSize: `0.9rem`,
     },
 

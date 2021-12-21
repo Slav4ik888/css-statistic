@@ -19,7 +19,8 @@ const useStyles = (theme) => ({
     witdh: `100%`,
     color: theme.table.body.color,
     backgroundColor: theme.table.body.background,
-    fontSize: theme.table.body.fontSize
+    fontSize: theme.table.body.fontSize,
+    px: 1
   },
   row: {
     ...fc_sb,
@@ -37,13 +38,13 @@ const TableBody: React.FC<Props> = ({ data }) => {
   if (!data?.body?.length) return null;
   const sx = useStyles(useTheme());
 
-  const sorted = React.useMemo(() => sortingArr(data.body, `person`), []);
+  const sorted = React.useMemo(() => sortingArr(data.body, `label`), []);
 
   return (
     <Box sx={sx.root}>
       {
         sorted.map((row, i) => <Box
-          key={row.person + i}
+          key={row.label + i}
           sx={{
             ...sx.row,
             ...cl({ border: `none` }, sorted.length <= (i + 1)) 

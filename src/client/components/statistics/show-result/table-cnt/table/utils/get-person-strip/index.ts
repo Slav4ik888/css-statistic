@@ -1,5 +1,5 @@
-import { IndividualStripItem, TableStrip } from "../../../../../../../../../types";
-import { TextAlign } from "../../../../../../../../utils/styles";
+import { IndividualStripItem, TableStrip } from "../../../../../../../../types";
+import { TextAlign } from "../../../../../../../utils/styles";
 
 
 export default function getPersonStrip(item: IndividualStripItem): TableStrip {
@@ -8,7 +8,7 @@ export default function getPersonStrip(item: IndividualStripItem): TableStrip {
       id: `10`,
       order: 10,
       width: 160,
-      label: item.person, // getFio(item.person, true),
+      label: item.label, // getFio(item.person, true),
       align: TextAlign.LEFT
     }, {
       id: `20`,
