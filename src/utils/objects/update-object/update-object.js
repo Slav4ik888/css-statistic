@@ -1,4 +1,4 @@
-import { cloneObj } from '../objects.js';
+import { cloneObj } from '../objects-base/index.js';
 
 // Возвращает новый объект lastObj с обновлёнными полями из updateItem
 export const updateObject = (lastObj, updateItem) => {

@@ -1,6 +1,6 @@
 
 export enum CalcResultType {
-  INDIVIDUAL      = `individual`,
+  INCIDENTS       = `incidents`,
   TOTAL_TECHNICAL = `totalTechnical`,
   AMOUNT_SERVICES = `amountOfServices`,
   TECH_DIRECTOR   = `techDirector`

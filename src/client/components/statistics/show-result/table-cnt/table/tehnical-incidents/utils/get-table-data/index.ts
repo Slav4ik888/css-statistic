@@ -1,9 +1,9 @@
-import { TableData, IndividualData, CalcResultType } from "../../../../../../../../../types";
+import { TableData, IncidentsData, CalcResultType } from "../../../../../../../../../types";
 import getTableBody from "../../../utils/get-table-body";
 
 
 
-export default function getTableData(data: IndividualData): TableData {
+export default function getTableData(data: IncidentsData): TableData {
 
   return {
     headPrimary: [
@@ -89,6 +89,6 @@ export default function getTableData(data: IndividualData): TableData {
       }
     ],
 
-    body: getTableBody(CalcResultType.INDIVIDUAL, data)
+    body: getTableBody(CalcResultType.INCIDENTS, data)
   }
 }

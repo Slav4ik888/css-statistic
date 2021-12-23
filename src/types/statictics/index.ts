@@ -1,7 +1,7 @@
 import { DateItemType, SelectedDates, DB_Name, IncidentType, IncidentStatus } from './statistics';
 import { DbItem, DBsType } from './db';
 import {
-  CalcDBsType, CalcDbItem, IndividualStripItem, IndividualData,
+  CalcDBsType, CalcDbItem, IncidentStripItem, IncidentsData,
   CalcResults, HeadOfTechnical, RenderedServices, ServiceItem, 
   TotalTechnicalStripItem, TotalTechnialData, TechDirector, TechDirectorItem
 } from './calcs';
@@ -11,7 +11,7 @@ import { ServiceType, ServiceRange, ServiceClient, ServiceAge } from './rendered
 
 export {
   DateItemType, SelectedDates, DB_Name, IncidentType, IncidentStatus,
-  DbItem, DBsType, CalcDBsType, CalcDbItem, IndividualStripItem, IndividualData,
+  DbItem, DBsType, CalcDBsType, CalcDbItem, IncidentStripItem, IncidentsData,
   CalcResults, HeadOfTechnical, RenderedServices, ServiceItem, 
   TotalTechnicalStripItem, TotalTechnialData, TechDirector, TechDirectorItem,
   CalcResultType,

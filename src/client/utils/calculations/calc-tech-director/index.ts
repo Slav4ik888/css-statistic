@@ -1,4 +1,4 @@
-import { CalcDBsType, DbItem } from '../../../../../types';
+import { CalcDBsType, DbItem } from '../../../../types';
 
 
 // Возвращает итоговую сумму баллов для ТД

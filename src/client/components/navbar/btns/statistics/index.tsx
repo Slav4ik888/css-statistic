@@ -13,8 +13,8 @@ type Props = {
 };
 
 
-// Кнопка для входа в Plan
-const PlanMenuBtn: React.FC<Props> = ({ history}) => {
+// Кнопка для входа в Statistics
+const StatisticMenuBtn: React.FC<Props> = ({ history}) => {
   
   const handleClick = () => {
     history.push(RouteType.STATS);
@@ -37,4 +37,4 @@ const mapStateToProps = (state: State) => ({
 const mapActionsToProps = {
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(PlanMenuBtn);
+export default connect(mapStateToProps, mapActionsToProps)(StatisticMenuBtn);

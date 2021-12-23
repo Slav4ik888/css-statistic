@@ -7,8 +7,7 @@ import { State } from '../../../../redux/redux-types';
 import Box from '@mui/material/Box';
 // Components
 import StatisticsMenuBtn from '../../btns/statistics';
-// Functions
-
+import TestingMenuBtn from '../../btns/testing';
 
 
 type Props = {
@@ -26,6 +25,7 @@ const NavbarUser: React.FC<Props> = ({ loadingUser, authenticated, history }) =>
   return (
     <Box sx={{ display: `flex` }}>
       <StatisticsMenuBtn history={history} />
+      {/* <TestingMenuBtn history={history} /> */}
     </Box>
   );
 };
@@ -35,6 +35,5 @@ const mapStateToProps = (state: State) => ({
   loadingUser: u.getLoadingUser(state),
   authenticated: u.getAuthenticated(state),
 });
-
 
 export default connect(mapStateToProps)(NavbarUser);

@@ -1,5 +1,5 @@
 // Functions
-import { extend } from '../../../../utils/objects/objects';
+import { extend } from '../../../../utils/objects/objects-base';
 // Types
 import { uiActionType } from '../../action-types';
 import { initialState } from './initial-state';

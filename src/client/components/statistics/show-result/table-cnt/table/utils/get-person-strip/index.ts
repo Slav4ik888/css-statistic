@@ -1,8 +1,8 @@
-import { IndividualStripItem, TableStrip } from "../../../../../../../../types";
+import { IncidentStripItem, TableStrip } from "../../../../../../../../types";
 import { TextAlign } from "../../../../../../../utils/styles";
 
 
-export default function getPersonStrip(item: IndividualStripItem): TableStrip {
+export default function getPersonStrip(item: IncidentStripItem): TableStrip {
   return [
     {
       id: `10`,

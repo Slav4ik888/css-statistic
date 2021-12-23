@@ -7,7 +7,7 @@ import { ConfirmType, ConfirmElemType } from './confirm';
 import { SearchOptionType } from './search';
 import { GridStyle } from './grid';
 import { ColorType, Colors } from './color-type';
-import { ViewType } from './view';
+import { ViewType, PathInfo } from './view';
 import { ContextPoint, CxtMenuCustomerOrder } from './context';
 import { ResGoogleCSS, ResGoogleBC } from './google';
 import { FillingItem, TableBody, TableData, TableStrip, TableHeadType } from './tables';
@@ -19,7 +19,7 @@ export {
   LogoBtnType, ConfirmType, ConfirmElemType, SearchOptionType,
   GridStyle,
   ColorType, Colors,
-  ViewType, ContextPoint, CxtMenuCustomerOrder,
+  ViewType, PathInfo, ContextPoint, CxtMenuCustomerOrder,
   ResGoogleCSS, ResGoogleBC,
   FillingItem, TableBody, TableData, TableStrip, TableHeadType
 };

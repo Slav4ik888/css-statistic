@@ -7,6 +7,8 @@ export function cloneObj<O>(obj: O): O;
 
 export function objectLength<O>(obj: O): number;
 
+export function noop(): void;
+
 /**
  * True если пустой объект
  */

@@ -8,7 +8,7 @@ import Body from '../../../../../tables/body';
 // Functions
 import getTableData from './utils/get-table-data';
 // Types
-import { IndividualData, TableHeadType } from '../../../../../../../types';
+import { IncidentsData, TableHeadType } from '../../../../../../../types';
 // Styles
 import { useTheme } from '@emotion/react';
 import { FlexDirection } from '../../../../../../utils/styles';
@@ -24,11 +24,11 @@ const useStyles = (theme) => ({
 
 
 type Props = {
-  data: IndividualData;
+  data: IncidentsData;
 };
 
 
-const TehnicalIndividual: React.FC<Props> = ({ data }) => {
+const TehnicalIncidents: React.FC<Props> = ({ data }) => {
   const sx = useStyles(useTheme());
   const tableData = getTableData(data);
 
@@ -42,4 +42,4 @@ const TehnicalIndividual: React.FC<Props> = ({ data }) => {
   );
 };
 
-export default TehnicalIndividual;
+export default TehnicalIncidents;

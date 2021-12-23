@@ -15,12 +15,12 @@ export interface CalcDBsType {
 };
 
 
-// -------------     INDIVIDUAL    ----------------- //
+// -------------     INCIDENTS    ----------------- //
 
 
-export type IndividualData = Array<IndividualStripItem>;
+export type IncidentsData = Array<IncidentStripItem>;
 
-export interface IndividualStripItem {
+export interface IncidentStripItem {
   label         : string;
   countsCss     : number;
   scoresCss     : number;
@@ -71,7 +71,7 @@ export interface TechDirectorItem {
 // -----------------    RESULT   -------------------- //
 
 export interface CalcResults {
-  individual      : IndividualData;
+  incidents       : IncidentsData;
   headOfTechnical : HeadOfTechnical;
   techDirector    : TechDirector;
 };

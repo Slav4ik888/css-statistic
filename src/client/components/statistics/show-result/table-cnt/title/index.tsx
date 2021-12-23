@@ -7,7 +7,7 @@ import { useTheme } from '@emotion/react';
 
 const useStyles = (theme) => ({
   root: {
-    my: 2,
+    my: 2, pl: 2,
     color: theme.paper.title.color,
     fontSize: theme.paper.title.fontSize
   },
@@ -15,14 +15,8 @@ const useStyles = (theme) => ({
 
 
 
-type Props = {
-  
-};
-
-
-const Title: React.FC<Props> = ({  }) => {
+const Title: React.FC = () => {
   const sx = useStyles(useTheme());
-
 
   return (
     <Box sx={sx.root}>

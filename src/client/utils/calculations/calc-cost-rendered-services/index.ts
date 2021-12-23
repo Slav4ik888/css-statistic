@@ -4,7 +4,7 @@ import fillRenderedInstallations from "./fill-rendered-installations";
 
 // Стоимость оказанных услуг
 export default function calcCostRenderedServices(
-  DBs: CalcDBsType, dateStart: string, dateEnd: string
+  DBs: CalcDBsType //, dateStart: string, dateEnd: string
 ): RenderedServices {
 
   // Наполнение crs данными

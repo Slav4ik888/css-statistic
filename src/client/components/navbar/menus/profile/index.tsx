@@ -138,7 +138,7 @@ const ProfileMenu: React.FC<Props> = ({ menu, anchorEl, menuId, userLogout }) =>
 
           <Divider />
 
-          <MenuItem
+          {/* <MenuItem
             key="instr"
             onClick={menu.setClose}
             sx={{ typography: 'body2', fontStyle: `italic`, py: 1, px: 2.5 }}
@@ -153,7 +153,7 @@ const ProfileMenu: React.FC<Props> = ({ menu, anchorEl, menuId, userLogout }) =>
             >
               Инструкция
             </Link>
-          </MenuItem>
+          </MenuItem> */}
           
 
           <Box sx={{ p: 2, pt: 1.5 }}>

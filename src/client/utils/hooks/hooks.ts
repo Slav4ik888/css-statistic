@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { updateArrWithItemByField } from '../../../utils/arrays/update-arr-with-item-by-field';
-import { cloneObj } from '../../../utils/objects/objects';
+import { cloneObj } from '../../../utils/objects/objects-base';
 import { UseOpen, UseValue, UseArray, UseNumber, UseObject, UseBoolean, UseModule} from './types';
 
 

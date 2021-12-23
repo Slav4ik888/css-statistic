@@ -11,6 +11,11 @@ export const cloneObj = (obj) => {
 };
 
 
+export const noop = () => {
+  // do nothing for test
+};
+
+
 // Возвращает длину объекта (кол-во элементов)
 export const objectLength = (obj) => {
   let result = 0;

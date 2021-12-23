@@ -17,12 +17,13 @@ import Box from '@mui/material/Box';
 // Pages
 import Root from './pages/root';
 import Statistis from './pages/statistics';
+import Testing from './pages/testing';
 // Components
 import Navbar from './components/navbar';
 import MessageBar from './components/dialogs/message-bar';
 // Functions
 import { history } from './utils/routes/history';
-import { isNoEmptyFields } from '../utils/objects/objects';
+import { isNoEmptyFields } from '../utils/objects/objects-base';
 import getAllObjValue from '../utils/objects/get-all-obj-value';
 // import screenListener from './utils/screens/listener-rezise-screen';
 // Types
@@ -66,6 +67,7 @@ const App: React.FC<Props> = ({ errors, showWarning }) => {
 
             <PrivateRoute exact path={RouteType.WS} component={Root} />
             <PrivateRoute exact path={RouteType.STATS} component={Statistis} />
+            <PrivateRoute exact path={RouteType.TESTS_ID} component={Testing} />
             <Route
               render={() => (
                 <>

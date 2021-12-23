@@ -6,15 +6,16 @@ import { getStatsLoading, getDBs, getSelectedDates } from '../../../redux/select
 // MUI Stuff
 import { Paper } from '@mui/material';
 // Components
-import TableCnt from './table-cnt';
 import CircularProgress from '../../buttons/circular-progress/circular-progress';
+import RefreshBtn from './rerfresh-btn';
+import TableCnt from './table-cnt';
 // Functions
 import calcsAllResults from '../../../utils/calculations';
 // Types & Consts
 import { UseOpen } from '../../../utils/hooks/types';
 import { DBsType, SelectedDates } from '../../../../types';
 // Styles
-import { FlexDirection } from '../../../utils/styles';
+import { FlexDirection, Position } from '../../../utils/styles';
 import { useTheme } from '@emotion/react';
 
 
@@ -22,6 +23,7 @@ const useStyles = (theme) => ({
   root: {
     display: `flex`,
     flexDirection: FlexDirection.COLUMN,
+    position: Position.REL,
     mt: 5,
     p: 4,
     width: 960,
@@ -35,7 +37,6 @@ type Props = {
   hookResult : UseOpen;
   DBs?       : DBsType;
   dates?     : SelectedDates; 
-  loadData?  : () => void;
 };
 
 
@@ -48,12 +49,9 @@ const ShowResult: React.FC<Props> = ({ loading, hookResult, DBs, dates }) => {
   console.log('calcResults: ', calcResults);
 
 
-  const handleRefresh = () => {
-    hookResult.setOpen();
-  };
-
   return (
     <Paper sx={sx.root}>
+      <RefreshBtn hookResult={hookResult} />
       <TableCnt calcResults={calcResults} />
     </Paper>
   );
@@ -61,12 +59,9 @@ const ShowResult: React.FC<Props> = ({ loading, hookResult, DBs, dates }) => {
 
 
 const mapStateToProps = (state: State) => ({
-  loading: getStatsLoading(state),
-  DBs: getDBs(state),
-  dates: getSelectedDates(state)
+  loading : getStatsLoading(state),
+  DBs     : getDBs(state),
+  dates   : getSelectedDates(state)
 });
 
-const mapActionsToProps = {
-};
-
-export default connect(mapStateToProps, mapActionsToProps)(ShowResult);
+export default connect(mapStateToProps)(ShowResult);

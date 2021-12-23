@@ -2,7 +2,7 @@ import * as React from 'react';
 // MUI Stuff
 import Paper from '@mui/material/Paper';
 // Components
-import TehnicalIndividual from './tehnical-individual';
+import TehnicalIncidents from './tehnical-incidents';
 import HeadOfTehnicalDepartment from './head-of-tehnical';
 import TehnicalDirector from './tech-director';
 // Types
@@ -32,7 +32,7 @@ const Table: React.FC<Props> = ({ calcResults }) => {
 
   return (
     <Paper sx={sx.root}>
-      <TehnicalIndividual       data={calcResults.individual} />
+      <TehnicalIncidents       data={calcResults.incidents} />
       <HeadOfTehnicalDepartment data={calcResults.headOfTechnical} />
       <TehnicalDirector         data={calcResults.techDirector} />
     </Paper>
