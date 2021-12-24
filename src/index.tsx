@@ -23,4 +23,4 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('root'));
 
-// git add . && git commit -m "[client] - merge v.2" && git push origin master
+// git add . && git commit -m "[client] - getLastDateFrom" && git push origin master

@@ -21,7 +21,7 @@ export default {
       // ФЛ
       [ServiceClient.INDIVID]: {
         [ServiceAge.NEW]: {
-          label : `Ka (ФЛ) - повый`,
+          label : `Ka (ФЛ) - новый`,
           cost  : 3000,
           count : 0,
           total : 0,

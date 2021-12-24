@@ -11,6 +11,7 @@ import { ViewType, PathInfo } from './view';
 import { ContextPoint, CxtMenuCustomerOrder } from './context';
 import { ResGoogleCSS, ResGoogleBC } from './google';
 import { FillingItem, TableBody, TableData, TableStrip, TableHeadType } from './tables';
+import { OneOfTwo } from './one-of-two';
 
 
 export {
@@ -21,5 +22,6 @@ export {
   ColorType, Colors,
   ViewType, PathInfo, ContextPoint, CxtMenuCustomerOrder,
   ResGoogleCSS, ResGoogleBC,
-  FillingItem, TableBody, TableData, TableStrip, TableHeadType
+  FillingItem, TableBody, TableData, TableStrip, TableHeadType,
+  OneOfTwo
 };

@@ -23,7 +23,7 @@ const setDataToStoreFromLocalStorage = (dispatch: any) => {
 
 const setDataToStoreFromGoogle = async (dispatch: any) => {
   const res1: ResGoogleCSS = await apiWithoutCookie.get(cfg.urls.G_CSS);
-  const res2: ResGoogleBC = await apiWithoutCookie.get(cfg.urls.G_BADCOM);
+  const res2: ResGoogleBC  = await apiWithoutCookie.get(cfg.urls.G_BADCOM);
       
   setDBDataToStore(dispatch, res1, res2);
   setAllDBToLocalStorage(res1, res2);

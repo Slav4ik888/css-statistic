@@ -1,4 +1,4 @@
-import { cloneObj } from '../objects.js';
+import { cloneObj } from '../objects-base/index.js';
 
 export const getObjectWithoutField = (obj, field) => {
   if (!obj) return {};

@@ -16,6 +16,5 @@ export default function updateArrByArrByField(lastArr, field, newArr) {
     if (!res) updatedArr.push(item);
   });
 
-  console.log('updatedArr: ', updatedArr);
   return updatedArr;
 };

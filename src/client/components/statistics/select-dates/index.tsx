@@ -10,9 +10,10 @@ import Header from './header';
 import DateItem from './date-item';
 import Action from './action';
 // Functions
-import { useModule } from '../../../utils/hooks/hooks';
+import { useGroup } from '../../../utils/hooks/use-group';
 import validSelectedDates from '../../../../utils/validators/selected-dates';
-import changeModule from '../../../utils/hooks/change-module';
+import changeGroup from '../../../utils/hooks/change-group';
+import { getLastDateFrom } from '../../../utils/get-last-week-dates';
 // Types
 import { DateItemType, Errors, SelectedDates } from '../../../../types';
 import { UseOpen } from '../../../utils/hooks/types';
@@ -48,16 +49,22 @@ const SelectDates: React.FC<Props> = ({ hookResult, setSelectedDates, setErrors,
   const sx = useStyles(useTheme());
   React.useEffect(() => setErrors(null), []);
 
-  const date = useModule<SelectedDates>();
-  React.useEffect(() => cfg.isDev ? changeModule(date, [cfg.devData.from, cfg.devData.to], [`from`, `to`]) : null, []);
+  const date = useGroup<SelectedDates>();
+
+  React.useEffect(() => {
+    const from = cfg.isDev ? cfg.devData.from : getLastDateFrom(true);
+    const to   = cfg.isDev ? cfg.devData.to   : getLastDateFrom(false);
+    
+    changeGroup(date, [{ value: from, scheme: `from` }, { value: to, scheme: `to` }])
+  }, []);
 
 
   const handleCalc = () => {
-    const { errors, valid } = validSelectedDates(date.obj);
+    const { errors, valid } = validSelectedDates(date.group);
     if (!valid) return setErrors(errors)
 
     setErrors(null);
-    setSelectedDates(date.obj);
+    setSelectedDates(date.group);
     hookResult.setOpen();
     loadData(); // Загружаем данные с Гугла
   };
@@ -66,8 +73,8 @@ const SelectDates: React.FC<Props> = ({ hookResult, setSelectedDates, setErrors,
   return (
     <Paper sx={sx.root}>
       <Header />
-      <DateItem type={DateItemType.FROM} module={date} />
-      <DateItem type={DateItemType.TO}   module={date} />
+      <DateItem type={DateItemType.FROM} group={date} />
+      <DateItem type={DateItemType.TO}   group={date} />
       <Action onCalc={handleCalc} />
     </Paper>
   );

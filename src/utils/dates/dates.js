@@ -15,7 +15,6 @@ export const getMsFromDate = date => new Date(date).getTime();
  * @return {string} - дата в нужном формате
  */
 export const showDate = (time, format, rus = false, sklonenie = false) => {
-  console.log('time: ', time);
 
   let newDate = time;
   if (typeof time === `number`) newDate = new Date(time);

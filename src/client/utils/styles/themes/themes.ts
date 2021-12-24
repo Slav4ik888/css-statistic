@@ -27,6 +27,10 @@ export default {
       color: `#999`,
       fontSize:  `1.4rem`
     },
+    dates: {
+      color: `#5c5c5c`,
+      fontSize:  `1.1rem`
+    },
     background: `#eaeaeb`
   },
   table: {

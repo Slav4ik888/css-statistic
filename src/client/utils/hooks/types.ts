@@ -1,4 +1,12 @@
 
+export interface TupleGroup {
+  scheme: string,
+  value: any
+};
+
+export type TuplesGroup = Array<TupleGroup>;
+
+
 export interface UseBoolean {
   bool       : boolean;
   setTrue()  : void;
@@ -30,9 +38,9 @@ export interface UseNumber {
   clearValue()        : void;
 };
 
-export interface UseObject<T> {
-  obj             : T;
-  setObject(v: T) : void;
+export interface UseObject<O> {
+  obj             : O;
+  setObject(v: O) : void;
 };
 
 export interface UseArray<A> {
@@ -42,18 +50,20 @@ export interface UseArray<A> {
   clearArray()                     : void;
 };
 
-export interface UseModule<O> {
+
+export interface UseGroup<O> {
   open                    : boolean;
   close                   : boolean;
   setOpen()               : void;
   setClose()              : void;
   
-  obj                     : O;
-  setObject(v: O)         : void;
-
+  group                   : O;
+  setGroup(v: O)          : void;
+  updateGroup(v: O)       : void;
+  
   isChange                : boolean;
   setIsChange(v: boolean) : void;
   
   confirm                 : boolean;
   setConfirm(v: boolean)  : void;
-}
+};

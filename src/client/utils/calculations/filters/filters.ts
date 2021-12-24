@@ -9,7 +9,7 @@ export const filtredBeforeDate = (db: Array<DbItem>, _date: string) => {
 
   const date = Date.parse(_date) - hour(8); // Перевести в timestamp
 
-  return db.filter(obj => obj.dateReg < date);
+  return db?.filter(obj => obj.dateReg < date);
 };
 
 
@@ -24,5 +24,5 @@ export const filtredBetweenDates = (
   const start = Date.parse(_start) - hour(8);
   const end   = Date.parse(_end)   + hour(16) - sec(1);
   
-  return db.filter(obj => obj[type] >= start && obj[type] <= end);
+  return db?.filter(obj => obj[type] >= start && obj[type] <= end);
 };
