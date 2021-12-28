@@ -1,7 +1,7 @@
 import * as React from 'react';
 // Routes
 // import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Router, Switch } from 'react-router-dom';
 import AuthRoute from './utils/routes/auth-route';
 import PrivateRoute from './utils/routes/private-route';
 import NoAuthRoute from './utils/routes/no-auth-route';
@@ -12,12 +12,13 @@ import { showWarning } from './redux/actions/ui';
 import { getErrors } from './redux/selectors/ui';
 import { State } from './redux/redux-types';
 // MUI
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
+import { CssBaseline, Box } from '@mui/material';
 // Pages
 import Root from './pages/root';
+import Login from './pages/login';
 import Statistis from './pages/statistics';
 import Testing from './pages/testing';
+import PageNotFound from './pages/not-found';
 // Components
 import Navbar from './components/navbar';
 import MessageBar from './components/dialogs/message-bar';
@@ -63,23 +64,15 @@ const App: React.FC<Props> = ({ errors, showWarning }) => {
           <MessageBar />
 
           <Switch>
-            <NoAuthRoute exact path={RouteType.ROOT} component={Root} />
+            <AuthRoute    exact path={RouteType.LOGIN}    component={Login} />
+            <NoAuthRoute  exact path={RouteType.ROOT}     component={Root} />
 
-            <PrivateRoute exact path={RouteType.WS} component={Root} />
-            <PrivateRoute exact path={RouteType.STATS} component={Statistis} />
+            <PrivateRoute exact path={RouteType.WS}       component={Root} />
+            <PrivateRoute exact path={RouteType.STATS}    component={Statistis} />
             <PrivateRoute exact path={RouteType.TESTS_ID} component={Testing} />
-            <Route
-              render={() => (
-                <>
-                  <h1>
-                    404.
-                    <br />
-                    <small>Page not found</small>
-                  </h1>
-                  <Redirect to={RouteType.LOGIN} />
-                </>
-              )}
-            />
+            
+            <PageNotFound />
+            
           </Switch>
         </Box>
 

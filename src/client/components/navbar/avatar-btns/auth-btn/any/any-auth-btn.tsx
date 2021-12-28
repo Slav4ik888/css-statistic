@@ -3,8 +3,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { RouteType } from '../../../../../utils/routes/routes';
 // MUI Stuff
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { IconButton, Tooltip } from '@mui/material';
 // Icons
 import AccountCircle from '@mui/icons-material/AccountCircle';
 // Types
@@ -32,6 +31,5 @@ const AnyAuthBtn: React.FC<Props> = ({ screenFormat }) => {
     </Tooltip>
   );
 };
-
 
 export default AnyAuthBtn;

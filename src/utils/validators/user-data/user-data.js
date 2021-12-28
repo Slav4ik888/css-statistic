@@ -1,6 +1,6 @@
 import { isEmpty, isEmail, isNoValidMaxL30, isNoValidMaxL300 } from '../base/validators.js';
 import { isNoOneOfSeveral } from '../is-one-of-several/index.js';
-import { arrFromObj } from '../../objects/objects.js';
+import { arrFromObj } from '../../objects/objects-base/index.js';
 import { RoleType } from '../../../types/types.js';
 import TPL from '../../../templates/errors/template-errors.js';
 

@@ -12,7 +12,6 @@ import { ScreenFormats } from '../../../../../types/index';
 
 
 
-
 type Props = {
   authenticated: boolean;
   screenFormat: ScreenFormats;
@@ -36,6 +35,5 @@ const mapStateToProps = (state: State) => ({
   authenticated: getAuthenticated(state),
   screenFormat: getScreenFormats(state),
 });
-
 
 export default connect(mapStateToProps)(AuthBtn);

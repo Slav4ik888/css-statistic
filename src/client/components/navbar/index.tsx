@@ -5,7 +5,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 // Components
 import LogoBtn from '../buttons/logo-btn/logo-btn';
-import NavbarMenuBtns from './avatar-btns/avatar-btns';
+import NavbarMenuBtns from './avatar-btns';
 import NavbarUser from './navbar/navbar-user';
 // Types
 import { LogoBtnType } from '../../../types/index';
@@ -61,6 +61,5 @@ const Navbar = ({ history }) => {
     </Box>
   );
 };
-
 
 export default Navbar;

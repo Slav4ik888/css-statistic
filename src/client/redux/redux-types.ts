@@ -1,5 +1,5 @@
 import { uiActionType, userActionType, statsActionType } from './action-types';
-import { Message, Errors, ScreenFormats, SelectedDates, DbItem } from '../../types';
+import { Message, Errors, ScreenFormats, SelectedDates, DbItem, User } from '../../types';
 
 
 
@@ -18,10 +18,14 @@ export interface StateUI {
   screenSize      : number;
 };
 
+
 export interface StateUser {
   loading         : boolean;
   authenticated   : boolean;
+
+  user            : User;
 };
+
 
 export interface StateStats {
   loading       : boolean;

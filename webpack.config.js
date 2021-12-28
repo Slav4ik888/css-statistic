@@ -1,6 +1,8 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 // import {CleanWebpackPlugin} from 'clean-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
+import { cfg } from './config.js';
+
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -50,13 +52,13 @@ export default {
     // compress: true,
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://localhost:8080'
+      '/api': 'http://localhost:7070'
     }
   },
   plugins: [
     // new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: `ЦСС - статистика!`,
+      title: ``,
       template: './public/index.html',
       favicon: './public/img/favicon.png'
     }),

@@ -22,10 +22,10 @@ const RootNotAuthContainer: React.FC<Props> = ({ authenticated }) => {
   return (
     <>
       <Box>
-        
+        Для работы в "Платформе" войдите.
       </Box>
     </>
   );
-}
+};
 
 export default RootNotAuthContainer;
