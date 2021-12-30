@@ -1,31 +1,27 @@
 import * as React from 'react';
-// Redux Stuff
-import {connect} from 'react-redux';
-// import { getRoleById } from '../../../../redux/selectors/ref-books/ref-books';
-import { State } from '../../../../redux/redux-types';
 // MUI Stuff
 import { Typography } from '@mui/material';
+// Functions
+import getRoleById from './utils/get-role-by-id';
 // Types
-// import { Role, User } from '../../../../../types';
+import { User } from '../../../../../types';
 
 
 type Props = {
-  // user  : User;
-  // role? : Role;
+  user  : User;
 };
 
-const RoleCnt: React.FC<Props> = ({ }) => {
-  // if (!role) return null;
+const RoleCnt: React.FC<Props> = ({ user }) => {
+  const role = getRoleById(user);
+  if (!role) return null;
 
   return (
     <Typography variant="body2" sx={{ color: 'secondary.dark' }} noWrap>
-      {/* {role?.role || `Роль не указана`} */}
+      {
+        role?.label
+      }
     </Typography>
   )
 };
 
-const mapStateToProps = (state: State, props: Props) => ({
-  // role: getRoleById(state, props)
-});
-
-export default connect(mapStateToProps)(RoleCnt);
+export default RoleCnt;

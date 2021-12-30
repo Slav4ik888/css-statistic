@@ -2,29 +2,27 @@ import * as React from 'react';
 // Redux Stuff
 import {connect} from 'react-redux';
 import { userLogout } from '../../../../redux/actions/user';
-// import { getUser } from '../../../../redux/selectors/user';
+import { getUser } from '../../../../redux/selectors/user';
 import { State } from '../../../../redux/redux-types';
 // MUI Stuff
-import { ListItemIcon, Box, Divider, Typography, Button, MenuItem, Link } from '@mui/material';
+import { ListItemIcon, Box, Divider, Typography, Button, MenuItem } from '@mui/material';
 // Icons
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Settings from '@mui/icons-material/Settings';
-import HomeIcon from '@mui/icons-material/Home';
-import Logout from '@mui/icons-material/Logout';
-import ReceiptIcon from '@mui/icons-material/Receipt';
 // Components
 import MenuPopover from '../../../dialogs/menu-popover';
 import RoleCnt from './role';
 // import UserProfile from '../../../profiles/user-profile/user-profile';
 // Functions
 import { useOpen } from '../../../../utils/hooks/hooks';
-// import getUserName from '../../../../utils/helpers/get-user-name';
+import getUserName from './utils/get-user-name';
 // Types
-// import { User } from '../../../../../types';
+import { User } from '../../../../../types';
 import { UseOpen } from '../../../../utils/hooks/types';
 // Styles
 import { useTheme } from '@emotion/react';
 import { Position, TextAlign } from '../../../../utils/styles/helpers-css';
+
 
 const MENU_OPTIONS = [
   {
@@ -79,13 +77,13 @@ type Props = {
   menu        : UseOpen;
   anchorEl    : Element;
   menuId      : string;
-  // user?       : User;
+  user?       : User;
   userLogout? : (email: string) => void;
 };
 
 
 // Меню с профилями для Navbar
-const ProfileMenu: React.FC<Props> = ({ menu, anchorEl, menuId, userLogout }) => {
+const ProfileMenu: React.FC<Props> = ({ user, menu, anchorEl, menuId, userLogout }) => {
   const sx = useStyles(useTheme());
 
   // Профиль пользователя
@@ -94,31 +92,24 @@ const ProfileMenu: React.FC<Props> = ({ menu, anchorEl, menuId, userLogout }) =>
   // Выход из аккаунта
   const handleUserLogout = () => {
     menu.setClose();
-    // userLogout(user.email);
+    userLogout(user.email);
   }
 
   
-  // const type = role === Role.SUPER ? WhoInProfile.SUPER :
-  //   role === Role.OWNER ? WhoInProfile.OWNER : WhoInProfile.USER
-  
   return (
-    <>
-      <MenuPopover poper={menu} poperId={menuId} anchorEl={anchorEl} sx={{ width: 220 }}>
-        <>
-          <Box sx={{ my: 1.5, px: 2.5 }}>
-            <Typography variant="subtitle1" noWrap>
-              {/* {getUserName(user.person)} */}
-            </Typography>
-            {/* <RoleCnt user={user} /> */}
-          </Box>
+    <MenuPopover poper={menu} poperId={menuId} anchorEl={anchorEl} sx={{ width: 220 }}>
+      <>
+        <Box sx={{ my: 1.5, px: 2.5 }}>
+          <Typography variant="subtitle1" noWrap>{getUserName(user.person)}</Typography>
+          <RoleCnt user={user} />
+        </Box>
 
-          {/* <Divider sx={{ my: 1 }} /> */}
-          
-          <Typography  sx={sx.email} noWrap>
-            {/* {user.email} */}
-          </Typography>
+        <Divider sx={{ my: 1 }} />
+        
+        <Typography  sx={sx.email} noWrap>{user.email}</Typography>
 
-          {MENU_OPTIONS.map((option) => (
+        {
+          MENU_OPTIONS.map((option) => (
             <MenuItem
               key={option.linkTo}
               onClick={menu.setClose}
@@ -131,49 +122,44 @@ const ProfileMenu: React.FC<Props> = ({ menu, anchorEl, menuId, userLogout }) =>
                     : <Settings fontSize="small" />
                 }
               </ListItemIcon>
-                
+              
               {option.label}
             </MenuItem>
-          ))}
+          ))
+        }
 
-          <Divider />
+        <Divider />
 
-          {/* <MenuItem
-            key="instr"
-            onClick={menu.setClose}
-            sx={{ typography: 'body2', fontStyle: `italic`, py: 1, px: 2.5 }}
-          >
-            <ListItemIcon sx={{ mr: 2, width: 24, height: 24 }}>
-              <ReceiptIcon fontSize="small" />
-            </ListItemIcon>
-            
-            <Link
-              href="https://docs.google.com/document/d/1JnndlUCXo9_7mQWTKyPapiAfs2_vjuIdTjxk6reRXjY/edit?usp=sharing"
-              target="_blank" rel="noopener"
-            >
-              Инструкция
-            </Link>
-          </MenuItem> */}
+        {/* <MenuItem
+          key="instr"
+          onClick={menu.setClose}
+          sx={{ typography: 'body2', fontStyle: `italic`, py: 1, px: 2.5 }}
+        >
+          <ListItemIcon sx={{ mr: 2, width: 24, height: 24 }}>
+            <ReceiptIcon fontSize="small" />
+          </ListItemIcon>
           
+          <Link
+            href="https://docs.google.com/document/d/1JnndlUCXo9_7mQWTKyPapiAfs2_vjuIdTjxk6reRXjY/edit?usp=sharing"
+            target="_blank" rel="noopener"
+          >
+            Инструкция
+          </Link>
+        </MenuItem> */}
+        
 
-          <Box sx={{ p: 2, pt: 1.5 }}>
-            <Button fullWidth color="inherit" variant="outlined" onClick={handleUserLogout}>
-              Выйти
-            </Button>
-          </Box>
-        </>
-      </MenuPopover>
-    </>
+        <Box sx={{ p: 2, pt: 1.5 }}>
+          <Button fullWidth color="inherit" variant="outlined" onClick={handleUserLogout}>
+            Выйти
+          </Button>
+        </Box>
+      </>
+    </MenuPopover>
   )
 };
 
-
 const mapStateToProps = (state: State) => ({
-  // user: getUser(state)
+  user: getUser(state)
 });
 
-const mapActionsToProps = ({
-  userLogout
-});
-
-export default connect(mapStateToProps, mapActionsToProps)(ProfileMenu);
+export default connect(mapStateToProps, { userLogout })(ProfileMenu);

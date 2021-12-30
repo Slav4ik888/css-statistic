@@ -8,6 +8,7 @@ import NoAuthRoute from './utils/routes/no-auth-route';
 import { RouteType } from './utils/routes/routes';
 // Readux Stuff
 import { connect } from 'react-redux';
+import { getUser } from './redux/actions/user';
 import { showWarning } from './redux/actions/ui';
 import { getErrors } from './redux/selectors/ui';
 import { State } from './redux/redux-types';
@@ -42,12 +43,15 @@ const useStyles = (theme) => ({
 
 type Props = {
   errors?      : Errors;
+  getUser?     : () => void;
   showWarning? : (m: string) => void;
 };
 
 
-const App: React.FC<Props> = ({ errors, showWarning }) => {
+const App: React.FC<Props> = ({ errors, getUser, showWarning }) => {
   const sx = useStyles(useTheme());
+
+  React.useEffect(() => getUser(), []);
 
   // Global show errors
   React.useEffect(() => isNoEmptyFields(errors) ? showWarning(getAllObjValue(errors)) : null, [errors]);
@@ -86,4 +90,6 @@ const mapStateToProps = (state: State) => ({
   errors: getErrors(state)
 });
 
-export default connect(mapStateToProps, { showWarning })(App);
+const mapActionsToProps = ({ getUser, showWarning });
+
+export default connect(mapStateToProps, mapActionsToProps)(App);

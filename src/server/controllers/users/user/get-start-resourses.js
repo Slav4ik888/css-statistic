@@ -27,19 +27,9 @@ export default async function getStartResourses(ctx, next) {
     let roleCreds = await loadRoleCreds(user);
     console.log('roleCreds: ', roleCreds);
     
-    // ------  Weeks  ------------- //
-
-    let weeks = [];
-    if (cred(Cr.PLAN_R, user, roleCreds))
-      weeks = await getCollection(`weeks`, email);
-
-    // ------  Roles  ------------- //
-
-    const roles = await getCollection(`roles`, email);
-
 
     ctx.status = 200;
-    ctx.body = { user, roles, weeks, roleCreds };
+    ctx.body = { user, roleCreds };
     logAuth.info(`${logTemp} success!`);
   }
   catch (err) {

@@ -13,7 +13,9 @@ import {
   TotalTechnialData, TechDirector, TechDirectorItem, CalcResultType, 
   ServiceType, ServiceRange, ServiceClient, ServiceAge 
 } from './statictics';
-import { UserLoginData, Person, RoleUser, User, Users, RoleType, Role, Roles } from './person';
+import {
+  UserLoginData, Person, RoleUser, User, Users, RoleType, Role, Roles, RolesArr
+} from './person';
 import { TestingMenuItem, TestingType } from './testing';
 import { CredType, PermType, RuleType, CredItem, Credential, CredSchemeItem, PermSchemeItem, 
 CredSchemeItemType, UnicItem, PermissionsScheme, PermRuleItem, RuleItem } from './credentials';
@@ -32,7 +34,7 @@ export {
   HeadOfTechnical, RenderedServices, ServiceItem, TotalTechnicalStripItem,
   TotalTechnialData, TechDirector, TechDirectorItem, CalcResultType, 
   ServiceType, ServiceRange, ServiceClient, ServiceAge,
-  UserLoginData, Person, RoleUser, User, Users, RoleType, Role, Roles,
+  UserLoginData, Person, RoleUser, User, Users, RoleType, Role, Roles, RolesArr,
   TestingMenuItem, TestingType,
   CredType, PermType, RuleType, CredItem, Credential, CredSchemeItem, PermSchemeItem, 
   CredSchemeItemType, UnicItem, PermissionsScheme, PermRuleItem, RuleItem 

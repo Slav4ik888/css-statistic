@@ -6,6 +6,7 @@ const log = logger(`getUser`);
 // Types
 import { User, Roles } from "../../../../types";
 import { warningMessage } from "../ui";
+import mergeWithTemplate from "../../../components/navbar/menus/profile/utils/merge-with-template";
 
 
 
@@ -14,10 +15,10 @@ export const getUser = () => async (dispatch: any) => {
   dispatch({ type: Type.LOADING_USER });
 
   try {
-    let res: { data: { user: User, roles: Roles, roleCreds: object } };
+    let res: { data: { user: User, roleCreds: object } };
 
     res = await api.get(`/getStartResourses`);
-    const user = res.data.user; // mergeWithTemplate(res.data.user);
+    const user = mergeWithTemplate(res.data.user);
 
     dispatch({ type: Type.SET_USER, payload: user });
     dispatch({ type: Type.SET_CREDENTIALS, payload: res.data.roleCreds });

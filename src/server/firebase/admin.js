@@ -1,5 +1,5 @@
 import admin from 'firebase-admin';
-import serviceAccount from '../../../archive/configs/adminsdk-key.js';
+import serviceAccount from './configs/adminsdk-key.js';
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

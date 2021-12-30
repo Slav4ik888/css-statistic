@@ -23,4 +23,4 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('root'));
 
-// git add . && git commit -m "[client] - remove config" && git push origin server
+// git add . && git commit -m "[client] - add load user data config" && git push origin server
