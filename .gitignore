@@ -81,5 +81,5 @@ public/bundle.js
 public/bundle.js.map
 archive/
 dist/
-src/server/firebase/archive/
-src/server/firebase/configs/
+# src/server/firebase/archive/
+# src/server/firebase/configs/
