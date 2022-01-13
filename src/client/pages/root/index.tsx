@@ -24,7 +24,7 @@ type Props = {
 
 
 // Главная страница
-const Root: React.FC<Props> = ({ loadingUser, authenticated }) => {
+const RootPage: React.FC<Props> = ({ loadingUser, authenticated }) => {
   if (loadingUser) return <CircularProgress loading={loadingUser} size={60} classname={styleProgress} />
 
   
@@ -45,4 +45,4 @@ const mapStateToProps = (state: State) => ({
   authenticated: u.getAuthenticated(state),
 });
 
-export default connect(mapStateToProps)(Root);
+export default connect(mapStateToProps)(RootPage);

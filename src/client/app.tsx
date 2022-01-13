@@ -1,11 +1,7 @@
 import * as React from 'react';
 // Routes
-// import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { Router, Switch } from 'react-router-dom';
-import AuthRoute from './utils/routes/auth-route';
-import PrivateRoute from './utils/routes/private-route';
-import NoAuthRoute from './utils/routes/no-auth-route';
-import { RouteType } from './utils/routes/routes';
+import { Router, Switch } from 'react-router-dom'; // import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { RouteType, NoAuthRoute, PrivateRoute, AuthRoute, history } from './utils/routes';
 // Readux Stuff
 import { connect } from 'react-redux';
 import { getUser } from './redux/actions/user';
@@ -15,22 +11,15 @@ import { State } from './redux/redux-types';
 // MUI
 import { CssBaseline, Box } from '@mui/material';
 // Pages
-import Root from './pages/root';
-import Login from './pages/login';
-import Statistis from './pages/statistics';
-import Testing from './pages/testing';
-import PageNotFound from './pages/not-found';
+import { Root, Login, Statistics, PageNotFound } from './pages';
 // Components
 import Navbar from './components/navbar';
 import MessageBar from './components/dialogs/message-bar';
 // Functions
-import { history } from './utils/routes/history';
 import { isNoEmptyFields } from '../utils/objects/objects-base';
 import getAllObjValue from '../utils/objects/get-all-obj-value';
-// import screenListener from './utils/screens/listener-rezise-screen';
-// Types
+// Types, Styles
 import { Errors } from '../types';
-// Styles
 import { useTheme } from '@emotion/react';
 
 
@@ -38,6 +27,10 @@ const useStyles = (theme) => ({
   body: {
     backgroundColor: theme.body.background,
   },
+  main: {
+    flexGrow  : 1,
+    minHeight : `calc(100vh - 65px)`
+  }
 });
 
 
@@ -64,22 +57,19 @@ const App: React.FC<Props> = ({ errors, getUser, showWarning }) => {
       <Router history={history}>
         <Navbar history={history} />
 
-        <Box component="main" sx={{ flexGrow: 1, minHeight: `calc(100vh - 65px)` }}>
+        <Box component="main" sx={sx.main}>
           <MessageBar />
 
           <Switch>
-            <AuthRoute    exact path={RouteType.LOGIN}    component={Login} />
-            <NoAuthRoute  exact path={RouteType.ROOT}     component={Root} />
+            <AuthRoute    exact path={RouteType.LOGIN} component={Login} />
+            <NoAuthRoute  exact path={RouteType.ROOT}  component={Root} />
 
-            <PrivateRoute exact path={RouteType.WS}       component={Root} />
-            <PrivateRoute exact path={RouteType.STATS}    component={Statistis} />
-            <PrivateRoute exact path={RouteType.TESTS_ID} component={Testing} />
+            <PrivateRoute exact path={RouteType.WS}    component={Root} />
+            <PrivateRoute exact path={RouteType.STATS} component={Statistics} />
             
             <PageNotFound />
-            
           </Switch>
         </Box>
-
       </Router>
     </Box>
   );

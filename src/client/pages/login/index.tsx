@@ -6,13 +6,7 @@ import { setErrors } from '../../redux/actions/ui';
 import { getErrors } from '../../redux/selectors/ui';
 import { State } from '../../redux/redux-types';
 // MUI Stuff 
-import Avatar from '@mui/material/Avatar';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import { Avatar, CssBaseline, TextField, Grid, Box, Typography, Container } from '@mui/material';
 // Icons
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 // Components
@@ -21,9 +15,8 @@ import ActionHelps from '../../components/auth/action-container/action-helps/act
 import Copyright from '../../components/auth/copyright';
 // Functions
 import validLoginData from '../../../utils/validators/login-data/login-data';
-// Types
+// Types, Consts,Styles
 import { Errors, UserLoginData } from '../../../types';
-// Styles
 import { FlexDirection } from '../../utils/styles';
 import { useTheme } from '@emotion/react';
 
@@ -39,23 +32,23 @@ const useStyles = (theme) => ({
 
 
 type Props = {
-  errors: Errors;
-  history: unknown;
-  setErrors: (errors: Errors) => void;
-  userLogin: (loginData: UserLoginData, history?: unknown) => Promise<void>;
+  errors?    : Errors;
+  history    : unknown;
+  setErrors? : (errors: Errors) => void;
+  userLogin? : (loginData: UserLoginData, history?: unknown) => Promise<void>;
 };
 
 
-const Login: React.FC<Props> = ({ errors, history, setErrors, userLogin }) => {
+const LoginPage: React.FC<Props> = ({ errors, history, setErrors, userLogin }) => {
   const sx = useStyles(useTheme());
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const loginData = {
-      email   : data.get(`email`)    || ``,
+      email    : data.get(`email`)    || ``,
       // mobileNumber: data.get(`mobileNumber`),
-      password: data.get(`password`) || ``,
+      password : data.get(`password`) || ``,
     };
 
     const { valid, errors } = validLoginData(loginData);
@@ -116,4 +109,4 @@ const mapActionsToProps = {
   userLogin, setErrors
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(Login);
+export default connect(mapStateToProps, mapActionsToProps)(LoginPage);

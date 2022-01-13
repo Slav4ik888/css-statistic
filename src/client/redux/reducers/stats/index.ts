@@ -8,12 +8,12 @@ import { initialState } from './initial-state';
 
 export default function (state = initialState, action: { type: Type, payload: any }) {
   switch (action.type) {
-    case Type.LOADING_DATA:
+    case Type.LOADING_STATS:
       return extend(state, {
         loading: true,
       });
     
-    case Type.LOADING_DATA_OFF:
+    case Type.LOADING_STATS_OFF:
       return extend(state, {
         loading: false,
       });

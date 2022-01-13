@@ -4,4 +4,4 @@ import { sendPasswordResetEmail } from './send-password-and-email';
 import { getUser } from './get-user';
 
 
-export { userLogin, userLogout, sendPasswordResetEmail, getUser }
+export { userLogin, userLogout, sendPasswordResetEmail, getUser };

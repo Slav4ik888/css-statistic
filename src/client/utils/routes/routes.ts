@@ -3,8 +3,6 @@ export enum RouteType {
   LOGIN     = `/login`,
   WS        = `/ws`,
   STATS     = `/statistics`,
-  TESTS     = `/testing`,
-  TESTS_ID  = `/testing/:id`,
 
   DEV       = `/dev`
 };

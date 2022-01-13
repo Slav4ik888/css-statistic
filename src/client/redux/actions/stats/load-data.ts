@@ -31,13 +31,13 @@ const setDataToStoreFromGoogle = async (dispatch: any) => {
 
 
 export const loadData = () => async (dispatch: Dispatch) => {
-  dispatch({ type: Type.LOADING_DATA });
+  dispatch({ type: Type.LOADING_STATS });
 
   try {
     if (cfg.isDev) setDataToStoreFromLocalStorage(dispatch);
     else await setDataToStoreFromGoogle(dispatch);
   
-    dispatch({ type: Type.LOADING_DATA_OFF });
+    dispatch({ type: Type.LOADING_STATS_OFF });
   }
-  catch (err) { handleError(err, dispatch, Type.LOADING_DATA_OFF) }
+  catch (err) { handleError(err, dispatch, Type.LOADING_STATS_OFF) }
 };

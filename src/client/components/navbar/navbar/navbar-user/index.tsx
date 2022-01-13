@@ -7,7 +7,7 @@ import { State } from '../../../../redux/redux-types';
 import Box from '@mui/material/Box';
 // Components
 import StatisticsMenuBtn from '../../btns/statistics';
-import TestingMenuBtn from '../../btns/testing';
+import UsersMenuBtn from '../../btns/users';
 
 
 type Props = {
@@ -25,7 +25,7 @@ const NavbarUser: React.FC<Props> = ({ loadingUser, authenticated, history }) =>
   return (
     <Box sx={{ display: `flex` }}>
       <StatisticsMenuBtn history={history} />
-      {/* <TestingMenuBtn history={history} /> */}
+      <UsersMenuBtn />
     </Box>
   );
 };

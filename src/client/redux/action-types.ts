@@ -9,26 +9,33 @@ export enum userActionType {
 };
 
 
+export enum dataActionType {
+  LOADING_DATA        = `LOADING_DATA`,
+  LOADING_DATA_OFF    = `LOADING_DATA_OFF`,
+  SET_USERS           = `SET_USERS`
+};
+
+
 export enum uiActionType {
-  LOADING_UI         = `LOADING_UI`,
-  LOADING_UI_OFF     = `LOADING_UI_OFF`,
-  SET_SCREEN_FORMATS = `SET_SCREEN_FORMATS`,
-  SET_ERROR          = `SET_ERROR`,
-  CLEAR_ERROR        = `CLEAR_ERROR`,
-  SET_MESSAGE        = `SET_MESSAGE`,
-  CLEAR_MESSAGE      = `CLEAR_MESSAGE`
+  LOADING_UI          = `LOADING_UI`,
+  LOADING_UI_OFF      = `LOADING_UI_OFF`,
+  SET_SCREEN_FORMATS  = `SET_SCREEN_FORMATS`,
+  SET_ERROR           = `SET_ERROR`,
+  CLEAR_ERROR         = `CLEAR_ERROR`,
+  SET_MESSAGE         = `SET_MESSAGE`,
+  CLEAR_MESSAGE       = `CLEAR_MESSAGE`
 };
 
 
 export enum statsActionType {
-  LOADING_DATA       = `LOADING_DATA`,
-  LOADING_DATA_OFF   = `LOADING_DATA_OFF`,
+  LOADING_STATS       = `LOADING_STATS`,
+  LOADING_STATS_OFF   = `LOADING_STATS_OFF`,
 
-  SET_INITIAL        = `SET_INITIAL`,
-  SET_SELECTED_DATES = `SET_SELECTED_DATES`,
+  SET_INITIAL         = `SET_INITIAL`,
+  SET_SELECTED_DATES  = `SET_SELECTED_DATES`,
 
-  SET_CSS_DB         = `SET_CSS_DB`,
-  SET_CSS_INST_DB    = `SET_CSS_INST_DB`,
-  SET_CSS_EXP_DB     = `SET_CSS_EXP_DB`,
-  SET_BC_DB          = `SET_BC_DB`
+  SET_CSS_DB          = `SET_CSS_DB`,
+  SET_CSS_INST_DB     = `SET_CSS_INST_DB`,
+  SET_CSS_EXP_DB      = `SET_CSS_EXP_DB`,
+  SET_BC_DB           = `SET_BC_DB`
 };

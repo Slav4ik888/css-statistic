@@ -116,6 +116,20 @@ const logUI = createLogger({
 });
 
 
+const logData = createLogger({
+  level: 'info',
+  format: combine(
+    label({ label: 'data' }),
+    timestamp(),
+    myFormat
+  ),
+  transports: [
+    new transports.File({ filename: `${__dirname}/logs-storage/error.log`, level: 'error' }),
+    new transports.File({filename: `${__dirname}/logs-storage/ui.log`}),
+  ],
+});
+
+
 
 if (process.env.NODE_ENV !== 'production') {
   logServer  .add(new transports.Console({ format: combine(format.colorize(),format.simple()) }));
@@ -125,10 +139,10 @@ if (process.env.NODE_ENV !== 'production') {
   logMail    .add(new transports.Console({ format: combine(format.colorize(),format.simple()) }));
   logPdf     .add(new transports.Console({ format: combine(format.colorize(),format.simple()) }));
   logUI      .add(new transports.Console({ format: combine(format.colorize(),format.simple()) }));
+  logData    .add(new transports.Console({ format: combine(format.colorize(),format.simple()) }));
 };
 
 
 export {
-  logServer, logAuth, logHelpers, logUser, logMail,
-  logPdf, logUI
+  logServer, logAuth, logHelpers, logUser, logMail, logPdf, logUI, logData
 };

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getAuthenticated } from '../../redux/selectors/user';
 import { State } from '../../redux/redux-types';
 // Routes
-import {Route, Redirect} from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { RouteType } from './routes';
 
 

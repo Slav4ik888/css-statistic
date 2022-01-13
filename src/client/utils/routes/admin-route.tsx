@@ -1,11 +1,10 @@
 import React from 'react';
-import pt from 'prop-types';
 // Redux
-import {connect} from 'react-redux';
-import { getAuthenticated, getIsRoleSuper } from '../../redux/selectors/user-selectors';
+import { connect } from 'react-redux';
+import { getAuthenticated } from '../../redux/selectors/user';
 // Routes
-import {Route, Redirect} from 'react-router-dom';
-import route from './routes';
+import { Route, Redirect } from 'react-router-dom';
+import { RouteType } from './routes';
 
 
 const AdminRoute = ({ exact, path, render, authenticated, isRoleSuper }) => {
@@ -18,23 +17,15 @@ const AdminRoute = ({ exact, path, render, authenticated, isRoleSuper }) => {
           return render();
 
         } else {
-          return <Redirect to={route.ROOT} />;
+          return <Redirect to={RouteType.ROOT} />;
         }
       }}
     />
   );
 };
 
-AdminRoute.propTypes = {
-  exact: pt.bool.isRequired,
-  path: pt.string.isRequired,
-  render: pt.func.isRequired,
-  authenticated: pt.bool.isRequired,
-};
-
 const mapStateToProps = (state) => ({
   authenticated: getAuthenticated(state),
-  isRoleSuper: getIsRoleSuper(state),
 
 });
 

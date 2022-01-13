@@ -8,5 +8,3 @@ export const initialState: StateUI = {
   screenFormats : null,
   screenSize    : null
 };
-
-
