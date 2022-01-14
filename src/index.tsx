@@ -23,4 +23,4 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('root'));
 
-// git add . && git commit -m "[client] - start load users" && git push origin server
+// git add . && git commit -m "[client] - end load users & display users & add get-fio.test.ts" && git push origin server

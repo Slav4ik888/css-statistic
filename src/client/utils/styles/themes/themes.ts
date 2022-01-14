@@ -5,6 +5,7 @@ export default {
       main: `#ffcc80`,
       dark: `#ca9b52`,
       contrastText: `#000000`,
+      textMain: `#8f5b0a`,
     },
     secondary: {
       light: `#ffcccb`,

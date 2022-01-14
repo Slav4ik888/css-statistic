@@ -10,46 +10,50 @@ import { useTheme } from '@emotion/react';
 import { TextAlign } from '../../../utils/styles';
 
 
-const useStyles = (theme) => ({
-  root: {
-    display: `flex`,
-    alignItems: `center`,
-    color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.light,
-    minHeight: `62px`,
-    boxShadow: `0px 0px 2px 2px #bdbdbd`,
-    m: 0, mb: `3px`,
-    p: 0,
-  },
-  title: {
-    ml: 2,
-    pl: 4,
-    textAlign: TextAlign.CENTER,
-    width: `100%`, 
-    color: theme.dialog.title.color
-  },
-  icon: {
-    color: theme.dialog.title.color
-  },
-  iconClose: {
-    mr: 1,
-    color: theme.dialog.title.color
+const useStyles = (theme) => {
+  const color = theme.palette.primary.textMain;
+
+  return {
+    root: {
+      display: `flex`,
+      alignItems: `center`,
+      color,
+      backgroundColor: theme.palette.primary.main,
+      minHeight: 48,
+      boxShadow: `0px 0px 2px 2px #bdbdbd`,
+      m: 0, mb: `3px`,
+      p: 0,
+    },
+    title: {
+      ml: 2,
+      pl: 4,
+      textAlign: TextAlign.CENTER,
+      width: `100%`,
+      color
+    },
+    icon: {
+      color
+    },
+    iconClose: {
+      mr: 1,
+      color
+    }
   }
-});
+};
 
 
 enum QuestionIconType {
   HelpOutlined = `HelpOutlined`,
-  Help = `Help`,
-}
+  Help         = `Help`,
+};
 
 
 type Props = {
-  children?: string;
-  question?: string;
-  questionIconType?: QuestionIconType;
-  onClose: () => void;
-}
+  children?         : string;
+  question?         : string;
+  questionIconType? : QuestionIconType;
+  onClose           : () => void;
+};
 
 
 const DialogTitle: React.FC<Props> = (props: Props) => {
@@ -66,10 +70,7 @@ const DialogTitle: React.FC<Props> = (props: Props) => {
 
 
   return (
-    <MuiDialogTitle
-      sx={sx.root}
-      {...other}
-    >
+    <MuiDialogTitle sx={sx.root} {...other}>
       <Typography variant="h6" component="div" sx={sx.title}>
         {
           children
@@ -87,11 +88,9 @@ const DialogTitle: React.FC<Props> = (props: Props) => {
         ) : null
       }
       {
-        onClose ? (
-          <IconButton onClick={onClose} aria-label="close" sx={sx.iconClose}>
-            <CloseIcon />
-          </IconButton>
-        ) : null
+        onClose
+          ? <IconButton onClick={onClose} aria-label="close" sx={sx.iconClose}><CloseIcon /></IconButton>
+          : null
       }
     </MuiDialogTitle>
   );

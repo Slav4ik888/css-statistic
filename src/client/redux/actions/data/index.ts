@@ -15,5 +15,8 @@ export const loadUsers = () => async (dispatch: Dispatch) => {
     dispatch({ type: Type.SET_USERS, payload: res.data.users });
     dispatch({ type: Type.LOADING_DATA_OFF });
   }
-  catch (err) { handleError(err, dispatch, Type.LOADING_DATA_OFF) }
+  catch (err) {
+    dispatch({ type: Type.SET_USERS, payload: [] });
+    handleError(err, dispatch, Type.LOADING_DATA_OFF)
+  }
 };

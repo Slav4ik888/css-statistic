@@ -19,16 +19,16 @@ import { getLoadingData, getUsers } from '../../../../redux/selectors/data';
 
 
 const useStyles = (theme) => ({
-  root: {
-    display: `flex`,
-    width: 280
-  },
+  // root: {
+  //   display: `flex`,
+  // },
   paper: {
     elevation: 0,
     sx: {
+      width: 280,
       overflow: 'visible',
       filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-      mt: 1.5,
+      mt: 4,
       '& .MuiAvatar-root': {
         width: 32,
         height: 32,
@@ -103,7 +103,11 @@ const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, lo
         keepMounted
       >
         {
-          users?.map((item, i) => <MenuItem key={item.id + i} onOpen={handleOpen} />)
+          users?.map((user, i) => <MenuItem
+            key    = {user.id}
+            user   = {user}
+            onOpen = {handleOpen}
+          />)
         }
       </Menu>
 
