@@ -3,56 +3,48 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { State } from '../../../../redux/redux-types';
 // MUI Stuff
-import { Tooltip, MenuItem, Box, ListItemText, ListItemIcon, Divider } from '@mui/material';
+import { Tooltip, Box, ListItemText, ListItemIcon, Divider } from '@mui/material';
 // Icons
 import UserIcon from '@mui/icons-material/AccountBox';
 // Components
+import MenuItem from '../menu-item';
 // Functions
 import { getFio } from './utils/get-fio';
 // Types, Styles
-import { useTheme } from '@emotion/react';
 import { fc_ } from '../../../../utils/styles';
 import { User } from '../../../../../types';
 
 
 
-const useStyles = (theme) => ({
-  root: {
-    display: `flex`,
-    width: 280
-  },
+const useStyles = () => ({
   list_user: {
     ...fc_,
     width: 200
-  },
-  div: {
-    my: 0.5
   }
 });
 
 
 
 type Props = {
-  loadingRef? : boolean;
-  user        : User;
-  onOpen      : (e: any) => void;
+  user   : User;
+  onOpen : (e: any) => void;
 };
 
 
-// Пункт меню Справочников для Navbar
-const RefBookItem: React.FC<Props> = ({ user, onOpen }) => {
-  const sx = useStyles(useTheme());
+const UserMenuItem: React.FC<Props> = ({ user, onOpen }) => {
+  const sx = useStyles();
 
   
   return (
-    <MenuItem id={user.id}>
-      <Tooltip title="Редактировать пользователя" arrow enterDelay={1000} enterNextDelay={1000}>
-        <Box sx={sx.list_user} onClick={onOpen}>
-          <ListItemIcon><UserIcon /></ListItemIcon>
-          <ListItemText primary={getFio(user?.person, true)} />
-        </Box>
-      </Tooltip>
-      <Divider sx={sx.div} />
+    <MenuItem
+      id        = {user.id}
+      toolTitle = "Редактировать пользователя"
+      divider
+    >
+      <Box sx={sx.list_user} onClick={onOpen}>
+        <ListItemIcon><UserIcon /></ListItemIcon>
+        <ListItemText primary={getFio(user?.person, true)} />
+      </Box>
     </MenuItem>
   )
 };
@@ -60,4 +52,4 @@ const RefBookItem: React.FC<Props> = ({ user, onOpen }) => {
 const mapStateToProps = (state: State) => ({
 });
 
-export default connect(mapStateToProps)(RefBookItem);
+export default connect(mapStateToProps)(UserMenuItem);

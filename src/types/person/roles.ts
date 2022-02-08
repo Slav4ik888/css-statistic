@@ -9,12 +9,14 @@ export enum RoleType {
 };
 
 
-// One Role from roles array
-export interface RoleLabel {
-  id    : string,
-  order : number,
-  label : string
-};
+// // One Role from roles array
+// export interface RoleLabel {
+//   id    : string,
+//   order : number,
+//   label : string
+// };
+
+// export type RolesLabels = Array<RoleLabel>;
 
 
 export interface Role extends ItemBase {

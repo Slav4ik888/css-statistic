@@ -32,8 +32,7 @@ type Props = {
 }
 
 
-const CircularProgress: React.FC<Props> = ({ loading, size = 30, top, bottom, right, left, classname,
-center, block}) => {
+const CircularProgress: React.FC<Props> = ({ loading, size = 30, top, bottom, right, left, classname, center, block }) => {
   if (!loading) return null;
   
   

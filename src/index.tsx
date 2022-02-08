@@ -9,8 +9,9 @@ import themeFile from './client/utils/styles/themes/themes';
 // Components
 import App from './client/app';
 // Config
-import { cfg } from '../config';
-console.log(cfg.assembly_time);
+import cfg from './config';
+console.log(`ASSEMBLY: `, cfg.ASSEMBLY.DATE, ` - `, cfg.ASSEMBLY.TIME);
+
 
 
 const theme = createTheme(themeFile);
@@ -23,4 +24,4 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('root'));
 
-// git add . && git commit -m "[client] - end load users & display users & add get-fio.test.ts" && git push origin server
+// git add . && git commit -m "[client] - start add user" && git push origin server

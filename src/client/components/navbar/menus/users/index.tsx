@@ -9,20 +9,17 @@ import Menu from '@mui/material/Menu';
 import CircularProgress from '../../../buttons/circular-progress/circular-progress';
 import MenuItem from './menu-item';
 import DialogInfo from '../../../dialogs/dialog-info';
-import UsersCnt from '../../../users';
+import UsersCnt from '../../../users/users-cnt';
+import AddUserBtn from './add-user-btn';
 // Functions
-import { useObject, useOpen } from '../../../../utils/hooks/hooks';
+import { useOpen } from '../../../../utils/hooks/hooks';
 // Types, Styles
 import { Users } from '../../../../../types';
-import { useTheme } from '@emotion/react';
 import { getLoadingData, getUsers } from '../../../../redux/selectors/data';
 
 
-const useStyles = (theme) => ({
-  // root: {
-  //   display: `flex`,
-  // },
-  paper: {
+const useStyles = () => ({
+  menu: {
     elevation: 0,
     sx: {
       width: 280,
@@ -66,13 +63,9 @@ type Props = {
 
 const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, loadUsers, onClose }) => {
   if (!open) return null;
-  if (loading) return <CircularProgress loading={loading} />;
 
-  const sx = useStyles(useTheme());
-
-  React.useEffect(() => {
-    if (users === null) loadUsers();
-  }, []);
+  const sx = useStyles();
+  React.useEffect(() => users === null ? loadUsers() : null, []);
 
   const hookOpen = useOpen(false);
 
@@ -99,7 +92,7 @@ const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, lo
         anchorEl        = {anchorEl}
         anchorOrigin    = {{ vertical: 'top', horizontal: 'right' }}
         transformOrigin = {{ vertical: 'top', horizontal: 'right' }}
-        PaperProps      = {sx.paper}
+        PaperProps      = {sx.menu}
         keepMounted
       >
         {
@@ -109,11 +102,15 @@ const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, lo
             onOpen = {handleOpen}
           />)
         }
+
+        <AddUserBtn />
       </Menu>
 
-      <DialogInfo hookOpen={hookOpen} title="Пользователи" onClose={handleClose}>
+      <DialogInfo hookOpen={hookOpen} title="Пользователи">
         <UsersCnt />
       </DialogInfo>
+
+      <CircularProgress loading={loading} block />
     </>
   )
 };

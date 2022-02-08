@@ -1,5 +1,9 @@
 import { ItemBase, RoleType } from "..";
 
+export enum UserCardType {
+  ADD  = `Добавление`,
+  EDIT = `Редактирование`
+};
 
 export interface RoleUser {
   type   : RoleType; // Тип пользователя

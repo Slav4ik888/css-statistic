@@ -23,6 +23,11 @@ export default {
     background: `#eaeaeb`,
   },
 
+  profile: {
+    textfield: {
+      background: `white`
+    }
+  },
   paper: {
     title: {
       color: `#999`,

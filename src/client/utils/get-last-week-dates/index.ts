@@ -1,4 +1,4 @@
-import { showDate } from "../../../utils/dates/dates";
+import { formatDate, FORMAT } from "../../../utils/dates";
 
 const oneSec  = 1000;
 const oneMin  = oneSec  * 60;
@@ -26,7 +26,7 @@ export function getLastEndWeekDate(currentDate: Date, endWeekDay: number): strin
   if (day < endWeekDay) howManyDays = 7 - endWeekDay + day;
 
   const resultNumber = currentDate.getTime() - (howManyDays * oneDay);
-  return showDate(resultNumber, `YYYY-MM-DD`); // `2021-12-22`
+  return formatDate(resultNumber, FORMAT.YYYYMMDDt); // `2021-12-22`
 }
 
 
@@ -37,7 +37,7 @@ export function getLastEndWeekDate(currentDate: Date, endWeekDay: number): strin
  */
 export function getLastStartWeekDate(lastTo: string) {
   const lastToMs = new Date(lastTo).getTime();
-  return showDate(lastToMs - 6 * oneDay, `YYYY-MM-DD`);
+  return formatDate(lastToMs - 6 * oneDay, FORMAT.YYYYMMDDt);
 }
 
 

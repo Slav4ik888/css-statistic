@@ -1,5 +1,5 @@
 import { DbItem, IncidentType } from "../../../../types";
-import { hour, sec } from "../../../../utils/dates/base";
+import { hour, sec } from "../../../../utils/dates";
 
 
 /** 

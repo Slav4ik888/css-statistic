@@ -1,5 +1,5 @@
 import { uiActionType, userActionType, statsActionType, dataActionType } from './action-types';
-import { Message, Errors, ScreenFormats, SelectedDates, DbItem, User, Users } from '../../types';
+import { Message, Errors, ScreenFormats, SelectedDates, DbItem, User, Users, Roles, RoleLabel } from '../../types';
 
 
 export type TypeDispatch = Function | uiActionType | dataActionType | userActionType | statsActionType;
@@ -19,6 +19,7 @@ export interface StateUI {
 
 export interface StateData {
   loading : boolean;
+  roles   : Roles;
   users   : Users;
 };
 
