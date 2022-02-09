@@ -2,23 +2,23 @@ import * as React from 'react';
 // MUI Stuff
 import { Typography } from '@mui/material';
 // Functions
-import getRoleById from './utils/get-role-by-id';
+import { getRoleNameById } from '../../../../utils/helpers';
 // Types
-import { User } from '../../../../../types';
+import { Roles, User } from '../../../../../types';
 
 
 type Props = {
-  user  : User;
+  roles? : Roles;
+  user   : User;
 };
 
-const RoleCnt: React.FC<Props> = ({ user }) => {
-  const role = getRoleById(user);
-  if (!role) return null;
+const RoleCnt: React.FC<Props> = ({ roles, user }) => {
+  const role = getRoleNameById(roles, user?.role?.roleId);
 
   return (
     <Typography variant="body2" sx={{ color: 'secondary.dark' }} noWrap>
       {
-        role?.label
+        role
       }
     </Typography>
   )

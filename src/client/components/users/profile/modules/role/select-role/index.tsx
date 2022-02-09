@@ -7,7 +7,7 @@ import { State } from '../../../../../../redux/redux-types';
 // MUI Stuff
 import { Grid, InputLabel, MenuItem, FormControl, FormHelperText, Select, SelectChangeEvent } from '@mui/material';
 // Functions
-import { getRoleNameById, getRoleIdByRole } from './utils';
+import { getRoleNameById, getRoleIdByRole } from '../../../../../../utils/helpers';
 import changeGroup from '../../../../../../utils/hooks/change-group';
 // Types & Styles
 import { UseGroup } from '../../../../../../utils/hooks/types';

@@ -26,6 +26,7 @@ router.post(`/updateUser`, FBAuth, us.updateUser);
 router.post(`/loadCollection`, FBAuth, he.loadCollection);
 
 // DATA
+router.post(`/addUser`, FBAuth, da.addUser);
 router.get (`/loadUsers`, FBAuth, da.loadUsers);
 
 

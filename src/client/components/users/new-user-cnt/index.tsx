@@ -19,7 +19,8 @@ import { UserCardType, User } from '../../../../types';
 
 const useStyles = (theme) => ({
   root: {
-    display: `flex`
+    display: `flex`,
+    flexDirection: FlexDirection.COLUMN
   },
 });
 

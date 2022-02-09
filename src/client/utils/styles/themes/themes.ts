@@ -23,6 +23,12 @@ export default {
     background: `#eaeaeb`,
   },
 
+  cardBlock: {
+    background: `#efefef`,
+    textfield: {
+      background: `white`
+    }
+  },
   profile: {
     textfield: {
       background: `white`

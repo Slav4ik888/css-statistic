@@ -9,10 +9,11 @@ import UserIcon from '@mui/icons-material/AccountBox';
 // Components
 import MenuItem from '../menu-item';
 // Functions
-import { getFio } from './utils/get-fio';
+import { getFio } from '../../../../utils/helpers';
 // Types, Styles
 import { fc_ } from '../../../../utils/styles';
 import { User } from '../../../../../types';
+
 
 
 

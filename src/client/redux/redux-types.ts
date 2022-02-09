@@ -1,5 +1,5 @@
 import { uiActionType, userActionType, statsActionType, dataActionType } from './action-types';
-import { Message, Errors, ScreenFormats, SelectedDates, DbItem, User, Users, Roles, RoleLabel } from '../../types';
+import { Message, Errors, ScreenFormats, SelectedDates, DbItem, User, Users, Roles } from '../../types';
 
 
 export type TypeDispatch = Function | uiActionType | dataActionType | userActionType | statsActionType;

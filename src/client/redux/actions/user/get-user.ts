@@ -6,7 +6,7 @@ const log = logger(`getUser`);
 // Types
 import { User, Roles } from "../../../../types";
 import { warningMessage } from "../ui";
-import mergeWithTemplate from "../../../components/navbar/menus/profile/utils/merge-with-template";
+import mergeWithTemplate from "../../../components/users/merge-with-template";
 
 
 

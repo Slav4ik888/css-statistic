@@ -1,4 +1,4 @@
-import { Roles } from "../../../../../../../../../../types";
+import { Roles } from "../../../../../../types";
 import { Mocks } from "./types";
 
 export const creds = [

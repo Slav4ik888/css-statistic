@@ -3,6 +3,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import { userLogout } from '../../../../redux/actions/user';
 import { getUser } from '../../../../redux/selectors/user';
+import { getRoles } from '../../../../redux/selectors/data';
 import { State } from '../../../../redux/redux-types';
 // MUI Stuff
 import { ListItemIcon, Box, Divider, Typography, Button, MenuItem } from '@mui/material';
@@ -15,12 +16,10 @@ import RoleCnt from './role';
 // import UserProfile from '../../../profiles/user-profile/user-profile';
 // Functions
 import { useOpen } from '../../../../utils/hooks/hooks';
-import getUserName from './utils/get-user-name';
-// Types
-import { User } from '../../../../../types';
+import { getFio } from '../../../../utils/helpers';
+// Types & Styles
+import { User, Roles } from '../../../../../types';
 import { UseOpen } from '../../../../utils/hooks/types';
-// Styles
-import { useTheme } from '@emotion/react';
 import { Position, TextAlign } from '../../../../utils/styles/helpers-css';
 
 
@@ -38,7 +37,7 @@ const MENU_OPTIONS = [
 ];
 
 
-const useStyles = (theme) => ({
+const useStyles = () => ({
   paper: {
     overflow: 'visible',
     filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
@@ -77,14 +76,15 @@ type Props = {
   menu        : UseOpen;
   anchorEl    : Element;
   menuId      : string;
+  roles?      : Roles;
   user?       : User;
   userLogout? : (email: string) => void;
 };
 
 
 // Меню с профилями для Navbar
-const ProfileMenu: React.FC<Props> = ({ user, menu, anchorEl, menuId, userLogout }) => {
-  const sx = useStyles(useTheme());
+const ProfileMenu: React.FC<Props> = ({ roles, user, menu, anchorEl, menuId, userLogout }) => {
+  const sx = useStyles();
 
   // Профиль пользователя
   const profile = useOpen(false);
@@ -100,8 +100,8 @@ const ProfileMenu: React.FC<Props> = ({ user, menu, anchorEl, menuId, userLogout
     <MenuPopover poper={menu} poperId={menuId} anchorEl={anchorEl} sx={{ width: 220 }}>
       <>
         <Box sx={{ my: 1.5, px: 2.5 }}>
-          <Typography variant="subtitle1" noWrap>{getUserName(user.person)}</Typography>
-          <RoleCnt user={user} />
+          <Typography variant="subtitle1" noWrap>{getFio(user?.person)}</Typography>
+          <RoleCnt roles={roles} user={user} />
         </Box>
 
         <Divider sx={{ my: 1 }} />
@@ -159,7 +159,8 @@ const ProfileMenu: React.FC<Props> = ({ user, menu, anchorEl, menuId, userLogout
 };
 
 const mapStateToProps = (state: State) => ({
-  user: getUser(state)
+  user  : getUser(state),
+  roles : getRoles(state)
 });
 
 export default connect(mapStateToProps, { userLogout })(ProfileMenu);

@@ -14,8 +14,9 @@ import AddUserBtn from './add-user-btn';
 // Functions
 import { useOpen } from '../../../../utils/hooks/hooks';
 // Types, Styles
-import { Users } from '../../../../../types';
+import { User, Users } from '../../../../../types';
 import { getLoadingData, getUsers } from '../../../../redux/selectors/data';
+import { useGroup } from '../../../../utils/hooks';
 
 
 const useStyles = () => ({
@@ -67,20 +68,23 @@ const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, lo
   const sx = useStyles();
   React.useEffect(() => users === null ? loadUsers() : null, []);
 
-  const hookOpen = useOpen(false);
+  const groupUser = useGroup<User>();
 
   // const refBook = useObject<RefBookId>(null);
 
   // React.MouseEvent<HTMLElement>
   const handleOpen = (e: any) => {
     const target = e.target.closest(`li`);
-    // refBook.setObject(target.id);
-    hookOpen.setOpen();
+    const id = target.id;
+    console.log('id: ', id);
+    const user = users?.find(u => u.id === id);
+    groupUser.setGroup(user);
+    groupUser.setOpen();
   }
 
   const handleClose = () => {
     // refBook.setObject(null);
-    hookOpen.setClose();
+    groupUser.setClose();
   }
   
   return (
@@ -106,8 +110,8 @@ const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, lo
         <AddUserBtn />
       </Menu>
 
-      <DialogInfo hookOpen={hookOpen} title="Пользователи">
-        <UsersCnt />
+      <DialogInfo hookOpen={groupUser} title="Пользователь">
+        <UsersCnt group={groupUser} />
       </DialogInfo>
 
       <CircularProgress loading={loading} block />

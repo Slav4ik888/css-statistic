@@ -1,47 +1,41 @@
 import * as React from 'react';
-// Redux Stuff
-import { connect } from 'react-redux';
-import { State } from '../../../redux/redux-types';
 // MUI Stuff
-import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-import Box from '@mui/material/Box';
+import { Box } from '@mui/material';
 // Components
+import UserProfile from '../profile';
 // Functions
-// Types
-// Styles
-import { themes, cl, FlexDirection, Position } from '../../../utils/styles';
+// Types & Styles
+import { FlexDirection } from '../../../utils/styles';
 import { useTheme } from '@emotion/react';
+import { User, UserCardType } from '../../../../types';
+import { UseGroup } from '../../../utils/hooks/types';
 
 
 const useStyles = (theme) => ({
   root: {
-    display: `flex`
+    display: `flex`,
+    flexDirection: FlexDirection.COLUMN
   },
 });
 
 
 type Props = {
-  
+  group: UseGroup<User>;
 };
 
 
-const UsersCnt: React.FC<Props> = ({  }) => {
+const UsersCnt: React.FC<Props> = ({ group: G }) => {
   const sx = useStyles(useTheme());
 
 
   return (
     <Box sx={sx.root}>
-      Пользователи
+      <UserProfile
+        type  = {UserCardType.EDIT}
+        group = {G}
+      />
     </Box>
   );
 };
 
-
-const mapStateToProps = (state: State) => ({
-});
-
-const mapActionsToProps = {
-};
-
-export default connect(mapStateToProps, mapActionsToProps)(UsersCnt);
+export default UsersCnt;

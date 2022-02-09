@@ -1,6 +1,7 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
+import { getLoadingData } from '../../../../redux/selectors/data';
 import { State } from '../../../../redux/redux-types';
 // MUI Stuff
 import { Box, ListItemText, ListItemIcon } from '@mui/material';
@@ -14,7 +15,7 @@ import DialogInfo from '../../../dialogs/dialog-info';
 import { useOpen } from '../../../../utils/hooks';
 // Types, Styles
 import { fc_ } from '../../../../utils/styles';
-import { User } from '../../../../../types';
+
 
 
 const useStyles = () => ({
@@ -27,14 +28,16 @@ const useStyles = () => ({
 
 
 type Props = {
+  loading?: boolean;
 };
 
 
-const AddUserBtn: React.FC<Props> = ({ }) => {
+const AddUserBtn: React.FC<Props> = ({ loading }) => {
   const sx = useStyles();
 
   const hookOpen = useOpen();
   const handleAdd = () => {
+    if (loading) return;
     console.log('handleAdd');
     hookOpen.setOpen();
   };
@@ -58,6 +61,7 @@ const AddUserBtn: React.FC<Props> = ({ }) => {
 };
 
 const mapStateToProps = (state: State) => ({
+  loading: getLoadingData(state)
 });
 
 export default connect(mapStateToProps)(AddUserBtn);

@@ -1,5 +1,5 @@
 import { getFio } from '..';
-import { Person } from '../../../../../../../../types';
+import { Person } from '../../../../../../types';
 import { Mocks } from './types';
 
 

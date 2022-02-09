@@ -1,7 +1,8 @@
 import * as React from 'react';
 // MUI Stuff
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import { Typography, Box } from '@mui/material';
+// Components
+import GridWrap from '../grid-wrap';
 // Styles
 import { FlexDirection, cl, fc_sb } from '../../../utils/styles';
 import { useTheme } from '@emotion/react';
@@ -38,7 +39,7 @@ const LabelDivider: React.FC<Props> = ({ label, labelMaxWidth, classname }) => {
   const styleLabel = `h1`;
 
   return (
-    <Box sx={{ ...sx.root, ...classname }}>
+    <GridWrap grid={{ sm: 12, sx: { ...sx.root, ...classname } }}>
       <Box sx={sx.row}>
         <Typography
           sx={{
@@ -49,7 +50,7 @@ const LabelDivider: React.FC<Props> = ({ label, labelMaxWidth, classname }) => {
           {label}
         </Typography>
       </Box>
-    </Box>
+    </GridWrap>
   );
 };
 

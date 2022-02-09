@@ -1,4 +1,4 @@
-import { Roles } from "../../../../../../../../../types";
+import { Roles } from "../../../../../types";
 
 
 export const getRoleIdByRole = (roles: Roles, role: string) => {
