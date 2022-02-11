@@ -44,19 +44,20 @@ type Props = {
 
 
 const DialogConfirm: React.FC<Props> = ({ open, typeOk, title, onOk, onCancel }) => {
-  const exit = typeOk === ConfirmType.SAVE_EXIT;
-  const confirm = typeOk === ConfirmType.CONFIRM;
+  const
+    exit          = typeOk === ConfirmType.SAVE_EXIT,
+    confirm       = typeOk === ConfirmType.CONFIRM,
 
-  const cancelLabel = exit ? `Выйти без сохранения` : `Отменить`;
-  const variantOk = exit || confirm ? "contained" : "outlined";
-  const variantCancel = variantOk === "contained" ? "outlined" : "contained";
+    cancelLabel   = exit                      ? `Выйти без сохранения` : `Отменить`,
+    variantOk     = exit || confirm           ? "contained"            : "outlined",
+    variantCancel = variantOk === "contained" ? "outlined"             : "contained",
 
-  const sx = useStyles(useTheme(), typeOk);
+    sx = useStyles(useTheme(), typeOk);
 
   return (
     <>
-      <Dialog open={open} onClose={onCancel} sx={sx.root} maxWidth="sm" >
-        <DialogTitle sx={{ p: { xs: 2, sm: 4 }} }>
+      <Dialog open={open} onClose={onCancel} sx={sx.root} maxWidth="sm">
+        <DialogTitle sx={{ p: { xs: 2, sm: 4 } }}>
           {title}
         </DialogTitle>
 

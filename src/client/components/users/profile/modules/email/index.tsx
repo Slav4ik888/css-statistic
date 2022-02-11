@@ -2,19 +2,19 @@ import * as React from 'react';
 // Components
 import { TextField } from '../../../../containers/elements';
 // Types
-import { User, UserCardType } from '../../../../../../types';
+import { User, CardType } from '../../../../../../types';
 import { UseGroup } from '../../../../../utils/hooks/types';
 
 
 
 type Props = {
   group   : UseGroup<User>;
-  type    : UserCardType;
+  type    : CardType;
 };
 
 const EmailCnt: React.FC<Props> = ({ group: G, type }) => {
 
-  const disabled = type === UserCardType.EDIT;
+  const disabled = type === CardType.EDIT;
 
   return (
     <>
@@ -25,6 +25,7 @@ const EmailCnt: React.FC<Props> = ({ group: G, type }) => {
         disabled     = {disabled}
         scheme       = "email"
         errorField   = "email"
+        fullWidth
         defaultValue = {G.group.email}
       />
 
@@ -33,6 +34,7 @@ const EmailCnt: React.FC<Props> = ({ group: G, type }) => {
         label        = "Id"   
         group        = {G}
         disabled
+        fullWidth
         scheme       = "id"
         defaultValue = {G.group.id}
       />

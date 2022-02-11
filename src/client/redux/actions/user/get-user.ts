@@ -1,10 +1,10 @@
 import api from "../../api";
-import { uiActionType, userActionType as Type } from "../../action-types";
+import { dataActionType, uiActionType, userActionType as Type } from "../../action-types";
 // Functions
 import logger from "../../../utils/client-logger/client-logger";
 const log = logger(`getUser`);
 // Types
-import { User, Roles } from "../../../../types";
+import { User, GetStartResourses } from "../../../../types";
 import { warningMessage } from "../ui";
 import mergeWithTemplate from "../../../components/users/merge-with-template";
 
@@ -15,17 +15,15 @@ export const getUser = () => async (dispatch: any) => {
   dispatch({ type: Type.LOADING_USER });
 
   try {
-    let res: { data: { user: User, roleCreds: object } };
-
-    res = await api.get(`/getStartResourses`);
+    const res: GetStartResourses = await api.get(`/getStartResourses`);
     const user = mergeWithTemplate(res.data.user);
 
-    dispatch({ type: Type.SET_USER, payload: user });
-    dispatch({ type: Type.SET_CREDENTIALS, payload: res.data.roleCreds });
-    
+    dispatch({ type: Type.SET_USER,            payload: user });
+    dispatch({ type: Type.SET_CREDENTIALS,     payload: res.data.roleCreds });
+    dispatch({ type: dataActionType.SET_ROLES, payload: res.data.roles });
+    dispatch({ type: dataActionType.SET_USERS, payload: res.data.users });
     
     dispatch({ type: uiActionType.CLEAR_ERROR });
-
   }
   catch (err) {
     log(err);

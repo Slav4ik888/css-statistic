@@ -29,6 +29,7 @@ const useStyles = (theme) => ({
 type Props = {
   grid?         : GridStyle;
   box?          : boolean;
+  sx?           : object;
   
   // Tooltip
   toolTitle?    : string;
@@ -41,6 +42,7 @@ type Props = {
   fullWidth?    : boolean;
   defaultValue? : string | number;
   disabled?     : boolean;
+  placeholder?  : string;
   errorField?   : string;
 
   // Control
@@ -56,8 +58,7 @@ type Props = {
 
 
 const TextField: React.FC<Props> = (props) => {
-  const { box, toolTitle, label, type = "text", small, shrink, defaultValue, errors, errorField, scheme, disabled,
-    fullWidth, group, onPrepeare, onClick, onBlur, onCallback } = props;
+  const { box, toolTitle, label, type = "text", small, placeholder, shrink, defaultValue, errors, errorField, scheme, disabled, sx: sxTextfield,  fullWidth, group, onPrepeare, onClick, onBlur, onCallback } = props;
   const sx = useStyles(useTheme());
 
   const Wrap = box ? BoxWrap : GridWrap;
@@ -79,8 +80,9 @@ const TextField: React.FC<Props> = (props) => {
           type            = {type}
           fullWidth       = {fullWidth}
           size            = {small ? "small" : "medium"}  
-          sx              = {sx.textField}
+          sx              = {{ ...sx.textField, ...sxTextfield }}
           disabled        = {disabled}
+          placeholder     = {placeholder}
           value           = {defaultValue || getValueByScheme(group, scheme)}
           onChange        = {handleChange}
           onClick         = {onClick}

@@ -1,9 +1,6 @@
 import * as React from 'react';
-// Redux Stuff
-import { connect } from 'react-redux';
-import { State } from '../../../../redux/redux-types';
 // MUI Stuff
-import { Tooltip, Box, ListItemText, ListItemIcon, Divider } from '@mui/material';
+import { Box, ListItemText, ListItemIcon } from '@mui/material';
 // Icons
 import UserIcon from '@mui/icons-material/AccountBox';
 // Components
@@ -50,7 +47,4 @@ const UserMenuItem: React.FC<Props> = ({ user, onOpen }) => {
   )
 };
 
-const mapStateToProps = (state: State) => ({
-});
-
-export default connect(mapStateToProps)(UserMenuItem);
+export default UserMenuItem;

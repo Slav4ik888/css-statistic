@@ -9,7 +9,7 @@ import TEMP from '../../templates/errors/template-errors.js';
 export default async function (ctx, next) {
   try {
     getCookies(ctx);
-    const sessionCookie = ctx.cookie.session || '';
+    const sessionCookie = ctx.cookie.cssSession || '';
     // Verify the session cookie. In this case an additional check is added to detect
     // if the user's Firebase session was revoked, user deleted/disabled, etc.
     

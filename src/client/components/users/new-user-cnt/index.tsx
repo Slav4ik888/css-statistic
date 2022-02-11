@@ -13,7 +13,7 @@ import mergeWithTemplate from '../merge-with-template';
 // Types & Styles
 import { themes, cl, FlexDirection, Position } from '../../../utils/styles';
 import { useTheme } from '@emotion/react';
-import { UserCardType, User } from '../../../../types';
+import { CardType, User } from '../../../../types';
 
 
 
@@ -38,7 +38,7 @@ const NewUserCnt: React.FC<Props> = ({ userId }) => {
   return (
     <Box sx={sx.root}>
       <UserProfile
-        type  = {UserCardType.ADD}
+        type  = {CardType.ADD}
         group = {G}
       />
     </Box>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 // Redax Stuff
 import { connect } from 'react-redux';
-import { loadUsers } from '../../../../redux/actions/data';
+import { getUsers } from '../../../../redux/selectors/data';
 import { State } from '../../../../redux/redux-types';
 // MUI Stuff
 import Menu from '@mui/material/Menu';
@@ -11,11 +11,9 @@ import MenuItem from './menu-item';
 import DialogInfo from '../../../dialogs/dialog-info';
 import UsersCnt from '../../../users/users-cnt';
 import AddUserBtn from './add-user-btn';
-// Functions
-import { useOpen } from '../../../../utils/hooks/hooks';
 // Types, Styles
 import { User, Users } from '../../../../../types';
-import { getLoadingData, getUsers } from '../../../../redux/selectors/data';
+import { getLoadingData } from '../../../../redux/selectors/data';
 import { useGroup } from '../../../../utils/hooks';
 
 
@@ -57,16 +55,14 @@ type Props = {
   anchorEl   : Element;
   menuId     : string;
   users?     : Users;
-  loadUsers? : () => void;
   onClose    : () => void;
 };
 
 
-const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, loadUsers, onClose }) => {
+const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, onClose }) => {
   if (!open) return null;
 
   const sx = useStyles();
-  React.useEffect(() => users === null ? loadUsers() : null, []);
 
   const groupUser = useGroup<User>();
 
@@ -120,8 +116,8 @@ const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, lo
 };
 
 const mapStateToProps = (state: State) => ({
-  loading: getLoadingData(state),
-  users: getUsers(state)
+  loading : getLoadingData(state),
+  users   : getUsers(state)
 });
 
-export default connect(mapStateToProps, { loadUsers })(UsersMenu);
+export default connect(mapStateToProps)(UsersMenu);

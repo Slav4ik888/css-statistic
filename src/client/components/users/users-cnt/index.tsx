@@ -7,7 +7,7 @@ import UserProfile from '../profile';
 // Types & Styles
 import { FlexDirection } from '../../../utils/styles';
 import { useTheme } from '@emotion/react';
-import { User, UserCardType } from '../../../../types';
+import { User, CardType } from '../../../../types';
 import { UseGroup } from '../../../utils/hooks/types';
 
 
@@ -31,7 +31,7 @@ const UsersCnt: React.FC<Props> = ({ group: G }) => {
   return (
     <Box sx={sx.root}>
       <UserProfile
-        type  = {UserCardType.EDIT}
+        type  = {CardType.EDIT}
         group = {G}
       />
     </Box>

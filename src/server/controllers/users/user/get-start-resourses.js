@@ -23,13 +23,20 @@ export default async function getStartResourses(ctx, next) {
     if (userRes.exists) user = userRes.data();
 
     // ------  Credentials  ------- //
-
-    let roleCreds = await loadRoleCreds(user);
+    const roleCreds = await loadRoleCreds(user);
     console.log('roleCreds: ', roleCreds);
     
+    // ---------  Roles  ---------- //
+    const roles = await getCollection(`roles`, email);
+    console.log('roles: ', roles.length);
+    
+    // ---------  Users  ---------- //
+    const users = await getCollection(`users`, email);
+    console.log('users: ', users.length);
+
 
     ctx.status = 200;
-    ctx.body = { user, roleCreds };
+    ctx.body = { user, users, roleCreds, roles };
     logAuth.info(`${logTemp} success!`);
   }
   catch (err) {

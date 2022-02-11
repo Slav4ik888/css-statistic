@@ -12,6 +12,9 @@ export enum userActionType {
 export enum dataActionType {
   LOADING_DATA        = `LOADING_DATA`,
   LOADING_DATA_OFF    = `LOADING_DATA_OFF`,
+  SET_ROLES           = `SET_ROLES`,
+  ADD_ROLE            = `ADD_ROLE`,
+  UPDATE_ROLE         = `UPDATE_ROLE`,
   SET_USERS           = `SET_USERS`,
   ADD_USER            = `ADD_USER`
 };

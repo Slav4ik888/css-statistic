@@ -5,7 +5,10 @@ import { getRoles } from '../../../../../../redux/selectors/data';
 import { getErrors } from '../../../../../../redux/selectors/ui';
 import { State } from '../../../../../../redux/redux-types';
 // MUI Stuff
-import { Grid, InputLabel, MenuItem, FormControl, FormHelperText, Select, SelectChangeEvent } from '@mui/material';
+import { Grid, InputLabel, FormControl, FormHelperText, Select, SelectChangeEvent } from '@mui/material';
+// Components
+import RoleMenuItem from './menu-item';
+import AddRoleBtn from './add-role-btn';
 // Functions
 import { getRoleNameById, getRoleIdByRole } from '../../../../../../utils/helpers';
 import changeGroup from '../../../../../../utils/hooks/change-group';
@@ -30,36 +33,33 @@ type Props = {
 
 
 const SelectRole: React.FC<Props> = ({ roles, group: G, errors }) => {
-  if (!roles?.length) return null;
+  console.log('roles: ', roles);
   const sx = useStyles(useTheme());
 
-  const handleChange = (event: SelectChangeEvent) => {
-    const roleId = getRoleIdByRole(roles, event.target.value as string);
+  const handleChange = (e: SelectChangeEvent) => {
+    const roleId = getRoleIdByRole(roles, e.target.value as string);
     changeGroup(G, [{ value: roleId, scheme: `role.roleId` }]);
   };
   
   return (
-    <Grid item xs={12} sm={3} sx={{ minWidth: `150px` }}>
+    <Grid item xs={12} sm={7}>
       <FormControl fullWidth error={Boolean(errors?.roleId)}>
         <InputLabel id="role-id">Тип роли</InputLabel>
         <Select
+          label    = "Role"
           labelId  = "role-id"
           value    = {getRoleNameById(roles, G.group.role.roleId)}
-          label    = "Role"
           onChange = {handleChange}
           sx       = {sx.textField}
         >
           {
-            roles.map((role) => <MenuItem
-              key   = {role.id}
-              value = {role.role}
-            >
-              {
-                role.role
-              }
-              </MenuItem>)
+            roles?.map((role) => <RoleMenuItem
+              key      = {role.id}
+              role     = {role}
+              onSelect = {handleChange}
+            />)
           }
-          
+          <AddRoleBtn />
         </Select>
         <FormHelperText>{errors?.roleId}</FormHelperText>
       </FormControl>

@@ -19,12 +19,12 @@ const useStyles = (theme) => ({
 
 
 type Props = {
-  type?: "submit";
-  onCancel?: () => void;
-  onSubmit?: (e: any) => void;
-  submitText?: string;
-  disabled?: boolean;
-  loading?: boolean;
+  type?       : "submit";
+  onCancel?   : () => void;
+  onSubmit?   : (e: any) => void;
+  submitText? : string;
+  disabled?   : boolean;
+  loading?    : boolean;
 };
 
 
@@ -34,33 +34,30 @@ const CancelSubmitBtn: React.FC<Props> = ({ type, onCancel, onSubmit, submitText
   const handleSubmit = (e) => {
     if (!type) onSubmit(e)
   };
-
   
   return (
     <>
       {
         onCancel && <Button
-          onClick={onCancel}
-          variant="outlined"
-          sx={sx.cancel}
+          onClick = {onCancel}
+          variant = "outlined"
+          sx      = {sx.cancel}
         >
           Отмена
         </Button>
       }
       
       <Button
-        type={type || "button"}
-        onClick={handleSubmit}
-        disabled={disabled || loading}
-        variant="contained"
-        sx={sx.submit}
+        type     = {type || "button"}
+        onClick  = {handleSubmit}
+        disabled = {disabled || loading}
+        variant  = "contained"
+        sx       = {sx.submit}
       >
         {
-          submitText ? submitText : `Сохранить`
+          submitText || `Сохранить`
         }
-        
         <CircularProgress size={30} loading={loading} />
-        
       </Button>
     </>
   )

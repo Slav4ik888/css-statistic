@@ -5,13 +5,13 @@ import Person from '../person';
 import Description from '../description';
 import Email from '../email';
 // Types
-import { User, UserCardType } from '../../../../../../types';
+import { User, CardType } from '../../../../../../types';
 import { UseGroup } from '../../../../../utils/hooks/types';
 
 
 type Props = {
   group : UseGroup<User>;
-  type  : UserCardType;
+  type  : CardType;
 };
 
 const EmailCnt: React.FC<Props> = ({ group, type }) => {

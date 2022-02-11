@@ -58,7 +58,7 @@ export default async function userLogin(ctx, next) {
     // Set cookie policy for session cookie.
     // ADD secure: true, когда будет https
     const options = { maxAge: expiresIn, httpOnly: true, path: '/' };
-    ctx.cookies.set('session', sessionCookie, options);
+    ctx.cookies.set('cssSession', sessionCookie, options);
     ctx.body = { message : `Добро пожаловать в «${cfg.SITE_TITLE.full}»!` };
 
     logUser.info(`[userLogin] - ${user.email} вошёл`);

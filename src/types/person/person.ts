@@ -1,6 +1,6 @@
 import { ItemBase, RoleType } from "..";
 
-export enum UserCardType {
+export enum CardType {
   ADD  = `Добавление`,
   EDIT = `Редактирование`
 };
