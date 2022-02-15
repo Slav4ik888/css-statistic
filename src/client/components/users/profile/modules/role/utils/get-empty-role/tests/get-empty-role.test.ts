@@ -1,5 +1,5 @@
 import { getEmptyRole } from '..';
-import { Role } from '../../../../../../../../../../types';
+import { Role } from '../../../../../../../../../types';
 
 const emptyRole: Role = {
   id    : ``,

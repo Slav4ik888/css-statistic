@@ -1,21 +1,22 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { getLoadingData } from '../../../../../../redux/selectors/data';
-import { State } from '../../../../../../redux/redux-types';
+import { getLoadingData } from '../../../../../../../redux/selectors/data';
+import { State } from '../../../../../../../redux/redux-types';
 // MUI Stuff
 import { Box, ListItemText, ListItemIcon } from '@mui/material';
 // Icons
 import AddIcon from '@mui/icons-material/Add';
 // Components
-import MenuItem from '../../../../../navbar/menus/menu-item';
+import MenuItem from '../../../../../../navbar/menus/menu-item';
 import RoleCnt from '../role-cnt';
-import DialogInfo from '../../../../../dialogs/dialog-info';
+import DialogInfo from '../../../../../../dialogs/dialog-info';
 // Functions
-import { useOpen } from '../../../../../../utils/hooks';
+import { useGroup } from '../../../../../../../utils/hooks';
+import { getEmptyRole } from '../../utils/get-empty-role';
 // Types, Styles
-import { fc_ } from '../../../../../../utils/styles';
-import { CardType } from '../../../../../../../types';
+import { fc_ } from '../../../../../../../utils/styles';
+import { CardType, Role } from '../../../../../../../../types';
 
 
 const useStyles = () => ({
@@ -34,11 +35,12 @@ type Props = {
 const AddRoleBtn: React.FC<Props> = ({ loading }) => {
   const sx = useStyles();
 
-  const hookOpen = useOpen();
+  const G = useGroup<Role>(false, getEmptyRole());
+
   const handleAdd = () => {
     if (loading) return;
     console.log('handleAdd');
-    hookOpen.setOpen();
+    G.setOpen();
   };
   
   return (
@@ -50,8 +52,8 @@ const AddRoleBtn: React.FC<Props> = ({ loading }) => {
         </Box>
       </MenuItem>
       
-      <DialogInfo hookOpen={hookOpen} title="Новая роль" maxWidth="sm">
-        <RoleCnt hookOpen={hookOpen} type={CardType.ADD} />
+      <DialogInfo hookOpen={G} title="Новая роль" maxWidth="sm">
+        <RoleCnt group={G} type={CardType.ADD} />
       </DialogInfo>
     </>
   )

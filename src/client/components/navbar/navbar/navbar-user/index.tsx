@@ -11,9 +11,9 @@ import UsersMenuBtn from '../../btns/users';
 
 
 type Props = {
-  loadingUser: boolean;
-  authenticated: boolean;
-  history: { location: { pathname: string }, push: (path: string) => void };
+  loadingUser   : boolean;
+  authenticated : boolean;
+  history       : { location: { pathname: string }, push: (path: string) => void };
 };
 
 

@@ -27,8 +27,8 @@ router.post(`/loadCollection`, FBAuth, he.loadCollection);
 
 // DATA
 router.post(`/addRole`, FBAuth, da.addRole);
+router.post(`/updateRole`, FBAuth, da.updateRole);
 router.post(`/addUser`, FBAuth, da.addUser);
 router.get (`/loadUsers`, FBAuth, da.loadUsers);
-
 
 export default router;

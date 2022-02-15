@@ -1,4 +1,4 @@
-import { Role } from "../../../../../../../../../types";
+import { Role } from "../../../../../../../../types";
 
 export const getEmptyRole = (): Role => ({
   id    : ``,

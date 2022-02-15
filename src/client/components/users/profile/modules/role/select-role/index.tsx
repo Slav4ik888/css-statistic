@@ -16,6 +16,7 @@ import changeGroup from '../../../../../../utils/hooks/change-group';
 import { UseGroup } from '../../../../../../utils/hooks/types';
 import { Errors, Roles, User } from '../../../../../../../types';
 import { useTheme } from '@emotion/react';
+import { sortingArr } from '../../../../../../../utils/sorting/sorting-arr';
 
 
 const useStyles = (theme) => ({
@@ -36,11 +37,17 @@ const SelectRole: React.FC<Props> = ({ roles, group: G, errors }) => {
   console.log('roles: ', roles);
   const sx = useStyles(useTheme());
 
+  const sortedRoles = React.useMemo(() => sortingArr(roles, `role`), [roles]);
+  console.log('sortedRoles: ', sortedRoles);
+
   const handleChange = (e: SelectChangeEvent) => {
     const roleId = getRoleIdByRole(roles, e.target.value as string);
-    changeGroup(G, [{ value: roleId, scheme: `role.roleId` }]);
+    console.log('roleId: ', roleId);
+    console.log('e.target.value: ', e.target.value);
+    if (roleId) changeGroup(G, [{ value: roleId, scheme: `role.roleId` }]);
   };
-  
+
+
   return (
     <Grid item xs={12} sm={7}>
       <FormControl fullWidth error={Boolean(errors?.roleId)}>
@@ -53,7 +60,7 @@ const SelectRole: React.FC<Props> = ({ roles, group: G, errors }) => {
           sx       = {sx.textField}
         >
           {
-            roles?.map((role) => <RoleMenuItem
+            sortedRoles?.map((role) => <RoleMenuItem
               key      = {role.id}
               role     = {role}
               onSelect = {handleChange}

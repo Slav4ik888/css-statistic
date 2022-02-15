@@ -10,6 +10,14 @@ export interface GetStartResourses {
 };
 
 export interface AddRole   { data: { role  : Role } };
+
+export interface UpdateRole   {
+  data: {
+    role    : Role
+    message : string;
+  }
+};
+
 export interface AddUser   { data: { user  : User } };
 export interface LoadUsers { data: { users : Users } };
  

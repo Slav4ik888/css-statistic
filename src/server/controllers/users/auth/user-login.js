@@ -14,8 +14,8 @@ import { cfg } from '../../../../../config.js';
 
 export default async function userLogin(ctx, next) {
   const user = {
-    email: ctx.request?.body?.userData?.email,
-    password: ctx.request?.body?.userData?.password
+    email    : ctx.request?.body?.userData?.email,
+    password : ctx.request?.body?.userData?.password
   };
 
   try {

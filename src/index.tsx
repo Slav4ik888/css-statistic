@@ -24,4 +24,4 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('root'));
 
-// git add . && git commit -m "[client] - continue add roles" && git push origin server
+// git add . && git commit -m "[client] - start edit roles & made a few fixes" && git push origin server
