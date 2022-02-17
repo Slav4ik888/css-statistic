@@ -70,18 +70,15 @@ const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, on
 
   // React.MouseEvent<HTMLElement>
   const handleOpen = (e: any) => {
-    const target = e.target.closest(`li`);
-    const id = target.id;
-    console.log('id: ', id);
-    const user = users?.find(u => u.id === id);
+    const
+      target = e.target.closest(`li`),
+      id     = target.id,
+      user   = users?.find(u => u.id === id);
+      
     groupUser.setGroup(user);
     groupUser.setOpen();
-  }
+  };
 
-  const handleClose = () => {
-    // refBook.setObject(null);
-    groupUser.setClose();
-  }
   
   return (
     <>

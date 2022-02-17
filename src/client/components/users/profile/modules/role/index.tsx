@@ -20,7 +20,7 @@ const RoleCnt: React.FC<Props> = ({ group }) => {
   return (
     <CardBlock label="Роли и полномочия">
       <SelectRoleType group={group} />
-      <SelectRole group={group} />
+      <SelectRole     group={group} />
     </CardBlock>
   )
 };

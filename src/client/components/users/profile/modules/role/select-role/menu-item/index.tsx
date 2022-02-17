@@ -51,31 +51,25 @@ const RoleMenuItem: React.FC<Props> = ({ role, onSelect }) => {
   };
   
   return (
-    <>
-      <MenuItem id={role.id} divider>
-        <Box sx={sx.role}>
-          <Box sx={sx.roleBtn} onClick={onSelect}>
-            <ListItemIcon>
-              <RoleIcon />
-            </ListItemIcon>
+    <MenuItem id={role.id} divider>
+      <Box sx={sx.role}>
+        <Box sx={sx.roleBtn} onClick={onSelect}>
+          <ListItemIcon>
+            <RoleIcon />
+          </ListItemIcon>
 
-            <ListItemText primary={role.role} />
-          </Box>
-          
-          <Tooltip title={'Редактировать роль'} arrow enterDelay={1000} enterNextDelay={1000}>
-            <ListItemAvatar onClick={handleEdit}>
-              <Avatar>
-                <EditIcon />
-              </Avatar>
-            </ListItemAvatar>
-          </Tooltip>
+          <ListItemText primary={role.role} />
         </Box>
-      </MenuItem>
-
-      <DialogInfo hookOpen={G} title="Редактирование роли" maxWidth="sm">
-        <RoleCnt type={CardType.EDIT} group={G} />
-      </DialogInfo>
-    </>
+        
+        <Tooltip title={'Редактировать роль'} arrow enterDelay={1000} enterNextDelay={1000}>
+          <ListItemAvatar onClick={handleEdit}>
+            <Avatar>
+              <EditIcon />
+            </Avatar>
+          </ListItemAvatar>
+        </Tooltip>
+      </Box>
+    </MenuItem>
   )
 };
 

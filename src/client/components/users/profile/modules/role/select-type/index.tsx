@@ -43,11 +43,11 @@ const SelectRoleType: React.FC<Props> = ({ group: G, errors }) => {
   return (
     <Grid item xs={12} sm={5} sx={sx.root}>
       <FormControl fullWidth error={Boolean(errors?.roleType)}>
-        <InputLabel id="role-type">Тип пользователя</InputLabel>
+        <InputLabel id="label-role-type">Тип пользователя</InputLabel>
         <Select
-          labelId  = "role-type"
+          label    = "RoleType"
+          labelId  = "label-role-type"
           value    = {G.group.role.type}
-          label    = "Role"
           onChange = {handleChange}
           sx       = {sx.textField}
         >
