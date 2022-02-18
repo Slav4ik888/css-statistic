@@ -24,6 +24,7 @@ import { UseGroup } from '../../../../../../utils/hooks/types';
 import { CardType, Errors, Role, Roles, User } from '../../../../../../../types';
 import { useTheme } from '@emotion/react';
 import { fc_, fc_sb } from '../../../../../../utils/styles';
+import { getItemFromArrByField } from '../../../../../../../utils/arrays/get-item-from-arr-by-field/get-item-from-arr-by-field';
 
 
 
@@ -55,18 +56,23 @@ const SelectRole: React.FC<Props> = ({ roles, group: U, errors }) => {
     sx = useStyles(useTheme()),
     G  = useGroup<Role>();
 
-  // TODO: G.setGroup
-  const handleEdit = () => {
-    console.log(`handleEdit`);
-    G.setOpen();
+  const handleEdit = (e: any) => {
+    const roleId = e.target.value;
+    console.log('e.target: ', e.target);
+    console.log('handleEdit roleId: ', roleId);
+    if (roleId) {
+      G.setGroup(getItemFromArrByField(roles, `id`, roleId));
+      G.setOpen();
+    }
   };
+  const role = React.useMemo(() => getRoleNameById(roles, U.group.role?.roleId), [U.group.role?.roleId]);
+  console.log('role: ', role);
   const sortedRoles = React.useMemo(() => sortingArr(roles, `role`), [roles]);
   console.log('sortedRoles: ', sortedRoles);
 
   const handleChange = (e: SelectChangeEvent) => {
-    const roleId = getRoleIdByRole(roles, e.target.value as string);
+    const roleId = e.target.value;
     console.log('roleId: ', roleId);
-    console.log('e.target.value: ', e.target.value);
     if (roleId) changeGroup(U, [{ value: roleId, scheme: `role.roleId` }]);
   };
 
@@ -79,13 +85,16 @@ const SelectRole: React.FC<Props> = ({ roles, group: U, errors }) => {
           <Select
             label    = "Role"
             labelId  = "label-role-id"
-            value    = {getRoleNameById(roles, U.group.role.roleId)}
+            value    = {role}
             onChange = {handleChange}
             sx       = {sx.textField}
           >
             {
               sortedRoles?.map((role) => 
-                <MenuItem key={role.id}>
+                <MenuItem
+                  key   = {role.id}
+                  value = {role.id}
+                >
                   <Tooltip title='Выбрать роль' arrow enterDelay={1000} enterNextDelay={1000}>
                     <Box sx={sx.role}>
                       <Box sx={sx.roleBtn} onClick={() => {}}>
