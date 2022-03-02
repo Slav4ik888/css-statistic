@@ -2,43 +2,23 @@ import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
 import { getRoles } from '../../../../../../redux/selectors/data';
-import { getErrors } from '../../../../../../redux/selectors/ui';
 import { State } from '../../../../../../redux/redux-types';
-// MUI Stuff
-import { Grid, MenuItem, InputLabel, FormControl, FormHelperText, Select, SelectChangeEvent, Tooltip, Box, ListItemIcon, ListItemAvatar, Avatar, ListItemText } from '@mui/material';
-// Icons
-import RoleIcon from '@mui/icons-material/AdminPanelSettings';
-import EditIcon from '@mui/icons-material/Edit';
 // Components
-import RoleMenuItem from './menu-item';
-import AddRoleBtn from './add-role-btn';
-import DialogInfo from '../../../../../dialogs/dialog-info';
-import RoleCnt from './role-cnt';
+import Text from '../../../../../containers/select-text';
+import SelectRole from './select';
 // Functions
-import { getRoleNameById, getRoleIdByRole } from '../../../../../../utils/helpers';
-import changeGroup from '../../../../../../utils/hooks/change-group';
-import { sortingArr } from '../../../../../../../utils/sorting/sorting-arr';
-import { useGroup } from '../../../../../../utils/hooks';
+import { getRoleNameById } from '../../../../../../utils/helpers';
+import { useOpen } from '../../../../../../utils/hooks';
 // Types & Styles
 import { UseGroup } from '../../../../../../utils/hooks/types';
-import { CardType, Errors, Role, Roles, User } from '../../../../../../../types';
+import { Roles, User } from '../../../../../../../types';
 import { useTheme } from '@emotion/react';
-import { fc_, fc_sb } from '../../../../../../utils/styles';
-import { getItemFromArrByField } from '../../../../../../../utils/arrays/get-item-from-arr-by-field/get-item-from-arr-by-field';
 
 
-
-const useStyles = (theme) => ({
-  textField: {
-    backgroundColor: theme.profile.textfield.background
-  },
-   role: {
-    ...fc_sb,
-    width: `100%`
-  },
-  roleBtn: {
-    ...fc_,
-    width: `100%`
+const useStyles = (theme: any) => ({
+  text: {
+    width           : `100%`,
+    backgroundColor : theme.profile.textfield.background
   }
 });
 
@@ -46,99 +26,39 @@ const useStyles = (theme) => ({
 type Props = {
   roles? : Roles;
   group  : UseGroup<User>;
-  errors : Errors;
 };
 
 
-const SelectRole: React.FC<Props> = ({ roles, group: U, errors }) => {
+const SelectRoleCnt: React.FC<Props> = ({ roles, group: U }) => {
   console.log('U: ', U.group);
   const
-    sx = useStyles(useTheme()),
-    G  = useGroup<Role>();
+    sx     = useStyles(useTheme()),
+    select = useOpen(),
+    role   = React.useMemo(() => getRoleNameById(roles, U.group.role?.roleId) || `Не выбрана`, [U.group.role?.roleId]);
 
-  const handleEdit = (e: any) => {
-    const roleId = e.target.value;
-    console.log('e.target: ', e.target);
-    console.log('handleEdit roleId: ', roleId);
-    if (roleId) {
-      G.setGroup(getItemFromArrByField(roles, `id`, roleId));
-      G.setOpen();
-    }
-  };
-  const role = React.useMemo(() => getRoleNameById(roles, U.group.role?.roleId), [U.group.role?.roleId]);
-  console.log('role: ', role);
-  const sortedRoles = React.useMemo(() => sortingArr(roles, `role`), [roles]);
-  console.log('sortedRoles: ', sortedRoles);
-
-  const handleChange = (e: SelectChangeEvent) => {
-    const roleId = e.target.value;
-    console.log('roleId: ', roleId);
-    if (roleId) changeGroup(U, [{ value: roleId, scheme: `role.roleId` }]);
-  };
-
-
+  
   return (
     <>
-      <Grid item xs={12} sm={7}>
-        <FormControl fullWidth error={Boolean(errors?.roleId)}>
-          <InputLabel id="label-role-id">Тип роли</InputLabel>
-          <Select
-            label    = "Role"
-            labelId  = "label-role-id"
-            value    = {role}
-            onChange = {handleChange}
-            sx       = {sx.textField}
-          >
-            {
-              sortedRoles?.map((role) => 
-                <MenuItem
-                  key   = {role.id}
-                  value = {role.id}
-                >
-                  <Tooltip title='Выбрать роль' arrow enterDelay={1000} enterNextDelay={1000}>
-                    <Box sx={sx.role}>
-                      <Box sx={sx.roleBtn} onClick={() => {}}>
-                        <ListItemIcon>
-                          <RoleIcon />
-                        </ListItemIcon>
+      <Text
+        grid      = {{ sm: 7 }}
+        label     = "Тип роли"
+        toolTitle = "Тип роли"
+        select    = {select}
+        children  = {role}
+        sx        = {sx.text}
+      />
 
-                        <ListItemText primary={role.role} />
-                      </Box>
-                      
-                      <Tooltip title={'Редактировать роль'} arrow enterDelay={1000} enterNextDelay={1000}>
-                        <ListItemAvatar onClick={handleEdit}>
-                          <Avatar>
-                            <EditIcon />
-                          </Avatar>
-                        </ListItemAvatar>
-                      </Tooltip>
-                    </Box>
-                  </Tooltip>
-                </MenuItem>
-                // <RoleMenuItem
-                //   key      = {role.id}
-                //   role     = {role}
-                //   onSelect = {handleChange}
-                // />
-              )
-            }
-            <AddRoleBtn />
-          </Select>
-          <FormHelperText>{errors?.roleId}</FormHelperText>
-        </FormControl>
-      </Grid>
-
-      <DialogInfo hookOpen={G} title="Редактирование роли" maxWidth="sm">
-        <RoleCnt type={CardType.EDIT} group={G} />
-      </DialogInfo>
+      <SelectRole
+        select = {select}
+        group  = {U}
+      />
     </>
   );
 };
 
 
 const mapStateToProps = (state: State) => ({
-  roles  : getRoles(state),
-  errors : getErrors(state)
+  roles  : getRoles(state)
 });
 
-export default connect(mapStateToProps)(SelectRole);
+export default connect(mapStateToProps)(SelectRoleCnt);

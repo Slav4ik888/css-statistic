@@ -62,9 +62,9 @@ type Props = {
 const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, onClose }) => {
   if (!open) return null;
 
-  const sx = useStyles();
-
-  const groupUser = useGroup<User>();
+  const
+    sx = useStyles(),
+    G  = useGroup<User>();
 
   // const refBook = useObject<RefBookId>(null);
 
@@ -75,8 +75,8 @@ const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, on
       id     = target.id,
       user   = users?.find(u => u.id === id);
       
-    groupUser.setGroup(user);
-    groupUser.setOpen();
+    G.setGroup(user);
+    G.setOpen();
   };
 
   
@@ -103,8 +103,8 @@ const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, on
         <AddUserBtn />
       </Menu>
 
-      <DialogInfo hookOpen={groupUser} title="Пользователь">
-        <UsersCnt group={groupUser} />
+      <DialogInfo hookOpen={G} title="Пользователь">
+        <UsersCnt group={G} />
       </DialogInfo>
 
       <CircularProgress loading={loading} block />
