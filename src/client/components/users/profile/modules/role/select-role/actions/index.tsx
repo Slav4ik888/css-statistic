@@ -46,14 +46,14 @@ const ActionsRole: React.FC<Props> = ({ loading, type, group: G, addRole, update
   };
   
   return (
-    <Box>
+    <>
       <Actions
         loading  = {loading}
         hookOpen = {G}
         onDel    = {handleDel}
         onSubmit = {handleSubmit}
       />
-    </Box>
+    </>
   )
 };
 

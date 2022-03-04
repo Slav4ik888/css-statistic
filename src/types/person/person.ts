@@ -19,6 +19,7 @@ export interface Person {
 };
 
 
+// !!! Dublicate for Server
 export interface User extends ItemBase {
   active   : boolean;  // Активный или деактивирован (удалён/уволен)
   email    : string;

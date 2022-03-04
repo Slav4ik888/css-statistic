@@ -3,6 +3,8 @@ function isChanges(first, second) {
   // console.log('first: ', first);
   let result = false; // Нет изменений
 
+  if (!first && second) return true;
+
   for (let key in second) {
     if (Object.prototype.hasOwnProperty.call(second, key)) {
       // console.log('second[key]: ', second[key]);

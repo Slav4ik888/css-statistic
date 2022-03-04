@@ -4,7 +4,7 @@ import { dataActionType, uiActionType, userActionType as Type } from "../../acti
 import logger from "../../../utils/client-logger/client-logger";
 const log = logger(`getUser`);
 // Types
-import { User, GetStartResourses } from "../../../../types";
+import { ResGetStartResourses } from "../../../../types";
 import { warningMessage } from "../ui";
 import mergeWithTemplate from "../../../components/users/merge-with-template";
 
@@ -15,7 +15,7 @@ export const getUser = () => async (dispatch: any) => {
   dispatch({ type: Type.LOADING_USER });
 
   try {
-    const res: GetStartResourses = await api.get(`/getStartResourses`);
+    const res: ResGetStartResourses = await api.get(`/getStartResourses`);
     const user = mergeWithTemplate(res.data.user);
 
     dispatch({ type: Type.SET_USER,            payload: user });

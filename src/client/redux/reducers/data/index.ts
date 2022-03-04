@@ -28,11 +28,16 @@ export default function (state = initialState, action: { type: Type, payload: an
     case Type.UPDATE_ROLE: return extend(state, {
       roles   : updateArrWithItemByField(state.roles, `id`, action.payload),
       loadind : false
-    })
+    });
 
     case Type.ADD_USER: return extend(state, {
       roles   : updateArrByArrByField(state.roles, `id`, action.payload),
       loading : false
+    });
+
+    case Type.UPDATE_USER: return extend(state, {
+      users   : updateArrWithItemByField(state.users, `id`, action.payload),
+      loadind : false
     });
 
     case Type.SET_USERS:

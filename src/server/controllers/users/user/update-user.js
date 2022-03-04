@@ -1,31 +1,41 @@
-import { admin, db } from '../../../firebase/admin.js';
+import { db } from '../../../firebase/admin.js';
 // Functions
 import { logUser } from '../../../libs/logs/index.js';
-import validUserData from '../../../../utils/validators/user-data/user-data.js';
-import getUpdatedUser from './get-updated-user/index.js';
+import validate from '../../../../utils/validators/validate/index.js';
+import { mergeWithScheme } from '../../../../utils/merge-with-scheme/index.js';
 // Helpers
 import { objectFieldsToString } from '../../../../utils/objects/object-fields-to-string/object-fields-to-string.js';
-// Consts
+// Types & Consts
 import ERR_TEMP from '../../../../templates/errors/template-errors.js';
+import { Validator } from '../../../../types/types.js';
+import { userScheme } from '../../../../templates/schemes/index.js';
 
 
 export default async function updateUser(ctx, next) {
-  const user = ctx.state.user;
-  const logTemp = `[updateUser] - [${user.email}]`;
-  try {
-    const userData = ctx.request?.body;
+  const
+    user    = ctx.state.user,
+    logTemp = `[updateUser] - [${user.email}]`;
 
-    const { valid, errors } = validUserData(userData);
+  try {
+    const userData = ctx.request?.body?.user;
+
+    // TODO: checkPermisions
+
+    const { valid, errors } = validate(Validator.USER_UPDATE, userData);
     if (!valid) {
       logUser.error(`${logTemp} ${objectFieldsToString(errors)}`);
-      ctx.status = 400; ctx.body = { errors }; return;
+      ctx.throw(400, { errors });
     }
 
-    const updated = getUpdatedUser(userData, user.uid);
+    // TODO: 
+    // let userProfile = dataVerificationForUpdate(DataVerificationType.USER_PROFILE_UPDATE, reqUser, req.body);
+    // if (notEmpty(userProfile)) await db.doc(`users/${req.body.companyId}/users/${req.body.userId}`).update(userProfile);
+    
+    const updated = mergeWithScheme(userData, userScheme);
     await db.collection(`users`).doc(user.email).update(updated);
 
     ctx.status = 200;
-    ctx.body = { message: `Изменения сохранены` };
+    ctx.body = { message: `Данные профиля, обновлены` };
     logUser.info(`${logTemp} success!`);
   }
   catch {

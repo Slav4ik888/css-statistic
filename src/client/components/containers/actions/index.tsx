@@ -2,6 +2,7 @@ import * as React from 'react';
 // MUI Stuff
 import { Button, Divider, Box } from '@mui/material';
 // Components
+import FlexDivider from '../flex-divider';
 import DialogConfirm from '../../dialogs/dialog-confirm';
 import CancelSubmitBtn from '../../buttons/cancel-submit-btn/cancel-submit-btn';
 // Functions
@@ -17,20 +18,23 @@ import { useTheme } from '@emotion/react';
 
 const useStyles = (theme) => ({
   root: {
-    display: `flex`,
-    flexDirection: FlexDirection.COLUMN,
-    alignItems: `flex-end`,
-    mt: 4,
-    py: 2
+    display        : `flex`,
+    flexDirection  : FlexDirection.COLUMN,
+    alignItems     : `flex-end`,
+    mt             : 4,
+    py             : 2
   },
-  divider: { width: `100%`, mb: 4 },
+  divider: {
+    width          : `100%`,
+    mb             : 4
+  },
   content: {
-    display: `flex`,
-    justifyContent: `space-between`,
-    width: `100%`
+    display        : `flex`,
+    justifyContent : `space-between`,
+    width          : `100%`
   },
   delete: {
-    color: `red`
+    color          : `red`
   }
 });
 
@@ -46,9 +50,10 @@ type Props = {
 
 
 const Actions: React.FC<Props> = ({ loading, disabledDelete, hookOpen, onClose, onDel, onSubmit }) => {
-  const sx = useStyles(useTheme());
-  const confirm  = useOpen();
-  const disabled =  !hookOpen.isChange;
+  const
+    sx       = useStyles(useTheme()),
+    confirm  = useOpen(),
+    disabled = !hookOpen.isChange;
 
   const handleDel = () => {
     confirm.setClose();
@@ -64,15 +69,20 @@ const Actions: React.FC<Props> = ({ loading, disabledDelete, hookOpen, onClose, 
       <Box sx={sx.content}>
         {
           onDel ? <Button
-            sx={sx.delete}
-            variant="outlined"
-            disabled={disabledDelete}
-            onClick={confirm.setOpen}
+            variant  = "outlined"
+            disabled = {disabledDelete}
+            onClick  = {confirm.setOpen}
+            sx       = {sx.delete}
           >
             Удалить
-          </Button> : null
+          </Button> : <FlexDivider />
         }
-        <CancelSubmitBtn onSubmit={onSubmit} loading={loading} disabled={disabled} />
+        <CancelSubmitBtn
+          loading  = {loading}
+          disabled = {disabled}
+          onCancel = {onClose}
+          onSubmit = {onSubmit}
+        />
       </Box>
 
       <DialogConfirm

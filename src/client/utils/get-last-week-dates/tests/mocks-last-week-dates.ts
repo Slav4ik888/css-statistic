@@ -4,8 +4,8 @@ export default [
       endWeekDay: 3
     },
     {
-      lastFrom : `2021-12-16`,
-      lastTo   : `2021-12-22`
+      lastFrom : `2022-02-24`,
+      lastTo   : `2022-03-02`
     }
   ]
 ]

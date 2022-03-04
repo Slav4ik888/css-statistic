@@ -6,6 +6,11 @@ export function isEmail(email: string): boolean;
 export function isEmpty(str: string): boolean;
 export function isNoEmpty(str: string): boolean;
 
+export function isBool(bool: boolean): boolean;
+export function isNoBool(bool: boolean): boolean;
+
+export function isString(str: string): boolean;
+export function isNoString(str: string): boolean;
 
 // Возвращает true если строка допустимого значения
 export function isValidMaxL(maxLength: number, str: string): boolean;
@@ -62,4 +67,4 @@ export function validationGetSertificatedata(data: string): Validation;
 export function validationLoginData(data: UserLoginData): Validation;
 
 // Валидация для доступа к комментариям
-export function validationGetUserComments(req: {user: {userId: string, role: Role}}, taskOwnerId: string): Validation;
+export function validationGetUserComments(req: { user: { userId: string, role: Role } }, taskOwnerId: string): Validation;

@@ -12,7 +12,7 @@ export const isEmail = (email) => {
 
 
 export const isEmpty = (str) => {
-  if (typeof str === `number`) return false;
+  if (typeof str !== `string`) return false;
 
   if (!str || str?.trim() === ``) {
     return true;
@@ -21,12 +21,15 @@ export const isEmpty = (str) => {
   }
 };
 
-
 export const isNoEmpty = (str) => !isEmpty(str);
 
+export const isBool    = (bool) => typeof bool === `boolean`;
+export const isNoBool  = (bool) => !isBool(bool);
 
-export const getPhone = (str) => str.replace(/\D/g, ``);
+export const isString = (str) => typeof str === `string`;
+export const isNoString = (str) => !isString(str);
 
+export const getPhone  = (str) => str.replace(/\D/g, ``);
 
 export const isValidPhone = (str) => {
   if (isEmpty(str)) return true;

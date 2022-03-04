@@ -62,7 +62,6 @@ export const mergeWithScheme = (obj, scheme) => {
   }
 
   newObj.lastChange = new Date().toISOString();
-  console.log('newObj: ', newObj);
 
   return newObj;
 };

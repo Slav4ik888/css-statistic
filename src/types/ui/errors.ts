@@ -7,6 +7,8 @@ export interface Errors {
   
   description?       : string;
   
+  id?                : string;
+  active?            : string;
   firstName?         : string,
   secondName?        : string,
   middleName?        : string,

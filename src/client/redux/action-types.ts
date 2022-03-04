@@ -16,7 +16,8 @@ export enum dataActionType {
   ADD_ROLE            = `ADD_ROLE`,
   UPDATE_ROLE         = `UPDATE_ROLE`,
   SET_USERS           = `SET_USERS`,
-  ADD_USER            = `ADD_USER`
+  ADD_USER            = `ADD_USER`,
+  UPDATE_USER         = `UPDATE_USER`
 };
 
 

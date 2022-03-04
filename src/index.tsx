@@ -24,4 +24,4 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('root'));
 
-// git add . && git commit -m "[client] - fixes SelectRole & start UserProfileActions" && git push origin server
+// git add . && git commit -m "[client] - create UpdateUser & add validate" && git push origin server

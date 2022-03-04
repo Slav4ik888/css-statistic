@@ -1,5 +1,8 @@
 import { RoleType } from './person/backend.js';
 import { CredType } from './credentials/backend.js';
 import RolesArray from './person/roles-array.js';
+import { Validator } from './ui/backend.js';
 
-export { RoleType, CredType, RolesArray }
+export {
+  RoleType, CredType, RolesArray, Validator
+}

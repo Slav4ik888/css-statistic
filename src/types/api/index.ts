@@ -1,6 +1,6 @@
 import { User, Users, Role, Roles } from "..";
 
-export interface GetStartResourses {
+export interface ResGetStartResourses {
   data: {
     user      : User,
     users     : Users,
@@ -9,15 +9,21 @@ export interface GetStartResourses {
   }
 };
 
-export interface AddRole   { data: { role  : Role } };
+export interface ResUpdateUser {
+  data: {
+    message: string
+  }
+};
 
-export interface UpdateRole   {
+export interface ResAddRole   { data: { role  : Role } };
+
+export interface ResUpdateRole   {
   data: {
     role    : Role
     message : string;
   }
 };
 
-export interface AddUser   { data: { user  : User } };
-export interface LoadUsers { data: { users : Users } };
+export interface ResAddUser   { data: { user  : User } };
+export interface ResLoadUsers { data: { users : Users } };
  
