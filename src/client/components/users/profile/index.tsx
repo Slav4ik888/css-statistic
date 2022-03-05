@@ -1,4 +1,6 @@
 import * as React from 'react';
+// Credentials
+import { noCred, CredName as Cr } from '../../../../utils/credentials';
 // Redux
 import { State } from '../../../redux/redux-types';
 import { getLoadingUser, getUser } from '../../../redux/selectors/user';
@@ -34,6 +36,12 @@ const UserProfile: React.FC<Props> = ({ loading, type, group: G, user, setErrors
   const handleSubmit = (e?: any, exit?: boolean) => {
     // Проверка на наличие изменений
     // if (!isChanges(G, storeFlight, G.group, exit)) return null;
+
+    // Проверка полномочий
+    const disabled = noCred(Cr.USER_PROFILE_C, user, creds, whose);
+
+
+
     const func = G.group.id === user.id ? updateUser : updateAnyUser;
 
     // Валидация данных

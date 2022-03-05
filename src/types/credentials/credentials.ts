@@ -21,4 +21,4 @@ export interface CredItem {
 export interface Credential {
   scheme : string; // 'creds.roles.c'
   label  : string; // 'Изменять существующие настройки прав "Ролей"'
-}
+};

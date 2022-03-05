@@ -6,5 +6,6 @@ export const initialState: StateUser = {
   loading         : false,
   authenticated   : false,
 
-  user            : {} as User
+  user            : {} as User,
+  userCredentials : {},
 };

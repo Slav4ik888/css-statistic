@@ -28,6 +28,7 @@ export interface StateUser {
   authenticated   : boolean;
 
   user            : User;
+  userCredentials : object;
 };
 
 
