@@ -3,7 +3,7 @@ import { db } from '../../../firebase/admin.js';
 import { getCollection } from '../../helpers/index.js';
 // Helpers
 import { logAuth } from '../../../libs/logs/index.js';
-import { objectFieldsToString } from '../../../../utils/objects/object-fields-to-string/object-fields-to-string.js';
+import { objectFieldsToString } from '../../../../utils/objects/object-fields-to-string/index.js';
 // Credantials
 import { CredName as Cr, cred } from '../../../../utils/credentials/backend.js';
 import { loadRoleCreds } from '../auth/index.js';

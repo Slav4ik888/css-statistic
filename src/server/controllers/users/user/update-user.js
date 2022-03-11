@@ -4,7 +4,7 @@ import { logUser } from '../../../libs/logs/index.js';
 import validate from '../../../../utils/validators/validate/index.js';
 import { mergeWithScheme } from '../../../../utils/merge-with-scheme/index.js';
 // Helpers
-import { objectFieldsToString } from '../../../../utils/objects/object-fields-to-string/object-fields-to-string.js';
+import { objectFieldsToString } from '../../../../utils/objects/index.js';
 // Types & Consts
 import ERR_TEMP from '../../../../templates/errors/template-errors.js';
 import { Validator } from '../../../../types/types.js';

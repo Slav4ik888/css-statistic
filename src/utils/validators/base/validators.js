@@ -29,14 +29,18 @@ export const isNoBool  = (bool) => !isBool(bool);
 export const isString = (str) => typeof str === `string`;
 export const isNoString = (str) => !isString(str);
 
-export const getPhone  = (str) => str.replace(/\D/g, ``);
+// PHONE
+export const getDigit = (str) => str.replace(/\D/g, ``);
 
 export const isValidPhone = (str) => {
-  if (isEmpty(str)) return true;
+  if (typeof str !== `string` || isEmpty(str)) return false;
 
-  const reg = getPhone(str);
-  return reg.length === 11;
+  const reg = getDigit(str);
+  return reg === str && str.length === 11;
 };
+
+export const isInvalidPhone = (str) => !isValidPhone(str);
+
 
 
 // Возвращает true если строка допустимого значения  // test+++

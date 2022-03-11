@@ -5,7 +5,7 @@ import validLoginData from '../../../../utils/validators/login-data/login-data.j
 // Functions
 import { logUser } from '../../../libs/logs/index.js';
 // Helpers
-import { objectFieldsToString } from '../../../../utils/objects/object-fields-to-string/object-fields-to-string.js';
+import { objectFieldsToString } from '../../../../utils/objects/index.js';
 // Consts
 import ERR_TEMP from '../../../../templates/errors/template-errors.js';
 import { cfg } from '../../../../../config.js';

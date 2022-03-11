@@ -1,3 +1,3 @@
-import { FixDate, ItemBase } from "./item-basic";
+import { FixDate, ItemBase, Strings } from "./item-basic";
 
-export { FixDate, ItemBase };
+export { FixDate, ItemBase, Strings };

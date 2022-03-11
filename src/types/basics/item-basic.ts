@@ -1,5 +1,7 @@
 // Base item for save to DB
 
+export type Strings = Array<string>;
+
 
 // Тип для фиксирования даты
 export interface FixDate {

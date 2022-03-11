@@ -24,4 +24,4 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('root'));
 
-// git add . && git commit -m "[client] - start UserCredentials" && git push origin server
+// git add . && git commit -m "[client] - start Refbooks" && git push origin server

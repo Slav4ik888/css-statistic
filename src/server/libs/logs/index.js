@@ -60,6 +60,20 @@ const logHelpers = createLogger({
 });
 
 
+const logRef = createLogger({
+  level: 'info',
+  format: combine(
+    label({ label: 'ref' }),
+    timestamp(),
+    myFormat
+  ),
+  transports: [
+    new transports.File({ filename: `${__dirname}/logs-storage/error.log`, level: 'error' }),
+    new transports.File({filename: `${__dirname}/logs-storage/ref.log`}),
+  ],
+});
+
+
 const logUser = createLogger({
   level: 'info',
   format: combine(
@@ -135,6 +149,7 @@ if (process.env.NODE_ENV !== 'production') {
   logServer  .add(new transports.Console({ format: combine(format.colorize(),format.simple()) }));
   logAuth    .add(new transports.Console({ format: combine(format.colorize(),format.simple()) }));
   logHelpers .add(new transports.Console({ format: combine(format.colorize(),format.simple()) }));
+  logRef     .add(new transports.Console({ format: combine(format.colorize(),format.simple()) }));
   logUser    .add(new transports.Console({ format: combine(format.colorize(),format.simple()) }));
   logMail    .add(new transports.Console({ format: combine(format.colorize(),format.simple()) }));
   logPdf     .add(new transports.Console({ format: combine(format.colorize(),format.simple()) }));
@@ -144,5 +159,5 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 export {
-  logServer, logAuth, logHelpers, logUser, logMail, logPdf, logUI, logData
+  logServer, logAuth, logHelpers, logRef, logUser, logMail, logPdf, logUI, logData
 };

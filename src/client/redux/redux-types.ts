@@ -1,8 +1,8 @@
-import { uiActionType, userActionType, statsActionType, dataActionType } from './action-types';
+import { uiActionType, userActionType, statsActionType, dataActionType, refBooksActionType } from './action-types';
 import { Message, Errors, ScreenFormats, SelectedDates, DbItem, User, Users, Roles } from '../../types';
 
 
-export type TypeDispatch = Function | uiActionType | dataActionType | userActionType | statsActionType;
+export type TypeDispatch = Function | uiActionType | refBooksActionType | dataActionType | userActionType | statsActionType;
 
 type Payload = string | {};
 
@@ -42,10 +42,20 @@ export interface StateStats {
   badcomDb      : Array<DbItem>; // Badcom 
 };
 
+export interface StateRefBooks {
+  loadingRef     : boolean;
+  loadingUpd     : boolean;
+  
+  newId          : string;  // Созданный Id для нового элемента Справочника
+  
+  roles          : Roles;   // Роли
+  users          : Users;   // Сотрудники
+};
 
 export interface State {
   UI        : StateUI;
   data      : StateData;
   user      : StateUser;
   stats     : StateStats;
+  refbooks  : StateRefBooks;
 };

@@ -1,11 +1,11 @@
 import * as React from 'react';
 // Credentials
-import { noCred, CredName as Cr } from '../../../../utils/credentials';
+import { noCred, CredName as Cr, whoseCred } from '../../../../utils/credentials';
 // Redux
 import { State } from '../../../redux/redux-types';
 import { getLoadingUser, getUser } from '../../../redux/selectors/user';
 import { updateUser, updateAnyUser } from '../../../redux/actions/user';
-import { setErrors } from '../../../redux/actions/ui';
+import { setErrors, showWarning } from '../../../redux/actions/ui';
 import { connect } from 'react-redux';
 // Components
 import Personal from './modules/personal';
@@ -17,20 +17,23 @@ import validateAndSubmit from '../../../../utils/validators/validate-and-submit'
 // Types
 import { User, CardType, Validator } from '../../../../types';
 import { UseGroup } from '../../../utils/hooks/types';
+import { DisplayError } from '../../../../templates/errors/display-errors';
 
 
 
 type Props = {
-  loading?    : boolean;
-  type        : CardType;
-  user?       : User;
-  group       : UseGroup<User>; // Selected User
-  setErrors?  : () => void;
-  updateUser? : (u: User) => void;
+  loading?     : boolean;
+  type         : CardType;
+  user?        : User;
+  creds?       : object;
+  group        : UseGroup<User>; // Selected User
+  setErrors?   : () => void;
+  showWarning? : (m: string) => void;
+  updateUser?  : (u: User) => void;
 };
 
 
-const UserProfile: React.FC<Props> = ({ loading, type, group: G, user, setErrors, updateUser }) => {
+const UserProfile: React.FC<Props> = ({ loading, type, group: G, user, creds, setErrors, showWarning, updateUser }) => {
   if (empty(G.group)) return null;
   
   const handleSubmit = (e?: any, exit?: boolean) => {
@@ -38,13 +41,14 @@ const UserProfile: React.FC<Props> = ({ loading, type, group: G, user, setErrors
     // if (!isChanges(G, storeFlight, G.group, exit)) return null;
 
     // Проверка полномочий
-    const disabled = noCred(Cr.USER_PROFILE_C, user, creds, whose);
-
+    const whose    = whoseCred(G.group.createdAt, user); // В чей объект пытаются получить доступ
+    console.log('whose: ', whose);
+    if (noCred(Cr.USER_PROFILE_C, user, creds, whose)) return showWarning(DisplayError.NO_CREDENTIALS);
 
 
     const func = G.group.id === user.id ? updateUser : updateAnyUser;
 
-    // Валидация данных
+    // Валидация и отправка данных
     validateAndSubmit(Validator.USER_UPDATE, G.group, func, setErrors, G, exit);
   };
 
@@ -65,12 +69,12 @@ const UserProfile: React.FC<Props> = ({ loading, type, group: G, user, setErrors
 };
 
 const mapStateToProps = (state: State) => ({
-  loading: getLoadingUser(state),
-  user: getUser(state)
+  loading : getLoadingUser(state),
+  user    : getUser(state)
 });
 
 const mapActionsToProps = {
-  updateUser, updateAnyUser, setErrors
-}
+  updateUser, updateAnyUser, setErrors, showWarning
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(UserProfile);

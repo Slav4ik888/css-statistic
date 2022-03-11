@@ -1,4 +1,4 @@
-import { objectFieldsToString } from './object-fields-to-string';
+import { objectFieldsToString } from './index';
 import mocks from './mocks';
 
 

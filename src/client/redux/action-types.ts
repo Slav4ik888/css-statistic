@@ -31,6 +31,22 @@ export enum uiActionType {
   CLEAR_MESSAGE       = `CLEAR_MESSAGE`
 };
 
+export enum refBooksActionType {
+  LOADING_REF_ON      = `LOADING_REF_ON`,
+  LOADING_REF_OFF     = `LOADING_REF_OFF`,
+  LOADING_UPD_ON      = `LOADING_UPD_ON`,
+  LOADING_UPD_OFF     = `LOADING_UPD_OFF`,
+  
+  SET_REF_BOOK        = `SET_REF_BOOK`,
+  SET_NEW_ID          = `SET_NEW_ID`,
+  
+  UPDATE_ROLE         = `UPDATE_ROLE`,
+  DELETE_ROLE         = `DELETE_ROLE`,
+  
+  UPDATE_REF_USER     = `UPDATE_REF_USER`,
+  DELETE_REF_USER     = `DELETE_REF_USER`,
+  
+};
 
 export enum statsActionType {
   LOADING_STATS       = `LOADING_STATS`,
