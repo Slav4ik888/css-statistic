@@ -80,8 +80,8 @@ export const addNewElement = (refBookId: RefBookId, companyId?: string) => async
 export const deleteElement = (refBookId: RefBookId, id: string, email?: string) => async (dispatch: any) => {
 
   switch (refBookId) {
-    case RefBookId.ROLES                : return dispatch(deleteRole(id));
-    case RefBookId.USERS                : return dispatch(deleteRefUser({ userId: id, email }));
+    // case RefBookId.ROLES                : return dispatch(deleteRole(id));
+    // case RefBookId.USERS                : return dispatch(deleteRefUser({ userId: id, email }));
     
     default: return console.log(`deleteElement - выбрали не существующий RefBookId`);
   }

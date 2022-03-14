@@ -1,4 +1,5 @@
 import { db } from '../../firebase/admin.js';
+import { res } from '../helpers/index.js';
 import { logHelpers } from '../../libs/logs/index.js';
 import { objectFieldsToString } from '../../../utils/objects/index.js';
 import ERR_TEMP from '../../../templates/errors/template-errors.js';
@@ -36,14 +37,10 @@ export async function loadCollection(ctx, next) {
     const snapshot = await db.collection(colName).get();
     snapshot.forEach((doc) => items.push(doc.data()));
     
-    ctx.status = 200;
-    ctx.body = { items, message: successMessage || `` };
-    
-    logHelpers.info(`${logTemp} success!`);
+    return res(ctx, 200, { items, message: successMessage || `` }, logHelpers, `${logTemp} success!`);
   }
   catch (err) {
     logHelpers.error(`${logTemp} ${objectFieldsToString(err)}`);
-    ctx.status = 500;
-    ctx.body = { general: ERR_TEMP.general };
+    ctx.throw(500, { general: ERR_TEMP.general });
   }
 }

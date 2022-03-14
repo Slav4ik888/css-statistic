@@ -3,7 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import * as u from '../../redux/selectors/user';
 // Components
-import CircularProgress from '../../components/buttons/circular-progress/circular-progress';
+import CircularProgress from '../../components/buttons/circular-progress';
 import RootAuthContainer from './root-auth-container';
 import RootNotAuthContainer from './root-not-auth-container';
 import { State } from '../../redux/redux-types';

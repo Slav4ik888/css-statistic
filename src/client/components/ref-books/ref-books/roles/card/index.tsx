@@ -1,24 +1,23 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { updateRole } from '../../../../../redux/actions/ref-books/roles';
-import { getRoleById } from '../../../../../redux/selectors/ref-books/ref-books';
+import { updateRole } from '../../../../../redux/actions/ref-books';
+import { setErrors } from '../../../../../redux/actions/ui';
+import { getRoleById } from '../../../../../redux/selectors/ref-books';
 import { getUserId } from '../../../../../redux/selectors/user';
-import { setErrors } from '../../../../../redux/actions/ui/ui';
 import { State } from '../../../../../redux/redux-types';
 // MUI Stuff
 import { Box } from '@mui/material';
 // Components
 import Content from './content';
-import Actions from '../../../actions/actions';
+import Actions from '../../../actions';
 // Functions
 import isChanges from '../../../../../utils/check-changes-in-submit';
 import mergeWithTemplate from './merge-with-template';
-import validRoleData from '../../../../../../utils/validators/roles-data/roles-data';
-import validAndSendSubmitData from '../../../../../../utils/validators/submit-data';
 // Types
 import { UseGroup } from '../../../../../utils/hooks/types';
-import { Errors, Role } from '../../../../../../types';
+import { Errors, Role, Validator } from '../../../../../../types';
+import validateAndSubmit from '../../../../../../utils/validators/validate-and-submit';
 
 
 type Props = {
@@ -42,8 +41,9 @@ const CardRole: React.FC<Props> = ({ roleId, storeRole, group: G, userId, setErr
   const handleSubmit = async (e?: any, exit?: boolean) => {
     // Проверка на наличие изменений
     if (!isChanges(G, storeRole, G.group, exit)) return null;
+
     // Валидация данных
-    validAndSendSubmitData(G, exit, validRoleData, G.group, setErrors, updateRole);
+    validateAndSubmit(Validator.ROLE, G.group, updateRole, setErrors, G, true);
   };
   
   React.useEffect(() => {

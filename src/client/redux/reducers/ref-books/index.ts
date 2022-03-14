@@ -1,51 +1,63 @@
 // Functions
+import { getArrWithoutItemByField } from '../../../../utils/arrays/get-arr-without-item-by-field-obj';
 import updateArrByArrByField from '../../../../utils/arrays/update-arr-by-arr-by-field';
 import { updateArrWithItemByField } from '../../../../utils/arrays/update-arr-with-item-by-field';
 import { extend } from '../../../../utils/objects/objects-base';
-import { sortingArr } from '../../../../utils/sorting/sorting-arr';
-import { sortingOrderByArrIdx } from '../../../../utils/sorting/sorting-order-by-arr-idx';
+import { setActiveInArr } from './utils';
 // Types
-import { dataActionType as Type } from '../../action-types';
+import { refBooksActionType as Type } from '../../action-types';
 import { initialState } from './initial-state';
 
 
 
 export default function (state = initialState, action: { type: Type, payload: any }) {
   switch (action.type) {
-    case Type.LOADING_DATA:     return extend(state, { loading: true });
-    case Type.LOADING_DATA_OFF: return extend(state, { loading: false });
+    case Type.LOADING_REF_ON:  return extend(state, { loadingRef: true });
+    case Type.LOADING_REF_OFF: return extend(state, { loadingRef: false });
+    case Type.LOADING_UPD_ON:  return extend(state, { loadingUpd: true });
+    case Type.LOADING_UPD_OFF: return extend(state, { loadingUpd: false });
     
-    case Type.SET_ROLES: return extend(state, {
-      roles   : action.payload,
-      loading : false
-    });
-    
-    case Type.ADD_ROLE: return extend(state, {
-      roles   : [...sortingArr([...state.roles, action.payload], `id`)],
-      loading : false
-    });
-
-    case Type.UPDATE_ROLE: return extend(state, {
-      roles   : updateArrWithItemByField(state.roles, `id`, action.payload),
-      loadind : false
-    });
-
-    case Type.ADD_USER: return extend(state, {
-      roles   : updateArrByArrByField(state.roles, `id`, action.payload),
-      loading : false
-    });
-
-    case Type.UPDATE_USER: return extend(state, {
-      users   : updateArrWithItemByField(state.users, `id`, action.payload),
-      loadind : false
-    });
-
-    case Type.SET_USERS:
+    // Сохраняем загруженный Справочник
+    case Type.SET_REF_BOOK:
       return extend(state, {
-        loading : false,
-        users   : action.payload
+        loadingRef: false,
+        [action.payload.id]: action.payload.refBook
       });
     
+    
+    // Созданный Id для нового элемента Справочника
+    case Type.SET_NEW_ID:
+    
+      
+    // ROLES
+    case Type.UPDATE_ROLE:
+      return extend(state, {
+        loadingUpd: false,
+        roles: updateArrWithItemByField(state.roles, `id`, action.payload)
+      });
+      
+    
+    case Type.DELETE_ROLE:
+      return extend(state, {
+        loadingUpd: false,
+        roles: getArrWithoutItemByField(state.roles, `id`, action.payload)
+      });
+    
+    // USERS
+    case Type.UPDATE_REF_USER:
+      return extend(state, {
+        loadingUpd: false,
+        users: updateArrWithItemByField(state.users, `id`, action.payload)
+      });
+      
+    
+    case Type.DELETE_REF_USER:
+      return extend(state, {
+        loadingUpd: false,
+        users: setActiveInArr(state.users, action.payload)
+      });
+          
+
     default: return state;
   }
 };

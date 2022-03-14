@@ -4,12 +4,7 @@ import { connect } from 'react-redux';
 import { getLoadingRef } from '../../../../redux/selectors/ref-books';
 import { State } from '../../../../redux/redux-types';
 // MUI Stuff
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
+import { Box, MenuItem, Divider, ListItemText, ListItemIcon, Tooltip } from '@mui/material';
 // Icons
 import RoleIcon from '@mui/icons-material/Group';
 import UserIcon from '@mui/icons-material/Person';

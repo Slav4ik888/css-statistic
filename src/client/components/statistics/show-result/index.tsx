@@ -6,7 +6,7 @@ import { getStatsLoading, getDBs, getSelectedDates } from '../../../redux/select
 // MUI Stuff
 import { Paper } from '@mui/material';
 // Components
-import CircularProgress from '../../buttons/circular-progress/circular-progress';
+import CircularProgress from '../../buttons/circular-progress';
 import RefreshBtn from './rerfresh-btn';
 import TableCnt from './table-cnt';
 // Functions

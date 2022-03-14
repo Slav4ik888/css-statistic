@@ -29,6 +29,11 @@ export const isNoBool  = (bool) => !isBool(bool);
 export const isString = (str) => typeof str === `string`;
 export const isNoString = (str) => !isString(str);
 
+export const isObject = (obj) => obj && typeof obj === `object`;
+export const isNoObject = (obj) => !isObject(obj);
+
+
+
 // PHONE
 export const getDigit = (str) => str.replace(/\D/g, ``);
 
@@ -45,9 +50,11 @@ export const isInvalidPhone = (str) => !isValidPhone(str);
 
 // Возвращает true если строка допустимого значения  // test+++
 export const isValidMaxL = (maxLength, str) => {
-  if (str === undefined) return false;
+  console.log(`LENGTH: `, str?.length);
+  
+  if (!str) return true;
   if (isEmpty(str)) return true;
-  if (typeof str !== `string`)  return false;
+  // if (typeof str !== `string`)  return false;
   if (str?.length <= maxLength) return true;
 
   return false // console.log(`Нет совпадений по условиям...`);

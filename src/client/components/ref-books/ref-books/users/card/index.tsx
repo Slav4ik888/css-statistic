@@ -3,13 +3,13 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { addRefUser, updateRefUser } from '../../../../../redux/actions/ref-books/users';
 import { getUserById } from '../../../../../redux/selectors/ref-books';
-import { setErrors } from '../../../../../redux/actions/ui/ui';
+import { setErrors } from '../../../../../redux/actions/ui';
 import { State } from '../../../../../redux/redux-types';
 // MUI Stuff
 import Box from '@mui/material/Box';
 // Components
 import Content from './content';
-import Actions from '../../../actions/actions';
+import Actions from '../../../actions';
 // Functions
 import mergeWithTemplate from '../../../../user/profile/merge-with-template';
 import validUserData from '../../../../../../utils/validators/user-data/user-data';

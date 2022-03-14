@@ -23,6 +23,7 @@ const mocks: Mocks = [
   [{ err_t: ERR_TEMP.MustBeLess,         message: `MustBeLess`, value: 30 }, `Поле "MustBeLess" должно быть меньше 30 символов.`],
   [{ err_t: ERR_TEMP.MustBeBool,         message: `MustBeBool` }, `Не корректный тип данных. Поле "MustBeBool" должно быть "да" или "нет".`],
   [{ err_t: ERR_TEMP.MustBeString,       message: `MustBeString` }, `Не корректный тип данных. Поле "MustBeString" должно быть строкой.`],
+  [{ err_t: ERR_TEMP.MustBeObject,       message: `MustBeObject` }, `Не корректный тип данных. Поле "MustBeObject" должно быть объектом.`],
 
   [{ err_t: ERR_TEMP.MustBeOneOfSeveral, message: `Foo-Baee`}, `Поле "Foo-Baee" не является одним из допустимых значений.`],
   

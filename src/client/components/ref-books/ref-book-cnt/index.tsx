@@ -2,28 +2,28 @@ import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
 import { loadRefBooks, addNewElement } from '../../../redux/actions/ref-books/ref-books';
-import { getRefBookById } from '../../../redux/selectors/ref-books/ref-books';
+import { getRefBookById } from '../../../redux/selectors/ref-books';
 import { State } from '../../../redux/redux-types';
 // MUI Stuff
 import Box from '@mui/material/Box';
 // Components
 import RefSearch from '../ref-search/ref-search';
-import RefBookList from './ref-book-list/ref-book-list';
+import RefBookList from './ref-book-list';
 import AddBtn from './add-btn/add-btn';
-import DialogInfo from '../../dialogs/dialog-info/dialog-info';
+import DialogInfo from '../../dialogs/dialog-info';
 import CardUser from '../ref-books/users/card';
 // Functions
 import { getSearchType } from '../utils/get-search-type';
 import { useGroup, useValue } from '../../../utils/hooks';
 // Types
-import { RefBookId, User, UserCardType } from '../../../../types';
+import { RefBookId, Strings, User, CardType } from '../../../../types';
 
 
 
 type Props = {
   refBookId      : RefBookId; // Id Справочника
   storeRefBook?  : Array<any>;
-  loadRefBooks?  : (refBookIds: Array<string>) => void;
+  loadRefBooks?  : (refBookIds: Strings) => void;
   addNewElement? : (refBookId: string) => void;
 }
 
@@ -33,29 +33,17 @@ const RefBookCnt: React.FC<Props> = ({ refBookId, storeRefBook, loadRefBooks, ad
   React.useEffect(() => {
     if (storeRefBook !== null) return console.log(`Справочник уже загружен`);
 
-    let refBooksIds = [];
-
-    if (refBookId === `companies` || refBookId === `contacts` || refBookId === `addresses`) refBooksIds = [`companies`, `contacts`, `addresses`];
-    else if (refBookId === `users` || refBookId === `roles`) refBooksIds = [`users`, `roles`]
-    else if (refBookId === `transports` || refBookId === `drivers`) refBooksIds = [`transports`, `drivers`]
-    else refBooksIds.push(refBookId);
-
+    const refBooksIds = [`users`, `roles`];
     console.log(`Загружаем справочники: `, refBooksIds);
-    // refBooksIds.forEach((id) => loadRefBook(id));
     loadRefBooks(refBooksIds);
-
   }, [refBookId]);
   
 
-  // Открытие карточки для редактирования
-  const group = useGroup();
-  // Выбранная карточка
-  const selected = useValue(``);
-
-  // Открытие карточки нового элемента
-  const groupAdd = useGroup();
-  // Открытие dialog AddNewUser при добавлении нового пользователя
-  const hookNewUser = useGroup<User>();
+  const
+    group       = useGroup(),       // Открытие карточки для редактирования
+    selected    = useValue(``),     // Выбранная карточка
+    groupAdd    = useGroup(),       // Открытие карточки нового элемента
+    hookNewUser = useGroup<User>(); // Открытие dialog AddNewUser при добавлении нового пользователя
 
 
   const handleSearch = (checkedId?: string, add?: boolean) => {
@@ -65,9 +53,7 @@ const RefBookCnt: React.FC<Props> = ({ refBookId, storeRefBook, loadRefBooks, ad
       group.setOpen();
     }
     else if (add) {
-      if (refBookId === `users`) {
-        hookNewUser.setOpen();
-      }
+      if (refBookId === RefBookId.USERS) hookNewUser.setOpen();
       else {
         addNewElement(refBookId); // Создаём новый Элемент в Справочнике
         groupAdd.setOpen();
@@ -79,25 +65,25 @@ const RefBookCnt: React.FC<Props> = ({ refBookId, storeRefBook, loadRefBooks, ad
   return (
     <Box sx={{ display: `flex`, flexDirection: `column`, pt: 2 }}>
       <RefSearch
-        type={getSearchType(refBookId)}
-        items={storeRefBook}
-        onSelect={handleSearch}
+        type     = {getSearchType(refBookId)}
+        items    = {storeRefBook}
+        onSelect = {handleSearch}
       />
 
       <RefBookList
-        group={group}
-        refBookId={refBookId}
-        selected={selected}
+        group     = {group}
+        refBookId = {refBookId}
+        selected  = {selected}
       />
 
       <AddBtn group={groupAdd} refBookId={refBookId} />
 
       
       <DialogInfo
-        hookOpen={hookNewUser}
-        onClose={hookNewUser.setClose}
-        title={`Добавление нового пользователя`}
-        children={<CardUser type={UserCardType.ADD} group={hookNewUser} />}
+        hookOpen = {hookNewUser}
+        onClose  = {hookNewUser.setClose}
+        title    = {`Добавление нового пользователя`}
+        children = {<CardUser type={CardType.ADD} group={hookNewUser} />}
       />
       
     </Box>

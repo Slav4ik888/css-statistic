@@ -4,7 +4,7 @@ import { Button, Divider, Box } from '@mui/material';
 // Components
 import FlexDivider from '../flex-divider';
 import DialogConfirm from '../../dialogs/dialog-confirm';
-import CancelSubmitBtn from '../../buttons/cancel-submit-btn/cancel-submit-btn';
+import CancelSubmitBtn from '../../buttons/cancel-submit-btn';
 // Functions
 import { useOpen } from '../../../utils/hooks/hooks';
 // Types

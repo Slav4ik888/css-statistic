@@ -26,21 +26,21 @@ export interface ResLoadRefbooksByList {
 
 
 // USERS
-export interface ResUpdateUser {
+export interface ResRefUpdateUser {
   data: {
     message: string
   }
 };
 
 
-export interface ResAddUser   { data: { user  : User } };
-export interface ResLoadUsers { data: { users: Users } };
+export interface ResRefAddUser   { data: { user  : User } };
+export interface ResRefLoadUsers { data: { users: Users } };
 
 
 // ROLES
-export interface ResAddRole   { data: { role  : Role } };
+export interface ResRefAddRole   { data: { role  : Role } };
 
-export interface ResUpdateRole   {
+export interface ResRefUpdateRole   {
   data: {
     role    : Role
     message : string;

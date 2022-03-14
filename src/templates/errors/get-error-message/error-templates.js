@@ -11,6 +11,7 @@ export const ERR_TEMP = {
   MustBeGreater         : `mustBeGreater`,
   MustBeBool            : `mustBeBool`,
   MustBeString          : `mustBeString`,
+  MustBeObject          : `mustBeObject`,
 
   MustBePermissions     : `mustBePermissions`,
 

@@ -8,13 +8,11 @@ import RefBookItem from './ref-book-item';
 // Functions
 import { getLabelById } from '../../../ref-books/utils/get-label-by-id';
 import { useOpen } from '../../../../utils/hooks/hooks';
-// Consts
-import { ReferenceBooksList } from '../../../../consts/reference-books-list';
-// Types
-import { RefBookId } from '../../../../../types';
-// Styles
-import { useTheme } from '@emotion/react';
 import { useGroup } from '../../../../utils/hooks';
+// Types & Consts & Styles
+import { ReferenceBooksList } from '../../../../consts/reference-books-list';
+import { RefBookId } from '../../../../../types';
+import { useTheme } from '@emotion/react';
 
 
 const useStyles = (theme) => ({
@@ -51,7 +49,6 @@ const useStyles = (theme) => ({
 });
 
 
-
 type Props = {
   open     : boolean;
   anchorEl : Element;
@@ -63,22 +60,23 @@ type Props = {
 
 // Меню со Справочниками для Navbar
 const RefBookMenu: React.FC<Props> = ({ open, onClose, anchorEl, menuId }) => {
-  const sx = useStyles(useTheme());
-  const hookOpen = useOpen(false);
-
-  const refBook = useGroup<RefBookId>();
+  const
+    sx       = useStyles(useTheme()),
+    hookOpen = useOpen(false),
+    refBook  = useGroup<RefBookId>();
 
   // React.MouseEvent<HTMLElement>
   const handleOpen = (e: any) => {
     const target = e.target.closest(`li`);
     refBook.setGroup(target.id);
     hookOpen.setOpen();
-  }
+  };
 
   const handleClose = () => {
     refBook.setGroup(null);
     hookOpen.setClose();
-  }
+  };
+
   
   return (
     <>
@@ -107,6 +105,5 @@ const RefBookMenu: React.FC<Props> = ({ open, onClose, anchorEl, menuId }) => {
     </>
   )
 };
-
 
 export default RefBookMenu;

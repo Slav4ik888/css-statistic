@@ -23,4 +23,6 @@ export interface Errors {
   type?              : string;
   dateFrom?          : string;
   dateTo?            : string;
+
+  creds?             : string;
 };

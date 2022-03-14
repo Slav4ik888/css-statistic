@@ -8,7 +8,7 @@ import { State } from '../../../../../../redux/redux-types';
 import { Button, DialogContent, DialogActions, Typography, TextField } from '@mui/material';
 // Components
 import DialogInfo from '../../../../../dialogs/dialog-info';
-import CircularProgress from '../../../../../buttons/circular-progress/circular-progress';
+import CircularProgress from '../../../../../buttons/circular-progress';
 // Functions
 import validEmail from '../../../../../../../utils/validators/email/email';
 // Types

@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 // Components
-import CircularProgress from '../../../buttons/circular-progress/circular-progress';
+import CircularProgress from '../../../buttons/circular-progress';
 // Types
 import { Errors } from '../../../../../types';
 // Styles

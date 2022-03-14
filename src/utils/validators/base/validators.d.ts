@@ -12,6 +12,9 @@ export function isNoBool(bool: boolean): boolean;
 export function isString(str: string): boolean;
 export function isNoString(str: string): boolean;
 
+export function isObject(obj: object): boolean;
+export function isNoObject(obj: object): boolean;
+
 // Возвращает true если строка допустимого значения
 export function isValidMaxL(maxLength: number, str: string): boolean;
 
