@@ -59,7 +59,7 @@ type Props = {
 
 
 // Меню со Справочниками для Navbar
-const RefBookMenu: React.FC<Props> = ({ open, onClose, anchorEl, menuId }) => {
+const RefBookMenu: React.FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
   const
     sx       = useStyles(useTheme()),
     hookOpen = useOpen(false),

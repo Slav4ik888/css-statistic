@@ -4,14 +4,12 @@ import { connect } from 'react-redux';
 import { getLoadingRef, getRefBookById } from '../../../../redux/selectors/ref-books';
 import { State } from '../../../../redux/redux-types';
 // MUI Stuff
-import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 // Components
 import CircularProgress from '../../../buttons/circular-progress';
 import DialogInfo from '../../../dialogs/dialog-info';
 import ListTableSwitch from '../list-table-switch';
-import CardSwitch from '../card-switch/card-switch';
+import CardSwitch from '../card-switch';
 // Functions
 import { getCardTitleById } from '../../utils/get-card-title-by-id';
 // Types
@@ -56,23 +54,20 @@ const RefBookList: React.FC<Props> = ({ loadingRef, group, selected, storeRefBoo
       <ListTableSwitch refBookId={refBookId} onCheck={handleCheck} />
       
       <DialogInfo
-        hookOpen={group}
-        onClose={handleClose}
-        title={getCardTitleById(refBookId)}
-        children={<CardSwitch
-          refBookId={refBookId}
-          checkedId={selected.value}
-          group={group}
-        />}
-      />
+        title    = {getCardTitleById(refBookId)}
+        hookOpen = {group}
+        onClose  = {handleClose}
+      >
+        <CardSwitch refBookId={refBookId} checkedId={selected.value} group={group} />
+      </DialogInfo>
     </>
   );
 };
 
 
 const mapStateToProps = (state: State, props: Props) => ({
-  loadingRef: getLoadingRef(state),
-  storeRefBook: getRefBookById(state, props),
+  loadingRef   : getLoadingRef(state),
+  storeRefBook : getRefBookById(state, props),
 });
 
 export default connect(mapStateToProps)(RefBookList);

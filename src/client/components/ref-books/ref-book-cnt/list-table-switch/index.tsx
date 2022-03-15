@@ -1,7 +1,7 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { getRefBookById } from '../../../../redux/selectors/ref-books/ref-books';
+import { getRefBookById } from '../../../../redux/selectors/ref-books';
 import { State } from '../../../../redux/redux-types';
 // Components
 import Table from '../../../table/table';

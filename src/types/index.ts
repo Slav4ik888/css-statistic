@@ -4,5 +4,6 @@ export * from './credentials';
 export * from './person';
 export * from './ref-book';
 export * from './statictics';
+export * from './tables';
 export * from './testing';
 export * from "./ui";
