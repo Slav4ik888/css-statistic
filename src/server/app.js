@@ -6,7 +6,7 @@ import middleware from './middleware/index.js';
 // Functions
 import { logServer } from './libs/logs/index.js';
 // Helpers
-import { objectFieldsToString } from '../utils/objects/object-fields-to-string/object-fields-to-string.js';
+import { objectFieldsToString } from '../utils/objects/object-fields-to-string/index.js';
 
 console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
 

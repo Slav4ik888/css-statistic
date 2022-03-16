@@ -1,7 +1,7 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { getRoles } from '../../../../../../redux/selectors/data';
+import { getRoles } from '../../../../../../redux/selectors/ref-books';
 import { State } from '../../../../../../redux/redux-types';
 // Components
 import Text from '../../../../../containers/select-text';

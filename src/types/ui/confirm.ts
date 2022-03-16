@@ -10,8 +10,8 @@ export enum ConfirmType {
 };
 
 export enum ConfirmElemType {
-  CARGO                = `груз`,
-  PHONE                = `номер`,
-  POINT                = `пункт`,
-  CONTACT_FROM_COMPANY = `контакт от компании`
-}
+  REF_BOOKS = `справочник`,
+  CARGO     = `груз`,
+  PHONE     = `номер`,
+  POINT     = `пункт`
+};

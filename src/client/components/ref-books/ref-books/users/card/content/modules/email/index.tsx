@@ -2,19 +2,19 @@ import * as React from 'react';
 // Components
 import TextField from '../../../../../../../containers/elements/textfield';
 // Types
-import { User, UserCardType } from '../../../../../../../../../types';
+import { User, CardType } from '../../../../../../../../../types';
 import { UseGroup } from '../../../../../../../../utils/hooks/types';
 
 
 
 type Props = {
   group   : UseGroup<User>;
-  type    : UserCardType;
+  type    : CardType;
 };
 
 const EmailCnt: React.FC<Props> = ({ group, type }) => {
 
-  const disabled = type === UserCardType.EDIT;
+  const disabled = type === CardType.EDIT;
 
   return (
     <>

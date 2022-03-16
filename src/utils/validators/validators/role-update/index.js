@@ -2,7 +2,6 @@ import * as u from '../../base/validators.js';
 import { ERR_TEMP } from '../../../../templates/errors/get-error-message/error-templates.js';
 import getErrorMessage from '../../../../templates/errors/get-error-message/index.js';
 import getValidResult from '../../base/get-valid-result/index.js';
-import { isNoOneOfSeveral } from '../../is-one-of-several/index.js';
 
 
 export function validator(data) {

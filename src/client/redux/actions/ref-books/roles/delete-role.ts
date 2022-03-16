@@ -1,7 +1,6 @@
 import api from "../../../api";
 import { Dispatch } from "../../../redux-types";
 import { refBooksActionType } from "../../../action-types";
-import { Role } from "../../../../../types";
 import { handleError } from "../../universal/handle-error";
 import { successMessage } from "../../ui";
 

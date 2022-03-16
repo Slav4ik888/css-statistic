@@ -1,7 +1,7 @@
 import { db } from '../../../firebase/admin.js';
 import { logUser } from '../../../libs/logs/index.js';
 // Helpers
-import { objectFieldsToString } from '../../../../utils/objects/object-fields-to-string/object-fields-to-string.js';
+import { objectFieldsToString } from '../../../../utils/objects/object-fields-to-string/index.js';
 // Consts
 import ERR_TEMP from '../../../../templates/errors/template-errors.js';
 

@@ -1,12 +1,12 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { getRoleByItem } from '../../../../../redux/selectors/ref-books/ref-books';
+import { getRoleByItem } from '../../../../../redux/selectors/ref-books';
 import { State } from '../../../../../redux/redux-types';
 // MUI Stuff
 import Box from '@mui/material/Box';
 // Components
-import Cell from '../../../../table/cell/cell';
+import Cell from '../../../../tables/refbooks-table/cell';
 // Functions
 import { getFio } from '../../../utils/get-fio';
 // Types

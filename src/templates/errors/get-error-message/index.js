@@ -5,6 +5,10 @@ export default function getErrorMessage(template, message, value) {
   const label = message ? `"${message}" ` : ``;
 
   switch (template) {
+    case ERR_TEMP.InvalidData:           return `Не корректные данные в поле ${label}.`;
+    case ERR_TEMP.InvalidEmail:          return `Не корректные email.`;
+    case ERR_TEMP.InvalidConfirm:        return `Введённые символы в поле "Подтверждения пароля" отличаются от самого пароля.`;
+    
     case ERR_TEMP.NotBeError:            return `Поле ${label}не должно быть ошибкой.`;
     case ERR_TEMP.MustBeNumber:          return `Поле ${label}должно быть числом.`;
     case ERR_TEMP.MustBeOneOfSeveral:    return `Поле ${label}не является одним из допустимых значений.`;

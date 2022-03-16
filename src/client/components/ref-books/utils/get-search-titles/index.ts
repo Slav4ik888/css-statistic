@@ -1,8 +1,8 @@
-import { SearchType, Address, Contact, Phone, Transport, Role, Driver, Company, Person, User, CargoBasic, CustomerOrder } from "../../../../../types";
-import getDigit from "../../../../../utils/helpers/get-digits/get-digits";
-import { getTransportNumber } from "../../../../utils/helpers/get-transport-number";
+import { SearchType, Phones, Role, Person, User } from "../../../../../types";
+import getDigit from "../../../../../utils/helpers/get-digits";
 
-const getPhones = (phones: Array<Phone>) => {
+
+const getPhones = (phones: Phones) => {
   let strPhones = ``;
 
   if (phones?.length) {
@@ -41,64 +41,8 @@ const getUserTitle = (obj: User) => {
   return title;
 };
 
-const getDriverTitle = (obj: Driver) => {
-  let title = getPerson(obj?.person);
-  title += getPhones(obj.phones);
 
-  if (obj?.description) title += obj.description + ", ";
 
-  return title;
-};
-
-const getTransportTitle = (obj: Transport) => {
-  let title = ``;
-
-  if (obj?.number) title += getTransportNumber(obj.number) + ", ";
-  if (obj?.type) title += obj.type + ", ";
-  if (obj?.brand) title += obj.brand + ", ";
-  if (obj?.model) title += obj.model + ", ";
-  if (obj?.description) title += obj.description + ", ";
-
-  return title;
-};
-
-const getCompanyTitle = (obj: Company) => {
-  let title = ``;
-  if (obj?.label) title += obj.label + ", ";
-  if (obj?.ITN) title += obj.ITN + ", ";
-  if (obj?.description) title += obj.description + ", ";
-
-  return title;
-};
-
-const getAddressTitle = (obj: Address) => {
-  let title = ``;
-  
-  if (obj?.region) title += obj.region + ", ";
-  if (obj?.city) title += obj.city + ", ";
-  if (obj?.address) title += obj.address + ", ";
-  if (obj?.description) title += obj.description + ", ";
-  if (obj?.id) title += obj.id.slice(0, 5) + ", ";
-
-  return title;
-};
-
-const getContactTitle = (obj: Contact) => {
-  let title = getPerson(obj?.person);
-  title += getPhones(obj.phones);
-
-  if (obj?.position) title += obj.position + ", ";
-  if (obj?.description) title += obj.description + ", ";
-
-  return title;
-};
-
-const getCargoTitle = (obj: CargoBasic) => {
-  let title = obj.label + ", ";
-  if (obj?.id) title += obj.id.slice(0, 3) + ", ";
-
-  return title;
-};
 
 
 const getTitle = (type: SearchType, obj: any) => {
@@ -107,20 +51,6 @@ const getTitle = (type: SearchType, obj: any) => {
   switch (type) {
     case SearchType.ROLES              : title = getRoleTitle(obj);      break;
     case SearchType.USERS              : title = getUserTitle(obj);      break;
-    case SearchType.DRIVERS            : title = getDriverTitle(obj);    break;
-    case SearchType.TRANSPORTS         : title = getTransportTitle(obj); break;
-    
-    case SearchType.COMPANY            :
-    case SearchType.CARRIER            :
-    case SearchType.PAYER              : title = getCompanyTitle(obj);   break;
-
-    case SearchType.ADDRESS            :
-    case SearchType.ADDRESS_IN_COMPANY : title = getAddressTitle(obj);   break;
-
-    case SearchType.CONTACT            :
-    case SearchType.CONTACT_IN_COMPANY : title = getContactTitle(obj);   break;
-
-    case SearchType.CARGOS             : title = getCargoTitle(obj);     break;
   }
 
   // Удаляем последнюю запятую

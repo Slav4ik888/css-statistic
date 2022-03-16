@@ -16,6 +16,10 @@ type Mocks = Array<Mock>;
 
 const mocks: Mocks = [
   [{ err_t: null,                        message: `Foo-Baee`}, ``],
+  [{ err_t: ERR_TEMP.InvalidData,        message: `Data`},     `Не корректные данные в поле "Data" .`],
+  [{ err_t: ERR_TEMP.InvalidEmail,       message: `Email`},    `Не корректные email.`],
+  [{ err_t: ERR_TEMP.InvalidConfirm,     message: `Confirm`},  `Введённые символы в поле "Подтверждения пароля" отличаются от самого пароля.`],
+  
   [{ err_t: ERR_TEMP.NotBeError,         message: ``},         `Поле не должно быть ошибкой.`],
   [{ err_t: ERR_TEMP.NotBeError,         message: `Foo-Baee`}, `Поле "Foo-Baee" не должно быть ошибкой.`],
   [{ err_t: ERR_TEMP.MustBeNumber,       message: `Yee`},      `Поле "Yee" должно быть числом.`],

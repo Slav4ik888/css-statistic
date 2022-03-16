@@ -12,10 +12,9 @@ import CancelSubmitBtn from '../../buttons/cancel-submit-btn';
 // Functions
 import { useOpen } from '../../../utils/hooks/hooks';
 import { getConfirmTitleById } from '../utils/get-confirm-title-by-id';
-// Types
+// Types & Styles
 import { UseOpen } from '../../../utils/hooks/types';
 import { ConfirmType } from '../../../../types';
-// Styles
 import { FlexDirection } from '../../../utils/styles';
 import { useTheme } from '@emotion/react';
 
@@ -50,7 +49,7 @@ type Props = {
   hookOpen         : UseOpen; // Чтобы была возможность закрыть карточку при удалении
   deleteElement?   : (refBookId: string, id: string, email?: string) => void;
   // onDel?           : () => void; // Удаление для Перевозчика
-  onSubmit         : () => void;
+  onSubmit         : (e: any, exit?: boolean) => void;
 };
 
 

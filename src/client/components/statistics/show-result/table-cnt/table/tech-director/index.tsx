@@ -2,9 +2,9 @@ import * as React from 'react';
 // MUI Stuff
 import Box from '@mui/material/Box';
 // Components
-import Title from '../../../../../tables/title';
-import Head from '../../../../../tables/head';
-import Body from '../../../../../tables/body';
+import Title from '../../../../../tables/statistic/title';
+import Head from '../../../../../tables/statistic/head';
+import Body from '../../../../../tables/statistic/body';
 // Functions
 import getTableDataTotalTechDirector from './get-total-tech-director';
 // Types

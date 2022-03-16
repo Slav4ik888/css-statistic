@@ -10,10 +10,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 // Components
 import CircularProgress from '../../../buttons/circular-progress';
-// Types
+// Types & Styles
 import { Errors } from '../../../../../types';
-// Styles
-import { FlexDirection } from '../../../../utils/styles';
 import { useTheme } from '@emotion/react';
 
 

@@ -1,5 +1,6 @@
 export enum ERR_TEMP {
   InvalidData           = `invalidData`,
+  InvalidEmail          = `invalidEmail`,
   InvalidConfirm        = `invalidConfirm`,
   
   NotBeError            = `notBeError`,

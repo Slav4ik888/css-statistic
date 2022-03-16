@@ -1,4 +1,4 @@
-import { RefBookType, RefBookId } from '../../../types';
+import { RefBookType, RefBookId } from '../../../types/index.ts';
 
 
 export const ReferenceBooksList = [

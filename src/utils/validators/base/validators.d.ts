@@ -2,6 +2,7 @@ import { UserLoginData, Role, Validation } from '../../../types';
 
 
 export function isEmail(email: string): boolean;
+export function isNotEmail(email: string): boolean;
 
 export function isEmpty(str: string): boolean;
 export function isNoEmpty(str: string): boolean;

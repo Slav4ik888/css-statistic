@@ -1,4 +1,4 @@
-import getDigit from "../../../../../utils/helpers/get-digits/get-digits";
+import getDigit from "../../../../../utils/helpers/get-digits";
 
 
 export const getPrepearedPhone = (phone: string) => {

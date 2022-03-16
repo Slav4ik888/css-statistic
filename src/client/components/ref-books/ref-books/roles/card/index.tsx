@@ -14,10 +14,10 @@ import Actions from '../../../actions';
 // Functions
 import isChanges from '../../../../../utils/check-changes-in-submit';
 import mergeWithTemplate from './merge-with-template';
+import validateAndSubmit from '../../../../../../utils/validators/validate-and-submit';
 // Types
 import { UseGroup } from '../../../../../utils/hooks/types';
 import { Errors, Role, Validator } from '../../../../../../types';
-import validateAndSubmit from '../../../../../../utils/validators/validate-and-submit';
 
 
 type Props = {
@@ -43,7 +43,7 @@ const CardRole: React.FC<Props> = ({ roleId, storeRole, group: G, userId, setErr
     if (!isChanges(G, storeRole, G.group, exit)) return null;
 
     // Валидация данных
-    validateAndSubmit(Validator.ROLE, G.group, updateRole, setErrors, G, true);
+    validateAndSubmit(Validator.ROLE_UPDATE, G.group, updateRole, setErrors, G, true);
   };
   
   React.useEffect(() => {
@@ -67,8 +67,8 @@ const CardRole: React.FC<Props> = ({ roleId, storeRole, group: G, userId, setErr
 };
 
 const mapStateToProps = (state: State, props: Props) => ({
-  storeRole: getRoleById(state, props),
-  userId: getUserId(state)
+  storeRole : getRoleById(state, props),
+  userId    : getUserId(state)
 });
 
 const mapActionsToProps = {

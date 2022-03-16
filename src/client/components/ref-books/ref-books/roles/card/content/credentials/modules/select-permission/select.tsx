@@ -1,10 +1,8 @@
 import * as React from 'react';
 // MUI Stuff
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { MenuItem, FormControl, Select, SelectChangeEvent } from '@mui/material';
 // Functions
-import { arrFromObj } from '../../../../../../../../../../utils/objects/objects';
+import { arrFromObj } from '../../../../../../../../../../utils/objects';
 import changeGroup from '../../../../../../../../../utils/hooks/change-group';
 import getValueByScheme from '../../../../../../../../../utils/hooks/get-value-by-scheme';
 // Types

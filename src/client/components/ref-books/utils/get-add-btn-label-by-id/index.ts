@@ -1,7 +1,8 @@
+import { RefBookId } from "../../../../../types";
 
-export const getAddBtnLabelById = (refBookId: string) => {
+export const getAddBtnLabelById = (refBookId: RefBookId) => {
   switch (refBookId) {
-    case 'addresses': return `новый адрес`;
-    case 'contacts' : return `новый контакт`;
+    case RefBookId.USERS: return `нового пользователя`;
+    case RefBookId.ROLES: return `новую роль`;
   }
 }

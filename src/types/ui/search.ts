@@ -1,3 +1,9 @@
+export enum SearchType {
+  ROLES     = "Роли",
+  USERS     = "Пользователи",
+  NO_SELECT = "Не выбран"
+};
+
 export interface SearchOptionType {
   id          : string;
   title       : string;

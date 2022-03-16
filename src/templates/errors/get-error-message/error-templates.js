@@ -1,6 +1,7 @@
 // !!! Dublicate for Server side
 export const ERR_TEMP = {
   InvalidData           : `invalidData`,
+  InvalidEmail          : `invalidEmail`,
   InvalidConfirm        : `invalidConfirm`,
   
   NotBeError            : `notBeError`,

@@ -1,4 +1,4 @@
-import { Person, RoleUser, RoleType, Role } from "../../../../../types";
+import { Role } from "../../../../../types";
 import { Mocks } from "./types";
 
 const role = {

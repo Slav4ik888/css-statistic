@@ -2,14 +2,13 @@ import * as React from 'react';
 // Components
 import { TextField } from '../../../containers/elements';
 // Types
-import { Contact, Driver, DriverCarrier, User } from '../../../../../types';
+import { User } from '../../../../../types';
 import { UseGroup } from '../../../../utils/hooks/types';
 
 
 type Props = {
-  group   : UseGroup<Driver | DriverCarrier | Contact | User>;
+  group: UseGroup<User>;
 };
-
 
 const PersonCnt: React.FC<Props> = ({ group: G }) => {
 

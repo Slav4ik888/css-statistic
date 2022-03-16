@@ -1,16 +1,16 @@
 import * as React from 'react';
 // Components
 import Personal from './modules/personal';
-import Role from './modules/role/role';
+import Role from './modules/role';
 // Functions
-import { empty } from '../../../../../../../utils/objects/objects';
+import { empty } from '../../../../../../../utils/objects';
 // Types
-import { User, UserCardType } from '../../../../../../../types';
+import { User, CardType } from '../../../../../../../types';
 import { UseGroup } from '../../../../../../utils/hooks/types';
 
 
 type Props = {
-  type  : UserCardType;
+  type  : CardType;
   group : UseGroup<User>;
 };
 

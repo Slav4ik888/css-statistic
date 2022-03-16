@@ -1,6 +1,6 @@
 import * as React from 'react';
 // Components
-import CardBlock from '../../../../../../containers/card/block';
+import CardBlock from '../../../../../../containers/card-block';
 import CredentialsHeader from './header';
 import CredentialsList from './list';
 // Types

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { getRefBookById } from '../../../../redux/selectors/ref-books';
 import { State } from '../../../../redux/redux-types';
 // Components
-import Table from '../../../table/table';
+import Table from '../../../tables/refbooks-table';
 // Functions
-import { getTableTypeByRefBookId } from '../../utils/get-table-type-by-ref-book-id';
-import { getTableDataByRefBookId } from '../../../table/utils/get-table-data-by-ref-book-id';
+import { getTableTypeByRefBookId } from '../../../tables/refbooks-table/utils/get-table-type-by-ref-book-id';
+import { getTableDataByRefBookId } from '../../../tables/refbooks-table/utils/get-table-data-by-ref-book-id';
 
 
 type Props = {

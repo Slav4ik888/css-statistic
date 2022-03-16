@@ -1,17 +1,17 @@
 import * as React from 'react';
 // Components
-import CardBlock from '../../../../../../../containers/card/block';
+import CardBlock from '../../../../../../../containers/card-block';
 import Person from '../../../../../../modules/person';
-import Description from '../../../../../../../containers/modules/description';
+import { Description } from '../../../../../../../containers/modules/index';
 import Email from '../email';
 // Types
-import { User, UserCardType } from '../../../../../../../../../types';
+import { User, CardType } from '../../../../../../../../../types';
 import { UseGroup } from '../../../../../../../../utils/hooks/types';
 
 
 type Props = {
   group : UseGroup<User>;
-  type  : UserCardType;
+  type  : CardType;
 };
 
 const EmailCnt: React.FC<Props> = ({ group, type }) => {

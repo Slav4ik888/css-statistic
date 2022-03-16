@@ -4,22 +4,21 @@ import { Grid, Box } from '@mui/material';
 // Components
 import FirstList from '../first-list';
 // Functions
-import { arrFromObj } from '../../../../../../../../../utils/objects/objects';
-// Types
+import { arrFromObj } from '../../../../../../../../../utils/objects';
+// Types & Consts & Style
 import { CredSchemeItem, Role } from '../../../../../../../../../types';
 import { UseGroup } from '../../../../../../../../utils/hooks/types';
-// Consts
-import { Scheme } from '../../../../../../../../consts/credentials';
-// Style
 import { FlexDirection } from '../../../../../../../../utils/styles';
+import Scheme from '../../../../../../../../../utils/credentials/actual-creds';
 
 
 const rootStyle = {
-  display: `flex`,
-  flexDirection: FlexDirection.COLUMN,
-  width: `100%`,
-  my: 2,
-  pl: 1.5, pr: 1
+  display       : `flex`,
+  flexDirection : FlexDirection.COLUMN,
+  width         : `100%`,
+  my            : 2,
+  pl            : 1.5,
+  pr            : 1
 };
 
 

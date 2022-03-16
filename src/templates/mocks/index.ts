@@ -1,5 +1,2 @@
-import { userAdmin } from './user';
-
-export {
-  userAdmin
-}
+export * from './user';
+export * from './role';

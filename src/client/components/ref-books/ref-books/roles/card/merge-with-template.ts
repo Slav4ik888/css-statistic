@@ -12,4 +12,5 @@ export default function mergeWithTemplate(data: Role, userId: string): Role {
     
     createdAt   : data?.createdAt   || getFixDateTemp(userId),
     lastChange  : data?.lastChange  || getFixDateTemp(userId)
-}};
+  }
+};

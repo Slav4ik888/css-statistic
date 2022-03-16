@@ -4,7 +4,7 @@ import { dataActionType, uiActionType, userActionType as Type } from "../../acti
 import logger from "../../../utils/client-logger/client-logger";
 const log = logger(`updateUser`);
 // Types
-import { User, ResUpdateUser } from "../../../../types";
+import { User, ResRefUpdateUser } from "../../../../types";
 import { successMessage } from "../ui";
 import { handleError } from "../universal/handle-error";
 
@@ -12,7 +12,7 @@ const update = async (dispatch: any, user: User, owner: boolean) => {
   dispatch({ type: Type.LOADING_USER });
 
   try {
-    const res: ResUpdateUser = await api.post(`/updateUser`, { user });
+    const res: ResRefUpdateUser = await api.post(`/updateUser`, { user });
 
     if (owner) dispatch({ type: Type.UPDATE_USER, payload: user });
     dispatch({ type: dataActionType.UPDATE_USER, payload: user });

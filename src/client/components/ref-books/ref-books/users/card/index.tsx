@@ -11,19 +11,17 @@ import Box from '@mui/material/Box';
 import Content from './content';
 import Actions from '../../../actions';
 // Functions
-import mergeWithTemplate from '../../../../user/profile/merge-with-template';
-import validUserData from '../../../../../../utils/validators/user-data/user-data';
-import validUserDataNew from '../../../../../../utils/validators/user-data-new/user-data-new';
-import validAndSendSubmitData from '../../../../../../utils/validators/submit-data';
+import mergeWithTemplate from '../../../../users/merge-with-template';
+import validateAndSubmit from '../../../../../../utils/validators/validate-and-submit';
 import isChanges from '../../../../../utils/check-changes-in-submit';
 // Types
-import { Errors, User, UserCardType } from '../../../../../../types';
+import { Errors, User, CardType, Validator, RefBookId } from '../../../../../../types';
 import { UseGroup } from '../../../../../utils/hooks/types';
 
 
 
 type Props = {
-  type           : UserCardType;
+  type           : CardType;
   userId?        : string;       // Созданный или выбранный userId
   storeUser?     : User;
   group          : UseGroup<User>;
@@ -34,22 +32,24 @@ type Props = {
 
 
 const CardUser: React.FC<Props> = ({ type, userId, storeUser, group: G, setErrors, addRefUser, updateRefUser }) => {
-  if (type === UserCardType.EDIT && !storeUser) return null;
+  if (type === CardType.EDIT && !storeUser) return null;
 
-  const add = type === UserCardType.ADD;
-  const validateData = add ? validUserDataNew : validUserData;
+  const
+    add       = type === CardType.ADD,
+    validator = add ? Validator.USER_ADD : Validator.USER_UPDATE,
+    execute   = add ? addRefUser : updateRefUser;
 
   React.useEffect(() => setErrors(null), []);
   React.useEffect(() => G.setGroup(mergeWithTemplate(storeUser)), [storeUser]);
   
 
-  const handleSubmit = (e?: any, exit?: boolean) => {
+  const handleSubmit = (e: any, exit?: boolean) => {
     // Проверка на наличие изменений
     const checkStore = add ? mergeWithTemplate(storeUser) : storeUser
     if (!isChanges(G, checkStore, G.group, exit)) return null;
     
     // Валидация и отправка данных (или вывод об ошибке)
-    validAndSendSubmitData(G, exit, validateData, G.group, setErrors, updateRefUser, true, type === UserCardType.ADD, addRefUser);
+    validateAndSubmit(validator, G.group, execute, setErrors, G, true);
   };
 
   React.useEffect(() => {
@@ -64,7 +64,7 @@ const CardUser: React.FC<Props> = ({ type, userId, storeUser, group: G, setError
       
       <Actions
         disabledDelete = {add}
-        refBookId      = {`users`}
+        refBookId      = {RefBookId.USERS}
         id             = {userId}
         email          = {G?.group?.email}
         hookOpen       = {G}

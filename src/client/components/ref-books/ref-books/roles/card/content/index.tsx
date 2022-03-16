@@ -3,7 +3,7 @@ import * as React from 'react';
 import Description from './description';
 import Credentials from './credentials';
 // Functions
-import { empty } from '../../../../../../../utils/objects/objects';
+import { empty } from '../../../../../../../utils/objects';
 // Types
 import { UseGroup } from '../../../../../../utils/hooks/types';
 import { Role } from '../../../../../../../types';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 // Components
-import CardBlock from '../../../../../containers/card/block';
+import CardBlock from '../../../../../containers/card-block';
 import { TextField, TextArea } from '../../../../../containers/elements';
 // Types
 import { UseGroup } from '../../../../../../utils/hooks/types';

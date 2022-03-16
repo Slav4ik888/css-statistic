@@ -6,7 +6,7 @@ import { State } from '../../../../../../../../../redux/redux-types';
 // MUI Stuff
 import { Box, InputLabel, MenuItem, FormControl, FormHelperText, Select, SelectChangeEvent } from '@mui/material';
 // Functions
-import { arrFromObj } from '../../../../../../../../../../utils/objects/objects';
+import { arrFromObj } from '../../../../../../../../../../utils/objects';
 import changeGroup from '../../../../../../../../../utils/hooks/change-group';
 // Types
 import { UseGroup } from '../../../../../../../../../utils/hooks/types';

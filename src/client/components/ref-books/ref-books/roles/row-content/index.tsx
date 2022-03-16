@@ -1,6 +1,6 @@
 import * as React from 'react';
 // Components
-import Cell from '../../../../table/cell/cell';
+import Cell from '../../../../tables/refbooks-table/cell';
 // Types
 import { Role } from '../../../../../../types';
 // Styles

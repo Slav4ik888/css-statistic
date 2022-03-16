@@ -7,7 +7,7 @@ import { State } from '../../../redux/redux-types';
 // MUI Stuff
 import Box from '@mui/material/Box';
 // Components
-import RefSearch from '../ref-search/ref-search';
+import RefSearch from '../ref-search';
 import RefBookList from './ref-book-list';
 import AddBtn from './add-btn';
 import DialogInfo from '../../dialogs/dialog-info';
