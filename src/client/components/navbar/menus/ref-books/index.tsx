@@ -7,7 +7,7 @@ import RefBookCnt from '../../../ref-books/ref-book-cnt';
 import RefBookItem from './ref-book-item';
 // Functions
 import { getLabelById } from '../../../ref-books/utils/get-label-by-id';
-import { useOpen } from '../../../../utils/hooks/hooks';
+import { useOpen, useValue } from '../../../../utils/hooks/hooks';
 import { useGroup } from '../../../../utils/hooks';
 // Types & Consts & Styles
 import { ReferenceBooksList } from '../../../../consts/reference-books-list';
@@ -63,17 +63,17 @@ const RefBookMenu: React.FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
   const
     sx       = useStyles(useTheme()),
     hookOpen = useOpen(false),
-    refBook  = useGroup<RefBookId>();
+    refBook  = useValue();
 
   // React.MouseEvent<HTMLElement>
   const handleOpen = (e: any) => {
     const target = e.target.closest(`li`);
-    refBook.setGroup(target.id);
+    refBook.setValue(target.id);
     hookOpen.setOpen();
   };
 
   const handleClose = () => {
-    refBook.setGroup(null);
+    refBook.setValue(null);
     hookOpen.setClose();
   };
 
@@ -99,8 +99,8 @@ const RefBookMenu: React.FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
       <DialogInfo
         hookOpen = {hookOpen}
         onClose  = {handleClose}
-        title    = {getLabelById(refBook.group)}
-        children = {<RefBookCnt refBookId={refBook.group} />}
+        title    = {getLabelById(refBook.value)}
+        children = {<RefBookCnt refBookId={refBook.value as RefBookId} />}
       />
     </>
   )

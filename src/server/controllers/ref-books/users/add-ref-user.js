@@ -8,7 +8,7 @@ import sendMail from '../../../libs/emails/sendMail.js';
 import createPassword from '../../../../utils/create-password/index.js';
 import validUserDataNew from '../../../../utils/validators/user-data-new/user-data-new.js';
 import ERR_TEMP from '../../../../templates/errors/template-errors.js';
-import APP from '../../../../config.js';
+// import APP from '../../../../config.js';
 
 
 export async function addRefUser(ctx, next) {

@@ -14,17 +14,17 @@ type Props = {
 };
 
 
-const FirstList: React.FC<Props> = ({ credItem, group }) => {
+const FirstList: React.FC<Props> = ({ credItem, group: G }) => {
   const scheme = `creds.` + credItem.id + `.`;
 
   return (
     <>
-      <PermissionsRow  credItem={credItem} group={group} />
-      <AdditionalsList credItem={credItem} group={group} />
+      <PermissionsRow  credItem={credItem} group={G} />
+      <AdditionalsList credItem={credItem} group={G} />
       <UnicsList
         type     = {CredSchemeItemType.FIRST}
         addiItem = {credItem}
-        group    = {group}
+        group    = {G}
         scheme   = {scheme}
       />
     </>

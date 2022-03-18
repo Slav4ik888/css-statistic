@@ -17,7 +17,7 @@ import mergeWithTemplate from './merge-with-template';
 import validateAndSubmit from '../../../../../../utils/validators/validate-and-submit';
 // Types
 import { UseGroup } from '../../../../../utils/hooks/types';
-import { Errors, Role, Validator } from '../../../../../../types';
+import { Errors, RefBookId, Role, Validator } from '../../../../../../types';
 
 
 type Props = {
@@ -57,7 +57,7 @@ const CardRole: React.FC<Props> = ({ roleId, storeRole, group: G, userId, setErr
       <Content group={G} />
 
       <Actions
-        refBookId = {`roles`}
+        refBookId = {RefBookId.ROLES}
         id        = {roleId}
         hookOpen  = {G}
         onSubmit  = {handleSubmit}

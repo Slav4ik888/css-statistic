@@ -10,6 +10,6 @@ import { DbRef } from '../../../../types/types.js';
 export const getRef = (type, data) => {
 
   switch (type) {
-    case DbRef.FOLDER: return db.collection(`folders`).doc(data?.companyId).collection(`folders`);
+    case DbRef.ROLES: return db.collection(`roles`).doc(data?.id);
   }
 }

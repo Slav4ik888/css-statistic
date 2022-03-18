@@ -23,15 +23,17 @@ const ListTableSwitch: React.FC<Props> = ({ refBookId, items, onCheck }) => {
   console.log('refBookId: ', refBookId);
 
   const tableType = React.useMemo(() => getTableTypeByRefBookId(refBookId), [refBookId]);
+  console.log('tableType: ', tableType);
   const tableData = React.useMemo(() => getTableDataByRefBookId(refBookId), [refBookId, items]);
+  console.log('tableData: ', tableData);
   
   return (
     <>
       <Table
-        type={tableType}
-        items={items}
-        data={tableData}
-        onCheck={onCheck}
+        type    = {tableType}
+        items   = {items}
+        data    = {tableData}
+        onCheck = {onCheck}
       />
     </>
   );

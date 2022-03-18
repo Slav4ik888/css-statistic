@@ -11,13 +11,14 @@ import ERR_TEMP from '../../../../templates/errors/template-errors.js';
 
 
 
-export async function loadRefbooksByList(ctx, next) {
-  const email = ctx.state.user.email;
-  const logTemp = `[loadRefbooksByList] - [${email}]`;
+export async function loadRefbooksByIds(ctx, next) {
+  const
+    email       = ctx.state.user.email,
+    refBooksIds = ctx.request?.body?.refBooksIds,
+    logTemp     = `[loadRefbooksByIds] - [${email}]`;
 
   try {
     let refBooks = [];
-    const refBooksIds = ctx.request?.body?.refBooksIds;
 
     if (!refBooksIds) {
       logRef.error(`${logTemp} refBooksIds is empty...`);
@@ -34,7 +35,6 @@ export async function loadRefbooksByList(ctx, next) {
   }
   catch (err) {
     logRef.error(`${logTemp} ${objectFieldsToString(err)}`);
-    ctx.status = 500;
-    ctx.body = { general: ERR_TEMP.general };
+    ctx.throw(500, { general: ERR_TEMP.general });
   }
 }

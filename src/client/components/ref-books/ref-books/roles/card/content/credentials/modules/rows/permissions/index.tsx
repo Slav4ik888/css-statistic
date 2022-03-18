@@ -25,37 +25,37 @@ const PermissionsRow: React.FC<Props> = ({ type, credItem, group, scheme }) => {
   
   const Read = credItem.permissions?.read?.[0] ?
     <SelectPermission
-      type={PermType.READ}
-      value={credItem?.permissions?.read}
-      group={group}
-      scheme={scheme + `r`}
+      type   = {PermType.READ}
+      value  = {credItem?.permissions?.read}
+      group  = {group}
+      scheme = {scheme + `r`}
     />
     : Empty;
 
   const Add = credItem.permissions?.add?.[0] ?
     <SelectPermission
-      type={PermType.ADD}
-      value={credItem?.permissions?.add}
-      group={group}
-      scheme={scheme + `a`}
+      type   = {PermType.ADD}
+      value  = {credItem?.permissions?.add}
+      group  = {group}
+      scheme = {scheme + `a`}
     />
     : Empty;
 
   const Change = credItem.permissions?.change?.[0] ?
     <SelectPermission
-      type={PermType.CHANGE}
-      value={credItem?.permissions?.change}
-      group={group}
-      scheme={scheme + `c`}
+      type   = {PermType.CHANGE}
+      value  = {credItem?.permissions?.change}
+      group  = {group}
+      scheme = {scheme + `c`}
     />
     : Empty;
 
   const Del = credItem.permissions?.del?.[0] ?
     <SelectPermission
-      type={PermType.DEL}
-      value={credItem?.permissions?.del}
-      group={group}
-      scheme={scheme + `d`}
+      type   = {PermType.DEL}
+      value  = {credItem?.permissions?.del}
+      group  = {group}
+      scheme = {scheme + `d`}
     />
     : Empty;
   

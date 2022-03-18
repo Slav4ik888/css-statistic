@@ -1,6 +1,6 @@
 import { db } from '../../../firebase/admin.js';
 import { logRef } from '../../../libs/logs/index.js';
-import validRoleData from '../../../../utils/validators/roles-data/roles-data.js';
+// import validRoleData from '../../../../utils/validators/roles-data/roles-data.js';
 import { objectFieldsToString } from '../../../../utils/objects/object-fields-to-string/index.js';
 import { getUpdatedRole } from './get-updated-role/get-updated-role.js';
 import ERR_TEMP from '../../../../templates/errors/template-errors.js';
@@ -14,11 +14,11 @@ export async function updateRole(ctx, next) {
   try {
     const roleData = ctx.request?.body;
 
-    const { valid, errors } = validRoleData(roleData);
-    if (!valid) {
-      logRef.error(`${logTemp} ${objectFieldsToString(errors)}`);
-      ctx.status = 400; ctx.body = { errors }; return;
-    }
+    // const { valid, errors } = validRoleData(roleData);
+    // if (!valid) {
+    //   logRef.error(`${logTemp} ${objectFieldsToString(errors)}`);
+    //   ctx.status = 400; ctx.body = { errors }; return;
+    // }
 
     const dbRef = db.collection(`roles`);
 

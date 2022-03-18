@@ -1,11 +1,12 @@
 import api from '../../api';
 import { Dispatch, StateRefBooks } from '../../redux-types';
 import { refBooksActionType as Type } from '../../action-types';
-import { ResLoadRefBook, ResLoadRefbooksByList, RefBookId, RefBookItem, Strings } from '../../../../types';
+import { ResLoadRefBook, ResLoadRefbooksByIds, RefBookId, Strings } from '../../../../types';
 import { addRole } from '.';
 import { ReferenceBooksList } from '../../../consts/reference-books-list';
 import { handleError } from '../universal/handle-error';
 import { successMessage } from '../ui';
+import { deleteRole } from './roles';
 
 
 
@@ -27,11 +28,11 @@ export const loadRefBook = (id: RefBookId) => async (dispatch: Dispatch) => {
 
 
 // Загружаем список Справочников по ids
-export const loadRefBooks = (refBooksIds: Strings) => async (dispatch: Dispatch) => {
+export const loadRefbooksByIds = (refBooksIds: Strings) => async (dispatch: Dispatch) => {
   dispatch({ type: Type.LOADING_REF_ON });
 
   try {    
-    const res: ResLoadRefbooksByList = await api.post(`/loadRefbooksByList`, { refBooksIds });
+    const res: ResLoadRefbooksByIds = await api.post(`/loadRefbooksByIds`, { refBooksIds });
 
     res.data.refBooks?.forEach(refBook => {
       dispatch({
@@ -58,7 +59,7 @@ export const loadAllRefBooks = (refBooks?: StateRefBooks) => async (dispatch: an
 
     if (!refBooksIds.length) return;
 
-    dispatch(loadRefBooks(refBooksIds));
+    dispatch(loadRefbooksByIds(refBooksIds));
   }
   catch (err) { handleError(err, dispatch, Type.LOADING_UPD_OFF) }
 };
@@ -80,8 +81,8 @@ export const addNewElement = (refBookId: RefBookId, companyId?: string) => async
 export const deleteElement = (refBookId: RefBookId, id: string, email?: string) => async (dispatch: any) => {
 
   switch (refBookId) {
-    // case RefBookId.ROLES                : return dispatch(deleteRole(id));
-    // case RefBookId.USERS                : return dispatch(deleteRefUser({ userId: id, email }));
+    case RefBookId.ROLES : return dispatch(deleteRole(id));
+    // case RefBookId.USERS : return dispatch(deleteRefUser({ userId: id, email }));
     
     default: return console.log(`deleteElement - выбрали не существующий RefBookId`);
   }

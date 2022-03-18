@@ -1,3 +1,3 @@
 export const DbRef = {
-  FOLDER: `FOLDER`
+  ROLES: `roles`
 };

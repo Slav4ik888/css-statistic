@@ -7,6 +7,7 @@ import { setActiveInArr } from './utils';
 // Types
 import { refBooksActionType as Type } from '../../action-types';
 import { initialState } from './initial-state';
+import { Role } from '../../../../types';
 
 
 
@@ -32,29 +33,29 @@ export default function (state = initialState, action: { type: Type, payload: an
     // ROLES
     case Type.UPDATE_ROLE:
       return extend(state, {
-        loadingUpd: false,
-        roles: updateArrWithItemByField(state.roles, `id`, action.payload)
+        loadingUpd : false,
+        roles      : updateArrWithItemByField(state.roles, `id`, action.payload)
       });
-      
     
     case Type.DELETE_ROLE:
       return extend(state, {
-        loadingUpd: false,
-        roles: getArrWithoutItemByField(state.roles, `id`, action.payload)
+        loadingUpd : false,
+        roles      : getArrWithoutItemByField(state.roles, `id`, { id: action.payload } as Role)
       });
+    
     
     // USERS
     case Type.UPDATE_REF_USER:
       return extend(state, {
-        loadingUpd: false,
-        users: updateArrWithItemByField(state.users, `id`, action.payload)
+        loadingUpd : false,
+        users      : updateArrWithItemByField(state.users, `id`, action.payload)
       });
       
     
     case Type.DELETE_REF_USER:
       return extend(state, {
-        loadingUpd: false,
-        users: setActiveInArr(state.users, action.payload)
+        loadingUpd : false,
+        users      : setActiveInArr(state.users, action.payload)
       });
           
 

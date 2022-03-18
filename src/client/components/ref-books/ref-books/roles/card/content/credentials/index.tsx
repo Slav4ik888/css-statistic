@@ -13,15 +13,14 @@ type Props = {
 };
 
 
-const CredentialsBox: React.FC<Props> = ({ group }) => {
+const CredentialsBox: React.FC<Props> = ({ group: G }) => {
 
   return (
     <CardBlock label="Полномочия роли">
       <CredentialsHeader />
-      <CredentialsList group={group} />
+      <CredentialsList group={G} />
     </CardBlock>
   );
 };
-
 
 export default CredentialsBox;

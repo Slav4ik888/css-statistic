@@ -1,6 +1,6 @@
 import { db } from '../../../firebase/admin.js';
 import { logRef } from '../../../libs/logs/index.js';
-import validUserData from '../../../../utils/validators/user-data/user-data.js';
+// import validUserData from '../../../../utils/validators/user-data/user-data.js';
 import { objectFieldsToString } from '../../../../utils/objects/object-fields-to-string/index.js';
 import { getUpdatedUser } from './get-updated-user/get-updated-user.js';
 import ERR_TEMP from '../../../../templates/errors/template-errors.js';

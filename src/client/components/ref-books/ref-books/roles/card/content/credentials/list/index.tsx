@@ -27,7 +27,7 @@ type Props = {
 };
 
 
-const CredentialsList: React.FC<Props> = ({ group }) => {
+const CredentialsList: React.FC<Props> = ({ group: G }) => {
   const schemeArr = arrFromObj(Scheme) as unknown as Array<CredSchemeItem>;
 
 
@@ -38,7 +38,7 @@ const CredentialsList: React.FC<Props> = ({ group }) => {
           schemeArr.map(item => <FirstList
             key      = {item.id}
             credItem = {item}
-            group    = {group}
+            group    = {G}
           />)
         }
       </Box>

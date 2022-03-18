@@ -1,5 +1,5 @@
 import { isEmpty, isEmail } from '../base/validators.js';
-import validUserData from '../user-data/user-data.js';
+// import validUserData from '../user-data/user-data.js';
 import TPL from '../../../templates/errors/template-errors.js';
 
 

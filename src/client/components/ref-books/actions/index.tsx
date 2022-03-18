@@ -14,7 +14,7 @@ import { useOpen } from '../../../utils/hooks/hooks';
 import { getConfirmTitleById } from '../utils/get-confirm-title-by-id';
 // Types & Styles
 import { UseOpen } from '../../../utils/hooks/types';
-import { ConfirmType } from '../../../../types';
+import { ConfirmType, RefBookId } from '../../../../types';
 import { FlexDirection } from '../../../utils/styles';
 import { useTheme } from '@emotion/react';
 
@@ -43,7 +43,7 @@ const useStyles = (theme) => ({
 type Props = {
   loadingUpd?      : boolean;
   disabledDelete?  : boolean; // Если не нужно показывать кнопку удаления
-  refBookId?       : string;  // Id Справочника
+  refBookId?       : RefBookId;  // Id Справочника
   id?              : string;  // Созданный или имеющийся Id of element Справочника
   email?           : string;  // Для User
   hookOpen         : UseOpen; // Чтобы была возможность закрыть карточку при удалении

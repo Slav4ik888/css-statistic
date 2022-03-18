@@ -1,24 +1,19 @@
 import api from "../../../api";
 import { Dispatch } from "../../../redux-types";
-import { refBooksActionType } from "../../../action-types";
+import { refBooksActionType as Type } from "../../../action-types";
 import { handleError } from "../../universal/handle-error";
 import { successMessage } from "../../ui";
+import { ResRefDeleteRole } from "../../../../../types";
 
 
 export const deleteRole = (roleId: string) => async (dispatch: Dispatch) => {
-  dispatch({ type: refBooksActionType.LOADING_UPD_ON });
+  dispatch({ type: Type.LOADING_UPD_ON });
   
   try {
-    let res: { data: { message: string } };
+    const res: ResRefDeleteRole = await api.post(`/deleteRole`, { roleId });
 
-    res = await api.post(`/deleteRole`, { roleId });
-
-    dispatch({
-      type: refBooksActionType.DELETE_ROLE,
-      payload: roleId
-    });
-
+    dispatch({ type: Type.DELETE_ROLE, payload: roleId });
     dispatch(successMessage(res.data.message));
   }
-  catch (err) { handleError(err, dispatch, refBooksActionType.LOADING_UPD_OFF) }
+  catch (err) { handleError(err, dispatch, Type.LOADING_UPD_OFF) }
 };

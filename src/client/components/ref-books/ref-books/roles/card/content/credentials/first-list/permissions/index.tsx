@@ -7,12 +7,12 @@ import { UseGroup } from '../../../../../../../../../utils/hooks/types';
 
 
 type Props = {
-  credItem: CredSchemeItem;
-  group: UseGroup<Role>;
+  credItem : CredSchemeItem;
+  group    : UseGroup<Role>;
 };
 
 
-const Permissions: React.FC<Props> = ({ credItem, group }) => {
+const Permissions: React.FC<Props> = ({ credItem, group: G }) => {
   const scheme = `creds.` + credItem.id + `.`;
 
   return (
@@ -20,7 +20,7 @@ const Permissions: React.FC<Props> = ({ credItem, group }) => {
       <PermissionsRow
         type     = {CredSchemeItemType.SECTION}
         credItem = {credItem}
-        group    = {group}
+        group    = {G}
         scheme   = {scheme}
       />
     </>

@@ -14,13 +14,13 @@ type Props = {
 };
 
 
-const ContentCnt: React.FC<Props> = ({ group }) => {
-  if (empty(group.group)) return null;
+const ContentCnt: React.FC<Props> = ({ group: G }) => {
+  if (empty(G.group)) return null;
 
   return (
     <>
-      <Description group={group} />
-      <Credentials group={group} />
+      <Description group={G} />
+      <Credentials group={G} />
     </>
   );
 };

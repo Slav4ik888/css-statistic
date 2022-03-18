@@ -1,7 +1,7 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { loadRefBooks, addNewElement } from '../../../redux/actions/ref-books/ref-books';
+import { loadRefbooksByIds, addNewElement } from '../../../redux/actions/ref-books';
 import { getRefBookById } from '../../../redux/selectors/ref-books';
 import { State } from '../../../redux/redux-types';
 // MUI Stuff
@@ -23,19 +23,19 @@ import { RefBookId, Strings, User, CardType } from '../../../../types';
 type Props = {
   refBookId      : RefBookId; // Id Справочника
   storeRefBook?  : Array<any>;
-  loadRefBooks?  : (refBookIds: Strings) => void;
+  loadRefbooksByIds?  : (refBookIds: Strings) => void;
   addNewElement? : (refBookId: string) => void;
 }
 
 
-const RefBookCnt: React.FC<Props> = ({ refBookId, storeRefBook, loadRefBooks, addNewElement }) => {
+const RefBookCnt: React.FC<Props> = ({ refBookId, storeRefBook, loadRefbooksByIds, addNewElement }) => {
   
   React.useEffect(() => {
     if (storeRefBook !== null) return console.log(`Справочник уже загружен`);
 
     const refBooksIds = [`users`, `roles`];
     console.log(`Загружаем справочники: `, refBooksIds);
-    loadRefBooks(refBooksIds);
+    loadRefbooksByIds(refBooksIds);
   }, [refBookId]);
   
 
@@ -95,7 +95,7 @@ const mapStateToProps = (state: State, props: Props) => ({
 });
 
 const mapActionsToProps = {
-  loadRefBooks, addNewElement
+  loadRefbooksByIds, addNewElement
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(RefBookCnt);
