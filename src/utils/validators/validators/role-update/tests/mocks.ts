@@ -1,5 +1,6 @@
 import { Role } from "../../../../../types";
 import { Mocks } from "./types";
+import { getMockStrLength as getStr } from '../../../../strings';
 
 const role = {
   id     : `roleId_123`,
@@ -24,8 +25,8 @@ const roleNoStringCredsNoObject: Role = {
 
 const roleAndDescriptionGreaterMaxlength: Role = {
   id          : `roleId_123`,
-  description : `0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789_`,
-  role        : `012345678901234567890123456789_`,
+  description : getStr(101),
+  role        : getStr(31),
   creds       : {}
 } as unknown as Role;
 

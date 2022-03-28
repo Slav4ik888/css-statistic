@@ -11,7 +11,7 @@ export default {
   },
   
   ASSEMBLY: {
-    DATE: `2022-03-04`,
+    DATE: `2022-03-28`,
     TIME: `17:03`
   }
 }

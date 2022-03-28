@@ -1,47 +1,46 @@
 import { db } from '../../../firebase/admin.js';
 import { logRef } from '../../../libs/logs/index.js';
-// import validRoleData from '../../../../utils/validators/roles-data/roles-data.js';
-import { objectFieldsToString } from '../../../../utils/objects/object-fields-to-string/index.js';
-import { getUpdatedRole } from './get-updated-role/get-updated-role.js';
-import ERR_TEMP from '../../../../templates/errors/template-errors.js';
+// Validations
+import validate from '../../../../utils/validators/validate/index.js';
+import { Validator } from '../../../../types/types.js';
 
+import { getFixDateTemp } from '../../../../templates/db-schema/index.js';
+import { objectFieldsToString } from '../../../../utils/objects/object-fields-to-string/index.js';
+import { getUpdatedRole } from './get-updated-role/index.js';
+import ERR_TEMP from '../../../../templates/errors/template-errors.js';
+import { getRef, res } from '../../helpers/index.js';
+import { DbRef } from '../../../../types/types.js';
 
 
 export async function updateRole(ctx, next) {
-  const user = ctx.state.user;
-  const logTemp = `[updateRole] - [${user.email}]`;
+  const
+    userId   = ctx.state.user.uid,
+    email    = ctx.state.user.email,
+    logTemp  = `[updateRole] - [${email}]`;
 
   try {
-    const roleData = ctx.request?.body;
+    const
+      roleData = ctx.request?.body?.role,
+      dbRef    = getRef(DbRef.ROLES, roleData);
 
-    // const { valid, errors } = validRoleData(roleData);
-    // if (!valid) {
-    //   logRef.error(`${logTemp} ${objectFieldsToString(errors)}`);
-    //   ctx.status = 400; ctx.body = { errors }; return;
-    // }
+    const { valid, errors } = validate(Validator.ROLE_UPDATE, roleData);
+    if (!valid) { logRef.error(`${logTemp} - ${objectFieldsToString(errors)}`); ctx.throw(400, errors); }
 
-    const dbRef = db.collection(`roles`);
+    // TODO: Check permissins: access only to the company`s own data
 
-    const roleRes = await dbRef.doc(roleData.id).get();
-
+    const roleRes = await dbRef.get();
     if (!roleRes.exists) { // Например, кто-то успел удалить до того, как другой обновил
       logRef.error(`${logTemp} ${ERR_TEMP.auth.roleNotFound}`);
-      ctx.status = 400;
-      ctx.body = { message: ERR_TEMP.auth.roleNotFound };
-      return;
+      ctx.throw(400, { message: ERR_TEMP.auth.roleNotFound });
     }
 
-    const role = getUpdatedRole(roleData, user.uid);
+    const role = getUpdatedRole(roleData, userId);
+    await dbRef.update(role);
 
-    await dbRef.doc(role.id).update(role);
-
-    ctx.status = 200;
-    ctx.body = { role, message: `Данные роли сохранены` };
-    logRef.info(`${logTemp} success!`);
+    res(ctx, 200, { role: roleData, message: `Данные обновлены` }, logRef, `${logTemp} ${roleData.id} ${roleData.label} success!`);
   }
   catch (err) {
     logRef.error(`${logTemp} ${objectFieldsToString(err)}`);
-    ctx.status = 500;
-    ctx.body = { general: ERR_TEMP.general };
+    ctx.throw(500, { general: ERR_TEMP.general });
   }
 }

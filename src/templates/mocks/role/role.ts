@@ -3,3 +3,11 @@ export const role = {
   role   : `Director`,
   creds  : {}
 };
+
+export const roleEmpty = {
+  id          : ``,
+
+  role        : ``,
+  creds       : {},
+  description : ``,
+};

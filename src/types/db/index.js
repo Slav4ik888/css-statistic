@@ -1,3 +1,4 @@
 export const DbRef = {
-  ROLES: `roles`
+  ROLES_COLLECTION : `roles_collection`, // without data with id
+  ROLES            : `roles`,
 };

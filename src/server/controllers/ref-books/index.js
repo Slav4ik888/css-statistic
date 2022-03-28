@@ -1,6 +1,4 @@
-import { addRole } from './roles/add-role.js';
-import { updateRole } from './roles/update-role.js';
-import { deleteRole } from './roles/delete-role.js';
+import { addRole, updateRole, deleteRole } from './roles/index.js';
 
 import { addRefUser } from './users/add-ref-user.js';
 import { updateRefUser } from './users/update-ref-user.js';

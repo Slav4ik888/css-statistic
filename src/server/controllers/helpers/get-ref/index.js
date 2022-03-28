@@ -10,6 +10,7 @@ import { DbRef } from '../../../../types/types.js';
 export const getRef = (type, data) => {
 
   switch (type) {
+    case DbRef.ROLES_COLLECTION: return db.collection(`roles`);
     case DbRef.ROLES: return db.collection(`roles`).doc(data?.id);
   }
 }

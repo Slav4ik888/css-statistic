@@ -52,11 +52,9 @@ export const isInvalidPhone = (str) => !isValidPhone(str);
 
 // Возвращает true если строка допустимого значения  // test+++
 export const isValidMaxL = (maxLength, str) => {
-  console.log(`LENGTH: `, str?.length);
-
-  if (!str) return true;
   if (isEmpty(str)) return true;
-  // if (typeof str !== `string`)  return false;
+  if (str === undefined) return false;
+  if (typeof str !== `string`)  return false;
   if (str?.length <= maxLength) return true;
 
   return false // console.log(`Нет совпадений по условиям...`);

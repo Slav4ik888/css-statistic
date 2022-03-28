@@ -1,4 +1,4 @@
 export default {
-  lastFrom : `2022-02-24`,
-  lastTo   : `2021-03-02`
+  lastFrom : `2022-03-17`,
+  lastTo   : `2022-03-23`
 }

@@ -15,7 +15,7 @@ export const ReferenceBooksList = [
     type: RefBookType.USERS,
     label: `Сотрудники`,
     id: RefBookId.USERS,
-    toolLabel: `Сотрудники имеющие доступ в "Логис-логистику"`,
+    toolLabel: `Сотрудники имеющие доступ в приложение.`,
     cardTitle: `сотрудника`,
     confirmTitle: `этого сотрудника`,
     iconName: `users`

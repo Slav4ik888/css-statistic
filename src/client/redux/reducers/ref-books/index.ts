@@ -27,8 +27,7 @@ export default function (state = initialState, action: { type: Type, payload: an
     
     
     // Созданный Id для нового элемента Справочника
-    case Type.SET_NEW_ID:
-    
+    case Type.SET_NEW_ID: return extend(state, { newId: action.payload });
       
     // ROLES
     case Type.UPDATE_ROLE:

@@ -25,7 +25,7 @@ describe(`VALIDATORS - validationResUserData`, () => {
 
 describe(`VALIDATORS - isValidMaxL`, () => {
   mIVL.forEach((m) => {
-    it(`isValidMaxL - ${m.describe}`, () => {
+    it(`${m.describe}`, () => {
       expect(isValidMaxL(m.maxLength, m.str)).toEqual(m.result);
     });
   })

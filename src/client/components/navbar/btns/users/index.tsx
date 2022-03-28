@@ -7,7 +7,7 @@ import UsersMenu from '../../menus/users';
 type Props = {
 };
 
-
+// DEPRECATED
 const UsersMenuBtn: React.FC<Props> = () => {
   
   const [anchorPro, setAnchorPro] = React.useState(null);
@@ -19,7 +19,7 @@ const UsersMenuBtn: React.FC<Props> = () => {
 
   return (
     <>
-      <NavBtn
+      {/* <NavBtn
         label     = {`Пользователи`}
         toolLabel = {`Приглашение и управление "Пользователями"`}
         onClick   = {handleMenuOpen}
@@ -30,7 +30,7 @@ const UsersMenuBtn: React.FC<Props> = () => {
         onClose   = {handleMenuClose}
         menuId    = {menuId}
         anchorEl  = {anchorPro}
-      />
+      /> */}
     </>
   );
 };

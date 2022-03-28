@@ -16,7 +16,7 @@ export function validator(data) {
   if (u.isNoString(data?.role))      errors.role = getErrorMessage(ERR_TEMP.MustBeString, "Роль");
 
   // Проверка description
-  if (u.isNoValidMaxL100(data?.description))
+  if (data?.description && u.isNoValidMaxL100(data?.description))
     errors.description = getErrorMessage(ERR_TEMP.MustBeLess, "Описание роли", 100);
   
   if (data?.description && u.isNoString(data?.description))

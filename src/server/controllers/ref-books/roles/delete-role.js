@@ -7,23 +7,26 @@ import { DbRef } from '../../../../types/types.js';
 
 export async function deleteRole(ctx, next) {
   const
-    user    = ctx.state.user,
+    email   = ctx.state.user.email,
     id      = ctx.request?.body?.roleId,
-    dbRef   = getRef(DbRef.ROLES, { id }),
-    logTemp = `[deleteRole] - [${user.email}]`;
+    logTemp = `[deleteRole] - [${email}]`;
 
   try {
-    // Проверяем есть ли запрошенная роль в базе, или например, кто-то успел удалить до того, как другой это начал
-    const contactRes = await dbRef.get();
+    // TODO: Check permissins
 
-    if (!contactRes.exists) {
+    // Проверяем есть ли запрошенная роль в базе, или например, кто-то успел удалить до того, как другой это начал
+    const
+      dbRef   = getRef(DbRef.ROLES, { id }),
+      roleRes = await dbRef.get();
+
+    if (!roleRes.exists) {
       logRef.error(`${logTemp} ${ERR_TEMP.auth.roleNotFound}`);
       ctx.throw(400, { message: ERR_TEMP.auth.roleNotFound });
     }
 
     await dbRef.delete();
 
-    return res(ctx, 200, { message: `Роль удалена` }, logRef, `${logTemp} ${contactRes.data().label} success!`);
+    return res(ctx, 200, { message: `Роль удалена` }, logRef, `${logTemp} ${roleRes.data().label} success!`);
   }
   catch (err) {
     logRef.error(`${logTemp} ${objectFieldsToString(err)}`);

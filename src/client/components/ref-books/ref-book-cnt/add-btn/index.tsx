@@ -64,17 +64,15 @@ const AddBtn: React.FC<Props> = ({ refBookId, group, addNewElement }) => {
         title    = {getCardTitleById(refBookId)}
         hookOpen = {group}
         onClose  = {group.setClose}
-      >
-        <CardSwitch group={group} refBookId={refBookId} />
-      </DialogInfo>
-
+        children = {<CardSwitch group={group} refBookId={refBookId} />}
+      />
+        
       <DialogInfo
         title    = {`Добавление нового пользователя`}
         hookOpen = {groupNewUser}
         onClose  = {groupNewUser.setClose}
-      >
-        <CardUser type={CardType.ADD} group={groupNewUser} />
-      </DialogInfo>
+        children = {<CardUser type={CardType.ADD} group={groupNewUser} />}
+      />
     </Box>
   );
 };

@@ -31,9 +31,9 @@ router.post(`/loadCollection`, FBAuth, he.loadCollection);
 router.post(`/loadRefbooksByIds`, FBAuth, ref.loadRefbooksByIds);
 router.post(`/deleteRole`, FBAuth, ref.deleteRole);
 
-router.post(`/addRole`, FBAuth, da.addRole);
-router.post(`/updateRole`, FBAuth, da.updateRole);
-router.post(`/addUser`, FBAuth, da.addUser);
-router.get (`/loadUsers`, FBAuth, da.loadUsers);
+router.get(`/addRole`, FBAuth, ref.addRole);
+router.post(`/updateRole`, FBAuth, ref.updateRole);
+// router.post(`/addUser`, FBAuth, ref.addUser);
+// router.get (`/loadUsers`, FBAuth, ref.loadUsers);
 
 export default router;
