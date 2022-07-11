@@ -1,13 +1,13 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { addRefUser, updateRefUser } from '../../../../../redux/actions/ref-books/users';
+import { addRefUser } from '../../../../../redux/actions/ref-books/users';
+import { updateAnyUser } from '../../../../../redux/actions/user';
 import { getUserById } from '../../../../../redux/selectors/ref-books';
 import { setErrors } from '../../../../../redux/actions/ui';
 import { State } from '../../../../../redux/redux-types';
-// MUI Stuff
-import Box from '@mui/material/Box';
 // Components
+import CardContainer from '../../../../containers/cards/card-container';
 import Content from './content';
 import Actions from '../../../actions';
 // Functions
@@ -15,7 +15,7 @@ import mergeWithTemplate from '../../../../users/merge-with-template';
 import validateAndSubmit from '../../../../../../utils/validators/validate-and-submit';
 import isChanges from '../../../../../utils/check-changes-in-submit';
 // Types
-import { Errors, User, CardType, Validator, RefBookId } from '../../../../../../types';
+import { Errors, User, CardType, Validator, RefbookId } from '../../../../../../types';
 import { UseGroup } from '../../../../../utils/hooks/types';
 
 
@@ -26,51 +26,53 @@ type Props = {
   storeUser?     : User;
   group          : UseGroup<User>;
   setErrors?     : (err: Errors) => void;
-  addRefUser?    : (userData: User) => void;
-  updateRefUser? : (userData: User) => void;
-}
+  addRefUser?    : (user: User) => void;
+  updateAnyUser? : (user: User) => void;
+};
 
 
-const CardUser: React.FC<Props> = ({ type, userId, storeUser, group: G, setErrors, addRefUser, updateRefUser }) => {
-  if (type === CardType.EDIT && !storeUser) return null;
-
-  const
-    add       = type === CardType.ADD,
-    validator = add ? Validator.USER_ADD : Validator.USER_UPDATE,
-    execute   = add ? addRefUser : updateRefUser;
-
-  React.useEffect(() => setErrors(null), []);
-  React.useEffect(() => G.setGroup(mergeWithTemplate(storeUser)), [storeUser]);
+const CardUser: React.FC<Props> = ({ type, userId, storeUser, group: G, setErrors, addRefUser, updateAnyUser }) => {
+  const add = type === CardType.ADD;
+   
+  React.useEffect(() => { setErrors(null); }, []);
+  React.useEffect(() => { G.setGroup(mergeWithTemplate(storeUser)); }, [storeUser]);
+  React.useEffect(() => { G.confirm && handleSubmit(false, true); }, [G.confirm]); // Если пользователь нажал Сохранить при Confirm
   
 
   const handleSubmit = (e: any, exit?: boolean) => {
-    // Проверка на наличие изменений
-    const checkStore = add ? mergeWithTemplate(storeUser) : storeUser
+    const
+      checkStore = add ? mergeWithTemplate(storeUser) : storeUser;
+    
     if (!isChanges(G, checkStore, G.group, exit)) return null;
     
-    // Валидация и отправка данных (или вывод об ошибке)
-    validateAndSubmit(validator, G.group, execute, setErrors, G, true);
+    validateAndSubmit(
+      add ? Validator.USER_ADD : Validator.USER_UPDATE,
+      G.group, 
+      add ? addRefUser : updateAnyUser,
+      setErrors,
+      G,
+      true
+    );
   };
 
-  React.useEffect(() => {
-    if (G.confirm) handleSubmit(false, true); // Если пользователь нажал Сохранить при Confirm
-  }, [G.confirm]);
   
+  if (type === CardType.EDIT && !storeUser) return null;
+
 
   return (
-    <Box component="form" noValidate sx={{ display: `flex`, flexDirection: `column` }}>
+    <CardContainer>
 
       <Content group={G} type={type} />
       
       <Actions
         disabledDelete = {add}
-        refBookId      = {RefBookId.USERS}
+        refBookId      = {RefbookId.USERS}
         id             = {userId}
         email          = {G?.group?.email}
         hookOpen       = {G}
         onSubmit       = {handleSubmit}
       />
-    </Box>
+    </CardContainer>
   );
 };
 
@@ -79,7 +81,7 @@ const mapStateToProps = (state: State, props: Props) => ({
 });
 
 const mapActionsToProps = {
-  setErrors, addRefUser, updateRefUser
+  setErrors, addRefUser, updateAnyUser
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(CardUser);

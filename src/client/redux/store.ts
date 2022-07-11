@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 import user from './reducers/user';
 import stats from './reducers/stats';
 import UI from './reducers/ui';
-import data from './reducers/data';
 import refbooks from './reducers/ref-books';
 
 
@@ -23,7 +22,6 @@ const reducers = combineReducers({
   user,
   stats,
   UI,
-  data,
   refbooks
 });
 

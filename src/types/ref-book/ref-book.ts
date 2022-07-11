@@ -1,15 +1,15 @@
-import { RefBookId } from ".";
+import { RefbookId } from ".";
 
 // Типы справочников
-export enum RefBookType {
+export enum RefbookType {
   ROLES      = `Роли`,
   USERS      = `Сотрудники`,
 };
 
 // Справочник
-export interface RefBookItem {
-  type          : RefBookType;
-  id            : RefBookId;
+export interface RefbookItem {
+  type          : RefbookType;
+  id            : RefbookId;
   label         : string;
   toolLabel     : string;
   cardTitle     : string;
@@ -18,4 +18,4 @@ export interface RefBookItem {
   disabled?     : boolean;
 };
 
-export type RefBookItems = Array<RefBookItem>;
+export type RefbookItems = Array<RefbookItem>;

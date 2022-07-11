@@ -1,4 +1,4 @@
-export enum RefBookId {
+export enum RefbookId {
   ROLES = `roles`,
   USERS = `users`,
 };

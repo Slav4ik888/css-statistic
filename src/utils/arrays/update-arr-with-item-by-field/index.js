@@ -1,4 +1,4 @@
-import { updateObject } from '../../objects/update-object/update-object.js';
+import { updateObject } from '../../objects/update-object/index.js';
 
 
 /**

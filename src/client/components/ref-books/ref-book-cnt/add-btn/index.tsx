@@ -14,7 +14,7 @@ import DialogInfo from '../../../dialogs/dialog-info';
 import { getCardTitleById } from '../../utils/get-card-title-by-id';
 import { useGroup } from '../../../../utils/hooks/use-group';
 // Types & Styles
-import { RefBookId, User, CardType } from '../../../../../types';
+import { RefbookId, User, CardType } from '../../../../../types';
 import { UseGroup } from '../../../../utils/hooks/types';
 import { useTheme } from '@emotion/react';
 
@@ -31,7 +31,7 @@ const useStyles = (theme) => ({
 
 
 type Props = {
-  refBookId      : RefBookId;
+  refBookId      : RefbookId;
   group          : UseGroup<any>;
   addNewElement? : (id: string) => void;
 };
@@ -44,7 +44,7 @@ const AddBtn: React.FC<Props> = ({ refBookId, group, addNewElement }) => {
   const groupNewUser = useGroup<User>();
 
   const handleAdd = () => {
-    if (refBookId === `users`) {
+    if (refBookId === RefbookId.USERS) {
       groupNewUser.setOpen();
     }
     else {

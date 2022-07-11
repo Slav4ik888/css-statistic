@@ -14,7 +14,7 @@ import CardSwitch from '../card-switch';
 import { getCardTitleById } from '../../utils/get-card-title-by-id';
 // Types
 import { UseGroup, UseValue } from '../../../../utils/hooks/types';
-import { RefBookId } from '../../../../../types';
+import { RefbookId } from '../../../../../types';
 
 
 
@@ -23,7 +23,7 @@ type Props = {
   group         : UseGroup<any>;
   selected      : UseValue;
   storeRefBook? : Array<any>;
-  refBookId     : RefBookId;  // Id Справочника
+  refBookId     : RefbookId;  // Id Справочника
 };
 
 

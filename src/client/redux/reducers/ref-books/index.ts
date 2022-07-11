@@ -1,17 +1,15 @@
 // Functions
-import { getArrWithoutItemByField } from '../../../../utils/arrays/get-arr-without-item-by-field-obj';
-import updateArrByArrByField from '../../../../utils/arrays/update-arr-by-arr-by-field';
-import { updateArrWithItemByField } from '../../../../utils/arrays/update-arr-with-item-by-field';
+import { getArrWithoutItemById, updateArrById } from '../../../../utils/arrays';
 import { extend } from '../../../../utils/objects/objects-base';
 import { setActiveInArr } from './utils';
 // Types
 import { refBooksActionType as Type } from '../../action-types';
 import { initialState } from './initial-state';
-import { Role } from '../../../../types';
+import { StateRefBooks } from '../../redux-types';
 
 
 
-export default function (state = initialState, action: { type: Type, payload: any }) {
+export default function (state = initialState as StateRefBooks, action: { type: Type, payload: any }) {
   switch (action.type) {
     case Type.LOADING_REF_ON:  return extend(state, { loadingRef: true });
     case Type.LOADING_REF_OFF: return extend(state, { loadingRef: false });
@@ -28,26 +26,38 @@ export default function (state = initialState, action: { type: Type, payload: an
     
     // Созданный Id для нового элемента Справочника
     case Type.SET_NEW_ID: return extend(state, { newId: action.payload });
-      
+
     // ROLES
+    case Type.SET_ROLES: return extend(state, {
+      loadingRef : false, 
+      loadingUpd : false,
+      roles      : action.payload
+    });
+      
     case Type.UPDATE_ROLE:
       return extend(state, {
         loadingUpd : false,
-        roles      : updateArrWithItemByField(state.roles, `id`, action.payload)
+        roles      : updateArrById(state.roles, action.payload)
       });
     
     case Type.DELETE_ROLE:
       return extend(state, {
         loadingUpd : false,
-        roles      : getArrWithoutItemByField(state.roles, `id`, { id: action.payload } as Role)
+        roles      : getArrWithoutItemById(state.roles, action.payload)
       });
     
     
     // USERS
+    case Type.SET_USERS: return extend(state, {
+      loadingRef : false, 
+      loadingUpd : false,
+      users      : action.payload
+    });
+
     case Type.UPDATE_REF_USER:
       return extend(state, {
         loadingUpd : false,
-        users      : updateArrWithItemByField(state.users, `id`, action.payload)
+        users      : updateArrById(state.users, action.payload)
       });
       
     

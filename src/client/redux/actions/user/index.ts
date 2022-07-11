@@ -1,7 +1,5 @@
-import { userLogin } from './user-login';
-import { userLogout } from './user-logout';
-import { sendPasswordResetEmail } from './send-password-and-email';
-import { getUser } from './get-user';
-import { updateUser, updateAnyUser } from './update-user';
-
-export { userLogin, userLogout, sendPasswordResetEmail, getUser, updateUser, updateAnyUser };
+export * from './user-login';
+export * from './user-logout';
+export * from './send-password-and-email';
+export * from './load-start-resourses';
+export * from './update-user';

@@ -4,7 +4,7 @@ import { RouteType } from "../../../utils/routes/routes";
 import { userActionType, uiActionType } from "../../action-types";
 // Functions
 import { getCookie } from "../../../../utils/auth/cookies/cookies";
-import { getUser } from "./get-user";
+import { loadStartResourses } from "./load-start-resourses";
 // Logger
 import logger from "../../../utils/client-logger/client-logger";
 const log = logger(`user-action`);
@@ -13,7 +13,9 @@ import { successMessage } from "../ui";
 
 
 
-// Вход пользователя, загрузка стартовых данных
+/**
+ * Вход пользователя, загрузка стартовых данных
+ */
 export const userLogin = (userData: any, history: { push: (path: string) => {} }) => async (dispatch: any) => {
   dispatch({ type: userActionType.LOADING_USER });
   const csrfToken = getCookie('session');
@@ -25,7 +27,7 @@ export const userLogin = (userData: any, history: { push: (path: string) => {} }
     res = await api.post(`/userLogin`, { userData, csrfToken });
        
     // Загрузить Roles & данные пользователя
-    dispatch(getUser());
+    dispatch(loadStartResourses());
     
     dispatch(successMessage(res.data.message));
 

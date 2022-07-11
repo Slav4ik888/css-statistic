@@ -8,13 +8,13 @@ import CardRole from '../../ref-books/roles/card';
 import CardUser from '../../ref-books/users/card';
 // Functions
 // Types
-import { RefBookId, CardType } from '../../../../../types';
+import { RefbookId, CardType } from '../../../../../types';
 import { UseGroup } from '../../../../utils/hooks/types';
 
 
 
 type Props = {
-  refBookId  : RefBookId;     // Id Справочника
+  refBookId  : RefbookId;     // Id Справочника
   newId?     : string;        // Id нового элемента, при создании
   checkedId? : string;        // Id выбранного элемента для редактирования
   group      : UseGroup<any>; // Чтобы была возможность закрыть карточку при удалении
@@ -28,10 +28,10 @@ const CardSwitch: React.FC<Props> = ({ refBookId, group, newId, checkedId }) => 
   console.log('selectedId: ', selectedId);
 
   switch (refBookId) {
-    case RefBookId.ROLES:
+    case RefbookId.ROLES:
       return <CardRole roleId={selectedId} group={group} />
     
-    case RefBookId.USERS:
+    case RefbookId.USERS:
       return <CardUser type={CardType.EDIT} userId={selectedId} group={group} />
     
     default: return (<></>);

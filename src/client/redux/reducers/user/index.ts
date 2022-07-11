@@ -20,21 +20,27 @@ export default function (state = initialState, action: { type: userActionType, p
     
     case userActionType.SET_AUTHENTICATED:
       return extend(state, {
-        loading: false,
-        authenticated: true
+        loading       : false,
+        authenticated : true
       });
     
     case userActionType.SET_UNAUTHENTICATED:
       return extend(state, {
-        loading: false,
-        authenticated: false
+        loading       : false,
+        authenticated : false
       });
     
     case userActionType.SET_USER:
       return extend(state, {
-        loading: false,
-        authenticated: true,
-        user: action.payload
+        loading       : false,
+        authenticated : true,
+        user          : action.payload
+      });
+    
+    case userActionType.UPDATE_USER:
+      return extend(state, {
+        loading : false,
+        user    : { ...state.user, ...action.payload }
       });
     
     default: return state;

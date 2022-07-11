@@ -1,8 +1,8 @@
-import { StateData } from '../../redux-types';
+// import { StateData } from '../../redux-types';
 
 
-export const initialState: StateData = {
-  loading : false,
-  roles   : [],
-  users   : [],
-};
+// export const initialState: StateData = {
+//   loading : false,
+//   roles   : [],
+//   users   : [],
+// };

@@ -16,16 +16,16 @@ import CardUser from '../ref-books/users/card';
 import { getSearchType } from '../utils/get-search-type';
 import { useGroup, useValue } from '../../../utils/hooks';
 // Types
-import { RefBookId, Strings, User, CardType } from '../../../../types';
+import { RefbookId, Strings, User, CardType } from '../../../../types';
 
 
 
 type Props = {
-  refBookId      : RefBookId; // Id Справочника
-  storeRefBook?  : Array<any>;
-  loadRefbooksByIds?  : (refBookIds: Strings) => void;
-  addNewElement? : (refBookId: string) => void;
-}
+  refBookId          : RefbookId; // Id Справочника
+  storeRefBook?      : Array<any>;
+  loadRefbooksByIds? : (refBookIds: Strings) => void;
+  addNewElement?     : (refBookId: string) => void;
+};
 
 
 const RefBookCnt: React.FC<Props> = ({ refBookId, storeRefBook, loadRefbooksByIds, addNewElement }) => {
@@ -53,7 +53,7 @@ const RefBookCnt: React.FC<Props> = ({ refBookId, storeRefBook, loadRefbooksById
       group.setOpen();
     }
     else if (add) {
-      if (refBookId === RefBookId.USERS) hookNewUser.setOpen();
+      if (refBookId === RefbookId.USERS) hookNewUser.setOpen();
       else {
         addNewElement(refBookId); // Создаём новый Элемент в Справочнике
         groupAdd.setOpen();

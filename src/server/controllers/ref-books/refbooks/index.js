@@ -1,5 +1,1 @@
-import { loadRefbooksByIds } from './load-refbooks-by-ids.js';
-
-export {
-  loadRefbooksByIds
-};
+export * from './load-refbooks-by-ids.js';

@@ -1,4 +1,4 @@
-export default {
+const themes = {
   palette: {
     primary: {
       light: `#ffffb0`, 
@@ -97,3 +97,7 @@ export default {
     }
   }
 };
+
+
+export default themes;
+export declare type Themes = typeof themes;

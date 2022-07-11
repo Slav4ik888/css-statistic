@@ -6,9 +6,8 @@ import { setErrors } from '../../../../../redux/actions/ui';
 import { getRoleById } from '../../../../../redux/selectors/ref-books';
 import { getUserId } from '../../../../../redux/selectors/user';
 import { State } from '../../../../../redux/redux-types';
-// MUI Stuff
-import { Box } from '@mui/material';
 // Components
+import CardContainer from '../../../../containers/cards/card-container';
 import Content from './content';
 import Actions from '../../../actions';
 // Functions
@@ -17,7 +16,7 @@ import mergeWithTemplate from './merge-with-template';
 import validateAndSubmit from '../../../../../../utils/validators/validate-and-submit';
 // Types
 import { UseGroup } from '../../../../../utils/hooks/types';
-import { Errors, RefBookId, Role, Validator } from '../../../../../../types';
+import { Errors, RefbookId, Role, Validator } from '../../../../../../types';
 
 
 type Props = {
@@ -28,41 +27,38 @@ type Props = {
   userId?     : string;
   setErrors?  : (err: Errors) => void;
   updateRole? : (roleData: Role) => void;
-}
+};
 
 
 const CardRole: React.FC<Props> = ({ roleId, storeRole, group: G, userId, setErrors, updateRole }) => {
-  if (!storeRole) return null;
   
-  React.useEffect(() => setErrors(null), []);
-  React.useEffect(() => G.setGroup(mergeWithTemplate(storeRole, userId)), [roleId, storeRole, userId]);
+  React.useEffect(() => { setErrors(null); }, []);
+  React.useEffect(() => { G.setGroup(mergeWithTemplate(storeRole, userId)); }, [roleId, storeRole, userId]);
+  React.useEffect(() => { G.confirm && handleSubmit(false, true); }, [G.confirm]); // Если пользователь нажал Сохранить при Confirm
   
   
   const handleSubmit = async (e?: any, exit?: boolean) => {
-    // Проверка на наличие изменений
     if (!isChanges(G, storeRole, G.group, exit)) return null;
 
-    // Валидация данных
     validateAndSubmit(Validator.ROLE_UPDATE, G.group, updateRole, setErrors, G, true);
   };
   
-  React.useEffect(() => {
-    if (G.confirm) handleSubmit(false, true); // Если пользователь нажал Сохранить при Confirm
-  }, [G.confirm]);
+
+  if (!storeRole) return null;
 
 
   return (
-    <Box component="form" noValidate sx={{ display: `flex`, flexDirection: `column` }}>
+    <CardContainer>
       
       <Content group={G} />
 
       <Actions
-        refBookId = {RefBookId.ROLES}
+        refBookId = {RefbookId.ROLES}
         id        = {roleId}
         hookOpen  = {G}
         onSubmit  = {handleSubmit}
       />
-    </Box>
+    </CardContainer>
   );
 };
 

@@ -1,8 +1,8 @@
-import { uiActionType, userActionType, statsActionType, dataActionType, refBooksActionType } from './action-types';
+import { uiActionType, userActionType, statsActionType, refBooksActionType } from './action-types';
 import { Message, Errors, ScreenFormats, SelectedDates, DbItem, User, Users, Roles } from '../../types';
 
 
-export type TypeDispatch = Function | uiActionType | refBooksActionType | dataActionType | userActionType | statsActionType;
+export type TypeDispatch = Function | uiActionType | refBooksActionType | userActionType | statsActionType;
 
 type Payload = string | {};
 
@@ -17,11 +17,11 @@ export interface StateUI {
   screenSize      : number;
 };
 
-export interface StateData {
-  loading : boolean;
-  roles   : Roles;
-  users   : Users;
-};
+// export interface StateData {
+//   loading : boolean;
+//   roles   : Roles;
+//   users   : Users;
+// };
 
 export interface StateUser {
   loading         : boolean;
@@ -54,7 +54,7 @@ export interface StateRefBooks {
 
 export interface State {
   UI        : StateUI;
-  data      : StateData;
+  // data      : StateData;
   user      : StateUser;
   stats     : StateStats;
   refbooks  : StateRefBooks;

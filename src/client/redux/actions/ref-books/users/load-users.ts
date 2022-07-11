@@ -1,22 +1,21 @@
 import api from "../../../api";
 import { Dispatch } from "../../../redux-types";
-import { dataActionType as Type } from "../../../action-types";
+import { refBooksActionType as Type } from "../../../action-types";
 import { handleError } from "../../universal/handle-error";
 import { ResRefLoadUsers } from "../../../../../types";
 
 
 
 export const loadUsers = () => async (dispatch: Dispatch) => {
-  dispatch({ type: Type.LOADING_DATA });
+  dispatch({ type: Type.LOADING_REF_ON });
 
   try {
-    const res: ResRefLoadUsers = await api.get(`/loadUsers`);
+    const { data: { users }}: ResRefLoadUsers = await api.get(`/loadUsers`);
 
-    dispatch({ type: Type.SET_USERS, payload: res.data.users });
-    dispatch({ type: Type.LOADING_DATA_OFF });
+    dispatch({ type: Type.SET_USERS, payload: users });
   }
   catch (err) {
     dispatch({ type: Type.SET_USERS, payload: [] });
-    handleError(err, dispatch, Type.LOADING_DATA_OFF)
+    handleError(err, dispatch, Type.LOADING_REF_OFF)
   }
 };

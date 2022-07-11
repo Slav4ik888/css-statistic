@@ -1,4 +1,4 @@
-import updateArrByArrByField from './index.js';
+import { updateArrByArrByField } from './index.js';
 import mocks from './mocks.js';
 
 

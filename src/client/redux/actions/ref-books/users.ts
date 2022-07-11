@@ -1,7 +1,7 @@
 import api from "../../api";
 import { Dispatch } from "../../redux-types";
 import { refBooksActionType } from "../../action-types";
-import { ResRefAddUser, ResRefUpdateUser, ResRefDeleteUser, User } from "../../../../types";
+import { ResRefAddUser, ResRefDeleteUser, User } from "../../../../types";
 import { getFio } from "../../../components/ref-books/utils/get-fio";
 import mergeWithTemplate from "../../../components/users/merge-with-template";
 import { handleError } from "../universal/handle-error";
@@ -31,21 +31,21 @@ export const addRefUser = (userData: User) => async (dispatch: Dispatch) => {
 };
 
 
-export const updateRefUser = (userData: User) => async (dispatch: Dispatch) => {
-  dispatch({ type: refBooksActionType.LOADING_UPD_ON });
+// export const updateRefUser = (userData: User) => async (dispatch: Dispatch) => {
+//   dispatch({ type: refBooksActionType.LOADING_UPD_ON });
   
-  try {
-    const res: ResRefUpdateUser = await api.post(`/updateRefUser`, userData);
+//   try {
+//     const res: ResRefUpdateUser = await api.post(`/updateRefUser`, userData);
 
-    dispatch({
-      type: refBooksActionType.UPDATE_REF_USER,
-      payload: res.data.user
-    });
+//     dispatch({
+//       type: refBooksActionType.UPDATE_REF_USER,
+//       payload: res.data.user
+//     });
 
-    dispatch(successMessage(res.data.message));
-  }
-  catch (err) { handleError(err, dispatch, refBooksActionType.LOADING_UPD_OFF) }
-};
+//     dispatch(successMessage(res.data.message));
+//   }
+//   catch (err) { handleError(err, dispatch, refBooksActionType.LOADING_UPD_OFF) }
+// };
 
 
 export const deleteRefUser = ({ userId, email }: { userId: string, email: string }) => async (dispatch: Dispatch) => {

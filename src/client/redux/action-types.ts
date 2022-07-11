@@ -9,16 +9,16 @@ export enum userActionType {
 };
 
 
-export enum dataActionType {
-  LOADING_DATA        = `LOADING_DATA`,
-  LOADING_DATA_OFF    = `LOADING_DATA_OFF`,
-  SET_ROLES           = `SET_ROLES`,
-  ADD_ROLE            = `ADD_ROLE`,
-  UPDATE_ROLE         = `UPDATE_ROLE`,
-  SET_USERS           = `SET_USERS`,
-  ADD_USER            = `ADD_USER`,
-  UPDATE_USER         = `UPDATE_USER`
-};
+// export enum dataActionType {
+//   LOADING_DATA        = `LOADING_DATA`,
+//   LOADING_DATA_OFF    = `LOADING_DATA_OFF`,
+//   SET_ROLES           = `SET_ROLES`,
+//   ADD_ROLE            = `ADD_ROLE`,
+//   UPDATE_ROLE         = `UPDATE_ROLE`,
+//   SET_USERS           = `SET_USERS`,
+//   ADD_USER            = `ADD_USER`,
+//   UPDATE_ANY_USER     = `UPDATE_ANY_USER`
+// };
 
 
 export enum uiActionType {
@@ -31,6 +31,7 @@ export enum uiActionType {
   CLEAR_MESSAGE       = `CLEAR_MESSAGE`
 };
 
+
 export enum refBooksActionType {
   LOADING_REF_ON      = `LOADING_REF_ON`,
   LOADING_REF_OFF     = `LOADING_REF_OFF`,
@@ -40,13 +41,15 @@ export enum refBooksActionType {
   SET_REF_BOOK        = `SET_REF_BOOK`,
   SET_NEW_ID          = `SET_NEW_ID`,
   
+  SET_ROLES           = `SET_USERS`,
   UPDATE_ROLE         = `UPDATE_ROLE`,
   DELETE_ROLE         = `DELETE_ROLE`,
   
+  SET_USERS           = `SET_USERS`,
   UPDATE_REF_USER     = `UPDATE_REF_USER`,
   DELETE_REF_USER     = `DELETE_REF_USER`,
-  
 };
+
 
 export enum statsActionType {
   LOADING_STATS       = `LOADING_STATS`,

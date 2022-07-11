@@ -6,7 +6,7 @@
  * @param {string} field 
  * @param {Array} newArr 
  */
-export default function updateArrByArrByField(lastArr, field, newArr) {
+export function updateArrByArrByField(lastArr, field, newArr) {
   if (!lastArr?.length) return newArr;
 
   let updatedArr = [...newArr];

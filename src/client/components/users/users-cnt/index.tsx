@@ -6,15 +6,15 @@ import UserProfile from '../profile';
 // Functions
 // Types & Styles
 import { FlexDirection } from '../../../utils/styles';
-import { useTheme } from '@emotion/react';
 import { User, CardType } from '../../../../types';
 import { UseGroup } from '../../../utils/hooks/types';
 
 
-const useStyles = (theme) => ({
+
+const useStyles = () => ({
   root: {
-    display: `flex`,
-    flexDirection: FlexDirection.COLUMN
+    display       : `flex`,
+    flexDirection : FlexDirection.COLUMN
   },
 });
 
@@ -25,7 +25,7 @@ type Props = {
 
 
 const UsersCnt: React.FC<Props> = ({ group: G }) => {
-  const sx = useStyles(useTheme());
+  const sx = useStyles();
 
 
   return (

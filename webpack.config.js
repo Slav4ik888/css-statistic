@@ -52,7 +52,7 @@ export default {
     // compress: true,
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://localhost:7070'
+      '/api': 'http://localhost:7050'
     }
   },
   plugins: [

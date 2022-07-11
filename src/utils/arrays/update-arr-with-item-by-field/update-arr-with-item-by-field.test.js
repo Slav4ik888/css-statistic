@@ -21,8 +21,6 @@ describe(`ARRAY.JS - updateArrWithItemByField`, () => {
   it(`Если стоит flags ['update'], то в обновляемом объекте, обновляются только те поля что переданы, остальные имеющиеся остаются без изменений`, () => {
     expect(updateArrWithItemByField([...mockArray], `id`, mockFieldUpdateWithoutAnyFields, `update`)).toEqual(mockArrayUpdateWithoutAnyFields);
   });
-  
-
 });
 
 

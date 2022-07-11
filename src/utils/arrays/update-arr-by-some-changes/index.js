@@ -1,5 +1,5 @@
 
-export default function updateArrBySomeChanges(arr, field, changesArr, obj) {
+export function updateArrBySomeChanges(arr, field, changesArr, obj) {
   if (!arr?.length) return [];
 
   let newArr = [];

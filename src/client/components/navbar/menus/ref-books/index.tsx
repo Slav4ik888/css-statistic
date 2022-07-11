@@ -3,15 +3,15 @@ import * as React from 'react';
 import Menu from '@mui/material/Menu';
 // Components
 import DialogInfo from '../../../dialogs/dialog-info';
-import RefBookCnt from '../../../ref-books/ref-book-cnt';
-import RefBookItem from './ref-book-item';
+import RefbookCnt from '../../../ref-books/ref-book-cnt';
+import RefbookItem from './ref-book-item';
 // Functions
 import { getLabelById } from '../../../ref-books/utils/get-label-by-id';
 import { useOpen, useValue } from '../../../../utils/hooks/hooks';
 import { useGroup } from '../../../../utils/hooks';
 // Types & Consts & Styles
 import { ReferenceBooksList } from '../../../../consts/reference-books-list';
-import { RefBookId } from '../../../../../types';
+import { RefbookId } from '../../../../../types';
 import { useTheme } from '@emotion/react';
 
 
@@ -58,7 +58,9 @@ type Props = {
 };
 
 
-// Меню со Справочниками для Navbar
+/**
+ * Меню со Справочниками для Navbar
+ */
 const RefBookMenu: React.FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
   const
     sx       = useStyles(useTheme()),
@@ -92,7 +94,7 @@ const RefBookMenu: React.FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
       >
         {
           ReferenceBooksList
-            .map((item, i) => <RefBookItem key={item.id + i} item={item} onOpen={handleOpen} />)
+            .map((item, i) => <RefbookItem key={item.id + i} item={item} onOpen={handleOpen} />)
         }
       </Menu>
 
@@ -100,7 +102,7 @@ const RefBookMenu: React.FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
         hookOpen = {hookOpen}
         onClose  = {handleClose}
         title    = {getLabelById(refBook.value)}
-        children = {<RefBookCnt refBookId={refBook.value as RefBookId} />}
+        children = {<RefbookCnt refBookId={refBook.value as RefbookId} />}
       />
     </>
   )

@@ -4,7 +4,7 @@ import { Router, Switch } from 'react-router-dom'; // import { BrowserRouter as 
 import { RouteType, NoAuthRoute, PrivateRoute, AuthRoute, history } from './utils/routes';
 // Readux Stuff
 import { connect } from 'react-redux';
-import { getUser } from './redux/actions/user';
+import { loadStartResourses } from './redux/actions/user';
 import { showWarning } from './redux/actions/ui';
 import { getErrors } from './redux/selectors/ui';
 import { State } from './redux/redux-types';
@@ -21,9 +21,11 @@ import getAllObjValue from '../utils/objects/get-all-obj-value';
 // Types, Styles
 import { Errors } from '../types';
 import { useTheme } from '@emotion/react';
+import { Themes } from './utils/styles/themes/themes';
 
 
-const useStyles = (theme) => ({
+
+const useStyles = (theme: Themes) => ({
   body: {
     backgroundColor: theme.body.background,
   },
@@ -35,19 +37,19 @@ const useStyles = (theme) => ({
 
 
 type Props = {
-  errors?      : Errors;
-  getUser?     : () => void;
-  showWarning? : (m: string) => void;
+  errors?             : Errors;
+  loadStartResourses? : () => void;
+  showWarning?        : (m: string) => void;
 };
 
 
-const App: React.FC<Props> = ({ errors, getUser, showWarning }) => {
-  const sx = useStyles(useTheme());
+const App: React.FC<Props> = ({ errors, loadStartResourses, showWarning }) => {
+  const sx = useStyles(useTheme() as Themes);
 
-  React.useEffect(() => getUser(), []);
+  React.useEffect(() => { loadStartResourses(); }, []);
 
   // Global show errors
-  React.useEffect(() => isNoEmptyFields(errors) ? showWarning(getAllObjValue(errors)) : null, [errors]);
+  React.useEffect(() => { isNoEmptyFields(errors) && showWarning(getAllObjValue(errors)); }, [errors]);
  
 
   return (
@@ -80,6 +82,6 @@ const mapStateToProps = (state: State) => ({
   errors: getErrors(state)
 });
 
-const mapActionsToProps = ({ getUser, showWarning });
+const mapActionsToProps = ({ loadStartResourses, showWarning });
 
 export default connect(mapStateToProps, mapActionsToProps)(App);
