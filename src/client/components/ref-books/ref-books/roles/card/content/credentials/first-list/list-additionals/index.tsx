@@ -3,7 +3,7 @@ import * as React from 'react';
 import AdditionalsRow from './additionals-row';
 // Types
 import { CredSchemeItem, Role } from '../../../../../../../../../../types';
-import { UseGroup } from '../../../../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../../../../utils/hooks';
 
 
 
@@ -30,6 +30,5 @@ const AdditionalsList: React.FC<Props> = ({ credItem, group }) => {
     </>
   );
 };
-
 
 export default AdditionalsList;

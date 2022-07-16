@@ -13,12 +13,12 @@ import CircularProgress from '../../../../../buttons/circular-progress';
 import validEmail from '../../../../../../../utils/validators/email/email';
 // Types
 import { Errors } from '../../../../../../../types';
-import { UseOpen } from '../../../../../../utils/hooks/types';
+import { UseBase } from '../../../../../../utils/hooks';
 
 
 
 type Props = {
-  hookOpen                : UseOpen;
+  hookOpen                : UseBase;
   loading                 : boolean;
   errors                  : Errors;
   sendPasswordResetEmail? : (email: string) => void;

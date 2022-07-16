@@ -6,16 +6,15 @@ import { State } from '../../../../../../../../../redux/redux-types';
 // MUI Stuff
 import { Box, InputLabel, MenuItem, FormControl, FormHelperText, Select, SelectChangeEvent } from '@mui/material';
 // Functions
-import { arrFromObj } from '../../../../../../../../../../utils/objects';
-import changeGroup from '../../../../../../../../../utils/hooks/change-group';
-// Types
-import { UseGroup } from '../../../../../../../../../utils/hooks/types';
+import { UseGroup, changeGroup } from '../../../../../../../../../utils/hooks';
+// Types & Styles
 import { Errors, RoleType, User } from '../../../../../../../../../../types';
-// Styles
 import { useTheme } from '@emotion/react';
+import { Themes } from '../../../../../../../../../utils/styles';
 
 
-const useStyles = (theme) => ({
+
+const useStyles = (theme: Themes) => ({
   root: {
     minWidth: `150px`
   },
@@ -28,16 +27,16 @@ const useStyles = (theme) => ({
 type Props = {
   group   : UseGroup<User>;
   errors? : Errors;
-}
+};
 
 
 const SelectRoleType: React.FC<Props> = ({ group, errors }) => {
-  const sx = useStyles(useTheme());
-  const RoleArr = arrFromObj(RoleType);
+  const
+    sx      = useStyles(useTheme() as Themes),
+    RoleArr = Object.values(RoleType);
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event: SelectChangeEvent) =>
     changeGroup(group, [{ value: event.target.value as RoleType, scheme: `role.type` }]);
-  };
   
 
   return (
@@ -63,7 +62,6 @@ const SelectRoleType: React.FC<Props> = ({ group, errors }) => {
     </Box>
   );
 };
-
 
 const mapStateToProps = (state: State) => ({
   errors: getErrors(state)

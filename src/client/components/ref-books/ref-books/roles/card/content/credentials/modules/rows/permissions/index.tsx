@@ -6,7 +6,7 @@ import CredRowPermissions from '../row';
 import SelectPermission from '../../select-permission';
 // Types
 import { CredSchemeItem, CredSchemeItemType, PermType, Role } from '../../../../../../../../../../../types';
-import { UseGroup } from '../../../../../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../../../../../utils/hooks';
 
 
 const Empty = (<Box></Box>);

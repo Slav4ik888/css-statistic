@@ -2,25 +2,22 @@ import * as React from 'react';
 // MUI Stuff
 import { MenuItem, FormControl, Select, SelectChangeEvent } from '@mui/material';
 // Functions
-import { arrFromObj } from '../../../../../../../../../../utils/objects';
-import changeGroup from '../../../../../../../../../utils/hooks/change-group';
-import getValueByScheme from '../../../../../../../../../utils/hooks/get-value-by-scheme';
+import { UseGroup, UseBase, changeGroup, getValueByScheme } from '../../../../../../../../../utils/hooks';
 // Types
-import { UseGroup, UseOpen } from '../../../../../../../../../utils/hooks/types';
-import { CredType, PermType } from '../../../../../../../../../../types';
+import { CredType } from '../../../../../../../../../../types';
+
 
 
 type Props = {
-  select : UseOpen;
-  type   : PermType;
+  select : UseBase;
   group  : UseGroup<any>;
   scheme : string;
 };
 
 
-const SelectPermission: React.FC<Props> = ({ select, type, group, scheme }) => {
-  if (!select.open) return null;
-  const CredTypeArr = arrFromObj(CredType);
+const SelectPermission: React.FC<Props> = ({ select, group, scheme }) => {
+  const
+    CredTypeArr = Object.values(CredType);
 
   const handleChange = (event: SelectChangeEvent) => {
     const value = event.target.value;
@@ -30,6 +27,7 @@ const SelectPermission: React.FC<Props> = ({ select, type, group, scheme }) => {
   };
   
   const handleClose = () => select.setClose();
+
 
   return (
     <FormControl fullWidth>

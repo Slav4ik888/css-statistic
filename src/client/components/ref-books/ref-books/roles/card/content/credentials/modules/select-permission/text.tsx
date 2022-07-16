@@ -2,12 +2,12 @@ import * as React from 'react';
 // MUI Stuff
 import { Box, Tooltip } from '@mui/material';
 // Functions
-import getValueByScheme from '../../../../../../../../../utils/hooks/get-value-by-scheme';
+import { UseGroup, UseBase, getValueByScheme } from '../../../../../../../../../utils/hooks';
 import getPermissionColor from './get-permission-color';
 import getPermissionSize from './get-permission-size';
 // Types
-import { UseGroup, UseOpen } from '../../../../../../../../../utils/hooks/types';
 import { CredType, PermSchemeItem } from '../../../../../../../../../../types';
+
 
 
 const getStyle = (color: string, fontSize: string) => ({
@@ -19,7 +19,7 @@ const getStyle = (color: string, fontSize: string) => ({
 
 
 type Props = {
-  select : UseOpen;
+  select : UseBase;
   group  : UseGroup<any>;
   value  : PermSchemeItem;
   scheme : string;
@@ -27,12 +27,10 @@ type Props = {
 
 
 const SelectPermission: React.FC<Props> = ({ select, group, value, scheme }) => {
-  if (select.open) return null;
-
-  const permission = React.useMemo(() => getValueByScheme(group, scheme) || CredType.NO, [group.group]);
-
-  const color    = React.useMemo(() => getPermissionColor(permission), [permission]);
-  const fontSize = React.useMemo(() => getPermissionSize(permission), [permission]);
+  const
+    permission = React.useMemo(() => getValueByScheme(group, scheme) || CredType.NO, [group.group]),
+    color      = React.useMemo(() => getPermissionColor(permission), [permission]),
+    fontSize   = React.useMemo(() => getPermissionSize(permission), [permission]);
 
 
   const handleOpen = () => {

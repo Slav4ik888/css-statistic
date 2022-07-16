@@ -1,12 +1,11 @@
 import { Users } from "../../../../../../types";
-import { getItemFromArrByField } from "../../../../../../utils/arrays/get-item-from-arr-by-field/get-item-from-arr-by-field";
-import { updateArrWithItemByField } from "../../../../../../utils/arrays/update-arr-with-item-by-field";
+import { getItemById, updateArrById } from "../../../../../../utils/arrays";
 
 
 export function setActiveInArr(arr: Users, id: string) {
 
-  const item = getItemFromArrByField(arr, `id`, id);
+  const item = getItemById(arr, id);
   item.active = false;
 
-  return updateArrWithItemByField(arr, `id`, item);
+  return updateArrById(arr, item);
 };

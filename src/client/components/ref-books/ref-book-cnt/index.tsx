@@ -2,7 +2,7 @@ import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
 import { loadRefbooksByIds, addNewElement } from '../../../redux/actions/ref-books';
-import { getRefBookById } from '../../../redux/selectors/ref-books';
+import { getRefbookById } from '../../../redux/selectors/ref-books';
 import { State } from '../../../redux/redux-types';
 // MUI Stuff
 import Box from '@mui/material/Box';
@@ -21,22 +21,22 @@ import { RefbookId, Strings, User, CardType } from '../../../../types';
 
 
 type Props = {
-  refBookId          : RefbookId; // Id Справочника
-  storeRefBook?      : Array<any>;
-  loadRefbooksByIds? : (refBookIds: Strings) => void;
-  addNewElement?     : (refBookId: string) => void;
+  refbookId          : RefbookId; // Id Справочника
+  storeRefbook?      : Array<any>;
+  loadRefbooksByIds? : (refbookIds: Strings) => void;
+  addNewElement?     : (refbookId: string) => void;
 };
 
 
-const RefBookCnt: React.FC<Props> = ({ refBookId, storeRefBook, loadRefbooksByIds, addNewElement }) => {
+const RefbookCnt: React.FC<Props> = ({ refbookId, storeRefbook, loadRefbooksByIds, addNewElement }) => {
   
   React.useEffect(() => {
-    if (storeRefBook !== null) return console.log(`Справочник уже загружен`);
+    if (storeRefbook !== null) return console.log(`Справочник уже загружен`);
 
     const refBooksIds = [`users`, `roles`];
     console.log(`Загружаем справочники: `, refBooksIds);
     loadRefbooksByIds(refBooksIds);
-  }, [refBookId]);
+  }, [refbookId]);
   
 
   const
@@ -53,9 +53,9 @@ const RefBookCnt: React.FC<Props> = ({ refBookId, storeRefBook, loadRefbooksById
       group.setOpen();
     }
     else if (add) {
-      if (refBookId === RefbookId.USERS) hookNewUser.setOpen();
+      if (refbookId === RefbookId.USERS) hookNewUser.setOpen();
       else {
-        addNewElement(refBookId); // Создаём новый Элемент в Справочнике
+        addNewElement(refbookId); // Создаём новый Элемент в Справочнике
         groupAdd.setOpen();
       }
     }
@@ -65,24 +65,25 @@ const RefBookCnt: React.FC<Props> = ({ refBookId, storeRefBook, loadRefbooksById
   return (
     <Box sx={{ display: `flex`, flexDirection: `column`, pt: 2 }}>
       <RefSearch
-        type     = {getSearchType(refBookId)}
-        items    = {storeRefBook}
-        onSelect = {handleSearch}
+        type      = {getSearchType(refbookId)}
+        items     = {storeRefbook}
+        refbookId = {refbookId}
+        onSelect  = {handleSearch}
       />
 
       <RefBookList
         group     = {group}
-        refBookId = {refBookId}
+        refbookId = {refbookId}
         selected  = {selected}
       />
 
-      <AddBtn group={groupAdd} refBookId={refBookId} />
+      <AddBtn group={groupAdd} refbookId={refbookId} />
 
       
       <DialogInfo
         hookOpen = {hookNewUser}
         onClose  = {hookNewUser.setClose}
-        title    = {`Добавление нового пользователя`}
+        title    = 'Добавление нового пользователя'
         children = {<CardUser type={CardType.ADD} group={hookNewUser} />}
       />
       
@@ -91,11 +92,11 @@ const RefBookCnt: React.FC<Props> = ({ refBookId, storeRefBook, loadRefbooksById
 };
 
 const mapStateToProps = (state: State, props: Props) => ({
-  storeRefBook: getRefBookById(state, props),
+  storeRefbook: getRefbookById(state, props)
 });
 
 const mapActionsToProps = {
   loadRefbooksByIds, addNewElement
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(RefBookCnt);
+export default connect(mapStateToProps, mapActionsToProps)(RefbookCnt);

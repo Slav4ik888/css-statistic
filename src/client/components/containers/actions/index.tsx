@@ -6,11 +6,9 @@ import FlexDivider from '../flex-divider';
 import DialogConfirm from '../../dialogs/dialog-confirm';
 import CancelSubmitBtn from '../../buttons/cancel-submit-btn';
 // Functions
-import { useOpen } from '../../../utils/hooks/hooks';
-// Types
-import { UseOpen } from '../../../utils/hooks/types';
+import { UseBase, useValue } from '../../../utils/hooks';
+// Types & Styles
 import { ConfirmType } from '../../../../types';
-// Styles
 import { FlexDirection } from '../../../utils/styles';
 import { useTheme } from '@emotion/react';
 
@@ -42,7 +40,7 @@ const useStyles = (theme) => ({
 type Props = {
   loading         : boolean;
   disabledDelete? : boolean;
-  hookOpen        : UseOpen;
+  hookOpen        : UseBase;
   onClose?        : () => void;
   onDel?          : () => void;
   onSubmit        : () => void;
@@ -52,8 +50,8 @@ type Props = {
 const Actions: React.FC<Props> = ({ loading, disabledDelete, hookOpen, onClose, onDel, onSubmit }) => {
   const
     sx       = useStyles(useTheme()),
-    confirm  = useOpen(),
-    disabled = !hookOpen.isChange;
+    confirm  = useValue(),
+    disabled = !hookOpen.changes;
 
   const handleDel = () => {
     confirm.setClose();
@@ -71,7 +69,7 @@ const Actions: React.FC<Props> = ({ loading, disabledDelete, hookOpen, onClose, 
           onDel ? <Button
             variant  = "outlined"
             disabled = {disabledDelete}
-            onClick  = {confirm.setOpen}
+            onClick  = {() => confirm.setOpen()}
             sx       = {sx.delete}
           >
             Удалить

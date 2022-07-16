@@ -3,14 +3,14 @@ import * as React from 'react';
 import { IconButton } from '@mui/material';
 // Icons
 import RefreshIcon from '@mui/icons-material/Refresh';
-// Types & Consts
-import { UseOpen } from '../../../../utils/hooks/types';
-// Styles
-import { Position } from '../../../../utils/styles';
+// Types & Consts & Styles
+import { UseValue } from '../../../../utils/hooks';
+import { Position, Themes } from '../../../../utils/styles';
 import { useTheme } from '@emotion/react';
 
 
-const useStyles = (theme) => ({
+
+const useStyles = (theme: Themes) => ({
   root: {
     position: Position.ABS,
     top: `48px`,
@@ -21,15 +21,15 @@ const useStyles = (theme) => ({
 
 
 type Props = {
-  hookResult : UseOpen;
+  hookResult : UseValue<any>;
 };
 
 
 const RefreshBtn: React.FC<Props> = ({ hookResult }) => {
-  const sx = useStyles(useTheme());
+  const sx = useStyles(useTheme() as Themes);
 
   return (
-    <IconButton onClick={hookResult.setClose} sx={sx.root}>
+    <IconButton onClick={() => hookResult.setClose()} sx={sx.root}>
       <RefreshIcon />
     </IconButton>
   );

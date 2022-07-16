@@ -15,8 +15,9 @@ import isChanges from '../../../../../utils/check-changes-in-submit';
 import mergeWithTemplate from './merge-with-template';
 import validateAndSubmit from '../../../../../../utils/validators/validate-and-submit';
 // Types
-import { UseGroup } from '../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../utils/hooks';
 import { Errors, RefbookId, Role, Validator } from '../../../../../../types';
+
 
 
 type Props = {
@@ -49,7 +50,6 @@ const CardRole: React.FC<Props> = ({ roleId, storeRole, group: G, userId, setErr
 
   return (
     <CardContainer>
-      
       <Content group={G} />
 
       <Actions

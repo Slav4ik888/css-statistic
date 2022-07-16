@@ -11,46 +11,47 @@ import RefreshBtn from './rerfresh-btn';
 import TableCnt from './table-cnt';
 // Functions
 import calcsAllResults from '../../../utils/calculations';
-// Types & Consts
-import { UseOpen } from '../../../utils/hooks/types';
+// Types & Styles
+import { UseValue } from '../../../utils/hooks';
 import { DBsType, SelectedDates } from '../../../../types';
-// Styles
-import { FlexDirection, Position } from '../../../utils/styles';
+import { FlexDirection, Position, Themes } from '../../../utils/styles';
 import { useTheme } from '@emotion/react';
 
 
-const useStyles = (theme) => ({
+
+const useStyles = (theme: Themes) => ({
   root: {
-    display: `flex`,
-    flexDirection: FlexDirection.COLUMN,
-    position: Position.REL,
-    mt: 5,
-    p: 4,
-    width: 960,
-    backgroundColor: theme.paper.background
+    display         : `flex`,
+    flexDirection   : FlexDirection.COLUMN,
+    position        : Position.REL,
+    width           : 960,
+    backgroundColor : theme.paper.background,
+    mt              : 5,
+    p               : 4
   }
 });
 
 
 type Props = {
   loading?   : boolean;
-  hookResult : UseOpen;
+  hookResult : UseValue<any>;
   DBs?       : DBsType;
   dates?     : SelectedDates; 
 };
 
 
 const ShowResult: React.FC<Props> = ({ loading, hookResult, DBs, dates }) => {
-  if (hookResult.close) return null;
-  if (loading) return <CircularProgress size={50} loading={loading} center block />;
-  const sx = useStyles(useTheme());
-
-  const calcResults = React.useMemo(() => calcsAllResults(DBs, dates.from, dates.to), [DBs, dates]);
+  const
+    sx = useStyles(useTheme() as Themes),
+    calcResults = React.useMemo(() => calcsAllResults(DBs, dates.from, dates.to), [DBs, dates]);
+  
   console.log('calcResults: ', calcResults);
+  if (!hookResult.open) return null;
 
 
   return (
     <Paper sx={sx.root}>
+      <CircularProgress size={50} loading={loading} center block />
       <RefreshBtn hookResult={hookResult} />
       <TableCnt calcResults={calcResults} />
     </Paper>

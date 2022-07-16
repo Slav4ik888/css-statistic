@@ -10,7 +10,8 @@ import Actions from '../actions';
 // Types, Styles
 import { CardType, Role } from '../../../../../../../../types';
 import { TextField } from '../../../../../../containers/elements';
-import { UseGroup } from '../../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../../utils/hooks';
+
 
 
 const useStyles = () => ({

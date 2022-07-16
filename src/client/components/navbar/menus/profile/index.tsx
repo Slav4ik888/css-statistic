@@ -15,12 +15,12 @@ import MenuPopover from '../../../dialogs/menu-popover';
 import RoleCnt from './role';
 // import UserProfile from '../../../profiles/user-profile/user-profile';
 // Functions
-import { useOpen } from '../../../../utils/hooks/hooks';
+import { UseBase, useValue } from '../../../../utils/hooks';
 import { getFio } from '../../../../utils/helpers';
 // Types & Styles
 import { User, Roles } from '../../../../../types';
-import { UseOpen } from '../../../../utils/hooks/types';
 import { Position, TextAlign } from '../../../../utils/styles/helpers-css';
+
 
 
 const MENU_OPTIONS = [
@@ -38,28 +38,12 @@ const MENU_OPTIONS = [
 
 
 const useStyles = () => ({
-  paper: {
-    overflow: 'visible',
-    filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-    mt: 1.5,
-    '& .MuiAvatar-root': {
-      width: 32,
-      height: 32,
-      ml: -0.5,
-      mr: 1,
-    },
-    '&:before': {
-      content: '""',
-      display: 'block',
-      position: Position.ABS,
-      top: 0,
-      right: 14,
-      width: 10,
-      height: 10,
-      bgcolor: 'background.paper',
-      transform: 'translateY(-50%) rotate(45deg)',
-      zIndex: 0,
-    },
+  root: {
+    width: 220
+  },
+  boxFio: {
+    my : 1.5,
+    px : 2.5
   },
   email: {
     textAlign: TextAlign.CENTER,
@@ -68,12 +52,26 @@ const useStyles = () => ({
     color: '#777777',
     fontSize: `0.8rem`,
     fontStyle: `italic`
+  },
+  menuItem: {
+    typography: 'body2',
+    py: 1,
+    px: 2.5
+  },
+  listIcon: {
+    width: 24,
+    height: 24,
+    mr: 2
+  },
+  exit: {
+    p: 2,
+    pt: 1.5
   }
 });
 
 
 type Props = {
-  menu        : UseOpen;
+  menu        : UseBase;
   anchorEl    : Element;
   menuId      : string;
   roles?      : Roles;
@@ -82,24 +80,25 @@ type Props = {
 };
 
 
-// Меню с профилями для Navbar
+/**
+ * Меню с профилями для Navbar
+ */
 const ProfileMenu: React.FC<Props> = ({ roles, user, menu, anchorEl, menuId, userLogout }) => {
-  const sx = useStyles();
-
-  // Профиль пользователя
-  const profile = useOpen(false);
+  const
+    sx      = useStyles(),
+    profile = useValue(false); // Профиль пользователя
   
   // Выход из аккаунта
   const handleUserLogout = () => {
     menu.setClose();
     userLogout(user.email);
-  }
+  };
 
   
   return (
-    <MenuPopover poper={menu} poperId={menuId} anchorEl={anchorEl} sx={{ width: 220 }}>
+    <MenuPopover poper={menu} poperId={menuId} anchorEl={anchorEl} sx={sx.root}>
       <>
-        <Box sx={{ my: 1.5, px: 2.5 }}>
+        <Box sx={sx.boxFio}>
           <Typography variant="subtitle1" noWrap>{getFio(user?.person)}</Typography>
           <RoleCnt roles={roles} user={user} />
         </Box>
@@ -111,11 +110,11 @@ const ProfileMenu: React.FC<Props> = ({ roles, user, menu, anchorEl, menuId, use
         {
           MENU_OPTIONS.map((option) => (
             <MenuItem
-              key={option.linkTo}
-              onClick={menu.setClose}
-              sx={{ typography: 'body2', py: 1, px: 2.5 }}
+              key     = {option.linkTo}
+              onClick = {() => menu.setClose()}
+              sx      = {sx.menuItem}
             >
-              <ListItemIcon sx={{ mr: 2, width: 24, height: 24 }}>
+              <ListItemIcon sx={sx.listIcon}>
                 {
                   option.icon === `profile`
                     ? <AccountCircle fontSize="small" />
@@ -148,7 +147,7 @@ const ProfileMenu: React.FC<Props> = ({ roles, user, menu, anchorEl, menuId, use
         </MenuItem> */}
         
 
-        <Box sx={{ p: 2, pt: 1.5 }}>
+        <Box sx={sx.exit}>
           <Button fullWidth color="inherit" variant="outlined" onClick={handleUserLogout}>
             Выйти
           </Button>

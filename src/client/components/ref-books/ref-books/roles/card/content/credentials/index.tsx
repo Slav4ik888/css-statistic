@@ -4,7 +4,7 @@ import CardBlock from '../../../../../../containers/cards/card-block';
 import CredentialsHeader from './header';
 import CredentialsList from './list';
 // Types
-import { UseGroup } from '../../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../../utils/hooks';
 import { Role } from '../../../../../../../../types';
 
 

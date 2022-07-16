@@ -10,17 +10,15 @@ import { Button, Divider, Box } from '@mui/material';
 import DialogConfirm from '../../dialogs/dialog-confirm';
 import CancelSubmitBtn from '../../buttons/cancel-submit-btn';
 // Functions
-import { useOpen } from '../../../utils/hooks/hooks';
+import { UseBase, useValue } from '../../../utils/hooks';
 import { getConfirmTitleById } from '../utils/get-confirm-title-by-id';
 // Types & Styles
-import { UseOpen } from '../../../utils/hooks/types';
-import { ConfirmType, RefBookId } from '../../../../types';
+import { ConfirmType, RefbookId } from '../../../../types';
 import { FlexDirection } from '../../../utils/styles';
-import { useTheme } from '@emotion/react';
 
 
 
-const useStyles = (theme) => ({
+const useStyles = () => ({
   root: {
     display: `flex`,
     flexDirection: FlexDirection.COLUMN,
@@ -43,33 +41,33 @@ const useStyles = (theme) => ({
 type Props = {
   loadingUpd?      : boolean;
   disabledDelete?  : boolean; // Если не нужно показывать кнопку удаления
-  refBookId?       : RefBookId;  // Id Справочника
+  refbookId?       : RefbookId;  // Id Справочника
   id?              : string;  // Созданный или имеющийся Id of element Справочника
   email?           : string;  // Для User
-  hookOpen         : UseOpen; // Чтобы была возможность закрыть карточку при удалении
-  deleteElement?   : (refBookId: string, id: string, email?: string) => void;
+  hookOpen         : UseBase; // Чтобы была возможность закрыть карточку при удалении
+  deleteElement?   : (refbookId: string, id: string, email?: string) => void;
   // onDel?           : () => void; // Удаление для Перевозчика
   onSubmit         : (e: any, exit?: boolean) => void;
 };
 
 
 // Actions in CardFooter
-const Actions: React.FC<Props> = ({ loadingUpd, disabledDelete, refBookId, id, email, hookOpen, deleteElement, onSubmit }) => {
+const Actions: React.FC<Props> = ({ loadingUpd, disabledDelete, refbookId, id, email, hookOpen, deleteElement, onSubmit }) => {
 
   const
-    sx       = useStyles(useTheme()),
-    confirm  = useOpen(false),
-    disabled = !hookOpen.isChange;
+    sx       = useStyles(),
+    confirm  = useValue(),
+    disabled = !hookOpen.changes;
 
   const handleDel = () => {
     confirm.setClose();
     hookOpen.setClose();
     console.log(`Удаляем...`, id);
-    if (refBookId) deleteElement(refBookId, id, email)
+    if (refbookId) deleteElement(refbookId, id, email)
     // else onDel();
   };
 
-  const confirmTitle = getConfirmTitleById(refBookId);
+  const confirmTitle = getConfirmTitleById(refbookId);
 
   
   return (
@@ -80,7 +78,7 @@ const Actions: React.FC<Props> = ({ loadingUpd, disabledDelete, refBookId, id, e
         <Button sx={sx.delete}
           variant  = "outlined"
           disabled = {disabledDelete}
-          onClick  = {confirm.setOpen}
+          onClick  = {() => confirm.setOpen()}
         >
           Удалить
         </Button>

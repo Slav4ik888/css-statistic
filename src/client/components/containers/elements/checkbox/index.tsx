@@ -5,17 +5,15 @@ import { Tooltip, FormControlLabel, Checkbox as MuiCheckbox } from '@mui/materia
 import GridWrap from '../../grid-wrap';
 import BoxWrap from '../../box-wrap';
 // Functions
-import changeGroup from '../../../../utils/hooks/change-group';
-import getValueByScheme from '../../../../utils/hooks/get-value-by-scheme';
-// TypesgetValueByScheme
+import { getValueByScheme, UseGroup, changeGroup } from '../../../../utils/hooks';
+// Types & Styles
 import { GridStyle } from '../../../../../types';
-import { UseGroup } from '../../../../utils/hooks/types';
-// Styles
 import { useTheme } from '@emotion/react';
+import { Themes } from '../../../../utils/styles';
 
 
 
-const useStyles = (theme) => ({
+const useStyles = (theme: Themes) => ({
   checkbox: {
     backgroundColor: theme.cardBlock.textfield.background,
     mx: 2
@@ -38,11 +36,12 @@ type Props = {
 
 
 const Checkbox: React.FC<Props> = (props) => {
-  const { box, toolTitle, label, scheme, disabled, group: G } = props;
-  const sx = useStyles(useTheme());
+  const
+    { box, toolTitle, label, scheme, disabled, group: G } = props,
+    sx   = useStyles(useTheme() as Themes),
+    Wrap = box ? BoxWrap : GridWrap;
 
-  const Wrap = box ? BoxWrap : GridWrap;
-
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (disabled) return null;
 

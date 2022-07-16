@@ -3,7 +3,8 @@ import * as React from 'react';
 import UnicRow from './row';
 // Types
 import { CredSchemeItem, CredSchemeItemType, Role } from '../../../../../../../../../types';
-import { UseGroup } from '../../../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../../../utils/hooks';
+
 
 
 type Props = {
@@ -32,6 +33,5 @@ const UnicsList: React.FC<Props> = ({ type, addiItem, group, scheme }) => {
     </>
   );
 };
-
 
 export default UnicsList;

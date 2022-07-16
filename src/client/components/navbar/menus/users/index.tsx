@@ -1,8 +1,7 @@
 import * as React from 'react';
 // Redax Stuff
 import { connect } from 'react-redux';
-import { getUsers } from '../../../../redux/selectors/ref-books';
-import { getLoadingData } from '../../../../redux/selectors/data';
+import { getLoadingRef, getUsers } from '../../../../redux/selectors/ref-books';
 import { State } from '../../../../redux/redux-types';
 // MUI Stuff
 import Menu from '@mui/material/Menu';
@@ -12,9 +11,11 @@ import MenuItem from './menu-item';
 import DialogInfo from '../../../dialogs/dialog-info';
 import UsersCnt from '../../../users/users-cnt';
 import AddUserBtn from './add-user-btn';
+// Functions
+import { useGroup } from '../../../../utils/hooks';
 // Types, Styles
 import { User, Users } from '../../../../../types';
-import { useGroup } from '../../../../utils/hooks';
+
 
 
 const useStyles = () => ({
@@ -48,7 +49,6 @@ const useStyles = () => ({
 });
 
 
-
 type Props = {
   loading?   : boolean;
   open       : boolean;
@@ -60,7 +60,6 @@ type Props = {
 
 
 const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, onClose }) => {
-  if (!open) return null;
 
   const
     sx = useStyles(),
@@ -79,6 +78,7 @@ const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, on
     G.setOpen();
   };
 
+  if (!open) return null;
   
   return (
     <>
@@ -113,7 +113,7 @@ const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, on
 };
 
 const mapStateToProps = (state: State) => ({
-  loading : getLoadingData(state),
+  loading : getLoadingRef(state),
   users   : getUsers(state)
 });
 

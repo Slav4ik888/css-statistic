@@ -1,11 +1,11 @@
-import { RefBookId, RefBookItem, Role, User, Users } from "..";
+import { RefbookId, RefbookItem, Role, User, Users } from "..";
 
 
-export interface ResLoadRefBook { data: { items: [], message: string } };
+export interface ResLoadRefbook { data: { items: [], message: string } };
 
 export interface ResLoadRefbooksByIds {
   data: {
-    refBooks: Array<{ id: RefBookId, refbook: RefBookItem }>
+    refBooks: Array<{ id: RefbookId, refbook: RefbookItem }>
   }
 };
 

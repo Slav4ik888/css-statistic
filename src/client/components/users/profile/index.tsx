@@ -16,7 +16,7 @@ import { empty } from '../../../../utils/objects';
 import validateAndSubmit from '../../../../utils/validators/validate-and-submit';
 // Types
 import { User, CardType, Validator } from '../../../../types';
-import { UseGroup } from '../../../utils/hooks/types';
+import { UseGroup } from '../../../utils/hooks';
 import { DisplayError } from '../../../../templates/errors/display-errors';
 
 
@@ -45,11 +45,14 @@ const UserProfile: React.FC<Props> = ({ loading, type, group: G, user, creds, se
     console.log('whose: ', whose);
     if (noCred(Cr.USER_PROFILE_C, user, creds, whose)) return showWarning(DisplayError.NO_CREDENTIALS);
 
-
-    const func = G.group.id === user.id ? updateUser : updateAnyUser;
-
-    // Валидация и отправка данных
-    validateAndSubmit(Validator.USER_UPDATE, G.group, func, setErrors, G, exit);
+    validateAndSubmit(
+      Validator.USER_UPDATE,
+      G.group,
+      G.group.id === user.id ? updateUser : updateAnyUser,
+      setErrors,
+      G,
+      exit
+    );
   };
 
 

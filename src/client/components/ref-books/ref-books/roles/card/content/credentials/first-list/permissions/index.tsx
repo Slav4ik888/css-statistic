@@ -3,7 +3,7 @@ import * as React from 'react';
 import PermissionsRow from '../../modules/rows/permissions';
 // Types
 import { CredSchemeItem, CredSchemeItemType, Role } from '../../../../../../../../../../types';
-import { UseGroup } from '../../../../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../../../../utils/hooks';
 
 
 type Props = {
@@ -13,19 +13,17 @@ type Props = {
 
 
 const Permissions: React.FC<Props> = ({ credItem, group: G }) => {
-  const scheme = `creds.` + credItem.id + `.`;
+  const
+    scheme = `creds.` + credItem.id + `.`;
 
   return (
-    <>
-      <PermissionsRow
-        type     = {CredSchemeItemType.SECTION}
-        credItem = {credItem}
-        group    = {G}
-        scheme   = {scheme}
-      />
-    </>
+    <PermissionsRow
+      type     = {CredSchemeItemType.SECTION}
+      credItem = {credItem}
+      group    = {G}
+      scheme   = {scheme}
+    />
   );
 };
-
 
 export default Permissions;

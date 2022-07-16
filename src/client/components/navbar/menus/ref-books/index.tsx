@@ -4,18 +4,17 @@ import Menu from '@mui/material/Menu';
 // Components
 import DialogInfo from '../../../dialogs/dialog-info';
 import RefbookCnt from '../../../ref-books/ref-book-cnt';
-import RefbookItem from './ref-book-item';
+import RefbookItem from './refbook-item';
 // Functions
 import { getLabelById } from '../../../ref-books/utils/get-label-by-id';
-import { useOpen, useValue } from '../../../../utils/hooks/hooks';
-import { useGroup } from '../../../../utils/hooks';
+import { useValue } from '../../../../utils/hooks';
 // Types & Consts & Styles
-import { ReferenceBooksList } from '../../../../consts/reference-books-list';
+import { RefbooksList } from '../../../../consts/reference-books-list';
 import { RefbookId } from '../../../../../types';
-import { useTheme } from '@emotion/react';
 
 
-const useStyles = (theme) => ({
+
+const useStyles = () => ({
   root: {
     display: `flex`,
     width: 280
@@ -63,19 +62,19 @@ type Props = {
  */
 const RefBookMenu: React.FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
   const
-    sx       = useStyles(useTheme()),
-    hookOpen = useOpen(false),
-    refBook  = useValue();
+    sx       = useStyles(),
+    hookOpen = useValue(),
+    refbook  = useValue<RefbookId>();
 
   // React.MouseEvent<HTMLElement>
   const handleOpen = (e: any) => {
     const target = e.target.closest(`li`);
-    refBook.setValue(target.id);
+    refbook.setValue(target.id);
     hookOpen.setOpen();
   };
 
   const handleClose = () => {
-    refBook.setValue(null);
+    refbook.setValue(null);
     hookOpen.setClose();
   };
 
@@ -93,7 +92,7 @@ const RefBookMenu: React.FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
         keepMounted
       >
         {
-          ReferenceBooksList
+          RefbooksList
             .map((item, i) => <RefbookItem key={item.id + i} item={item} onOpen={handleOpen} />)
         }
       </Menu>
@@ -101,8 +100,8 @@ const RefBookMenu: React.FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
       <DialogInfo
         hookOpen = {hookOpen}
         onClose  = {handleClose}
-        title    = {getLabelById(refBook.value)}
-        children = {<RefbookCnt refBookId={refBook.value as RefbookId} />}
+        title    = {getLabelById(refbook.value)}
+        children = {<RefbookCnt refbookId={refbook.value} />}
       />
     </>
   )

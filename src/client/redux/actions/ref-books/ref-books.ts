@@ -1,21 +1,23 @@
 import api from '../../api';
 import { Dispatch, StateRefBooks } from '../../redux-types';
 import { refBooksActionType as Type } from '../../action-types';
-import { ResLoadRefBook, ResLoadRefbooksByIds, RefBookId, Strings } from '../../../../types';
+import { ResLoadRefbook, ResLoadRefbooksByIds, RefbookId, Strings } from '../../../../types';
 import { addRole } from '.';
-import { ReferenceBooksList } from '../../../consts/reference-books-list';
+import { RefbooksList } from '../../../consts/reference-books-list';
 import { handleError } from '../universal/handle-error';
 import { successMessage } from '../ui';
 import { deleteRole } from './roles';
 
 
 
-// Загрузить 1 Справочник
-export const loadRefBook = (id: RefBookId) => async (dispatch: Dispatch) => {
+/**
+ * Загрузить 1 Справочник
+ */
+export const loadRefbook = (id: RefbookId) => async (dispatch: Dispatch) => {
   dispatch({ type: Type.LOADING_REF_ON });
 
   try {    
-    const res: ResLoadRefBook = await api.post(`/loadCollection`, { colName: id, successMessage: `Справочник загружен!` });
+    const res: ResLoadRefbook = await api.post(`/loadCollection`, { colName: id, successMessage: `Справочник загружен!` });
     
     dispatch({
       type: Type.SET_REF_BOOK,
@@ -50,7 +52,7 @@ export const loadAllRefBooks = (refBooks?: StateRefBooks) => async (dispatch: an
   try {
     let refBooksIds = [] as Array<string>;
 
-    ReferenceBooksList.forEach(book => {
+    RefbooksList.forEach(book => {
       if (!book.id || book.disabled) return;
       if (refBooks[book.id]) return console.log(`Справочник [${book.id}] уже загружен`);
     
@@ -66,25 +68,25 @@ export const loadAllRefBooks = (refBooks?: StateRefBooks) => async (dispatch: an
 
 
 // Создаём новый элемент в Справочника
-export const addNewElement = (refBookId: RefBookId, companyId?: string) => async (dispatch: any) => {
+export const addNewElement = (refBookId: RefbookId, companyId?: string) => async (dispatch: any) => {
 
   switch (refBookId) {
-    case RefBookId.ROLES: return dispatch(addRole());
+    case RefbookId.ROLES: return dispatch(addRole());
     // case 'users'  : return dispatch(addRefUser());
 
-    default: return console.log(`addNewElement - выбрали не существующий RefBookId`);
+    default: return console.log(`addNewElement - выбрали не существующий RefbookId`);
   }
 };
 
 
 // Удаляем элемент из Справочника
-export const deleteElement = (refBookId: RefBookId, id: string, email?: string) => async (dispatch: any) => {
+export const deleteElement = (refBookId: RefbookId, id: string, email?: string) => async (dispatch: any) => {
 
   switch (refBookId) {
-    case RefBookId.ROLES : return dispatch(deleteRole(id));
-    // case RefBookId.USERS : return dispatch(deleteRefUser({ userId: id, email }));
+    case RefbookId.ROLES : return dispatch(deleteRole(id));
+    // case RefbookId.USERS : return dispatch(deleteRefUser({ userId: id, email }));
     
-    default: return console.log(`deleteElement - выбрали не существующий RefBookId`);
+    default: return console.log(`deleteElement - выбрали не существующий RefbookId`);
   }
 };
 

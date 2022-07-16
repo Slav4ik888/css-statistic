@@ -6,13 +6,15 @@ import Role from './modules/role';
 import { empty } from '../../../../../../../utils/objects';
 // Types
 import { User, CardType } from '../../../../../../../types';
-import { UseGroup } from '../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../utils/hooks';
+
 
 
 type Props = {
   type  : CardType;
   group : UseGroup<User>;
 };
+
 
 const CardUserContent: React.FC<Props> = ({ type, group }) => {
   if (empty(group.group)) return null;

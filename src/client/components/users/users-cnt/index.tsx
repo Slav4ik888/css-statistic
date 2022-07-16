@@ -7,7 +7,7 @@ import UserProfile from '../profile';
 // Types & Styles
 import { FlexDirection } from '../../../utils/styles';
 import { User, CardType } from '../../../../types';
-import { UseGroup } from '../../../utils/hooks/types';
+import { UseGroup } from '../../../utils/hooks';
 
 
 
@@ -26,7 +26,6 @@ type Props = {
 
 const UsersCnt: React.FC<Props> = ({ group: G }) => {
   const sx = useStyles();
-
 
   return (
     <Box sx={sx.root}>

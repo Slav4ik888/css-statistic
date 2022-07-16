@@ -6,17 +6,15 @@ import GridWrap from '../../grid-wrap';
 import BoxWrap from '../../box-wrap';
 import ErrorBox from '../../error-box';
 // Functions
-import changeGroup from '../../../../utils/hooks/change-group';
-import getValueByScheme from '../../../../utils/hooks/get-value-by-scheme';
-// Types
+import { getValueByScheme, UseGroup, changeGroup } from '../../../../utils/hooks';
+// Types & Styles
 import { GridStyle } from '../../../../../types';
-import { UseGroup } from '../../../../utils/hooks/types';
-// Styles
 import { useTheme } from '@emotion/react';
-import { Position } from '../../../../utils/styles';
+import { Position, Themes } from '../../../../utils/styles';
 
 
-const useStyles = (theme, length: number, styleBox: any) => ({
+
+const useStyles = (theme: Themes, length: number, styleBox: any) => ({
   textField: {
     width: `100%`,
     height: `56px`,
@@ -68,10 +66,10 @@ type Props = {
 
 
 const TextArea: React.FC<Props> = (props) => {
-  const { box, label, toolTitle, defaultValue, style, minRows = 1, errorField, scheme, placeholder, disabled, group, onCallback } = props;
-  const sx = useStyles(useTheme(), label.length, style?.box);
-
-  const Wrap = box ? BoxWrap : GridWrap;
+  const
+    { box, label, toolTitle, defaultValue, style, minRows = 1, errorField, scheme, placeholder, disabled, group, onCallback } = props,
+    sx   = useStyles(useTheme() as Themes, label.length, style?.box),
+    Wrap = box ? BoxWrap : GridWrap;
 
   const handleChange = (e: any) => {
     if (disabled) return null;

@@ -12,31 +12,30 @@ import Action from './action';
 // Functions
 import { useGroup } from '../../../utils/hooks/use-group';
 import validSelectedDates from '../../../../utils/validators/selected-dates';
-import changeGroup from '../../../utils/hooks/change-group';
+import { UseValue, changeGroup } from '../../../utils/hooks';
 import { getLastDateFrom } from '../../../utils/get-last-week-dates';
-// Types
+// Types & Styles
 import { DateItemType, Errors, SelectedDates } from '../../../../types';
-import { UseOpen } from '../../../utils/hooks/types';
-// Styles
-import { FlexDirection } from '../../../utils/styles';
+import { FlexDirection, Themes } from '../../../utils/styles';
 import { useTheme } from '@emotion/react';
 import { cfg } from '../../../../../config';
 
 
-const useStyles = (theme) => ({
+
+const useStyles = (theme: Themes) => ({
   root: {
-    display: `flex`,
-    flexDirection: FlexDirection.COLUMN,
-    mt: 5,
-    p: 4,
-    width: 520,
-    backgroundColor: theme.paper.background
+    display         : `flex`,
+    flexDirection   : FlexDirection.COLUMN,
+    width           : 520,
+    backgroundColor : theme.paper.background,
+    mt              : 5,
+    p               : 4
   }
 });
 
 
 type Props = {
-  hookResult        : UseOpen;
+  hookResult        : UseValue<any>;
   setErrors?        : (e: Errors) => void;
   setSelectedDates? : (obj: SelectedDates) => void;
   loadData?         : () => void;
@@ -44,16 +43,16 @@ type Props = {
 
 
 const SelectDates: React.FC<Props> = ({ hookResult, setSelectedDates, setErrors, loadData }) => {
-  if (hookResult.open) return null;
+  const
+    sx   = useStyles(useTheme() as Themes),
+    date = useGroup<SelectedDates>();
   
-  const sx = useStyles(useTheme());
-  React.useEffect(() => setErrors(null), []);
-
-  const date = useGroup<SelectedDates>();
+  React.useEffect(() => { setErrors(null); }, []);
 
   React.useEffect(() => {
-    const from = cfg.isDev ? cfg.devData.from : getLastDateFrom(true);
-    const to   = cfg.isDev ? cfg.devData.to   : getLastDateFrom(false);
+    const
+      from = cfg.isDev ? cfg.devData.from : getLastDateFrom(true),
+      to   = cfg.isDev ? cfg.devData.to   : getLastDateFrom(false);
     
     changeGroup(date, [{ value: from, scheme: `from` }, { value: to, scheme: `to` }])
   }, []);
@@ -69,6 +68,7 @@ const SelectDates: React.FC<Props> = ({ hookResult, setSelectedDates, setErrors,
     loadData(); // Загружаем данные с Гугла
   };
 
+  if (hookResult.open) return null;
 
   return (
     <Paper sx={sx.root}>

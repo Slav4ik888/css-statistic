@@ -9,3 +9,5 @@ export interface SearchOptionType {
   title       : string;
   inputValue? : string;
 };
+
+export type SearchOptionsTypes = Array<SearchOptionType>;

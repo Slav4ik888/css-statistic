@@ -1,7 +1,7 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { getLoadingData } from '../../../../redux/selectors/data';
+import { getLoadingRef } from '../../../../redux/selectors/ref-books';
 import { State } from '../../../../redux/redux-types';
 // MUI Stuff
 import { Box, ListItemText, ListItemIcon } from '@mui/material';
@@ -12,7 +12,7 @@ import MenuItem from '../menu-item';
 import NewUserCnt from '../../../users/new-user-cnt';
 import DialogInfo from '../../../dialogs/dialog-info';
 // Functions
-import { useOpen } from '../../../../utils/hooks';
+import { useValue } from '../../../../utils/hooks';
 // Types, Styles
 import { fc_ } from '../../../../utils/styles';
 
@@ -26,16 +26,16 @@ const useStyles = () => ({
 });
 
 
-
 type Props = {
   loading?: boolean;
 };
 
 
 const AddUserBtn: React.FC<Props> = ({ loading }) => {
-  const sx = useStyles();
-
-  const hookOpen = useOpen();
+  const
+    sx       = useStyles(),
+    hookOpen = useValue();
+  
   const handleAdd = () => {
     if (loading) return;
     console.log('handleAdd');
@@ -61,7 +61,7 @@ const AddUserBtn: React.FC<Props> = ({ loading }) => {
 };
 
 const mapStateToProps = (state: State) => ({
-  loading: getLoadingData(state)
+  loading: getLoadingRef(state)
 });
 
 export default connect(mapStateToProps)(AddUserBtn);

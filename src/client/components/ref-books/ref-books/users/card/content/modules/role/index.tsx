@@ -7,7 +7,7 @@ import SelectRole from './select-role';
 import SelectRoleType from './select-type';
 // Types
 import { User } from '../../../../../../../../../types';
-import { UseGroup } from '../../../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../../../utils/hooks';
 
 
 

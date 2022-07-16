@@ -1,4 +1,4 @@
-import { cloneObj } from '../objects/objects.js';
+import { cloneObj } from '../objects/index.js';
 
 
 /**

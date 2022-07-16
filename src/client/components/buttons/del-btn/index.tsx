@@ -6,9 +6,10 @@ import Delete from '@mui/icons-material/DeleteOutline';
 // Components
 import DialogConfirm from '../../dialogs/dialog-confirm';
 // Functions
-import { useOpen } from '../../../utils/hooks/hooks';
+import { useValue } from '../../../utils/hooks';
 // Types
 import { ConfirmType, ConfirmElemType } from '../../../../types';
+
 
 
 type Props = {
@@ -18,13 +19,13 @@ type Props = {
 
 
 const DelBtn: React.FC<Props> = ({ type, onDel }) => {
-
   const
-    confirm      = useOpen(),
+    confirm      = useValue(),
     typeOk       = ConfirmType.DEL || ConfirmType.UNFASTEN,
     titleStart   = `Удалить`,
     titleConfirm = titleStart + ` ${type}`;
 
+  
   const handleDel = () => {
     onDel();
     confirm.setClose();
@@ -34,7 +35,7 @@ const DelBtn: React.FC<Props> = ({ type, onDel }) => {
   return (
     <Box>
       <Tooltip title={titleStart} arrow enterDelay={1000} enterNextDelay={1000}>
-        <IconButton onClick={confirm.setOpen}>
+        <IconButton onClick={() => confirm.setOpen()}>
           <Delete />
         </IconButton>
       </Tooltip>

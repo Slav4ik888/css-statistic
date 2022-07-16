@@ -3,8 +3,9 @@ import * as React from 'react';
 import CardBlock from '../../../../../containers/cards/card-block';
 import { TextField, TextArea } from '../../../../../containers/elements';
 // Types
-import { UseGroup } from '../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../utils/hooks';
 import { Role } from '../../../../../../../types';
+
 
 
 type Props = {

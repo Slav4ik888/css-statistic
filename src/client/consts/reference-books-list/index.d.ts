@@ -1,3 +1,3 @@
-import { RefBookItems } from '../../../types';
+import { RefbookItems } from '../../../types';
 
-declare const ReferenceBooksList: RefBookItems;
+export declare const RefbooksList: RefbookItems;

@@ -6,7 +6,7 @@ import Description from '../description';
 import Email from '../email';
 // Types
 import { User, CardType } from '../../../../../../types';
-import { UseGroup } from '../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../utils/hooks';
 
 
 

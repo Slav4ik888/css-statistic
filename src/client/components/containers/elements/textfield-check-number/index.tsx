@@ -10,17 +10,16 @@ import GridWrap from '../../grid-wrap';
 import BoxWrap from '../../box-wrap';
 // Functions
 import toNumber from '../../../../../utils/numbers/to-number';
-import getValueByScheme from '../../../../utils/hooks/get-value-by-scheme';
-import changeGroup from '../../../../utils/hooks/change-group';
+import { UseGroup, changeGroup, getValueByScheme } from '../../../../utils/hooks';
 import getStrNumber from '../../../../../utils/numbers/get-str-number';
-// Types
+// Types & Styles
 import { Errors, GridStyle } from '../../../../../types';
-import { UseGroup } from '../../../../utils/hooks/types';
-// Styles
 import { useTheme } from '@emotion/react';
+import { Themes } from '../../../../utils/styles';
 
 
-const useStyles = (theme) => ({
+
+const useStyles = (theme: Themes) => ({
   textField: {
     backgroundColor: theme.cardBlock.textfield.background
   }
@@ -54,17 +53,14 @@ type Props = {
 
 
 const TextFieldCheckNumber: React.FC<Props> = (props) => {
-  const { box, toolTitle, label, small, shrink, defaultValue, errors, errorField, sxField, scheme, disabled, fullWidth, group: G, onBlur, onClick } = props;
-  const sx = useStyles(useTheme());
+  const
+    { box, toolTitle, label, small, shrink, defaultValue, errors, errorField, sxField, scheme, disabled, fullWidth, group: G, onBlur, onClick } = props,
+    sx = useStyles(useTheme() as Themes),
+    Wrap = box ? BoxWrap : GridWrap;
 
-  // const item  = useValue(getStrNumber(defaultValue || getValueByScheme(G, scheme)));
   
-  const Wrap = box ? BoxWrap : GridWrap;
-
   const handleChange = (e: any) => {
     if (disabled) return null;
-    // let value = getStrNumber(e.target.value);
-    // item.setValue(value);
     let value = toNumber(e.target.value);
     changeGroup(G, [{ value, scheme }]);
   };

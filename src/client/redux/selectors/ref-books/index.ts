@@ -1,13 +1,14 @@
-import { RefBookItem, RefBookStatus } from "../../../../types";
-import { ReferenceBooksList } from "../../../consts/reference-books-list";
+import { RefbookItem, RefbookStatus } from "../../../../types";
+import { RefbooksList } from "../../../consts/reference-books-list";
 import { State } from "../../redux-types";
 
-import { getRefBookById } from './get-refbook-by-id';
+import { getRefbookById } from './get-refbook-by-id';
 import { getRoles, getRoleById, getRoleByItem } from './roles';
 import { getUsers, getUserById } from './users';
 
+
 export {
-  getRefBookById,
+  getRefbookById,
   getRoles, getRoleById, getRoleByItem,
   getUsers, getUserById
 };
@@ -19,11 +20,11 @@ export const getNewId       = (state: State) => state.refbooks.newId;
 
 
 export const getRefStatuses = (state: State) => {
-  let statuses: keyof RefBookItem = {} as keyof RefBookItem;
+  let statuses = {} as keyof RefbookItem;
 
-  ReferenceBooksList.forEach(book => {
+  RefbooksList.forEach(book => {
     if (!book.id || book.disabled) return;
-    statuses[book.id] = state.refbooks?.[book.id] ? RefBookStatus.SUCCESS : RefBookStatus.ERROR;
+    statuses[book.id] = state.refbooks?.[book.id] ? RefbookStatus.SUCCESS : RefbookStatus.ERROR;
   });
 
   return statuses;

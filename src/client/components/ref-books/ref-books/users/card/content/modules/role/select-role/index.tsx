@@ -9,15 +9,15 @@ import { Box, InputLabel, MenuItem, FormControl, FormHelperText, Select, SelectC
 // Functions
 import { getRoleNameById } from '../../../../../../../utils/get-role-name-by-id';
 import { getRoleId } from '../../../../../../../utils/get-role-id';
-import changeGroup from '../../../../../../../../../utils/hooks/change-group';
-// Types
-import { UseGroup } from '../../../../../../../../../utils/hooks/types';
+import { UseGroup, changeGroup } from '../../../../../../../../../utils/hooks';
+// Types & Styles
 import { Errors, Roles, User } from '../../../../../../../../../../types';
-// Styles
 import { useTheme } from '@emotion/react';
+import { Themes } from '../../../../../../../../../utils/styles';
 
 
-const useStyles = (theme) => ({
+
+const useStyles = (theme: Themes) => ({
   textField: {
     backgroundColor: theme.cardBlock.textfield.background
   }
@@ -32,14 +32,15 @@ type Props = {
 
 
 const SelectRole: React.FC<Props> = ({ roles, group, errors }) => {
-  if (!roles?.length) return null;
-  const sx = useStyles(useTheme());
+  const sx = useStyles(useTheme() as Themes);
 
   const handleChange = (event: SelectChangeEvent) => {
     const roleId = getRoleId(roles, event.target.value as string);
     changeGroup(group, [{ value: roleId, scheme: `role.roleId` }]);
   };
   
+  if (!roles?.length) return null;
+
   return (
     <Box sx={{ minWidth: `150px` }}>
       <FormControl fullWidth error={Boolean(errors?.roleId)}>
@@ -64,7 +65,6 @@ const SelectRole: React.FC<Props> = ({ roles, group, errors }) => {
     </Box>
   );
 };
-
 
 const mapStateToProps = (state: State) => ({
   roles  : getRoles(state),

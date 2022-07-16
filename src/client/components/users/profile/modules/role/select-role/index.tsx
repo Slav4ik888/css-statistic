@@ -8,14 +8,15 @@ import Text from '../../../../../containers/select-text';
 import SelectRole from './select';
 // Functions
 import { getRoleNameById } from '../../../../../../utils/helpers';
-import { useOpen } from '../../../../../../utils/hooks';
+import { useValue, UseGroup } from '../../../../../../utils/hooks';
 // Types & Styles
-import { UseGroup } from '../../../../../../utils/hooks/types';
 import { Roles, User } from '../../../../../../../types';
 import { useTheme } from '@emotion/react';
+import { Themes } from '../../../../../../utils/styles';
 
 
-const useStyles = (theme: any) => ({
+
+const useStyles = (theme: Themes) => ({
   text: {
     width           : `100%`,
     backgroundColor : theme.profile.textfield.background
@@ -30,12 +31,12 @@ type Props = {
 
 
 const SelectRoleCnt: React.FC<Props> = ({ roles, group: U }) => {
-  console.log('U: ', U.group);
   const
-    sx     = useStyles(useTheme()),
-    select = useOpen(),
+    sx     = useStyles(useTheme() as Themes),
+    select = useValue(),
     role   = React.useMemo(() => getRoleNameById(roles, U.group.role?.roleId) || `Не выбрана`, [U.group.role?.roleId]);
 
+  console.log('U: ', U.group);
   
   return (
     <>
@@ -58,7 +59,7 @@ const SelectRoleCnt: React.FC<Props> = ({ roles, group: U }) => {
 
 
 const mapStateToProps = (state: State) => ({
-  roles  : getRoles(state)
+  roles: getRoles(state)
 });
 
 export default connect(mapStateToProps)(SelectRoleCnt);

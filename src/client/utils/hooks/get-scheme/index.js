@@ -1,5 +1,5 @@
 
-export default function getScheme(str) {
+export function getScheme(str) {
   const values = {
     field1: ``,
     field2: ``,

@@ -9,22 +9,19 @@ import { Tooltip, TextField } from '@mui/material';
 import GridWrap from '../../grid-wrap';
 import BoxWrap from '../../box-wrap';
 // Functions
-import changeGroup from '../../../../utils/hooks/change-group';
-import getValueByScheme from '../../../../utils/hooks/get-value-by-scheme';
-// Types
+import { UseGroup, changeGroup, getValueByScheme } from '../../../../utils/hooks';
+// Types & Styles
 import { Errors, GridStyle } from '../../../../../types';
-import { UseGroup } from '../../../../utils/hooks/types';
-// Styles
 import { useTheme } from '@emotion/react';
+import { Themes } from '../../../../utils/styles';
 
 
 
-const useStyles = (theme) => ({
+const useStyles = (theme: Themes) => ({
   textField: {
     backgroundColor: theme.cardBlock.textfield.background
   }
 });
-
 
 
 type Props = {
@@ -50,11 +47,12 @@ type Props = {
 
 
 const TextFieldDate: React.FC<Props> = (props) => {
-  const { sxBox, toolTitle, label, type = "datetime-local", defaultValue, errors, errorField, scheme, disabled, fullWidth, group: G, onClick, onCallback } = props;
-  const sx = useStyles(useTheme());
+  const
+    { sxBox, toolTitle, label, type = "datetime-local", defaultValue, errors, errorField, scheme, disabled, fullWidth, group: G, onClick, onCallback } = props,
+    sx   = useStyles(useTheme() as Themes),
+    Wrap = sxBox ? BoxWrap : GridWrap;
 
-  const Wrap = sxBox ? BoxWrap : GridWrap;
-
+  
   const handleChange = (e: any) => {
     if (disabled) return null;
     changeGroup(G, [{ value: e.target.value, scheme }]);

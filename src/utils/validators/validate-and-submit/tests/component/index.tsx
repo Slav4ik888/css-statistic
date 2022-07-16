@@ -5,16 +5,20 @@ import Box from '@mui/material/Box';
 // import { useOpen } from '../../../hooks';
 import validateAndSubmit from '../../';
 import { Validator } from '../../../../../types';
-import { UseOpen } from '../../../../../client/utils/hooks/types';
+import { UseValue } from '../../../../../client/utils/hooks';
+
+
 
 type Props = {
   type      : Validator;
   data      : object;
   exit?     : boolean;
-  hookOpen? : UseOpen;
+  hookOpen? : UseValue<any>;
   onError   : (bool: any) => void;
   onSubmit  : () => void;
-}
+};
+
+
 const ComponentMock: React.FC<Props> = ({ type, data, hookOpen, exit, onError, onSubmit }) => {
 
   // const hookOpen = useOpen();

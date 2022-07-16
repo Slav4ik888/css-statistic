@@ -5,12 +5,12 @@ import Box from '@mui/material/Box';
 import SelectDates from '../select-dates';
 import ShowResult from '../show-result';
 // Functions
-import { useOpen } from '../../../utils/hooks/hooks';
+import { useValue } from '../../../utils/hooks';
 
 
 
 const StatisticsCnt: React.FC = () => {
-  const result = useOpen();
+  const result = useValue();
 
   return (
     <Box sx={{ display: `flex` }}>

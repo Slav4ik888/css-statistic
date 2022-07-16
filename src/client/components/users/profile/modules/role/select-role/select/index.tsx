@@ -1,31 +1,30 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { getRoles } from '../../../../../../redux/selectors/ref-books';
-import { getErrors } from '../../../../../../redux/selectors/ui';
-import { State } from '../../../../../../redux/redux-types';
+import { getRoles } from '../../../../../../../redux/selectors/ref-books';
+import { getErrors } from '../../../../../../../redux/selectors/ui';
+import { State } from '../../../../../../../redux/redux-types';
 // MUI Stuff
-import { Grid, MenuItem, InputLabel, FormControl, FormHelperText, Select, SelectChangeEvent, Tooltip, Box, ListItemIcon, ListItemAvatar, Avatar, ListItemText } from '@mui/material';
+import { Grid, MenuItem, InputLabel, FormControl, FormHelperText, Select, Tooltip, Box, ListItemIcon, ListItemAvatar, Avatar, ListItemText } from '@mui/material';
 // Icons
 import RoleIcon from '@mui/icons-material/AdminPanelSettings';
 import EditIcon from '@mui/icons-material/Edit';
 // Components
-import AddRoleBtn from './add-role-btn';
-import DialogInfo from '../../../../../dialogs/dialog-info';
-import RoleCnt from './role-cnt';
+import AddRoleBtn from '../add-role-btn';
+import DialogInfo from '../../../../../../dialogs/dialog-info';
+import RoleCnt from '../role-cnt';
 // Functions
-import changeGroup from '../../../../../../utils/hooks/change-group';
-import { sortingArr } from '../../../../../../../utils/sorting/sorting-arr';
-import { useGroup } from '../../../../../../utils/hooks';
+import { UseGroup, UseValue, changeGroup } from '../../../../../../../utils/hooks';
+import { sortingArr } from '../../../../../../../../utils/sorting/sorting-arr';
+import { useGroup } from '../../../../../../../utils/hooks';
 // Types & Styles
-import { UseGroup, UseOpen } from '../../../../../../utils/hooks/types';
-import { CardType, Errors, Role, Roles, User } from '../../../../../../../types';
+import { CardType, Errors, Role, Roles, User } from '../../../../../../../../types';
 import { useTheme } from '@emotion/react';
-import { fc_, fc_sb } from '../../../../../../utils/styles';
+import { fc_, fc_sb, Themes } from '../../../../../../../utils/styles';
 
 
 
-const useStyles = (theme) => ({
+const useStyles = (theme: Themes) => ({
   textField: {
     backgroundColor: theme.profile.textfield.background
   },
@@ -42,21 +41,19 @@ const useStyles = (theme) => ({
 
 type Props = {
   roles? : Roles;
-  select : UseOpen;
+  select : UseValue<any>;
   group  : UseGroup<User>;
   errors : Errors;
 };
 
 
 const SelectRole: React.FC<Props> = ({ roles, select, group: U, errors }) => {
-  if (!select.open) return null;
-
-  console.log('U: ', U.group);
   const
-    sx = useStyles(useTheme()),
+    sx = useStyles(useTheme() as Themes),
     G  = useGroup<Role>(),
     sortedRoles = React.useMemo(() => sortingArr(roles, `role`), [roles]);
     
+  console.log('U: ', U.group);
   console.log('G: ', G.group);
 
   
@@ -77,6 +74,7 @@ const SelectRole: React.FC<Props> = ({ roles, select, group: U, errors }) => {
     select.setClose();
   };
 
+  if (!select.open) return null;
 
   return (
     <>
@@ -87,8 +85,8 @@ const SelectRole: React.FC<Props> = ({ roles, select, group: U, errors }) => {
             label    = "Role"
             labelId  = "label-role-id"
             open     = {select.open}
-            onClose  = {select.setClose}
-            onOpen   = {select.setOpen}
+            onClose  = {() => select.setClose()}
+            onOpen   = {() => select.setOpen()}
             onChange = {handleChange}
             sx       = {sx.textField}
           >

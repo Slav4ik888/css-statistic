@@ -5,7 +5,8 @@ import AdditionalsList from './list-additionals';
 import UnicsList from '../list-unics';
 // Types
 import { CredSchemeItem, CredSchemeItemType, Role } from '../../../../../../../../../types';
-import { UseGroup } from '../../../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../../../utils/hooks';
+
 
 
 type Props = {
@@ -15,7 +16,8 @@ type Props = {
 
 
 const FirstList: React.FC<Props> = ({ credItem, group: G }) => {
-  const scheme = `creds.` + credItem.id + `.`;
+  const
+    scheme = `creds.` + credItem.id + `.`;
 
   return (
     <>

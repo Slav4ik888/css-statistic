@@ -1,20 +1,20 @@
-import { RefBookType, RefBookId } from '../../../types/index.ts';
+import { RefbookType, RefbookId } from '../../../types/index.ts';
 
 
-export const ReferenceBooksList = [
+export const RefbooksList = [
   {
-    type: RefBookType.ROLES,
+    type: RefbookType.ROLES,
     label: `Роли`,
-    id: RefBookId.ROLES,
+    id: RefbookId.ROLES,
     toolLabel: `Настройка ролей и прав доступа сотрудников.`,
     cardTitle: `ролей`,
     confirmTitle: `эту роль`,
     iconName: `roles`
   },
   {
-    type: RefBookType.USERS,
+    type: RefbookType.USERS,
     label: `Сотрудники`,
-    id: RefBookId.USERS,
+    id: RefbookId.USERS,
     toolLabel: `Сотрудники имеющие доступ в приложение.`,
     cardTitle: `сотрудника`,
     confirmTitle: `этого сотрудника`,

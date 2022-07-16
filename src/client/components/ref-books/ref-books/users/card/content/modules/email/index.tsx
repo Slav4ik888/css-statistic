@@ -3,7 +3,7 @@ import * as React from 'react';
 import TextField from '../../../../../../../containers/elements/textfield';
 // Types
 import { User, CardType } from '../../../../../../../../../types';
-import { UseGroup } from '../../../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../../../utils/hooks';
 
 
 
@@ -12,9 +12,10 @@ type Props = {
   type    : CardType;
 };
 
-const EmailCnt: React.FC<Props> = ({ group, type }) => {
 
-  const disabled = type === CardType.EDIT;
+const EmailCnt: React.FC<Props> = ({ group, type }) => {
+  const
+    disabled = type === CardType.EDIT;
 
   return (
     <>

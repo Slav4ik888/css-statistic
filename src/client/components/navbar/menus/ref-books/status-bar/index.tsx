@@ -1,22 +1,20 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { loadRefBook } from '../../../../../redux/actions/ref-books';
+import { loadRefbook } from '../../../../../redux/actions/ref-books';
 import { getRefStatuses } from '../../../../../redux/selectors/ref-books';
 import { State } from '../../../../../redux/redux-types';
 // MUI Stuff
 import { Box, Tooltip } from '@mui/material';
 // Icons
 import RefreshIcon from '@mui/icons-material/Refresh';
-// Types
-import { RefBookId, RefBookItem, RefBookStatus } from '../../../../../../types';
-// Styles
-import { useTheme } from '@emotion/react';
-
+// Types & Styles
+import { RefbookId, RefbookItem, RefbookStatus } from '../../../../../../types';
 import { getStyleByStatus } from '../../../../../utils/styles';
 
 
-const useStyles = (theme, status: RefBookStatus) => ({
+
+const useStyles = (status: RefbookStatus) => ({
   root: {
     display: `flex`,
     alignItems: `center`,
@@ -40,21 +38,22 @@ const useStyles = (theme, status: RefBookStatus) => ({
   }
 });
 
+
 type Props = {
-  statuses?    : keyof RefBookItem;
-  id           : RefBookId;
-  loadRefBook? : (id: RefBookId) => void;
+  statuses?    : keyof RefbookItem;
+  id           : RefbookId;
+  loadRefbook? : (id: RefbookId) => void;
 };
 
 
-const RefBookStatusBar: React.FC<Props> = ({ id, statuses, loadRefBook }) => {
-  const status = statuses?.[id];
+const RefbookStatusBar: React.FC<Props> = ({ id, statuses, loadRefbook }) => {
+  const
+    status        = statuses?.[id],
+    sx            = useStyles(status),
+    handleRefresh = () => loadRefbook(id);
+  
   if (!status) return null;
 
-  const sx = useStyles(useTheme(), status);
-
-  const handleRefresh = () => loadRefBook(id);
-  
   return (
     <Box sx={sx.root}>
       <Tooltip title="Обновить справочник" arrow enterDelay={1000} enterNextDelay={1000}>
@@ -76,8 +75,8 @@ const mapStateToProps = (state: State) => ({
 });
 
 const mapActionsToProps = {
-  loadRefBook
+  loadRefbook
 };
 
 
-export default connect(mapStateToProps, mapActionsToProps)(RefBookStatusBar);
+export default connect(mapStateToProps, mapActionsToProps)(RefbookStatusBar);

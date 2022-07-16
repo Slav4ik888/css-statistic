@@ -1,20 +1,19 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { getNewId } from '../../../../redux/selectors/ref-books';
-import { State } from '../../../../redux/redux-types';
+import { getNewId } from '../../../redux/selectors/ref-books';
+import { State } from '../../../redux/redux-types';
 // Components
-import CardRole from '../../ref-books/roles/card';
-import CardUser from '../../ref-books/users/card';
-// Functions
+import CardRole from '../ref-books/roles/card';
+import CardUser from '../ref-books/users/card';
 // Types
-import { RefbookId, CardType } from '../../../../../types';
-import { UseGroup } from '../../../../utils/hooks/types';
+import { RefbookId, CardType } from '../../../../types';
+import { UseGroup } from '../../../utils/hooks';
 
 
 
 type Props = {
-  refBookId  : RefbookId;     // Id Справочника
+  refbookId  : RefbookId;     // Id Справочника
   newId?     : string;        // Id нового элемента, при создании
   checkedId? : string;        // Id выбранного элемента для редактирования
   group      : UseGroup<any>; // Чтобы была возможность закрыть карточку при удалении
@@ -22,12 +21,12 @@ type Props = {
 
 
 // Выводит выбранный элемент в Справочнике для редактирования
-const CardSwitch: React.FC<Props> = ({ refBookId, group, newId, checkedId }) => {
+const CardSwitch: React.FC<Props> = ({ refbookId, group, newId, checkedId }) => {
 
   const selectedId = React.useMemo(() => checkedId ? checkedId : newId,[newId]);
   console.log('selectedId: ', selectedId);
 
-  switch (refBookId) {
+  switch (refbookId) {
     case RefbookId.ROLES:
       return <CardRole roleId={selectedId} group={group} />
     

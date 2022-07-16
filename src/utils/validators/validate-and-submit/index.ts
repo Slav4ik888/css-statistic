@@ -1,14 +1,17 @@
-import { UseOpen } from "../../../client/utils/hooks/types";
+import { UseBase } from "../../../client/utils/hooks";
 import { Validator } from "../../../types";
 import validate from "../validate";
 
-// Валидация и отправка данных (или вывод об ошибке)
+
+/**
+ * Валидация и отправка данных (или вывод об ошибке)
+ */
 export default function validateAndSubmit<T>(
   type           : Validator,
   data           : T,
   submit         : Function,
   setErrors      : Function,
-  hookOpen?      : UseOpen,   // For setIsChange & close dialog after submit
+  hookOpen?      : UseBase,   // For setIsChange & close dialog after submit
   exit?          : boolean,   // If true that display will be closed atfer submit
   // isCondition?   : boolean,
   // condition?     : boolean,
@@ -18,12 +21,12 @@ export default function validateAndSubmit<T>(
   const { valid, errors } = validate(type, data);
 
   if (!valid) {
-    hookOpen?.setIsChange(true);
+    hookOpen?.setChanges(true);
     setErrors(errors);
   }
   else {
     setErrors(null);
-    hookOpen?.setIsChange(false);
+    hookOpen?.setChanges(false);
 
     // if (isCondition) {
     //   if (condition) {

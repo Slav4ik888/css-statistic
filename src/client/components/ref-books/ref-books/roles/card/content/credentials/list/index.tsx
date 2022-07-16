@@ -7,9 +7,10 @@ import FirstList from '../first-list';
 import { arrFromObj } from '../../../../../../../../../utils/objects';
 // Types & Consts & Style
 import { CredSchemeItem, Role } from '../../../../../../../../../types';
-import { UseGroup } from '../../../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../../../utils/hooks';
 import { FlexDirection } from '../../../../../../../../utils/styles';
 import Scheme from '../../../../../../../../consts/credentials/scheme';
+
 
 
 const rootStyle = {
@@ -28,7 +29,9 @@ type Props = {
 
 
 const CredentialsList: React.FC<Props> = ({ group: G }) => {
-  const schemeArr = arrFromObj(Scheme) as unknown as Array<CredSchemeItem>;
+  const
+    schemeArr = Object.values(Scheme) as unknown as Array<CredSchemeItem>;
+  
   console.log('schemeArr: ', schemeArr);
 
 

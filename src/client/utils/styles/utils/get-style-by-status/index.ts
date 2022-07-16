@@ -1,4 +1,6 @@
-import { Colors, RefBookStatus } from "../../../../../types";
+import { Colors, RefbookStatus } from "../../../../../types";
+
+
 
 const enum RefStatusColor {
   SUCCESS_COLOR = ``,
@@ -11,19 +13,20 @@ const enum RefStatusColor {
   WARNING_BG    = `#eee`,
 };
 
-export function getStyleByStatus(status: RefBookStatus): Colors {
+
+export function getStyleByStatus(status: RefbookStatus): Colors {
   switch (status) {
-    case RefBookStatus.SUCCESS: return {
+    case RefbookStatus.SUCCESS: return {
       color: RefStatusColor.SUCCESS_COLOR,
       background: RefStatusColor.SUCCESS_BG,
     };
 
-    case RefBookStatus.WARNING: return {
+    case RefbookStatus.WARNING: return {
       color: RefStatusColor.WARNING_COLOR,
       background: RefStatusColor.WARNING_BG,
     };
 
-    case RefBookStatus.ERROR: return {
+    default: return {
       color: RefStatusColor.ERROR_COLOR,
       background: RefStatusColor.ERROR_BG,
     };

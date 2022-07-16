@@ -1,15 +1,12 @@
 import * as React from 'react';
 // MUI Stuff 
-import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-// Types
-import { GridStyle } from '../../../../types';
-// Styles
+// Types & Styles
 import { BaseColor, Position, TextAlign } from '../../../utils/styles';
 import { useTheme } from '@emotion/react';
-import { UseOpen } from '../../../utils/hooks/types';
+import { UseBase } from '../../../utils/hooks';
 
 
 
@@ -54,7 +51,7 @@ const tempStyle = {
 
 type Props = {
   toolTitle? : string;
-  select?    : UseOpen; // Если нужно чтобы блок убирался если открыт select
+  select?    : UseBase; // Если нужно чтобы блок убирался если открыт select
   label?     : string;
   children?  : string | JSX.Element;
   style?     : { box?: object; label? : object; child? : object; }

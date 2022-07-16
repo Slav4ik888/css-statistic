@@ -1,8 +1,8 @@
-import getScheme from "../get-scheme";
-import { TuplesGroup, UseGroup } from "../types";
+import { getScheme } from "../../get-scheme";
 
 
-const setValue = (group: object, value: any, scheme: string) => {
+
+export const setValue = (group: object, value: any, scheme: string) => {
   const { field1, field2, field3, field4 } = getScheme(scheme);
 
   if (field4) {
@@ -28,18 +28,3 @@ const setValue = (group: object, value: any, scheme: string) => {
     
   else if (field1) group[field1] = value;
 };
-
-
-export default function changeGroup<O, T>(
-  G: UseGroup<O>,
-  tuple: TuplesGroup
-) {
-  if (!G || !G.group || !tuple.length) return null;
-
-  const newGroup = Object.assign({}, G.group);
-  
-  tuple.forEach(v => setValue(newGroup, v.value, v.scheme))
-
-  G.setGroup(newGroup);
-  G.setIsChange(true);
-}

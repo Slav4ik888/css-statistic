@@ -1,18 +1,17 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { getLoadingRef } from '../../../../redux/selectors/ref-books';
-import { State } from '../../../../redux/redux-types';
+import { getLoadingRef } from '../../../../../redux/selectors/ref-books';
+import { State } from '../../../../../redux/redux-types';
 // MUI Stuff
 import { Box, MenuItem, Divider, ListItemText, ListItemIcon, Tooltip } from '@mui/material';
 // Icons
 import RoleIcon from '@mui/icons-material/Group';
 import UserIcon from '@mui/icons-material/Person';
 // Components
-import StatusBar from './status-bar';
-// Types
-import { RefBookItem } from '../../../../../types';
-// Styles
+import StatusBar from '../status-bar';
+// Types & Styles
+import { RefbookItem } from '../../../../../../types';
 import { useTheme } from '@emotion/react';
 
 
@@ -32,13 +31,13 @@ const useStyles = (theme) => ({
 
 type Props = {
   loadingRef? : boolean;
-  item        : RefBookItem;
+  item        : RefbookItem;
   onOpen      : (e: any) => void;
 };
 
 
 // Пункт меню Справочников для Navbar
-const RefBookItem: React.FC<Props> = ({ loadingRef, item, onOpen }) => {
+const RefbookItem: React.FC<Props> = ({ loadingRef, item, onOpen }) => {
   const sx = useStyles(useTheme());
 
   if (!item.label) return <Divider />
@@ -71,4 +70,4 @@ const mapStateToProps = (state: State) => ({
   loading: getLoadingRef(state)
 });
 
-export default connect(mapStateToProps)(RefBookItem);
+export default connect(mapStateToProps)(RefbookItem);

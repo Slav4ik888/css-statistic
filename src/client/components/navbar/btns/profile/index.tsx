@@ -6,10 +6,11 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 // Components
 import ProfileMenu from '../../menus/profile';
 // Functions
-import { useOpen } from '../../../../utils/hooks/hooks';
+import { useValue } from '../../../../utils/hooks';
 // Styles
 import { alpha } from '@mui/material/styles';
 import { palette, Position } from '../../../../utils/styles';
+
 
 
 const useStyles = (open: boolean) => ({
@@ -34,34 +35,34 @@ const useStyles = (open: boolean) => ({
 
 // Кнопка входа в личные кабинеты активация открытия / закрытия
 const ProfileMenuBtn: React.FC = () => {
-  const anchorRef = React.useRef(null);
-  const menu      = useOpen(false);
-  const sx        = useStyles(menu.open);
-  const menuId    = `profile-menu`;
+  const
+    anchorRef = React.useRef(null),
+    menu      = useValue(),
+    sx        = useStyles(menu.open),
+    menuId    = `profile-menu`;
 
 
   return (
     <>
       <IconButton
-        ref={anchorRef}
-        aria-label="account of current user"
-        aria-controls={menuId}
-        aria-haspopup="true"
-        onClick={menu.setOpen}
-        sx={sx.icon}
+        ref           = {anchorRef}
+        aria-label    = "account of current user"
+        aria-controls = {menuId}
+        aria-haspopup = "true"
+        onClick       = {() => menu.setOpen()}
+        sx            = {sx.icon}
       >
         <AccountCircle />
         {/* <Avatar src={account.photoURL} alt="photoURL" /> */}
       </IconButton>
 
       <ProfileMenu
-        menu={menu}
-        menuId={menuId}
-        anchorEl={anchorRef.current}
+        menu     = {menu}
+        menuId   = {menuId}
+        anchorEl = {anchorRef.current}
       />
     </>
   );
 };
-
 
 export default ProfileMenuBtn;

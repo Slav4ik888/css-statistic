@@ -9,21 +9,19 @@ import { Tooltip, TextField as MuiTextField } from '@mui/material';
 import GridWrap from '../../grid-wrap';
 import BoxWrap from '../../box-wrap';
 // Functions
-import changeGroup from '../../../../utils/hooks/change-group';
-import getValueByScheme from '../../../../utils/hooks/get-value-by-scheme';
-// Types
+import { getValueByScheme, changeGroup, UseGroup } from '../../../../utils/hooks';
+// Types & Styles
 import { Errors, GridStyle } from '../../../../../types';
-import { UseGroup } from '../../../../utils/hooks/types';
-// Styles
 import { useTheme } from '@emotion/react';
+import { Themes } from '../../../../utils/styles';
 
 
-const useStyles = (theme) => ({
+
+const useStyles = (theme: Themes) => ({
   textField: {
     backgroundColor: theme.cardBlock.textfield.background
   }
 });
-
 
 
 type Props = {
@@ -58,10 +56,10 @@ type Props = {
 
 
 const TextField: React.FC<Props> = (props) => {
-  const { box, toolTitle, label, type = "text", small, placeholder, shrink, defaultValue, errors, errorField, scheme, disabled, sx: sxTextfield,  fullWidth, group, onPrepeare, onClick, onBlur, onCallback } = props;
-  const sx = useStyles(useTheme());
-
-  const Wrap = box ? BoxWrap : GridWrap;
+  const
+    { box, toolTitle, label, type = "text", small, placeholder, shrink, defaultValue, errors, errorField, scheme, disabled, sx: sxTextfield, fullWidth, group, onPrepeare, onClick, onBlur, onCallback } = props,
+    sx = useStyles(useTheme() as Themes),
+    Wrap = box ? BoxWrap : GridWrap;
 
   const handleChange = (e: any) => {
     if (disabled) return null;

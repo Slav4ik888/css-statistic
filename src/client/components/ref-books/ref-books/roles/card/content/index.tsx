@@ -5,8 +5,9 @@ import Credentials from './credentials';
 // Functions
 import { empty } from '../../../../../../../utils/objects';
 // Types
-import { UseGroup } from '../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../utils/hooks';
 import { Role } from '../../../../../../../types';
+
 
 
 type Props = {
@@ -24,6 +25,5 @@ const ContentCnt: React.FC<Props> = ({ group: G }) => {
     </>
   );
 };
-
 
 export default ContentCnt;

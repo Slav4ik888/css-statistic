@@ -4,7 +4,8 @@ import PermissionsRow from '../../../modules/rows/permissions';
 import UnicsList from '../../../list-unics';
 // Types
 import { CredSchemeItem, CredSchemeItemType, Role } from '../../../../../../../../../../../types';
-import { UseGroup } from '../../../../../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../../../../../utils/hooks';
+
 
 
 type Props = {
@@ -15,7 +16,8 @@ type Props = {
 
 
 const AdditionalsRow: React.FC<Props> = ({ credItem, addiItem, group }) => {
-  const scheme = `creds.` + credItem.id + `.` + addiItem.id + '.';
+  const
+    scheme = `creds.` + credItem.id + `.` + addiItem.id + '.';
 
   return (
     <>
@@ -34,6 +36,5 @@ const AdditionalsRow: React.FC<Props> = ({ credItem, addiItem, group }) => {
     </>
   );
 };
-
 
 export default AdditionalsRow;

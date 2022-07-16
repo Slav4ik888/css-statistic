@@ -4,7 +4,7 @@ import CredRowPermissions from '../row';
 import SelectAdditional from '../../switch-additional';
 // Types
 import { CredSchemeItemType, UnicItem, Role } from '../../../../../../../../../../../types';
-import { UseGroup } from '../../../../../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../../../../../utils/hooks';
 
 
 
@@ -19,18 +19,15 @@ type Props = {
 const UnicRow: React.FC<Props> = ({ type, unicItem, group, scheme }) => {
 
   return (
-    <>
-      <CredRowPermissions
-        type={type}
-        label={unicItem.rule[2]}
-        unic={<SelectAdditional
-          group={group}
-          scheme={scheme}
-        />}
-      />
-    </>
+    <CredRowPermissions
+      type  = {type}
+      label = {unicItem.rule[2]}
+      unic  = {<SelectAdditional
+        group  = {group}
+        scheme = {scheme}
+      />}
+    />
   );
 };
-
 
 export default UnicRow;

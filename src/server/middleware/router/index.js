@@ -35,6 +35,6 @@ router.post(`/updateRole`, FBAuth, ref.updateRole);
 router.post(`/deleteRole`, FBAuth, ref.deleteRole);
 
 router.post(`/addUser`, FBAuth, ref.addUser);
-router.get (`/loadUsers`, FBAuth, ref.loadUsers);
+// router.get (`/loadUsers`, FBAuth, ref.loadUsers);
 
 export default router;

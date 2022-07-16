@@ -4,22 +4,22 @@ import Typography from '@mui/material/Typography';
 // Components
 import RecoveryPassword from './recovery-password/recovery-password';
 // Functions
-import { useOpen } from '../../../../../utils/hooks/hooks';
+import { useValue } from '../../../../../utils/hooks';
 
 
 
-// Восстановление пароля (главный контейнер)
+/**
+ * Восстановление пароля (главный контейнер)
+ */
 const RecoveryPasswordContainer: React.FC = () => {
-
-  // Recovery password
-  const hookOpen = useOpen(false);
+  const hookOpen = useValue();
 
   return (
     <>
       <Typography
-        onClick={hookOpen.setOpen}
-        variant="body2"
-        sx={{ cursor: `pointer`, textAlign: `center` }}
+        onClick = {() => hookOpen.setOpen()}
+        variant = "body2"
+        sx      = {{ cursor: `pointer`, textAlign: `center` }}
       >
         Восстановить пароль
       </Typography>
@@ -28,6 +28,5 @@ const RecoveryPasswordContainer: React.FC = () => {
     </>
   );
 };
-
 
 export default RecoveryPasswordContainer;

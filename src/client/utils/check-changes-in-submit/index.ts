@@ -1,10 +1,12 @@
 import checkIsChanges from "../../../utils/objects/check-is-changes";
-import { UseOpen } from "../hooks/types";
+import { UseBase } from "../hooks";
 
-// Проверяет были ли изменения и нужно ли закрыть окно при submit
-export default function isChanges<T>(hookOpen: UseOpen, storeData: T, newData: T, exit?: boolean): boolean {
-  
-  const resultCheck = checkIsChanges(storeData, newData);
+/**
+ * Проверяет были ли изменения и нужно ли закрыть окно при submit
+ */
+export default function isChanges<T>(hookOpen: UseBase, storeData: T, newData: T, exit?: boolean): boolean {
+  const
+    resultCheck = checkIsChanges(storeData, newData);
     
   // hookOpen.setIsChange(false);
   hookOpen.setConfirm(false);

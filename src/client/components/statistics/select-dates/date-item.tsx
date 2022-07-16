@@ -6,13 +6,11 @@ import { State } from '../../../redux/redux-types';
 // MUI Stuff
 import { Box, TextField, Typography } from '@mui/material';
 // Functions
-import changeGroup from '../../../utils/hooks/change-group';
+import { UseGroup, changeGroup }  from '../../../utils/hooks';
 import getOneOf from '../../../../utils/one-of/one-of-two';
 import { getLastDateFrom } from '../../../utils/get-last-week-dates';
-// Types
+// Types & Styles
 import { DateItemType, Errors, SelectedDates } from '../../../../types';
-import { UseGroup } from '../../../utils/hooks/types';
-// Styles
 import { fcc, fc_fe } from '../../../utils/styles';
 
 
@@ -25,17 +23,17 @@ type Props = {
 
 
 const SelectDateItem: React.FC<Props> = ({ type, group: G, errors }) => {
-  const from = type === DateItemType.FROM;
+  const
+    from = type === DateItemType.FROM,
 
-  const startLabel = getOneOf(from, [`С`, `По`]);
-  const endLabel   = getOneOf(from, [`00:00:01`, `23:59:59`]);
+    startLabel   = getOneOf(from, [`С`, `По`]),
+    endLabel     = getOneOf(from, [`00:00:01`, `23:59:59`]),
 
-  const error = React.useMemo(() => from ? errors?.dateFrom : errors?.dateTo, [errors]);
-  const defaultValue = React.useMemo(() => getLastDateFrom(from), [G.group]);
+    error        = React.useMemo(() => from ? errors?.dateFrom : errors?.dateTo, [errors]),
+    defaultValue = React.useMemo(() => getLastDateFrom(from), [G.group]),
 
-  const handleChange = (e: any) => {
-    changeGroup(G, [{ value: e.target.value, scheme: type }])
-  };
+    handleChange = (e: any) => changeGroup(G, [{ value: e.target.value, scheme: type }]);
+  
 
   return (
     <Box sx={{ ...fcc, mt: 4 }}>

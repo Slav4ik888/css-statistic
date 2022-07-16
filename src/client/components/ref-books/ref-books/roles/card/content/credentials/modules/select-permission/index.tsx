@@ -5,9 +5,8 @@ import Box from '@mui/material/Box';
 import Select from './select';
 import Text from './text';
 // Functions
-import { useOpen } from '../../../../../../../../../utils/hooks';
+import { useValue, UseGroup } from '../../../../../../../../../utils/hooks';
 // Types
-import { UseGroup } from '../../../../../../../../../utils/hooks/types';
 import { PermSchemeItem, PermType } from '../../../../../../../../../../types';
 
 
@@ -21,25 +20,27 @@ type Props = {
 
 
 const SelectPermission: React.FC<Props> = ({ type, group, value, scheme }) => {
-  if (!value[0]) return <Box>`-`</Box>;
+  const
+    select = useValue();
   
-  const select = useOpen();
+  if (!value[0]) return <Box>`-`</Box>;
 
   return (
     <>
-      <Text
-        select = {select}
-        value  = {value}
-        group  = {group}
-        scheme = {scheme}
-      />
-
-      <Select
-        select = {select}
-        type   = {type}
-        group  = {group}
-        scheme = {scheme}
-      />
+      {
+        select.open
+          ? <Select
+              select = {select}
+              group  = {group}
+              scheme = {scheme}
+            />
+          : <Text
+              select = {select}
+              value  = {value}
+              group  = {group}
+              scheme = {scheme}
+            />
+      }
     </>
   );
 };

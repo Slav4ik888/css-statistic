@@ -1,4 +1,4 @@
-export const mockHookOpen = {
+export const mockHookBase = {
   open: true,
   close: false,
   setOpen() {
@@ -10,9 +10,9 @@ export const mockHookOpen = {
     this.open  = false;
   },
 
-  isChange: false,
-  setIsChange(bool: boolean) {
-    this.isChange = bool;
+  changes: false,
+  setChanges(bool: boolean) {
+    this.changes = bool;
   },
   confirm: false,
   setConfirm(bool: boolean) {

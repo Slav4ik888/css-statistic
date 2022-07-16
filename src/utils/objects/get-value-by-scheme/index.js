@@ -1,4 +1,4 @@
-import getScheme from '../../../client/utils/hooks/get-scheme/index.js';
+import { getScheme } from '../../../client/utils/hooks/get-scheme/index.js';
 
 export default function getValueByScheme(obj, scheme) {
   const { field1, field2, field3 } = getScheme(scheme);

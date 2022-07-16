@@ -1,22 +1,15 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { getLoadingData } from '../../../../../../../redux/selectors/data';
+import { getLoadingRef } from '../../../../../../../redux/selectors/ref-books';
 import { addRole, updateRole } from '../../../../../../../redux/actions/ref-books';
 import { State } from '../../../../../../../redux/redux-types';
-// MUI Stuff
-import { Box } from '@mui/material';
 // Components
 import Actions from '../../../../../../containers/actions';
-// Functions
 // Types, Styles
 import { CardType, Role } from '../../../../../../../../types';
-import { UseGroup, UseOpen } from '../../../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../../../utils/hooks';
 
-
-const useStyles = () => ({
-  
-});
 
 
 type Props = {
@@ -29,9 +22,8 @@ type Props = {
 
 
 const ActionsRole: React.FC<Props> = ({ loading, type, group: G, addRole, updateRole }) => {
-  const sx = useStyles();
-
-  const edit = type === CardType.EDIT;
+  const
+    edit = type === CardType.EDIT;
 
   const handleSubmit = () => {
     if (edit) updateRole(G.group)
@@ -46,19 +38,17 @@ const ActionsRole: React.FC<Props> = ({ loading, type, group: G, addRole, update
   };
   
   return (
-    <>
-      <Actions
-        loading  = {loading}
-        hookOpen = {G}
-        onDel    = {handleDel}
-        onSubmit = {handleSubmit}
-      />
-    </>
+    <Actions
+      loading  = {loading}
+      hookOpen = {G}
+      onDel    = {handleDel}
+      onSubmit = {handleSubmit}
+    />
   )
 };
 
 const mapStateToProps = (state: State) => ({
-  loading: getLoadingData(state)
+  loading: getLoadingRef(state)
 });
 
 const mapActionsToProps = {

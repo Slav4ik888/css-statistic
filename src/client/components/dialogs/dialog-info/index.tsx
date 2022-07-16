@@ -8,14 +8,24 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '../dialog-title';
 import DialogConfirm from '../dialog-confirm';
 // Functions
-import { useOpen } from '../../../utils/hooks/hooks';
+import { UseBase, useValue } from '../../../utils/hooks';
 // Types
-import { UseOpen } from '../../../utils/hooks/types';
 import { ConfirmType } from '../../../../types';
 
 
+
+const useStyles = () => ({
+  root: {
+    '& .MuiDialog-paper': {
+      width : { xs: `100%` },
+      m     : { xs: 0 }
+    }
+  }
+});
+
+
 type Props = {
-  hookOpen   : UseOpen;
+  hookOpen   : UseBase;
   maxWidth?  : "xs" | "sm" | "md" | "lg" | "xl";
   fullWidth? : boolean;
   title?     : string;
@@ -23,21 +33,23 @@ type Props = {
   classname? : object;
   children   : JSX.Element | any;
   onClose?   : () => void;
-}
+};
 
 
-// Всплывающее окно с каким-то children
+/**
+ * Всплывающее окно с каким-то children
+ */
 const DialogInfo: React.FC<Props> = ({ hookOpen, maxWidth = "md", fullWidth = true, title, classname, children, question, onClose }) => {
-  if (!hookOpen.open || !children) return null;
+  const
+    sx              = useStyles(),
+    theme           = useTheme(),
+    greaterSmScreen = useMediaQuery(theme.breakpoints.up('sm')),
+    hookConfirm     = useValue();
 
-  const theme = useTheme();
-  const greaterSmScreen = useMediaQuery(theme.breakpoints.up('sm'));
   
-  const hookConfirm = useOpen();
-
   const handleClose = () => {
-    if (!hookOpen.isChange) {
-      hookOpen.setIsChange(false);
+    if (!hookOpen.changes) {
+      hookOpen.setChanges(false);
       if (onClose) return onClose(); // Если не было изменений
       hookOpen.setClose();
     }
@@ -50,20 +62,22 @@ const DialogInfo: React.FC<Props> = ({ hookOpen, maxWidth = "md", fullWidth = tr
   };
 
   const handleConfirmClose = () => {
-    hookOpen.setIsChange(false);
+    hookOpen.setChanges(false);
     hookConfirm.setClose();
     if (onClose) return onClose(); // Если не было изменений
     hookOpen.setClose();
   };
 
 
+  if (!hookOpen.open || !children) return null;
+
   return (
     <Dialog
-      open={hookOpen.open}
-      onClose={handleClose}
-      sx={{ '& .MuiDialog-paper': { m: { xs: 0 }, width: { xs: `100%` } } }}
-      maxWidth={maxWidth}
-      fullWidth={greaterSmScreen && fullWidth}
+      open      = {hookOpen.open}
+      onClose   = {handleClose}
+      sx        = {sx.root}
+      maxWidth  = {maxWidth}
+      fullWidth = {greaterSmScreen && fullWidth}
     >
       {
         title && <DialogTitle onClose={handleClose} children={title} question={question}/>
@@ -74,14 +88,13 @@ const DialogInfo: React.FC<Props> = ({ hookOpen, maxWidth = "md", fullWidth = tr
           children
         }
       </DialogContent>
-
       
       <DialogConfirm
-        open={hookConfirm.open}
-        typeOk={ConfirmType.SAVE_EXIT}
-        onOk={handleSaveChanges}
-        onCancel={handleConfirmClose}
-        title="У вас есть не сохранённые изменения."
+        open     = {hookConfirm.open}
+        typeOk   = {ConfirmType.SAVE_EXIT}
+        onOk     = {handleSaveChanges}
+        onCancel = {handleConfirmClose}
+        title    = "У вас есть не сохранённые изменения."
       />
     </Dialog>
   );

@@ -1,9 +1,9 @@
-import { RefBookId } from '../../../../../types';
-import { getRefBookById } from '../get-ref-book-by-id';
+import { RefbookId } from '../../../../../types';
+import { getRefbookById } from '../get-ref-book-by-id';
 
-export const getCardTitleById = (refBookId: RefBookId) => {
-  switch (refBookId) {
+export const getCardTitleById = (refbookId: RefbookId) => {
+  switch (refbookId) {
 
-    default: return `Карточка ${getRefBookById(refBookId).cardTitle}`;
+    default: return `Карточка ${getRefbookById(refbookId).cardTitle}`;
   }
 };

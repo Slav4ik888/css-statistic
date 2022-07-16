@@ -16,7 +16,7 @@ import validateAndSubmit from '../../../../../../utils/validators/validate-and-s
 import isChanges from '../../../../../utils/check-changes-in-submit';
 // Types
 import { Errors, User, CardType, Validator, RefbookId } from '../../../../../../types';
-import { UseGroup } from '../../../../../utils/hooks/types';
+import { UseGroup } from '../../../../../utils/hooks';
 
 
 
@@ -32,7 +32,8 @@ type Props = {
 
 
 const CardUser: React.FC<Props> = ({ type, userId, storeUser, group: G, setErrors, addRefUser, updateAnyUser }) => {
-  const add = type === CardType.ADD;
+  const
+    add = type === CardType.ADD;
    
   React.useEffect(() => { setErrors(null); }, []);
   React.useEffect(() => { G.setGroup(mergeWithTemplate(storeUser)); }, [storeUser]);

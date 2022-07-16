@@ -2,8 +2,10 @@ import * as React from 'react';
 // MUI Stuff
 import Box from '@mui/material/Box';
 // Functions
-import { useOpen } from '../../../hooks';
+import { useValue } from '../../../hooks';
 import checkChangesInSubmit from '../../';
+
+
 
 type Props = {
   storeData : object;
@@ -11,10 +13,11 @@ type Props = {
   exit      : boolean;
   onNull    : () => void;
   onSubmit  : () => void;
-}
+};
+
 const Component: React.FC<Props> = ({ storeData, newData, exit, onNull, onSubmit }) => {
 
-  const hookOpen = useOpen();
+  const hookOpen = useValue();
   
   const handleSubmit = () => {
     if (!checkChangesInSubmit(hookOpen, storeData, newData, exit)) return onNull();

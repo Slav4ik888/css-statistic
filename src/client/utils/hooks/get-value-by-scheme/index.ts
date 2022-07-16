@@ -1,10 +1,11 @@
-import getScheme from "../get-scheme";
-import { UseGroup } from "../types";
+import { getScheme } from "../get-scheme";
+import { UseGroup } from "../use-group";
+
 
 /**
  * @return value by scheme
  */
-export default function getValueByScheme<O>(G: UseGroup<O>, scheme: string) {
+export function getValueByScheme<O>(G: UseGroup<O>, scheme: string) {
   const { field1, field2, field3, field4 } = getScheme(scheme);
 
   if      (field4) return G?.group?.[field1]?.[field2]?.[field3]?.[field4]

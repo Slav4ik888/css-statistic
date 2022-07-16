@@ -4,9 +4,10 @@ import BoxLabel from '../box-label';
 import GridWrap from '../grid-wrap';
 import BoxWrap from '../box-wrap';
 // Types
-import { UseOpen } from '../../../utils/hooks/types';
+import { UseBase } from '../../../utils/hooks';
 import { GridStyle } from '../../../../types';
 import { fcc } from '../../../utils/styles';
+
 
 
 type Props = {
@@ -14,7 +15,7 @@ type Props = {
   children   : string | JSX.Element;
   toolTitle? : string;
   label?     : string;
-  select     : UseOpen;
+  select     : UseBase;
   sx?        : {
                   width?           : number | string,
                   height?          : number | string,
@@ -30,7 +31,9 @@ type Props = {
                 };
 }; 
 
-// Вспомогательный текстовый компонент
+/**
+ * Вспомогательный текстовый компонент
+ */
 const SelectText: React.FC<Props> = (props) => {
   const { grid, toolTitle, label, children, select, sx } = props;
   if (select.open) return null;

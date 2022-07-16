@@ -3,12 +3,14 @@ import * as React from 'react';
 import { TextField } from '../../../containers/elements';
 // Types
 import { User } from '../../../../../types';
-import { UseGroup } from '../../../../utils/hooks/types';
+import { UseGroup } from '../../../../utils/hooks';
+
 
 
 type Props = {
   group: UseGroup<User>;
 };
+
 
 const PersonCnt: React.FC<Props> = ({ group: G }) => {
 

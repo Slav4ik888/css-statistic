@@ -1,17 +1,17 @@
 import { createSelector } from "reselect";
-import { RefBookId } from "../../../../types";
+import { RefbookId } from "../../../../types";
 import { getProps, getState } from "../universal";
 
-export const getRefBookById = createSelector(
+export const getRefbookById = createSelector(
   getState,
   getProps,
-  (state, { refBookId }: { refBookId: RefBookId }) => {
+  (state, { refbookId }: { refbookId: RefbookId }) => {
 
-    switch (refBookId) {
-      case RefBookId.USERS: return state.refbooks.users;
-      case RefBookId.ROLES: return state.refbooks.roles;
+    switch (refbookId) {
+      case RefbookId.USERS: return state.refbooks.users;
+      case RefbookId.ROLES: return state.refbooks.roles;
       
-      default: return state[refBookId]
+      default: return state[refbookId]
     }
   }
 );

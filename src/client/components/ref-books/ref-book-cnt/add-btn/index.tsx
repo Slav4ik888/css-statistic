@@ -7,19 +7,20 @@ import { Button, Box } from '@mui/material';
 // Icons
 import Add from '@mui/icons-material/Add';
 // Components
-import CardSwitch from '../card-switch';
+import CardSwitch from '../../card-switch';
 import CardUser from '../../ref-books/users/card';
 import DialogInfo from '../../../dialogs/dialog-info';
 // Functions
 import { getCardTitleById } from '../../utils/get-card-title-by-id';
-import { useGroup } from '../../../../utils/hooks/use-group';
+import { useGroup, UseGroup } from '../../../../utils/hooks';
 // Types & Styles
 import { RefbookId, User, CardType } from '../../../../../types';
-import { UseGroup } from '../../../../utils/hooks/types';
 import { useTheme } from '@emotion/react';
+import { Themes } from '../../../../utils/styles';
 
 
-const useStyles = (theme) => ({
+
+const useStyles = (theme: Themes) => ({
   root: {
     display         : `flex`,
     justifyContent  : `flex-end`
@@ -31,25 +32,24 @@ const useStyles = (theme) => ({
 
 
 type Props = {
-  refBookId      : RefbookId;
+  refbookId      : RefbookId;
   group          : UseGroup<any>;
   addNewElement? : (id: string) => void;
 };
 
 
 // Добавление в Справочник нового элемента
-const AddBtn: React.FC<Props> = ({ refBookId, group, addNewElement }) => {
-  const sx = useStyles(useTheme());
+const AddBtn: React.FC<Props> = ({ refbookId, group, addNewElement }) => {
+  const
+    sx = useStyles(useTheme() as Themes),
+    groupNewUser = useGroup<User>();
 
-  const groupNewUser = useGroup<User>();
-
+  
   const handleAdd = () => {
-    if (refBookId === RefbookId.USERS) {
-      groupNewUser.setOpen();
-    }
+    if (refbookId === RefbookId.USERS) groupNewUser.setOpen();
     else {
       group.setOpen();
-      addNewElement(refBookId); // Создаём новый элемент в Справочнике
+      addNewElement(refbookId); // Создаём новый элемент в Справочнике
     }
   };
 
@@ -61,10 +61,10 @@ const AddBtn: React.FC<Props> = ({ refBookId, group, addNewElement }) => {
       </Button>
 
       <DialogInfo
-        title    = {getCardTitleById(refBookId)}
+        title    = {getCardTitleById(refbookId)}
         hookOpen = {group}
         onClose  = {group.setClose}
-        children = {<CardSwitch group={group} refBookId={refBookId} />}
+        children = {<CardSwitch group={group} refbookId={refbookId} />}
       />
         
       <DialogInfo
