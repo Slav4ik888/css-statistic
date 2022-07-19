@@ -1,7 +1,4 @@
 import * as React from 'react';
-// Redux Stuff
-import { connect } from 'react-redux';
-import { State } from '../../../../redux/redux-types';
 // Components
 import NavBtn from '../nav-btn';
 // Types
@@ -13,28 +10,19 @@ type Props = {
 };
 
 
-// Кнопка для входа в Statistics
+/**
+ * Кнопка для входа в Statistics
+ */
 const StatisticMenuBtn: React.FC<Props> = ({ history}) => {
-  
-  const handleClick = () => {
-    history.push(RouteType.STATS);
-  };
+  const handleClick = () => history.push(RouteType.STATS);
 
   return (
-    <>
-      <NavBtn
-        label={`Статистика`}
-        toolLabel={`Перейти в "Статистику"`}
-        onClick={handleClick}
-      />
-    </>
+    <NavBtn
+      label     = 'Статистика'
+      toolLabel = 'Перейти в "Статистику"'
+      onClick   = {handleClick}
+    />
   );
 };
 
-const mapStateToProps = (state: State) => ({
-});
-
-const mapActionsToProps = {
-};
-
-export default connect(mapStateToProps, mapActionsToProps)(StatisticMenuBtn);
+export default StatisticMenuBtn;

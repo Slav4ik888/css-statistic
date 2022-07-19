@@ -1,9 +1,9 @@
 import * as React from 'react';
 // Components
 import CardBlock from '../../../../../../../containers/cards/card-block';
-import Person from '../../../../../../modules/person';
-import { Description } from '../../../../../../../containers/modules/index';
-import Email from '../email';
+import Person from './person';
+import { Description } from '../../../../../../../containers/cards/items';
+import Email from './email';
 // Types
 import { User, CardType } from '../../../../../../../../../types';
 import { UseGroup } from '../../../../../../../../utils/hooks';

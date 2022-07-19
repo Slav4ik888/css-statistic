@@ -8,14 +8,14 @@ type Props = {
 };
 
 
-// Кнопки Navbar меню после авторизации
+/**
+ * Кнопки Navbar меню после авторизации
+ */
 const MenuBtns: React.FC<Props> = ({ authenticated }) => {
   if (!authenticated) return null;
 
   return (
-    <>
-      <ProfilesMenuBtn />
-    </>
+    <ProfilesMenuBtn />
   );
 };
 

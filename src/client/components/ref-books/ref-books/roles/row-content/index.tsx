@@ -1,14 +1,13 @@
 import * as React from 'react';
 // Components
 import Cell from '../../../../tables/refbooks-table/cell';
-// Types
+// Types & Styles
 import { Role } from '../../../../../../types';
-// Styles
 import { TextAlign } from '../../../../../utils/styles';
-import { useTheme } from '@emotion/react';
 
 
-const useStyles = (theme) => ({
+
+const useStyles = () => ({
   count: {
     width: `35px`,
     minWidth: `35px`,
@@ -38,17 +37,17 @@ type Props = {
   item?: Role;
 };
 
-// Строка таблицы справочника Роли
+/**
+ * Строка таблицы справочника Роли
+ */
 const RowContent: React.FC<Props> = ({ count, item }) => {
-  const sx = useStyles(useTheme());
-  const _item = React.useMemo(() => item, [item]);
-
+  const sx = useStyles();
 
   return (
     <>
-      <Cell sx={sx.count}>{count.toString()}</Cell>
-      <Cell sx={sx.role}>{_item.role}</Cell>
-      <Cell sx={sx.description}>{_item.description}</Cell>
+      <Cell sx={sx.count}>{count}</Cell>
+      <Cell sx={sx.role}>{item.role}</Cell>
+      <Cell sx={sx.description}>{item.description}</Cell>
     </>
   );
 };

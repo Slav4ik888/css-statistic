@@ -5,7 +5,7 @@ import { getRoles } from '../../../../../../../../../redux/selectors/ref-books';
 import { getErrors } from '../../../../../../../../../redux/selectors/ui';
 import { State } from '../../../../../../../../../redux/redux-types';
 // MUI Stuff
-import { Box, InputLabel, MenuItem, FormControl, FormHelperText, Select, SelectChangeEvent } from '@mui/material';
+import { Grid, InputLabel, MenuItem, FormControl, FormHelperText, Select, SelectChangeEvent } from '@mui/material';
 // Functions
 import { getRoleNameById } from '../../../../../../../utils/get-role-name-by-id';
 import { getRoleId } from '../../../../../../../utils/get-role-id';
@@ -42,15 +42,14 @@ const SelectRole: React.FC<Props> = ({ roles, group, errors }) => {
   if (!roles?.length) return null;
 
   return (
-    <Box sx={{ minWidth: `150px` }}>
+    <Grid item xs={12} sm={3}>
       <FormControl fullWidth error={Boolean(errors?.roleId)}>
-        <InputLabel id="role-id">Тип роли</InputLabel>
+        <InputLabel id='role-id'>Тип роли</InputLabel>
         <Select
-          labelId  = "role-id"
+          labelId  = 'role-id'
           value    = {getRoleNameById(roles, group.group.role.roleId)}
-          label    = "Role"
+          label    = 'Role'
           onChange = {handleChange}
-          // defaultValue={getRoleNameById(roles, group.obj.role.roleId)}
           sx       = {sx.textField}
         >
           {
@@ -62,7 +61,7 @@ const SelectRole: React.FC<Props> = ({ roles, group, errors }) => {
         </Select>
         <FormHelperText>{errors?.roleId}</FormHelperText>
       </FormControl>
-    </Box>
+    </Grid>
   );
 };
 

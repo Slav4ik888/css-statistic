@@ -2,11 +2,10 @@ import { StateRefBooks } from '../../redux-types';
 
 
 export const initialState: StateRefBooks = {
-  loadingRef     : false, // Загрузка Справочника
-  loadingUpd     : false, // Обновление Элементов
+  loading : false,
 
-  newId          : ``,    // Созданный Id для нового элемента Справочника
+  newId   : ``,   // Созданный Id для нового элемента Справочника
 
-  roles          : null, // Роли
-  users          : null, // Сотрудники
+  roles   : null, // Роли
+  users   : null, // Сотрудники
 };

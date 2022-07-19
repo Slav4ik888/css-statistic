@@ -33,27 +33,29 @@ const useStyles = (open: boolean) => ({
 });
 
 
-// Кнопка входа в личные кабинеты активация открытия / закрытия
+/**
+ * Кнопка входа в личные кабинеты активация открытия / закрытия
+ */
 const ProfileMenuBtn: React.FC = () => {
   const
     anchorRef = React.useRef(null),
     menu      = useValue(),
-    sx        = useStyles(menu.open),
-    menuId    = `profile-menu`;
+    menuId    = 'profile-menu',
+    sx        = useStyles(menu.open);
 
 
   return (
     <>
       <IconButton
         ref           = {anchorRef}
-        aria-label    = "account of current user"
+        aria-label    = 'account of current user'
         aria-controls = {menuId}
-        aria-haspopup = "true"
+        aria-haspopup = 'true'
         onClick       = {() => menu.setOpen()}
         sx            = {sx.icon}
       >
         <AccountCircle />
-        {/* <Avatar src={account.photoURL} alt="photoURL" /> */}
+        {/* <Avatar src={account.photoURL} alt='photoURL' /> */}
       </IconButton>
 
       <ProfileMenu

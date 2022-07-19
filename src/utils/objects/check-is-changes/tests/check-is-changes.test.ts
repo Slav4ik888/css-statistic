@@ -1,4 +1,4 @@
-import checkIsChanges from ".."
+import {checkIsChanges} from ".."
 import { Mocks } from "./types"
 
 const mocks: Mocks = [

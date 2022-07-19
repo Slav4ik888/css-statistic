@@ -1,1 +1,1 @@
-export default function boolToNumber(bool: boolean): number;
+export function boolToNumber(bool: boolean): number;

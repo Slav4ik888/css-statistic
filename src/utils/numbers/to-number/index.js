@@ -1,7 +1,7 @@
 import { commaToDot, delSpace } from '../replacers/index.js';
 
 
-export default function toNumber(str) {
+export function toNumber(str) {
   if (typeof str !== `string`) return 0;
   if (!str) return 0;
 

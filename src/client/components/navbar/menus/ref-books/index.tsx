@@ -6,7 +6,7 @@ import DialogInfo from '../../../dialogs/dialog-info';
 import RefbookCnt from '../../../ref-books/ref-book-cnt';
 import RefbookItem from './refbook-item';
 // Functions
-import { getLabelById } from '../../../ref-books/utils/get-label-by-id';
+import { getRefbookLabel } from '../../../ref-books/utils/get-refbook-label';
 import { useValue } from '../../../../utils/hooks';
 // Types & Consts & Styles
 import { RefbooksList } from '../../../../consts/reference-books-list';
@@ -66,7 +66,7 @@ const RefBookMenu: React.FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
     hookOpen = useValue(),
     refbook  = useValue<RefbookId>();
 
-  // React.MouseEvent<HTMLElement>
+  
   const handleOpen = (e: any) => {
     const target = e.target.closest(`li`);
     refbook.setValue(target.id);
@@ -100,7 +100,7 @@ const RefBookMenu: React.FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
       <DialogInfo
         hookOpen = {hookOpen}
         onClose  = {handleClose}
-        title    = {getLabelById(refbook.value)}
+        title    = {getRefbookLabel(refbook.value)}
         children = {<RefbookCnt refbookId={refbook.value} />}
       />
     </>

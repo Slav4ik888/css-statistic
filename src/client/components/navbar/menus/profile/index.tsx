@@ -19,20 +19,20 @@ import { UseBase, useValue } from '../../../../utils/hooks';
 import { getFio } from '../../../../utils/helpers';
 // Types & Styles
 import { User, Roles } from '../../../../../types';
-import { Position, TextAlign } from '../../../../utils/styles/helpers-css';
+import { TextAlign } from '../../../../utils/styles/helpers-css';
 
 
 
 const MENU_OPTIONS = [
   {
-    label: 'Ваш профиль',
-    icon: 'profile',
-    linkTo: 'profile'
+    label  : 'Ваш профиль',
+    icon   : 'profile',
+    linkTo : 'profile'
   },
   {
-    label: 'Настройки',
-    icon: 'settings',
-    linkTo: 'settings'
+    label  : 'Настройки',
+    icon   : 'settings',
+    linkTo : 'settings'
   }
 ];
 

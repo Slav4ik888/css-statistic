@@ -3,4 +3,4 @@
  * @param prevObj - первоначальный объект
  * @param newObj  - новый объект
  */
-export default function checkIsChanges<T>(prevObj: T, newObj: T): boolean;
+export function checkIsChanges<T>(prevObj: T, newObj: T): boolean;

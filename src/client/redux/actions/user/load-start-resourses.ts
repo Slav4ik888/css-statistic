@@ -7,7 +7,7 @@ const log = logger(`loadStartResourses`);
 import { ResGetStartResourses } from "../../../../types";
 import { warningMessage } from "../ui";
 import mergeWithTemplate from "../../../components/users/merge-with-template";
-
+import * as Path from '../../../../utils/paths';
 
 
 /**
@@ -17,7 +17,7 @@ export const loadStartResourses = () => async (dispatch: any) => {
   dispatch({ type: Type.LOADING_USER });
 
   try {
-    const { data: { roleCreds, roles, users, user }}: ResGetStartResourses = await api.get(`/getStartResourses`);
+    const { data: { roleCreds, roles, users, user }}: ResGetStartResourses = await api.get(Path.User.LOAD_START_RES);
 
     dispatch({ type: Type.SET_USER,          payload: mergeWithTemplate(user) });
     dispatch({ type: Type.SET_CREDENTIALS,   payload: roleCreds });

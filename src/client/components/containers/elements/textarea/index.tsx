@@ -1,14 +1,14 @@
 import * as React from 'react';
 // MUI Stuff 
-import { Tooltip, TextareaAutosize, Box, Typography } from '@mui/material';
+import { TextareaAutosize, Box, Typography } from '@mui/material';
 // Components
 import GridWrap from '../../grid-wrap';
 import BoxWrap from '../../box-wrap';
 import ErrorBox from '../../error-box';
 // Functions
-import { getValueByScheme, UseGroup, changeGroup } from '../../../../utils/hooks';
+import { useValue } from '../../../../utils/hooks';
 // Types & Styles
-import { GridStyle } from '../../../../../types';
+import { Errors, GridStyle } from '../../../../../types';
 import { useTheme } from '@emotion/react';
 import { Position, Themes } from '../../../../utils/styles';
 
@@ -49,60 +49,74 @@ const useStyles = (theme: Themes, length: number, styleBox: any) => ({
 type Props = {
   grid?         : GridStyle;
   box?          : boolean;
-  group?        : UseGroup<any>;
-  toolTitle?    : string;
   // Textarea
   label         : string;
   style?        : { box?: object; label? : object }
-  defaultValue? : string | number;
+  defaultValue? : string;
+  changesValue? : string; // If value can be changes in any place, but not here
   placeholder?  : string;
   disabled?     : boolean;
   minRows?      : number;
   errorField?   : string;
-  // Control
-  scheme        : string;
+  errors        : Errors;
+  autoFocus?    : boolean;
+  onClick?      : (e?: any) => void;
+  onBlur?       : (v: string) => void;
   onCallback?   : () => void;
+  onSubmit?     : (v: string) => void;
 };
 
 
-const TextArea: React.FC<Props> = (props) => {
+export const TextArea: React.FC<Props> = (props) => {
+  const { box, errors, autoFocus, label, defaultValue, changesValue, style, minRows = 1, errorField, placeholder, disabled, onBlur, onClick, onCallback, onSubmit } = props;
   const
-    { box, label, toolTitle, defaultValue, style, minRows = 1, errorField, scheme, placeholder, disabled, group, onCallback } = props,
-    sx   = useStyles(useTheme() as Themes, label.length, style?.box),
-    Wrap = box ? BoxWrap : GridWrap;
+    sx       = useStyles(useTheme() as Themes, label.length, style?.box),
+    focusRef = React.useRef(null),
+    Wrap     = box ? BoxWrap : GridWrap,
+    S        = useValue(defaultValue || ``);
 
-  const handleChange = (e: any) => {
+  
+  React.useEffect(() => { autoFocus && focusRef.current.focus(); }, []);
+  React.useEffect(() => { changesValue !== undefined && S.setValue(changesValue); }, [changesValue]);
+
+
+  const handlerChange = (e: any) => {
     if (disabled) return null;
-    changeGroup(group, [{ value: e.target.value, scheme }]);
-    if (onCallback) onCallback();
+    S.setValue(e.target.value);
+
+    onCallback && onCallback();
+    if (e.keyCode === 27) { // e.keyCode === 13 ||
+      onSubmit && onSubmit(S.value);
+      onBlur && onBlur(S.value);
+    }
   };
+
+  const handlerBlur = () => {
+    onCallback && onCallback();
+    onBlur && onBlur(S.value);
+  };  
 
 
   return (
     <Wrap {...props}>
-      <Box sx={{ position: `relative` }}>
-        <Tooltip title={toolTitle || ""} arrow enterDelay={1000} enterNextDelay={1000}>
-        
-          <TextareaAutosize
-            aria-label={label}
-            aria-labelledby={label}
-            minRows={minRows}
-            defaultValue={defaultValue || getValueByScheme(group, scheme)}
-            onChange={handleChange}
-            disabled={disabled}
-            placeholder={placeholder}
-            style={{ ...sx.textField }}
-          />
-        </Tooltip>
+      <Box sx={{ position: `relative` }} onClick={onClick}>
+        <TextareaAutosize
+          aria-label      = {label}
+          aria-labelledby = {label}
+          minRows         = {minRows}
+          value           = {S.value}
+          disabled        = {disabled}
+          placeholder     = {placeholder}
+          style           = {{ ...sx.textField }}
+          onChange        = {handlerChange}
+          onBlur          = {handlerBlur}
+        />
               
         <Box sx={sx.hiddenLabelBG} />
         <Typography sx={{ ...sx.label, ...style?.label }}>{label}</Typography>
       </Box>
 
-      <ErrorBox field={errorField} />
+      <ErrorBox field={errorField} errors={errors} />
     </Wrap>
   )
 };
-
-
-export default TextArea;

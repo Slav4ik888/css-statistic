@@ -5,7 +5,7 @@ import { addSpaceBetweenNumber } from '../add-space-between-number/index.js';
  * Для handleChange(e)
  * Возвращает число в строке с разделёнными тысячами
  */
-export default function getStrNumber(value) {
+export function getStrNumber(value) {
   const valInStr = value.toString();
   let str = ``;
 

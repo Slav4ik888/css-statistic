@@ -3,9 +3,7 @@ import { Message, Errors, ScreenFormats, SelectedDates, DbItem, User, Users, Rol
 
 
 export type TypeDispatch = Function | uiActionType | refBooksActionType | userActionType | statsActionType;
-
 type Payload = string | {};
-
 export type Dispatch = (arg0: { type?: TypeDispatch; payload?: Payload }) => void;
 
 
@@ -43,13 +41,12 @@ export interface StateStats {
 };
 
 export interface StateRefBooks {
-  loadingRef     : boolean;
-  loadingUpd     : boolean;
+  loading : boolean;
   
-  newId          : string;  // Созданный Id для нового элемента Справочника
+  newId   : string;  // Созданный Id для нового элемента Справочника
   
-  roles          : Roles;   // Роли
-  users          : Users;   // Сотрудники
+  roles   : Roles;   // Роли
+  users   : Users;   // Сотрудники
 };
 
 export interface State {

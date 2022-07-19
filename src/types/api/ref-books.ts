@@ -12,7 +12,7 @@ export interface ResLoadRefbooksByIds {
 // USERS
 export interface ResRefAddUser    { data: { user: User } };
 export interface ResRefUpdateUser { data: { user: User, message: string } };
-export interface ResRefDeleteUser { data: { user: User, message: string } };
+export interface ResRefDeleteUser { data: { message: string } };
 export interface ResRefLoadUsers  { data: { users: Users } };
 
 // ROLES

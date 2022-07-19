@@ -2,8 +2,8 @@ import * as React from 'react';
 // MUI Stuff
 import Box from '@mui/material/Box';
 // Components
-import Row from '../row';
-import RenderRow from '../render-row';
+import Row from './row';
+import RenderRow from './render-row';
 // Types
 import { Table, TableType } from '../../../../../types';
 // Styles

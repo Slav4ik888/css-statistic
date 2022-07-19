@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getErrors } from '../../../../../../../../../redux/selectors/ui';
 import { State } from '../../../../../../../../../redux/redux-types';
 // MUI Stuff
-import { Box, InputLabel, MenuItem, FormControl, FormHelperText, Select, SelectChangeEvent } from '@mui/material';
+import { Grid, InputLabel, MenuItem, FormControl, FormHelperText, Select, SelectChangeEvent } from '@mui/material';
 // Functions
 import { UseGroup, changeGroup } from '../../../../../../../../../utils/hooks';
 // Types & Styles
@@ -15,9 +15,9 @@ import { Themes } from '../../../../../../../../../utils/styles';
 
 
 const useStyles = (theme: Themes) => ({
-  root: {
-    minWidth: `150px`
-  },
+  // root: {
+  //   minWidth: `150px`
+  // },
   textField: {
     backgroundColor: theme.cardBlock.textfield.background
   }
@@ -40,7 +40,7 @@ const SelectRoleType: React.FC<Props> = ({ group, errors }) => {
   
 
   return (
-    <Box sx={sx.root}>
+    <Grid item xs={12} sm={3}>
       <FormControl fullWidth error={Boolean(errors?.roleType)}>
         <InputLabel id="role-type">Тип пользователя</InputLabel>
         <Select
@@ -59,7 +59,7 @@ const SelectRoleType: React.FC<Props> = ({ group, errors }) => {
         </Select>
         <FormHelperText>{errors?.roleType}</FormHelperText>
       </FormControl>
-    </Box>
+    </Grid>
   );
 };
 

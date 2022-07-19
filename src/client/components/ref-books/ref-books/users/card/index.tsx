@@ -1,8 +1,8 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { addRefUser } from '../../../../../redux/actions/ref-books/users';
-import { updateAnyUser } from '../../../../../redux/actions/user';
+import { addUser } from '../../../../../redux/actions/ref-books/users';
+import { updateUser } from '../../../../../redux/actions/user';
 import { getUserById } from '../../../../../redux/selectors/ref-books';
 import { setErrors } from '../../../../../redux/actions/ui';
 import { State } from '../../../../../redux/redux-types';
@@ -26,17 +26,20 @@ type Props = {
   storeUser?     : User;
   group          : UseGroup<User>;
   setErrors?     : (err: Errors) => void;
-  addRefUser?    : (user: User) => void;
-  updateAnyUser? : (user: User) => void;
+  addUser?    : (user: User) => void;
+  updateUser? : (user: User) => void;
 };
 
 
-const CardUser: React.FC<Props> = ({ type, userId, storeUser, group: G, setErrors, addRefUser, updateAnyUser }) => {
+const CardUser: React.FC<Props> = ({ type, userId, storeUser, group: G, setErrors, addUser, updateUser }) => {
   const
-    add = type === CardType.ADD;
+    add        = type === CardType.ADD,
+    edit       = !add,
+    submitText = edit && 'Сохранить и закрыть';
    
+  
   React.useEffect(() => { setErrors(null); }, []);
-  React.useEffect(() => { G.setGroup(mergeWithTemplate(storeUser)); }, [storeUser]);
+  React.useEffect(() => { G.setGroup(mergeWithTemplate(storeUser), true); }, [storeUser]);
   React.useEffect(() => { G.confirm && handleSubmit(false, true); }, [G.confirm]); // Если пользователь нажал Сохранить при Confirm
   
 
@@ -49,28 +52,28 @@ const CardUser: React.FC<Props> = ({ type, userId, storeUser, group: G, setError
     validateAndSubmit(
       add ? Validator.USER_ADD : Validator.USER_UPDATE,
       G.group, 
-      add ? addRefUser : updateAnyUser,
+      add ? addUser : updateUser,
       setErrors,
       G,
-      true
+      add ? false : true
     );
   };
 
   
-  if (type === CardType.EDIT && !storeUser) return null;
+  if (edit && !storeUser) return null;
 
 
   return (
     <CardContainer>
-
       <Content group={G} type={type} />
       
       <Actions
-        disabledDelete = {add}
-        refBookId      = {RefbookId.USERS}
         id             = {userId}
+        disabledDelete = {add}
+        refbookId      = {RefbookId.USERS}
         email          = {G?.group?.email}
         hookOpen       = {G}
+        submitText     = {submitText}
         onSubmit       = {handleSubmit}
       />
     </CardContainer>
@@ -82,7 +85,7 @@ const mapStateToProps = (state: State, props: Props) => ({
 });
 
 const mapActionsToProps = {
-  setErrors, addRefUser, updateAnyUser
+  setErrors, addUser, updateUser
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(CardUser);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { getLoadingRef } from '../../../../redux/selectors/ref-books';
+import { getLoading } from '../../../../redux/selectors/ref-books';
 import { State } from '../../../../redux/redux-types';
 // MUI Stuff
 import { Box, ListItemText, ListItemIcon } from '@mui/material';
@@ -61,7 +61,7 @@ const AddUserBtn: React.FC<Props> = ({ loading }) => {
 };
 
 const mapStateToProps = (state: State) => ({
-  loading: getLoadingRef(state)
+  loading: getLoading(state)
 });
 
 export default connect(mapStateToProps)(AddUserBtn);

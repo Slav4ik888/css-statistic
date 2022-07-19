@@ -1,7 +1,7 @@
 import * as React from 'react';
 // Redax Stuff
 import { connect } from 'react-redux';
-import { getLoadingRef, getUsers } from '../../../../redux/selectors/ref-books';
+import { getLoading, getUsers } from '../../../../redux/selectors/ref-books';
 import { State } from '../../../../redux/redux-types';
 // MUI Stuff
 import Menu from '@mui/material/Menu';
@@ -113,7 +113,7 @@ const UsersMenu: React.FC<Props> = ({ loading, open, anchorEl, menuId, users, on
 };
 
 const mapStateToProps = (state: State) => ({
-  loading : getLoadingRef(state),
+  loading : getLoading(state),
   users   : getUsers(state)
 });
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
 import { deleteElement } from '../../../redux/actions/ref-books';
-import { getLoadingUpd } from '../../../redux/selectors/ref-books';
+import { getLoading } from '../../../redux/selectors/ref-books';
 import { State } from '../../../redux/redux-types';
 // MUI Stuff
 import { Button, Divider, Box } from '@mui/material';
@@ -11,10 +11,10 @@ import DialogConfirm from '../../dialogs/dialog-confirm';
 import CancelSubmitBtn from '../../buttons/cancel-submit-btn';
 // Functions
 import { UseBase, useValue } from '../../../utils/hooks';
-import { getConfirmTitleById } from '../utils/get-confirm-title-by-id';
 // Types & Styles
-import { ConfirmType, RefbookId } from '../../../../types';
+import { CardType, ConfirmType, RefbookId } from '../../../../types';
 import { FlexDirection } from '../../../utils/styles';
+import { getCardTitle } from '../utils';
 
 
 
@@ -39,35 +39,33 @@ const useStyles = () => ({
 
 
 type Props = {
-  loadingUpd?      : boolean;
-  disabledDelete?  : boolean; // Если не нужно показывать кнопку удаления
-  refbookId?       : RefbookId;  // Id Справочника
-  id?              : string;  // Созданный или имеющийся Id of element Справочника
-  email?           : string;  // Для User
-  hookOpen         : UseBase; // Чтобы была возможность закрыть карточку при удалении
-  deleteElement?   : (refbookId: string, id: string, email?: string) => void;
-  // onDel?           : () => void; // Удаление для Перевозчика
-  onSubmit         : (e: any, exit?: boolean) => void;
+  loading?        : boolean;
+  disabledDelete? : boolean;   // Если не нужно показывать кнопку удаления
+  refbookId?      : RefbookId;
+  id?             : string;    // Созданный или имеющийся Id of element Справочника
+  email?          : string;    // Для User
+  hookOpen        : UseBase;   // Чтобы была возможность закрыть карточку при удалении
+  submitText?     : string;
+  deleteElement?  : (refbookId: string, id: string, email?: string) => void;
+  onSubmit        : (e: any, exit?: boolean) => void;
 };
 
-
-// Actions in CardFooter
-const Actions: React.FC<Props> = ({ loadingUpd, disabledDelete, refbookId, id, email, hookOpen, deleteElement, onSubmit }) => {
-
+/**
+ * Actions in CardFooter
+ */
+const Actions: React.FC<Props> = ({ loading, disabledDelete, refbookId, id, email, hookOpen, submitText, deleteElement, onSubmit }) => {
   const
-    sx       = useStyles(),
-    confirm  = useValue(),
-    disabled = !hookOpen.changes;
+    sx           = useStyles(),
+    confirm      = useValue(),
+    disabled     = !hookOpen.changes,
+    confirmTitle = getCardTitle(CardType.DEL, refbookId);
 
+  
   const handleDel = () => {
     confirm.setClose();
     hookOpen.setClose();
-    console.log(`Удаляем...`, id);
     if (refbookId) deleteElement(refbookId, id, email)
-    // else onDel();
   };
-
-  const confirmTitle = getConfirmTitleById(refbookId);
 
   
   return (
@@ -83,7 +81,12 @@ const Actions: React.FC<Props> = ({ loadingUpd, disabledDelete, refbookId, id, e
           Удалить
         </Button>
         
-        <CancelSubmitBtn onSubmit={onSubmit} loading={loadingUpd} disabled={disabled} />
+        <CancelSubmitBtn
+          onSubmit   = {onSubmit}
+          loading    = {loading}
+          disabled   = {disabled}
+          submitText = {submitText}
+        />
       </Box>
 
       <DialogConfirm
@@ -99,7 +102,7 @@ const Actions: React.FC<Props> = ({ loadingUpd, disabledDelete, refbookId, id, e
 
 
 const mapStateToProps = (state: State) => ({
-  loadingUpd: getLoadingUpd(state)
+  loading: getLoading(state)
 });
 
 export default connect(mapStateToProps, { deleteElement })(Actions);

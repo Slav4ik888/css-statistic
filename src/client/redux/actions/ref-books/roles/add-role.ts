@@ -7,7 +7,7 @@ import { ResRefAddRole } from "../../../../../types";
 
 
 export const addRole = () => async (dispatch: Dispatch) => {
-  dispatch({ type: Type.LOADING_UPD_ON });
+  dispatch({ type: Type.LOADING_REF_ON });
   dispatch({ type: Type.SET_NEW_ID, payload: `` });
 
   try {
@@ -16,5 +16,5 @@ export const addRole = () => async (dispatch: Dispatch) => {
     dispatch({ type: Type.UPDATE_ROLE, payload: res.data.role });
     dispatch({ type: Type.SET_NEW_ID,  payload: res.data.role.id });
   }
-  catch (err) { handleError(err, dispatch, Type.LOADING_UPD_OFF) }
+  catch (err) { handleError(err, dispatch, Type.LOADING_REF_OFF) }
 };

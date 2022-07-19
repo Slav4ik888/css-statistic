@@ -6,13 +6,13 @@ import ERR_TEMP from '../../../../templates/errors/template-errors.js';
 
 
 export async function deleteUser(ctx, next) {
-  const user = ctx.state.user;
-  const logTemp = `[deleteRefUser] - [${user.email}]`;
+  const
+    user      = ctx.state.user,
+    logTemp   = `[deleteRefUser] - [${user.email}]`,
+    { email } = ctx.request?.body,
+    dbRef     = db.collection(`users`)
 
   try {
-    const email = ctx.request?.body?.email;
-    const dbRef = db.collection(`users`);
-
     // const userId = ctx.request?.body?.userId;
     // Проверяем есть ли запрошенный адрес в базе, или например, кто-то успел удалить до того, как другой это начал
     // const userRecord = await getAuth().getUser(userId);

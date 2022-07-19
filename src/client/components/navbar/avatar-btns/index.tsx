@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getAuthenticated } from '../../../redux/selectors/user';
 // Components
 import MenuBtns from './menu-btns/menu-btns';
-import AuthBtns from './auth-btn/auth-btn';
+import AuthBtns from './auth-btn';
 // Types
 import { State } from '../../../redux/redux-types';
 

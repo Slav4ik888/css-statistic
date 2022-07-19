@@ -1,7 +1,7 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { getLoadingRef } from '../../../../../../../redux/selectors/ref-books';
+import { getLoading } from '../../../../../../../redux/selectors/ref-books';
 import { addRole, updateRole } from '../../../../../../../redux/actions/ref-books';
 import { State } from '../../../../../../../redux/redux-types';
 // Components
@@ -21,26 +21,26 @@ type Props = {
 };
 
 
-const ActionsRole: React.FC<Props> = ({ loading, type, group: G, addRole, updateRole }) => {
+const ActionsRole: React.FC<Props> = ({ loading, type, group: R, addRole, updateRole }) => {
   const
     edit = type === CardType.EDIT;
 
   const handleSubmit = () => {
-    if (edit) updateRole(G.group)
-    else addRole(G.group)
+    if (edit) updateRole(R.group)
+    else addRole(R.group)
 
-    G.setClose();
+    R.setClose();
   };
 
   const handleDel = () => {
     console.log(`handleDel`);
-    G.setClose();
+    R.setClose();
   };
   
   return (
     <Actions
       loading  = {loading}
-      hookOpen = {G}
+      hookOpen = {R}
       onDel    = {handleDel}
       onSubmit = {handleSubmit}
     />
@@ -48,7 +48,7 @@ const ActionsRole: React.FC<Props> = ({ loading, type, group: G, addRole, update
 };
 
 const mapStateToProps = (state: State) => ({
-  loading: getLoadingRef(state)
+  loading: getLoading(state)
 });
 
 const mapActionsToProps = {

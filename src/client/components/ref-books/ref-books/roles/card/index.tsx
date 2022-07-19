@@ -14,6 +14,7 @@ import Actions from '../../../actions';
 import isChanges from '../../../../../utils/check-changes-in-submit';
 import mergeWithTemplate from './merge-with-template';
 import validateAndSubmit from '../../../../../../utils/validators/validate-and-submit';
+import { empty } from '../../../../../../utils/objects';
 // Types
 import { UseGroup } from '../../../../../utils/hooks';
 import { Errors, RefbookId, Role, Validator } from '../../../../../../types';
@@ -34,7 +35,7 @@ type Props = {
 const CardRole: React.FC<Props> = ({ roleId, storeRole, group: G, userId, setErrors, updateRole }) => {
   
   React.useEffect(() => { setErrors(null); }, []);
-  React.useEffect(() => { G.setGroup(mergeWithTemplate(storeRole, userId)); }, [roleId, storeRole, userId]);
+  React.useEffect(() => { G.setGroup(mergeWithTemplate(storeRole, userId), true); }, [roleId, storeRole, userId]);
   React.useEffect(() => { G.confirm && handleSubmit(false, true); }, [G.confirm]); // Если пользователь нажал Сохранить при Confirm
   
   
@@ -45,7 +46,7 @@ const CardRole: React.FC<Props> = ({ roleId, storeRole, group: G, userId, setErr
   };
   
 
-  if (!storeRole) return null;
+  if (!storeRole || empty(G.group)) return null;
 
 
   return (
@@ -53,7 +54,7 @@ const CardRole: React.FC<Props> = ({ roleId, storeRole, group: G, userId, setErr
       <Content group={G} />
 
       <Actions
-        refBookId = {RefbookId.ROLES}
+        refbookId = {RefbookId.ROLES}
         id        = {roleId}
         hookOpen  = {G}
         onSubmit  = {handleSubmit}

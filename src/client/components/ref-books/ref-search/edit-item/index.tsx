@@ -3,9 +3,9 @@ import * as React from 'react';
 import DialogInfo from '../../../../components/dialogs/dialog-info';
 import CardSwitch from '../../card-switch';
 // Functions
-import { getCardTitleById } from '../../utils';
+import { getCardTitle } from '../../utils';
 // Types
-import { RefbookId } from '../../../../../types';
+import { CardType, RefbookId } from '../../../../../types';
 import { UseGroup } from '../../../../utils/hooks';
 
 
@@ -24,7 +24,7 @@ const EditItem: React.FC<Props> = ({ group: G, refbookId, checkedId }) => {
   return (
     <DialogInfo
       hookOpen = {G}
-      title    = {getCardTitleById(refbookId)}
+      title    = {getCardTitle(CardType.EDIT, refbookId)}
       children = {<CardSwitch
         group      = {G}
         refbookId  = {refbookId}

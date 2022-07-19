@@ -1,7 +1,7 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import * as u from '../../../../redux/selectors/user';
+import { getAuthenticated } from '../../../../redux/selectors/user';
 import { State } from '../../../../redux/redux-types';
 // MUI Stuff
 import Box from '@mui/material/Box';
@@ -11,15 +11,16 @@ import RefBooksMenuBtn from '../../btns/ref-books';
 
 
 type Props = {
-  loadingUser   : boolean;
   authenticated : boolean;
   history       : { location: { pathname: string }, push: (path: string) => void };
 };
 
 
-// Кнопки Navbar после авторизации
-const NavbarUser: React.FC<Props> = ({ loadingUser, authenticated, history }) => {
-  if (loadingUser || !authenticated) return null;
+/**
+ * Кнопки Navbar после авторизации
+ */
+const NavbarUser: React.FC<Props> = ({ authenticated, history }) => {
+  if (!authenticated) return null;
 
   
   return (
@@ -32,8 +33,7 @@ const NavbarUser: React.FC<Props> = ({ loadingUser, authenticated, history }) =>
 
 
 const mapStateToProps = (state: State) => ({
-  loadingUser: u.getLoadingUser(state),
-  authenticated: u.getAuthenticated(state),
+  authenticated: getAuthenticated(state)
 });
 
 export default connect(mapStateToProps)(NavbarUser);

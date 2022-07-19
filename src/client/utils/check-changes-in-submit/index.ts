@@ -1,4 +1,4 @@
-import checkIsChanges from "../../../utils/objects/check-is-changes";
+import { checkIsChanges } from "../../../utils/objects";
 import { UseBase } from "../hooks";
 
 /**

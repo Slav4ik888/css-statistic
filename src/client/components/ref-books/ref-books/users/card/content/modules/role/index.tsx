@@ -1,6 +1,4 @@
 import * as React from 'react';
-// MUI Stuff
-import Grid from '@mui/material/Grid';
 // Components
 import CardBlock from '../../../../../../../containers/cards/card-block';
 import SelectRole from './select-role';
@@ -16,19 +14,11 @@ type Props = {
 };
 
 
-const RoleCnt: React.FC<Props> = ({ group }) => {
-  
-  return (
-    <CardBlock label="Роли и полномочия">        
-      <Grid item xs={12} sm={3}>
-        <SelectRoleType group={group} />
-      </Grid>
-
-      <Grid item xs={12} sm={3}>
-        <SelectRole group={group} />
-      </Grid>
-    </CardBlock>
-  )
-}
+const RoleCnt: React.FC<Props> = ({ group }) => (
+  <CardBlock label="Роли и полномочия">        
+    <SelectRoleType group={group} />
+    <SelectRole     group={group} />
+  </CardBlock>
+);
 
 export default RoleCnt;

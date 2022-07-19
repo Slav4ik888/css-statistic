@@ -1,4 +1,4 @@
-import boolToNumber from '..';
+import {boolToNumber} from '..';
 import { Mocks } from './types';
 
 

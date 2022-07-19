@@ -1,14 +1,8 @@
-import api from '../../api';
 import { Dispatch } from '../../redux-types';
 import { uiActionType } from '../../action-types';
 import { Errors, Message, MessageType } from '../../../../types';
 // Functions
-import logger from '../../../utils/client-logger/client-logger';
 import { DisplayError } from '../../../../templates/errors/display-errors';
-
-
-
-const log = logger(`ui-actions`);
 
 
 

@@ -6,6 +6,7 @@ import * as da from '../../controllers/data/index.js';
 import * as ref from '../../controllers/ref-books/index.js';
 // import { mustBeAuthenticated } from '../../libs/verifications/must-be-authenticated.js';
 import FBAuth from '../../firebase/fb-auth.js';
+import * as Path from '../../../utils/paths/index.js';
 
 
 const router = new Router({ prefix: '/api' });
@@ -24,17 +25,19 @@ router.post(`/updateUser`, FBAuth, us.updateUser);
 
 
 // HELPERS 
-router.post(`/loadCollection`, FBAuth, he.loadCollection);
+router.post(Path.Helpers.LOAD_COLLECTION, FBAuth, he.loadCollection);
 
 
 // REFBOOKS
-router.post(`/loadRefbooksByIds`, FBAuth, ref.loadRefbooksByIds);
+router.post(Path.Refbook.LOAD_REF_BY_IDS, FBAuth, ref.loadRefbooksByIds);
 
-router.get(`/addRole`, FBAuth, ref.addRole);
-router.post(`/updateRole`, FBAuth, ref.updateRole);
-router.post(`/deleteRole`, FBAuth, ref.deleteRole);
+router.get (Path.Roles.ADD,    FBAuth, ref.addRole);
+router.post(Path.Roles.UPDATE, FBAuth, ref.updateRole);
+router.post(Path.Roles.DELETE, FBAuth, ref.deleteRole);
 
-router.post(`/addUser`, FBAuth, ref.addUser);
+router.post(Path.Users.ADD,    FBAuth, ref.addUser);
+router.post(Path.Users.UPDATE, FBAuth, ref.updateUser);
+router.post(Path.Users.DELETE, FBAuth, ref.deleteUser);
 // router.get (`/loadUsers`, FBAuth, ref.loadUsers);
 
 export default router;

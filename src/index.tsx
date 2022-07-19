@@ -24,4 +24,4 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('root'));
 
-// git add . && git commit -m "[client & server] - start continue refact manage User 14.07.22" && git push origin server
+// git add . && git commit -m "[client & server] - continue refact manage User 19.07.22" && git push origin server

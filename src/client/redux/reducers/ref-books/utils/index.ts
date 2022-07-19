@@ -1,5 +1,1 @@
-import { setActiveInArr } from './set-active-in-arr';
-
-export {
-  setActiveInArr
-}
+export * from './set-active-in-arr';

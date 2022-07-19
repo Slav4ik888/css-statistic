@@ -10,13 +10,12 @@ import Box from '@mui/material/Box';
 import RefSearch from '../ref-search';
 import RefBookList from './ref-book-list';
 import AddBtn from './add-btn';
-import DialogInfo from '../../dialogs/dialog-info';
-import CardUser from '../ref-books/users/card';
+import NewUserCard from './add-btn/new-user';
 // Functions
 import { getSearchType } from '../utils/get-search-type';
 import { useGroup, useValue } from '../../../utils/hooks';
 // Types
-import { RefbookId, Strings, User, CardType } from '../../../../types';
+import { RefbookId, Strings, User } from '../../../../types';
 
 
 
@@ -29,6 +28,12 @@ type Props = {
 
 
 const RefbookCnt: React.FC<Props> = ({ refbookId, storeRefbook, loadRefbooksByIds, addNewElement }) => {
+  const
+    group    = useGroup(),       // Открытие карточки для редактирования
+    selected = useValue(``),     // Выбранная карточка
+    Add      = useGroup(),       // Открытие карточки нового элемента
+    NewU     = useGroup<User>(); // Открытие dialog AddNewUser при добавлении нового пользователя
+
   
   React.useEffect(() => {
     if (storeRefbook !== null) return console.log(`Справочник уже загружен`);
@@ -39,13 +44,6 @@ const RefbookCnt: React.FC<Props> = ({ refbookId, storeRefbook, loadRefbooksById
   }, [refbookId]);
   
 
-  const
-    group       = useGroup(),       // Открытие карточки для редактирования
-    selected    = useValue(``),     // Выбранная карточка
-    groupAdd    = useGroup(),       // Открытие карточки нового элемента
-    hookNewUser = useGroup<User>(); // Открытие dialog AddNewUser при добавлении нового пользователя
-
-
   const handleSearch = (checkedId?: string, add?: boolean) => {
     if (checkedId) {
       // console.log('checkedId: ', checkedId);
@@ -53,10 +51,10 @@ const RefbookCnt: React.FC<Props> = ({ refbookId, storeRefbook, loadRefbooksById
       group.setOpen();
     }
     else if (add) {
-      if (refbookId === RefbookId.USERS) hookNewUser.setOpen();
+      if (refbookId === RefbookId.USERS) NewU.setOpen();
       else {
         addNewElement(refbookId); // Создаём новый Элемент в Справочнике
-        groupAdd.setOpen();
+        Add.setOpen();
       }
     }
   };
@@ -77,16 +75,9 @@ const RefbookCnt: React.FC<Props> = ({ refbookId, storeRefbook, loadRefbooksById
         selected  = {selected}
       />
 
-      <AddBtn group={groupAdd} refbookId={refbookId} />
+      <AddBtn group={Add} refbookId={refbookId} />
 
-      
-      <DialogInfo
-        hookOpen = {hookNewUser}
-        onClose  = {hookNewUser.setClose}
-        title    = 'Добавление нового пользователя'
-        children = {<CardUser type={CardType.ADD} group={hookNewUser} />}
-      />
-      
+      <NewUserCard group={NewU} />
     </Box>
   );
 };

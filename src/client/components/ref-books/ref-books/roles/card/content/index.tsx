@@ -2,8 +2,6 @@ import * as React from 'react';
 // Components
 import Description from './description';
 import Credentials from './credentials';
-// Functions
-import { empty } from '../../../../../../../utils/objects';
 // Types
 import { UseGroup } from '../../../../../../utils/hooks';
 import { Role } from '../../../../../../../types';
@@ -15,15 +13,11 @@ type Props = {
 };
 
 
-const ContentCnt: React.FC<Props> = ({ group: G }) => {
-  if (empty(G.group)) return null;
-
-  return (
-    <>
-      <Description group={G} />
-      <Credentials group={G} />
-    </>
-  );
-};
+const ContentCnt: React.FC<Props> = ({ group: G }) => (
+  <>
+    <Description group={G} />
+    <Credentials group={G} />
+  </>
+);
 
 export default ContentCnt;

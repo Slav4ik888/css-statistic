@@ -3,19 +3,21 @@ import { getAuth } from 'firebase-admin/auth';
 // import { getAuth } from 'firebase/auth';
 import { logRef } from '../../../libs/logs/index.js';
 import { objectFieldsToString } from '../../../../utils/objects/object-fields-to-string/index.js';
-import { getNewUser } from './get-new-user/get-new-user.js';
+import { getNewUser } from './get-new-user/index.js';
 import sendMail from '../../../libs/emails/sendMail.js';
 import createPassword from '../../../../utils/create-password/index.js';
 import validUserDataNew from '../../../../utils/validators/user-data-new/user-data-new.js';
 import ERR_TEMP from '../../../../templates/errors/template-errors.js';
-// import APP from '../../../../config.js';
+import { cfg } from '../../../../../config.js';
+
 
 
 export async function addUser(ctx, next) {
-  const user = ctx.state.user;
-  const userData = ctx.request?.body;
-  const email = userData?.email;
-  const logTemp = `[addRefUser] - [${user.email}] - ${email}`;
+  const
+    user     = ctx.state.user,
+    userData = ctx.request?.body,
+    email    = userData?.email,
+    logTemp  = `[addRefUser] - [${user.email}] - ${email}`;
 
   try {
     const { valid, errors } = validUserDataNew(userData);
@@ -24,11 +26,10 @@ export async function addUser(ctx, next) {
       ctx.status = 400; ctx.body = { errors }; return;
     }
     
-    const newUser = getNewUser(userData, user.uid);
-
-    const password = createPassword(9);
-
-    const userRecord = await getAuth().createUser({ email, password });
+    const
+      newUser    = getNewUser(userData, user.uid),
+      password   = createPassword(9),
+      userRecord = await getAuth().createUser({ email, password });
 
     newUser.id = userRecord.uid;
     
@@ -36,11 +37,11 @@ export async function addUser(ctx, next) {
 
     await sendMail({
       to: email,
-      subject: `Вас добавили на платформу - "${APP.SITE_TITLE.full}"`,
+      subject: `Вас добавили на платформу - "${cfg.SITE_TITLE.full}"`,
       locals: {
         name: userData.person.firstName,
-        app_name: APP.SITE_TITLE.full,
-        url_app: process.env.SITE_URL || APP.SITE_URL,
+        app_name: cfg.SITE_TITLE.full,
+        url_app: process.env.SITE_URL || cfg.SITE_URL,
         email,
         password
       },

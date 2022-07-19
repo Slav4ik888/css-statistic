@@ -4,7 +4,7 @@ import { User } from "../../../../types";
 
 export default function mergeWithTemplate(data: User, userId?: string): User {
   return {
-    id          : data?.id           || ``, // Для нового создаваемого пользователя
+    id          : data?.id           || `new-user-id`, // Для нового создаваемого пользователя
     description : data?.description  || ``,
     
     active      : data?.active === undefined ? true : data.active,

@@ -16,7 +16,11 @@ const useStyles = () => ({
     ...fc_sb,
     '&.MuiAutocomplete-option': {
       justifyContent: `space-between`
-    }
+    },
+    '&:hover': {
+      backgroundColor: `#eee`
+    },
+    transition: `background 0.3s ease-out`
   }
 });
 
@@ -49,8 +53,10 @@ const Li: React.FC<Props> = (props) => {
   const
     sx = useStyles(),
     { option, onClick, onEdit } = props,
-    O = useValue();
-  
+    O = useValue(),
+    newProps = Object.assign({}, props);
+
+  delete newProps.onEdit;
   
   const
     noop              = () => { },
@@ -62,7 +68,7 @@ const Li: React.FC<Props> = (props) => {
 
   return (
     <Box
-      {...props}
+      {...newProps}
       component    = 'li'
       sx           = {sx.root}
       onMouseEnter = {handlerMouseEnter}

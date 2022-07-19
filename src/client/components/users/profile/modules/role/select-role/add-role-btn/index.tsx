@@ -1,7 +1,7 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { getLoadingData } from '../../../../../../../redux/selectors/data';
+import { getLoading } from '../../../../../../../redux/selectors/ref-books';
 import { State } from '../../../../../../../redux/redux-types';
 // MUI Stuff
 import { Box, ListItemText, ListItemIcon } from '@mui/material';
@@ -19,6 +19,7 @@ import { fc_ } from '../../../../../../../utils/styles';
 import { CardType, Role } from '../../../../../../../../types';
 
 
+
 const useStyles = () => ({
   item: {
     ...fc_,
@@ -33,34 +34,37 @@ type Props = {
 
 
 const AddRoleBtn: React.FC<Props> = ({ loading }) => {
-  const sx = useStyles();
-
-  const G = useGroup<Role>(false, getEmptyRole());
+  const
+    sx = useStyles(),
+    R  = useGroup<Role>(false, getEmptyRole());
 
   const handleAdd = () => {
     if (loading) return;
     console.log('handleAdd');
-    G.setOpen();
+    R.setOpen();
   };
   
   return (
     <>
-      <MenuItem toolTitle="Добавить новую роль">
+      <MenuItem toolTitle='Добавить новую роль'>
         <Box sx={sx.item} onClick={handleAdd}>
           <ListItemIcon><AddIcon /></ListItemIcon>
           <ListItemText primary='роль' />
         </Box>
       </MenuItem>
       
-      <DialogInfo hookOpen={G} title="Новая роль" maxWidth="sm">
-        <RoleCnt group={G} type={CardType.ADD} />
-      </DialogInfo>
+      <DialogInfo
+        hookOpen = {R}
+        title    = 'Новая роль'
+        maxWidth = 'sm'
+        children = {<RoleCnt group={R} type={CardType.ADD} />}
+      />
     </>
   )
 };
 
 const mapStateToProps = (state: State) => ({
-  loading: getLoadingData(state)
+  loading: getLoading(state)
 });
 
 export default connect(mapStateToProps)(AddRoleBtn);

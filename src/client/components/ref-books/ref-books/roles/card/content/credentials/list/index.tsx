@@ -3,8 +3,6 @@ import * as React from 'react';
 import { Grid, Box } from '@mui/material';
 // Components
 import FirstList from '../first-list';
-// Functions
-import { arrFromObj } from '../../../../../../../../../utils/objects';
 // Types & Consts & Style
 import { CredSchemeItem, Role } from '../../../../../../../../../types';
 import { UseGroup } from '../../../../../../../../utils/hooks';
@@ -49,6 +47,5 @@ const CredentialsList: React.FC<Props> = ({ group: G }) => {
     </Grid>
   );
 };
-
 
 export default CredentialsList;

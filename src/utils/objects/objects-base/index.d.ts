@@ -13,6 +13,7 @@ export function noop(): void;
  * True если пустой объект
  */
 export function empty<O>(obj: O): boolean;
+export function noEmpty<O>(obj: O): boolean;
 
 /**
  * True if all "obj" fields is empty value

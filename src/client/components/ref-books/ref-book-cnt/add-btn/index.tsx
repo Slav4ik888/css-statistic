@@ -8,15 +8,16 @@ import { Button, Box } from '@mui/material';
 import Add from '@mui/icons-material/Add';
 // Components
 import CardSwitch from '../../card-switch';
-import CardUser from '../../ref-books/users/card';
 import DialogInfo from '../../../dialogs/dialog-info';
+import NewUserCard from './new-user';
 // Functions
-import { getCardTitleById } from '../../utils/get-card-title-by-id';
+import { getCardTitle } from '../../utils/get-card-title';
 import { useGroup, UseGroup } from '../../../../utils/hooks';
 // Types & Styles
 import { RefbookId, User, CardType } from '../../../../../types';
 import { useTheme } from '@emotion/react';
 import { Themes } from '../../../../utils/styles';
+
 
 
 
@@ -37,16 +38,17 @@ type Props = {
   addNewElement? : (id: string) => void;
 };
 
-
-// Добавление в Справочник нового элемента
+/**
+ * Добавление в Справочник нового элемента
+ */
 const AddBtn: React.FC<Props> = ({ refbookId, group, addNewElement }) => {
   const
-    sx = useStyles(useTheme() as Themes),
-    groupNewUser = useGroup<User>();
+    sx   = useStyles(useTheme() as Themes),
+    NewU = useGroup<User>();
 
   
   const handleAdd = () => {
-    if (refbookId === RefbookId.USERS) groupNewUser.setOpen();
+    if (refbookId === RefbookId.USERS) NewU.setOpen();
     else {
       group.setOpen();
       addNewElement(refbookId); // Создаём новый элемент в Справочнике
@@ -61,18 +63,12 @@ const AddBtn: React.FC<Props> = ({ refbookId, group, addNewElement }) => {
       </Button>
 
       <DialogInfo
-        title    = {getCardTitleById(refbookId)}
+        title    = {getCardTitle(CardType.ADD, refbookId)}
         hookOpen = {group}
         onClose  = {group.setClose}
         children = {<CardSwitch group={group} refbookId={refbookId} />}
       />
-        
-      <DialogInfo
-        title    = {`Добавление нового пользователя`}
-        hookOpen = {groupNewUser}
-        onClose  = {groupNewUser.setClose}
-        children = {<CardUser type={CardType.ADD} group={groupNewUser} />}
-      />
+      <NewUserCard group={NewU} />
     </Box>
   );
 };

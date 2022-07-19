@@ -1,9 +1,4 @@
-import { extend, cloneObj, noop, objectLength, empty, isEmptyFields, isNoEmptyFields, arrFromObj, arrFromObjByObj } from './objects-base/index.js';
-import isChanges from './check-is-changes/index.js';
-import { objectFieldsToString } from './object-fields-to-string/index.js';
-
-
-export {
-  extend, cloneObj, noop, objectLength, empty, isEmptyFields, isNoEmptyFields, arrFromObj, arrFromObjByObj,
-  isChanges, objectFieldsToString
-}
+export * from './objects-base/index.js';
+export * from './check-is-changes/index.js';
+export * from './object-fields-to-string/index.js';
+export * from './get-first-field-key/index.js';

@@ -8,7 +8,7 @@ import { updateUser, updateAnyUser } from '../../../redux/actions/user';
 import { setErrors, showWarning } from '../../../redux/actions/ui';
 import { connect } from 'react-redux';
 // Components
-import Personal from './modules/personal';
+import Personal from '../../ref-books/ref-books/users/card/content/modules/personal';
 import Role from './modules/role';
 import Actions from '../../containers/actions';
 // Functions

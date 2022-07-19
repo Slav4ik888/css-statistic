@@ -35,13 +35,11 @@ export enum uiActionType {
 export enum refBooksActionType {
   LOADING_REF_ON      = `LOADING_REF_ON`,
   LOADING_REF_OFF     = `LOADING_REF_OFF`,
-  LOADING_UPD_ON      = `LOADING_UPD_ON`,
-  LOADING_UPD_OFF     = `LOADING_UPD_OFF`,
   
   SET_REF_BOOK        = `SET_REF_BOOK`,
   SET_NEW_ID          = `SET_NEW_ID`,
   
-  SET_ROLES           = `SET_USERS`,
+  SET_ROLES           = `SET_ROLES`,
   UPDATE_ROLE         = `UPDATE_ROLE`,
   DELETE_ROLE         = `DELETE_ROLE`,
   

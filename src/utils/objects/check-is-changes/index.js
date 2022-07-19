@@ -37,7 +37,7 @@ function isChanges(first, second) {
  * 
  * @return false - if not changes
  */
-export default function checkIsChanges(prevObj, newObj) {
+export function checkIsChanges(prevObj, newObj) {
   // console.log('newObj: ', newObj);
   // console.log('prevObj: ', prevObj);
   const result1 = isChanges(prevObj, newObj);

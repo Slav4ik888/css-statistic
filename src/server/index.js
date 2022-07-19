@@ -1,3 +1,3 @@
 import app from './app.js';
 
-app.listen(process.env.PORT || 7070, () => console.log(`Listening on port ${process.env.PORT || 7070}!`))
+app.listen(process.env.PORT || 7050, () => console.log(`Listening on port ${process.env.PORT || 7050}!`))

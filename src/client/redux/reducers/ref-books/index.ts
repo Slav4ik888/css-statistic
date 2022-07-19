@@ -11,15 +11,13 @@ import { StateRefBooks } from '../../redux-types';
 
 export default function (state = initialState as StateRefBooks, action: { type: Type, payload: any }) {
   switch (action.type) {
-    case Type.LOADING_REF_ON:  return extend(state, { loadingRef: true });
-    case Type.LOADING_REF_OFF: return extend(state, { loadingRef: false });
-    case Type.LOADING_UPD_ON:  return extend(state, { loadingUpd: true });
-    case Type.LOADING_UPD_OFF: return extend(state, { loadingUpd: false });
+    case Type.LOADING_REF_ON:  return extend(state, { loading: true });
+    case Type.LOADING_REF_OFF: return extend(state, { loading: false });
     
     // Сохраняем загруженный Справочник
     case Type.SET_REF_BOOK:
       return extend(state, {
-        loadingRef: false,
+        loading: false,
         [action.payload.id]: action.payload.refBook
       });
     
@@ -29,42 +27,40 @@ export default function (state = initialState as StateRefBooks, action: { type: 
 
     // ROLES
     case Type.SET_ROLES: return extend(state, {
-      loadingRef : false, 
-      loadingUpd : false,
-      roles      : action.payload
+      loading : false, 
+      roles   : action.payload
     });
       
     case Type.UPDATE_ROLE:
       return extend(state, {
-        loadingUpd : false,
-        roles      : updateArrById(state.roles, action.payload)
+        loading : false,
+        roles   : updateArrById(state.roles, action.payload)
       });
     
     case Type.DELETE_ROLE:
       return extend(state, {
-        loadingUpd : false,
-        roles      : getArrWithoutItemById(state.roles, action.payload)
+        loading : false,
+        roles   : getArrWithoutItemById(state.roles, action.payload)
       });
     
     
     // USERS
     case Type.SET_USERS: return extend(state, {
-      loadingRef : false, 
-      loadingUpd : false,
-      users      : action.payload
+      loading : false, 
+      users   : action.payload
     });
 
     case Type.UPDATE_REF_USER:
       return extend(state, {
-        loadingUpd : false,
-        users      : updateArrById(state.users, action.payload)
+        loading : false,
+        users   : updateArrById(state.users, action.payload, `update`)
       });
       
     
     case Type.DELETE_REF_USER:
       return extend(state, {
-        loadingUpd : false,
-        users      : setActiveInArr(state.users, action.payload)
+        loading : false,
+        users   : setActiveInArr(state.users, action.payload)
       });
           
 

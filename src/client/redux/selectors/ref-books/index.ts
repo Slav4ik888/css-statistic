@@ -14,9 +14,8 @@ export {
 };
   
 
-export const getLoadingRef  = (state: State) => state.refbooks.loadingRef;
-export const getLoadingUpd  = (state: State) => state.refbooks.loadingUpd;
-export const getNewId       = (state: State) => state.refbooks.newId;
+export const getLoading  = (state: State) => state.refbooks.loading;
+export const getNewId    = (state: State) => state.refbooks.newId;
 
 
 export const getRefStatuses = (state: State) => {
