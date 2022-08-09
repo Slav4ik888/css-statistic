@@ -21,7 +21,7 @@ const MenuItem: React.FC<Props> = ({ id, toolTitle, children, divider }) => (
       </Tooltip>
     </MuiMenuItem>
     {
-      divider ? <Divider sx={{ my: 0.5 }} /> : null
+      divider && <Divider sx={{ my: 0.5 }} />
     }
   </>
 );

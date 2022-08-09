@@ -8,11 +8,10 @@ import RenderRow from './render-row';
 import { Table, TableType } from '../../../../../types';
 // Styles
 import { FlexDirection } from '../../../../utils/styles';
-import { useTheme } from '@emotion/react';
 
 
 
-const useStyles = (theme) => ({
+const useStyles = () => ({
   root: {
     display       : `flex`,
     flexDirection : FlexDirection.COLUMN,
@@ -32,7 +31,7 @@ type Props = {
 
 const Body: React.FC<Props> = ({ type, items, data, onCheck, onDel }) => {
   if (!items?.length) return null;
-  const sx = useStyles(useTheme());
+  const sx = useStyles();
 
   return (
     <Box sx={{ ...sx.root, ...data.body.styles }}>

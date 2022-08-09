@@ -1,7 +1,7 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { getRoleByItem } from '../../../../../redux/selectors/ref-books';
+import { getLoading, getRoleByItem } from '../../../../../redux/selectors/ref-books';
 import { State } from '../../../../../redux/redux-types';
 // MUI Stuff
 import Box from '@mui/material/Box';
@@ -68,16 +68,19 @@ const useStyles = (theme) => ({
 
 
 type Props = {
-  count: number;
-  item?: User;
-  role?: string;
-}
+  loading? : boolean;
+  count    : number;
+  item?    : User;
+  role?    : string;
+};
 
-// Строка таблицы справочника Пользователей
-const RowContent: React.FC<Props> = ({ count, item, role }) => {
-  const sx = useStyles(useTheme());
-
-  const _item = React.useMemo(() => item, [item]);
+/**
+ * Строка таблицы справочника Пользователей
+ */
+const RowContent: React.FC<Props> = ({ count, item, role, loading }) => {
+  const
+    sx = useStyles(useTheme()),
+    _item = React.useMemo(() => item, [item, loading]);
 
   return (
     <Box sx={{ ...sx.root, ...cl(sx.activeFalse, !_item.active) }}>
@@ -92,7 +95,8 @@ const RowContent: React.FC<Props> = ({ count, item, role }) => {
 };
 
 const mapStateToProps = (state: State, props: Props) => ({
-  role: getRoleByItem(state, props),
+  loading : getLoading(state),
+  role    : getRoleByItem(state, props)
 });
 
 export default connect(mapStateToProps)(RowContent);

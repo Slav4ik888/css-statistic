@@ -1,4 +1,4 @@
-import { User, Users, Role, Roles } from "..";
+import { User, Users, Roles } from "..";
 
 export * from './ref-books';
 

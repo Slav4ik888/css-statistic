@@ -7,9 +7,9 @@ import { Role, TableType, User } from '../../../../../../types';
 
 
 type Props = {
-  type  : TableType,
-  count : number,
-  item  : Role | User
+  type  : TableType;
+  count : number;
+  item  : any; // Role | User
 };
 
 const RenderRow: React.FC<Props> = ({ type, count, item }) => {

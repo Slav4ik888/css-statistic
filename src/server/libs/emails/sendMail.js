@@ -56,8 +56,8 @@ transport.use('compile', htmlToText());
 * */
 export default async function sendMail(options) {
   const html = renderFile(
-      join(__dirname, './templates', options.template) + '.pug',
-      options.locals || {},
+    join(__dirname, './templates', options.template) + '.pug',
+    options.locals || {},
   );
 
   const message = {

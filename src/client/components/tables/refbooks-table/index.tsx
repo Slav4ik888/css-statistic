@@ -7,11 +7,10 @@ import Body from './body';
 // Types & Styles
 import { Table, TableType } from '../../../../types';
 import { TextAlign } from '../../../utils/styles';
-import { useTheme } from '@emotion/react';
 
 
 
-const useStyles = (theme) => ({
+const useStyles = () => ({
   root: {
     minWidth  : 650,
     textAlign : TextAlign.CENTER,
@@ -31,7 +30,7 @@ type Props = {
 const Table: React.FC<Props> = ({ type, items, data, onCheck, onDel }) => {
   if (!data || !type) return null;
   
-  const sx = useStyles(useTheme());
+  const sx = useStyles();
 
 
   return (

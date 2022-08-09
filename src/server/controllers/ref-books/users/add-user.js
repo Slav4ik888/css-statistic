@@ -36,12 +36,12 @@ export async function addUser(ctx, next) {
     await db.collection(`users`).doc(email).set(newUser);
 
     await sendMail({
-      to: email,
-      subject: `Вас добавили на платформу - "${cfg.SITE_TITLE.full}"`,
-      locals: {
-        name: userData.person.firstName,
-        app_name: cfg.SITE_TITLE.full,
-        url_app: process.env.SITE_URL || cfg.SITE_URL,
+      to      : email,
+      subject : `Вас добавили на "${cfg.SITE_TITLE.full}"`,
+      locals  : {
+        name     : userData.person.firstName,
+        app_name : cfg.SITE_TITLE.full,
+        url_app  : process.env.SITE_URL || cfg.SITE_URL,
         email,
         password
       },
@@ -49,7 +49,7 @@ export async function addUser(ctx, next) {
     });
     
     ctx.status = 200;
-    ctx.body = { newUser };
+    ctx.body = { user: newUser };
     logRef.info(`${logTemp} success!`);
   }
   catch (err) {

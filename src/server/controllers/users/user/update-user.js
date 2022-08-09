@@ -13,18 +13,18 @@ import { userScheme } from '../../../../templates/schemes/index.js';
 
 export default async function updateUser(ctx, next) {
   const
-    user    = ctx.state.user,
-    logTemp = `[updateUser] - [${user.email}]`;
+    { user: { email } } = ctx.state,
+    logTemp             = `[updateUser] - [${email}]`,
+    userData            = ctx.request?.body?.user;
+    console.log('USER userData: ', userData);
 
   try {
-    const userData = ctx.request?.body?.user;
-
     // TODO: checkPermisions
 
     const { valid, errors } = validate(Validator.USER_UPDATE, userData);
     if (!valid) {
-      logUser.error(`${logTemp} ${objectFieldsToString(errors)}`);
-      ctx.throw(400, { errors });
+      logRef.error(`${logTemp} ${objectFieldsToString(errors)}`);
+      ctx.status = 400; ctx.body = { errors }; return;
     }
 
     // TODO: 
@@ -32,7 +32,7 @@ export default async function updateUser(ctx, next) {
     // if (notEmpty(userProfile)) await db.doc(`users/${req.body.companyId}/users/${req.body.userId}`).update(userProfile);
     
     const updated = mergeWithScheme(userData, userScheme);
-    await db.collection(`users`).doc(user.email).update(updated);
+    await db.collection(`users`).doc(email).update(updated);
 
     ctx.status = 200;
     ctx.body = { message: `Данные профиля, обновлены` };
@@ -44,6 +44,3 @@ export default async function updateUser(ctx, next) {
     ctx.body = { general: ERR_TEMP.general };
   }
 }
-
-
-

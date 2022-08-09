@@ -10,7 +10,8 @@ import Box from '@mui/material/Box';
 import RefSearch from '../ref-search';
 import RefBookList from './ref-book-list';
 import AddBtn from './add-btn';
-import NewUserCard from './add-btn/new-user';
+import DialogNewUserCard from './dialog-new-user';
+import DialogRefbookCard from './dialog-refbook-card';
 // Functions
 import { getSearchType } from '../utils/get-search-type';
 import { useGroup, useValue } from '../../../utils/hooks';
@@ -44,19 +45,22 @@ const RefbookCnt: React.FC<Props> = ({ refbookId, storeRefbook, loadRefbooksById
   }, [refbookId]);
   
 
+  const handlerAdd = () => {
+    if (refbookId === RefbookId.USERS) NewU.setOpen();
+    else {
+      addNewElement(refbookId); // Создаём новый элемент в Справочнике
+      Add.setOpen();
+    }
+  };
+
+
   const handleSearch = (checkedId?: string, add?: boolean) => {
     if (checkedId) {
       // console.log('checkedId: ', checkedId);
       selected.setValue(checkedId);
       group.setOpen();
     }
-    else if (add) {
-      if (refbookId === RefbookId.USERS) NewU.setOpen();
-      else {
-        addNewElement(refbookId); // Создаём новый Элемент в Справочнике
-        Add.setOpen();
-      }
-    }
+    else if (add) handlerAdd();
   };
 
   
@@ -75,9 +79,10 @@ const RefbookCnt: React.FC<Props> = ({ refbookId, storeRefbook, loadRefbooksById
         selected  = {selected}
       />
 
-      <AddBtn group={Add} refbookId={refbookId} />
+      <AddBtn onAdd={handlerAdd} />
 
-      <NewUserCard group={NewU} />
+      <DialogRefbookCard group={Add} refbookId={refbookId} />
+      <DialogNewUserCard group={NewU} />
     </Box>
   );
 };

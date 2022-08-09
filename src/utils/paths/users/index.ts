@@ -1,7 +1,7 @@
 
 // !!! Dublicate for Server
 export enum Users {
-  ADD    = `/addUser`,
-  UPDATE = `/updateUser`,
-  DELETE = `/deleteUser`
+  ADD    = `/addRefUser`,
+  UPDATE = `/updateRefUser`,
+  DELETE = `/deleteRefUser`
 }

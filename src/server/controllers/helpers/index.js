@@ -1,5 +1,4 @@
-import { loadCollection, getCollection } from './load-collection.js';
-import { getRef } from './get-ref/index.js';
-import { res } from './res/index.js';
-
-export { loadCollection, getCollection, getRef, res }
+export * from './load-collection.js';
+export * from './get-ref/index.js';
+export * from './res/index.js';
+export * from './update-last-change/index.js';

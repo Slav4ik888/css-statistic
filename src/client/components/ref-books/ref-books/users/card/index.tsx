@@ -1,8 +1,7 @@
 import * as React from 'react';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { addUser } from '../../../../../redux/actions/ref-books/users';
-import { updateUser } from '../../../../../redux/actions/user';
+import { addUser, updateAnyUser } from '../../../../../redux/actions/ref-books/users';
 import { getUserById } from '../../../../../redux/selectors/ref-books';
 import { setErrors } from '../../../../../redux/actions/ui';
 import { State } from '../../../../../redux/redux-types';
@@ -26,16 +25,16 @@ type Props = {
   storeUser?     : User;
   group          : UseGroup<User>;
   setErrors?     : (err: Errors) => void;
-  addUser?    : (user: User) => void;
-  updateUser? : (user: User) => void;
+  addUser?       : (user: User) => void;
+  updateAnyUser? : (user: User) => void;
 };
 
 
-const CardUser: React.FC<Props> = ({ type, userId, storeUser, group: G, setErrors, addUser, updateUser }) => {
+const CardUser: React.FC<Props> = ({ type, userId, storeUser, group: G, setErrors, addUser, updateAnyUser }) => {
   const
     add        = type === CardType.ADD,
     edit       = !add,
-    submitText = edit && 'Сохранить и закрыть';
+    submitText = 'Сохранить и закрыть';
    
   
   React.useEffect(() => { setErrors(null); }, []);
@@ -52,10 +51,10 @@ const CardUser: React.FC<Props> = ({ type, userId, storeUser, group: G, setError
     validateAndSubmit(
       add ? Validator.USER_ADD : Validator.USER_UPDATE,
       G.group, 
-      add ? addUser : updateUser,
+      add ? addUser : updateAnyUser,
       setErrors,
       G,
-      add ? false : true
+      true
     );
   };
 
@@ -85,7 +84,7 @@ const mapStateToProps = (state: State, props: Props) => ({
 });
 
 const mapActionsToProps = {
-  setErrors, addUser, updateUser
+  setErrors, addUser, updateAnyUser
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(CardUser);

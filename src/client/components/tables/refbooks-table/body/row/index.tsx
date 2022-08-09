@@ -5,12 +5,11 @@ import Box from '@mui/material/Box';
 import DelBtn from '../../../../buttons/del-btn';
 // Types
 import { ConfirmElemType, Table } from '../../../../../../types';
-// Styles
 import { cl, fcc, TextAlign } from '../../../../../utils/styles';
-import { useTheme } from '@emotion/react';
 
 
-const useStyles = (theme) => ({
+
+const useStyles = () => ({
   root: {
     ...fcc
   },
@@ -35,19 +34,20 @@ const useStyles = (theme) => ({
 type Props = {
   item     : any;
   data     : Table;
-  border   : { length: number, idx: number } // Чтобы расчитать, когда не выводить последнюю границу
+  border   : { length: number, idx: number }; // Чтобы расчитать, когда не выводить последнюю границу
   children : JSX.Element;
   onCheck  : (id: string) => void;
   onDel?   : (id: string) => void;
-}
+};
+
 
 const Row: React.FC<Props> = ({ item, border, data, children, onCheck, onDel }) => {
-  const sx = useStyles(useTheme());
-
-  const handleCheck = () => onCheck(item.id);
-  const handleDel   = () => onDel  (item.id);
+  const
+    sx          = useStyles(),
+    handleCheck = () => onCheck(item.id),
+    handleDel   = () => onDel  (item.id);
   
-
+  
   return (
     <Box sx={sx.root}>
       <Box
@@ -61,14 +61,12 @@ const Row: React.FC<Props> = ({ item, border, data, children, onCheck, onDel }) 
         {
           children
         }
-        
       </Box>
       {
-        onDel ? <DelBtn type={ConfirmElemType.REF_BOOKS} onDel={handleDel} /> : null
+        onDel && <DelBtn type={ConfirmElemType.REF_BOOKS} onDel={handleDel} />
       }
     </Box>
   );
 };
-
 
 export default Row;

@@ -7,11 +7,8 @@ import { State } from '../../../../redux/redux-types';
 import Box from '@mui/material/Box';
 // Components
 import CircularProgress from '../../../buttons/circular-progress';
-import DialogInfo from '../../../dialogs/dialog-info';
 import ListTableSwitch from './list-table-switch';
-import CardSwitch from '../../card-switch';
-// Functions
-import { getCardTitle } from '../../utils/get-card-title';
+import DialogCardSwitch from './dialog-card-switch';
 // Types
 import { UseGroup, UseValue } from '../../../../utils/hooks';
 import { CardType, RefbookId } from '../../../../../types';
@@ -50,17 +47,12 @@ const RefBookList: React.FC<Props> = ({ loading, group, selected, storeRefBook, 
       <CircularProgress loading={loading} center block />
       <ListTableSwitch refbookId={refbookId} onCheck={handleCheck} />
       
-      <DialogInfo
-        title    = {getCardTitle(CardType.EDIT, refbookId)}
-        hookOpen = {group}
-        onClose  = {handleClose}
-      >
-        <CardSwitch
-          refbookId = {refbookId}
-          checkedId = {selected.value}
-          group     = {group}
-        />
-      </DialogInfo>
+      <DialogCardSwitch
+        group     = {group}
+        refbookId = {refbookId}
+        checkedId = {selected.value}
+        onClose   = {handleClose}
+      />
     </>
   );
 };

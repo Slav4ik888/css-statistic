@@ -1,5 +1,4 @@
 import { db } from '../../../firebase/admin.js';
-import { getAuth } from 'firebase-admin/auth';
 import { logRef } from '../../../libs/logs/index.js';
 import { objectFieldsToString } from '../../../../utils/objects/object-fields-to-string/index.js';
 import ERR_TEMP from '../../../../templates/errors/template-errors.js';

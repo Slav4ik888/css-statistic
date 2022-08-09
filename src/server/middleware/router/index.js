@@ -2,7 +2,6 @@ import Router from 'koa-router';
 import * as he from '../../controllers/helpers/index.js';
 import * as a from '../../controllers/users/auth/index.js';
 import * as us from '../../controllers/users/user/index.js';
-import * as da from '../../controllers/data/index.js';
 import * as ref from '../../controllers/ref-books/index.js';
 // import { mustBeAuthenticated } from '../../libs/verifications/must-be-authenticated.js';
 import FBAuth from '../../firebase/fb-auth.js';
@@ -19,9 +18,9 @@ router.post(`/userLogout`, a.userLogout);
 
 
 // USERS - Data
-router.get (`/getStartResourses`, FBAuth, us.getStartResourses);
-router.get (`/getUser`, FBAuth, us.getUser);
-router.post(`/updateUser`, FBAuth, us.updateUser);
+router.get (Path.User.LOAD_START_RES, FBAuth, us.getStartResourses);
+router.get (Path.User.GET_USER,       FBAuth, us.getUser);
+router.post(Path.User.UPDATE_USER,    FBAuth, us.updateUser);
 
 
 // HELPERS 
