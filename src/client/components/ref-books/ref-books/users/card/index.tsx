@@ -13,6 +13,7 @@ import Actions from '../../../actions';
 import mergeWithTemplate from '../../../../users/merge-with-template';
 import validateAndSubmit from '../../../../../../utils/validators/validate-and-submit';
 import isChanges from '../../../../../utils/check-changes-in-submit';
+import { getChangesWithRequiredFields } from './utils';
 // Types
 import { Errors, User, CardType, Validator, RefbookId } from '../../../../../../types';
 import { UseGroup } from '../../../../../utils/hooks';
@@ -47,10 +48,10 @@ const CardUser: React.FC<Props> = ({ type, userId, storeUser, group: G, setError
       checkStore = add ? mergeWithTemplate(storeUser) : storeUser;
     
     if (!isChanges(G, checkStore, G.group, exit)) return null;
-    
+
     validateAndSubmit(
       add ? Validator.USER_ADD : Validator.USER_UPDATE,
-      G.group, 
+      add ? G.group : getChangesWithRequiredFields(storeUser, G.group), 
       add ? addUser : updateAnyUser,
       setErrors,
       G,

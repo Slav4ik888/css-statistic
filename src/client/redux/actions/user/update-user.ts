@@ -11,21 +11,21 @@ import { User, ResRefUpdateUser } from "../../../../types";
 /**
  * Universal function for update
  * @param dispatch 
- * @param user 
+ * @param userData 
  * @param profile - если пользователь обновил СВОИ данные в профиле
  */
-export const update = async (dispatch: any, user: Partial<User>, profile: boolean) => {
+export const update = async (dispatch: any, userData: Partial<User>, profile: boolean) => {
   dispatch({ type: Type.LOADING_USER });
 
   try {
-    const { data: { message } }: ResRefUpdateUser = profile
-      ? await api.post(Path.User.UPDATE_USER, { user })
-      : await api.post(Path.Users.UPDATE, { user });
+    const { data: { user } }: ResRefUpdateUser = profile
+      ? await api.post(Path.User.UPDATE_USER, { userData })
+      : await api.post(Path.Users.UPDATE, { userData });
 
     if (profile) dispatch({ type: Type.UPDATE_USER, payload: user });
     dispatch({ type: refBooksActionType.UPDATE_REF_USER, payload: user });
     
-    dispatch(successMessage(message));
+    dispatch(successMessage(`Данные сохранены`));
     dispatch({ type: Type.LOADING_USER_OFF });
     dispatch({ type: uiActionType.CLEAR_ERROR });
   }

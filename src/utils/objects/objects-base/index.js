@@ -1,4 +1,12 @@
 
+export const isObject = (obj) => {
+  if (typeof obj !== `object`) return false;
+  if (Array.isArray(obj)) return false;
+
+  return true;
+};
+
+
 export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
@@ -31,12 +39,6 @@ export const objectLength = (obj) => {
  */
 export const empty = (obj) => !objectLength(obj);
 export const noEmpty = (obj) => !empty(obj);
-
-/**
- * Возвращает массив из obj например role
- * @param {object} obj - role
- * @return {Array}
- */
 
 
 /**

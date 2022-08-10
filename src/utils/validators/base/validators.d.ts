@@ -16,6 +16,10 @@ export function isNoString(str: string): boolean;
 export function isObject(obj: object): boolean;
 export function isNoObject(obj: object): boolean;
 
+export function isUndefined(str: string): boolean;
+export function noUndefined(str: string): boolean;
+
+
 // Возвращает true если строка допустимого значения
 export function isValidMaxL(maxLength: number, str: string): boolean;
 

@@ -8,6 +8,7 @@ import { userScheme } from '../../../../templates/schemes/index.js';
 import { updatedLastChange } from '../../helpers/index.js';
 import { Validator } from '../../../../types/types.js';
 import validate from '../../../../utils/validators/validate/index.js';
+import { createUpdatedKeys } from '../../../firebase/utils/index.js';
 
 
 
@@ -15,8 +16,7 @@ export async function updateUser(ctx, next) {
   const
     { user: { uid, email } } = ctx.state,
     logTemp  = `[updateRefUser] - [${email}]`,
-    userData = ctx.request?.body?.user;
-    console.log('REF userData: ', userData);
+    userData = ctx.request?.body?.userData;
   
   try {
     const { valid, errors } = validate(Validator.USER_UPDATE, userData);
@@ -37,12 +37,14 @@ export async function updateUser(ctx, next) {
     }
 
     const updated = updatedLastChange(mergeWithScheme(userData, userScheme), uid);
-    console.log('updated: ', updated);
-    await dbRef.doc(userData.email).update(updated);
-    const mergedUser = Object.assign(userData, updated);
-    
+    delete updated.id;
+    delete updated.email;
+
+    await dbRef.doc(userData.email).update(createUpdatedKeys(updated));
+    updated.id = userData.id;
+
     ctx.status = 200;
-    ctx.body = { user: mergedUser, message: `Данные сохранены` };
+    ctx.body = { user: updated };
     logRef.info(`${logTemp} success!`);
   }
   catch (err) {

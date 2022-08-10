@@ -34,6 +34,8 @@ export const isNoString = (str) => !isString(str);
 export const isObject = (obj) => obj && typeof obj === `object`;
 export const isNoObject = (obj) => !isObject(obj);
 
+export const isUndefined = (str) => typeof str === `undefined`;
+export const noUndefined = (str) => !isUndefined(str);
 
 
 // PHONE

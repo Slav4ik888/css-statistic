@@ -15,8 +15,7 @@ export default async function updateUser(ctx, next) {
   const
     { user: { email } } = ctx.state,
     logTemp             = `[updateUser] - [${email}]`,
-    userData            = ctx.request?.body?.user;
-    console.log('USER userData: ', userData);
+    userData            = ctx.request?.body?.userData;
 
   try {
     // TODO: checkPermisions

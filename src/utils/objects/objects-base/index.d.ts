@@ -1,5 +1,5 @@
-// import { TaskStatusConst } from '../../../types/types-require.js';
 
+export function isObject(obj: object): boolean;
 
 export function extend<A, B>(a: A, b: B): {};
 

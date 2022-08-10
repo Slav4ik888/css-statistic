@@ -9,8 +9,6 @@ import MuiSnackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 // Types
 import { Message } from '../../../../types/index';
-// Styles
-import { useTheme } from '@emotion/react';
 
 
 
@@ -22,43 +20,32 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 });
 
 
-const useStyles = (theme) => ({
+const useStyles = () => ({
   root: {
     '& .MuiAlert-filledSuccess': {
-      color: `#146900`,
-      backgroundColor: `#a9e09d`, // `#75c563`,
-      '&:hover': {
-        // backgroundColor: fade(`#75c563`, 0.85),
-      },
+      color           : `#146900`,
+      backgroundColor : `#a9e09d`,
     },
     '& .MuiAlert-filledWarning': {
-      color: `#863800`,
-      backgroundColor: `#ffc592`, // `#bb7000`,
-      '&:hover': {
-        // backgroundColor: fade(`#f5776e`, 0.85),
-      },
+      color           : `#863800`,
+      backgroundColor : `#ffc592`,
     },
     '& .MuiAlert-filledError': {
-      color: `#8e0000`,
-      backgroundColor: `#eca0a0`,
-      '&:hover': {
-        // backgroundColor: fade(`#f5776e`, 0.85),
-      },
+      color           : `#8e0000`,
+      backgroundColor : `#eca0a0`,
     },
   },
   snack: {
     '& .MuiAlert-icon': { mr: { xs: 3, sm: 4 } },
-    fontSize: { xs: `0.9rem`, sm: `1rem` },
-    alignItems: `center`,
-    lineHeight: { xs: 1.5, sm: 1.7 },
+    fontSize   : { xs: `0.9rem`, sm: `1rem` },
+    alignItems : `center`,
+    lineHeight : { xs: 1.5, sm: 1.7 },
+    width      : { xs: `100%`, sm: `600px` },
+    zIndex     : 2000,
     pt: { xs: 1, sm: 2 },
     pr: { xs: 3, sm: 4 },
     pb: { xs: 1, sm: 2 },
-    pl: { xs: 3, sm: 4 },
-    // backgroundColor: theme.palette.secondary.light,
-    // color: theme.palette.primary.main,
-    width: { xs: `100%`, sm: `600px` },
-    zIndex: 2000,
+    pl: { xs: 3, sm: 4 }
   }
 });
 
@@ -69,37 +56,35 @@ type Props = {
   clearMessage: () => void;
 }
 
-const MessageBar: React.FC<Props> = (props: Props) => {
-  const { message, clearMessage } = props;
+const MessageBar: React.FC<Props> = ({ message, clearMessage }) => {
+  const
+    sx = useStyles(),
+    [isSnack, setIsSnack] = React.useState(false);
 
-  if (!message?.message) return null;
-  const sx = useStyles(useTheme());
-
-  const [isSnack, setIsSnack] = React.useState(false);
   React.useEffect(() => {
-    if (message.message) {
-      setIsSnack(true);
-    }
-  }, [message]);
+    message?.message && setIsSnack(true);
+  }, [message, message?.message]);
 
   const handleCloseMessageBar = () => {
     clearMessage();
     setIsSnack(false);
   };
 
+  if (!message?.message || typeof message?.message !== `string`) return null;
+
+
   return (
     <MuiSnackbar
-      open={isSnack}
-      anchorOrigin={{ vertical: `bottom`, horizontal: `center` }}
-      autoHideDuration={message.timeout || 3000}
-      onClose={handleCloseMessageBar}
-      sx={sx.root}
+      open             = {isSnack}
+      anchorOrigin     = {{ vertical: `bottom`, horizontal: `center` }}
+      autoHideDuration = {message.timeout || 3000}
+      sx               = {sx.root}
+      onClose          = {handleCloseMessageBar}
     >
       <Alert
-        onClose={handleCloseMessageBar}
-        // variant="outlined"
-        severity={message.type}
-        sx={sx.snack}
+        severity = {message.type}
+        sx       = {sx.snack}
+        onClose  = {handleCloseMessageBar}
       >
         {message.message}
       </Alert>
@@ -109,11 +94,7 @@ const MessageBar: React.FC<Props> = (props: Props) => {
 
 
 const mapStateToProps = (state: State) => ({
-  message: getMessage(state),
+  message: getMessage(state)
 });
 
-const mapActionsToProps = {
-  clearMessage,
-};
-
-export default connect(mapStateToProps, mapActionsToProps)(MessageBar);
+export default connect(mapStateToProps, { clearMessage })(MessageBar);
