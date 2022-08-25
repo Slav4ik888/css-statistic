@@ -49,9 +49,15 @@ export interface StateRefBooks {
   users   : Users;   // Сотрудники
 };
 
+export interface StateBx {
+  loading : boolean;
+
+};
+
+
 export interface State {
   UI        : StateUI;
-  // data      : StateData;
+  bx        : StateBx;
   user      : StateUser;
   stats     : StateStats;
   refbooks  : StateRefBooks;

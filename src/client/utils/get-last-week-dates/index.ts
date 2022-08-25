@@ -14,8 +14,6 @@ interface L {
 
 /**
  * Возвращает последний день прошлой недели (по отношению к currentDay)
- * @param {Date} currentDate - текущий день
- * @param {number} endWeekDay - номер конца день недели 
  */
 export function getLastEndWeekDate(currentDate: Date, endWeekDay: number): string {
   // Calculate how many days have passed in relation to the "currentDate"
@@ -43,8 +41,6 @@ export function getLastStartWeekDate(lastTo: string) {
 
 /**
  * Возвращает даты начало и конца последней завершившейся недели
- * @param endWeekDay 
- * @returns { lastFrom, lastTo }
  */
 export function getLastWeekDates(endWeekDay: number) {
   const currentDate = new Date();

@@ -61,3 +61,8 @@ export enum statsActionType {
   SET_CSS_EXP_DB      = `SET_CSS_EXP_DB`,
   SET_BC_DB           = `SET_BC_DB`
 };
+
+export enum bxActionType {
+  LOADING_BX       = `LOADING_BX`,
+  LOADING_BX_OFF   = `LOADING_BX_OFF`,
+};

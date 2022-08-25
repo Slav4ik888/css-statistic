@@ -8,13 +8,15 @@ type Props = {
   toolTitle? : string;
   children   : any | JSX.Element | JSX.Element[];
   divider?   : boolean;
+  disabled   : boolean;
+  onClick?   : (e: any) => void;
 };
 
 
-const MenuItem: React.FC<Props> = ({ id, toolTitle, children, divider }) => (
+const MenuItem: React.FC<Props> = ({ id, disabled, toolTitle, children, divider, onClick }) => (
   <>
-    <MuiMenuItem id={id || ""}>
-      <Tooltip title={toolTitle = ''} arrow enterDelay={1000} enterNextDelay={1000}>
+    <MuiMenuItem id={id || ""} disabled={disabled} onClick={onClick}>
+      <Tooltip title={toolTitle || ''} arrow enterDelay={1000} enterNextDelay={1000}>
         {
           children
         }

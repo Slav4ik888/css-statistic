@@ -52,14 +52,10 @@ type Props = {
   open     : boolean;
   anchorEl : Element;
   menuId   : string;
-  // role?: string; // Role;
   onClose  : () => void;
 };
 
-
-/**
- * Меню со Справочниками для Navbar
- */
+/** Меню со Справочниками для Navbar */
 const RefBookMenu: React.FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
   const
     sx       = useStyles(),

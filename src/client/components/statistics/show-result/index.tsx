@@ -43,18 +43,21 @@ type Props = {
 const ShowResult: React.FC<Props> = ({ loading, hookResult, DBs, dates }) => {
   const
     sx = useStyles(useTheme() as Themes),
-    calcResults = React.useMemo(() => calcsAllResults(DBs, dates.from, dates.to), [DBs, dates]);
+    calcResults = React.useMemo(() => !loading && calcsAllResults(DBs, dates?.from, dates?.to), [DBs, dates, loading]);
   
-  console.log('calcResults: ', calcResults);
   if (!hookResult.open) return null;
 
 
   return (
-    <Paper sx={sx.root}>
+    <>
       <CircularProgress size={50} loading={loading} center block />
-      <RefreshBtn hookResult={hookResult} />
-      <TableCnt calcResults={calcResults} />
-    </Paper>
+      {
+        !loading && <Paper sx={sx.root}>
+          <RefreshBtn hookResult={hookResult} />
+          <TableCnt calcResults={calcResults} />
+        </Paper>
+      }
+    </>
   );
 };
 

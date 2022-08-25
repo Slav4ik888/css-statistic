@@ -5,6 +5,7 @@ import user from './reducers/user';
 import stats from './reducers/stats';
 import UI from './reducers/ui';
 import refbooks from './reducers/ref-books';
+import bx from './reducers/bx';
 
 
 let middlewares = [thunk];
@@ -22,7 +23,8 @@ const reducers = combineReducers({
   user,
   stats,
   UI,
-  refbooks
+  refbooks,
+  bx
 });
 
 const store = createStore(

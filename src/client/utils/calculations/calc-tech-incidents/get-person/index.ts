@@ -2,7 +2,7 @@ import { CalcDBsType, CalcDbItem } from "../../../../../types";
 
 
 const addPersonNames = (names: Set<string>, db: CalcDbItem, field: string) => {
-  if (db[field].length) {
+  if (db[field]?.length) {
     for (let obj of db[field]) {
       if (obj?.personEnd) names.add(obj.personEnd)
       if (obj?.personReg) names.add(obj.personReg)

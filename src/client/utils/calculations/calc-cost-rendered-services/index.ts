@@ -8,11 +8,9 @@ export default function calcCostRenderedServices(
 ): RenderedServices {
 
   // Наполнение crs данными
-  const crs = fillRenderedInstallations(DBs.cssInstDb);
-  console.log('crs: ', crs);
-
-  const services = createRenderedServices(crs);
-  console.log('services: ', services);
+  const
+    crs      = fillRenderedInstallations(DBs.cssInstDb),
+    services = createRenderedServices(crs);
 
   // Подсчёт итоговой суммы
   // calcTotal(crs)

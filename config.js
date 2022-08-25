@@ -1,8 +1,10 @@
 export const cfg = {
   isDev   : false,
   devData : {
-    from : `2021-12-02`,
-    to   : `2021-12-08`
+    // from : `2021-12-02`,
+    // to   : `2021-12-08`
+    from : `2022-08-04`,
+    to   : `2022-08-10`
   },
 
   assembly_time: `23.12.2021 16:00`,

@@ -29,7 +29,7 @@ const useStyles = () => ({
 
 
 type Props = {
-  loadingRef? : boolean;
+  loading? : boolean;
   item        : RefbookItem;
   onOpen      : (e: any) => void;
 };
@@ -38,7 +38,7 @@ type Props = {
 /**
  * Пункт меню Справочников для Navbar
  */
-const RefbookItem: React.FC<Props> = ({ loadingRef, item, onOpen }) => {
+const RefbookItem: React.FC<Props> = ({ loading, item, onOpen }) => {
   const sx = useStyles();
 
   if (!item.label) return <Divider />
@@ -52,7 +52,7 @@ const RefbookItem: React.FC<Props> = ({ loadingRef, item, onOpen }) => {
 
   
   return (
-    <MenuItem id={item.id} disabled={item?.disabled || loadingRef}>
+    <MenuItem id={item.id} disabled={item?.disabled || loading}>
       <Tooltip title={item.toolLabel} arrow enterDelay={1000} enterNextDelay={1000}>
         <>
           <Box sx={sx.list_item} onClick={onOpen}>

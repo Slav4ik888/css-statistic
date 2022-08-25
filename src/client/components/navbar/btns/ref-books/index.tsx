@@ -4,9 +4,7 @@ import NavBtn from '../nav-btn';
 import ReferenceMenu from '../../menus/ref-books';
 
 
-/**
- * Кнопка для входа в Справочники
- */
+/** Кнопка для входа в Справочники */
 const RefBooksMenuBtn: React.FC = () => {
   const
     [anchorPro, setAnchorPro] = React.useState(null),

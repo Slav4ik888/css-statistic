@@ -9,7 +9,7 @@ import { cloneObj } from "../../../../../utils/objects/objects-base";
 export default function fillRenderedInstallations(DB: CalcDbItem) {
   const crs = cloneObj(RenderedServicesTemplate);
 
-  DB.datesEnd.forEach((obj) => {
+  DB.datesEnd?.forEach((obj) => {
     const serviceItem = getServiceItem(crs, obj);
     
     if (serviceItem) {
