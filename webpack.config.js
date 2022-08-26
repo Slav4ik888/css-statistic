@@ -41,8 +41,19 @@ export default {
   resolve: {
     extensions: [`*`, `.js`, `.jsx`, `.json`, `.css`, `.ts`, `.tsx`],
     alias: {
-      '@redux': path.resolve(__dirname, './src/client/redux'),
+      '@redux': path.resolve(__dirname, './src/client/redux')
     },
+    fallback: {
+      "fs": false,
+      "path": false,
+      "url": false,
+      "buffer": false,
+      "util": false,
+      "os": false,
+      "zlib": false,
+      "http": false,
+      "https": false
+    }
   },
 
   devServer: {
@@ -71,7 +82,7 @@ export default {
         test: /\.(js?x)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: 'babel-loader'
         },
       },
       {
@@ -82,10 +93,10 @@ export default {
         test: /\.s[ac]ss$/,
         use: [
           {
-            loader: `css-loader`,
+            loader: `css-loader`
           },
           {
-            loader: `sass-loader`,
+            loader: `sass-loader`
           }
         ]
       },
@@ -95,12 +106,12 @@ export default {
       },
       {
         test: /\.(woff|woff2|eot|ttf)$/i,
-        type: 'asset/inline',
+        type: 'asset/inline'
       },
       {
         test: /\.md$/,
-        use: "raw-loader",
-      },
+        use: "raw-loader"
+      }
     ]
-  },
+  }
 };

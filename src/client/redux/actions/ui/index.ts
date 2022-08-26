@@ -52,6 +52,11 @@ export const errorMessage = (message: string) => ({
 });
 
 
+export const setSuccessMessage = (message: string) => (dispatch: any) => dispatch(successMessage(message));
+export const setWarningMessage = (message: string) => (dispatch: any) => dispatch(warningMessage(message));
+export const setErrorMessage   = (message: string) => (dispatch: any) => dispatch(errorMessage(message));
+
+
 // Очищаем сообщение
 export const clearMessage = () => (dispatch: Dispatch) => dispatch({ type: uiActionType.CLEAR_MESSAGE });
 

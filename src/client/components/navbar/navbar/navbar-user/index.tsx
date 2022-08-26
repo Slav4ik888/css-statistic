@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 // Components
 import StatisticsMenuBtn from '../../btns/statistics';
 import RefBooksMenuBtn from '../../btns/ref-books';
+import { BxMenuBtn } from '../../btns/bx';
 
 
 type Props = {
@@ -26,6 +27,7 @@ const NavbarUser: React.FC<Props> = ({ authenticated, history }) => {
   return (
     <Box sx={{ display: `flex` }}>
       <StatisticsMenuBtn history={history} />
+      <BxMenuBtn />
       <RefBooksMenuBtn />
     </Box>
   );

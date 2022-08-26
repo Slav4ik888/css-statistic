@@ -31,7 +31,6 @@ type Props = {
   onOpen   : (e: any) => void;
 };
 
-
 /** Menu point of BX24 for Navbar */
 const BxMenuItemLogics: React.FC<Props> = ({ loading, item, onOpen }) => {
   const sx = useStyles();

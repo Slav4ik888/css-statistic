@@ -8,7 +8,7 @@ type Props = {
   toolTitle? : string;
   children   : any | JSX.Element | JSX.Element[];
   divider?   : boolean;
-  disabled   : boolean;
+  disabled?  : boolean;
   onClick?   : (e: any) => void;
 };
 

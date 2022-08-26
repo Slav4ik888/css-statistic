@@ -7,4 +7,5 @@ export * from './ref-book';
 export * from './statictics';
 export * from './tables';
 export * from './testing';
+export * from './files';
 export * from "./ui";

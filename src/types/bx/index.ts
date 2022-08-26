@@ -1,4 +1,5 @@
 
+
 export interface BxMenuItem {
   id          : string;
   label       : string;
@@ -7,5 +8,6 @@ export interface BxMenuItem {
   instruction : string;
   toolTitle   : string;
 };
+
 
 export type BxMenuItemEnts = { [k: string]: BxMenuItem };

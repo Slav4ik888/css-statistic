@@ -1,8 +1,8 @@
 import { BxMenuItem, BxMenuItemEnts } from "../../../../../types";
 
 export const BX_HOOKS_LIST_ENT: BxMenuItemEnts = {
-  id200: {
-    id          : `200`,
+  1000: {
+    id          : `1000`,
     label       : `Загрузить новых абонентов в Битрикс24`,
     active      : true,
     instruction : `
@@ -16,8 +16,8 @@ export const BX_HOOKS_LIST_ENT: BxMenuItemEnts = {
       2 - Пользователю нужно подтвердить правильность созданных данных и скорректировать их или отправить в Битрикс
     `
   },
-  id400: {
-    id          : `400`,
+  2000: {
+    id          : `2000`,
     label       : `Обновить существующих абонентов в Битрикс24`,
     active      : false,
     instruction : `
@@ -31,6 +31,11 @@ export const BX_HOOKS_LIST_ENT: BxMenuItemEnts = {
       2 - Пользователю нужно подтвердить правильность созданных данных и скорректировать их или отправить в Битрикс
     `
   }
+  // Получить компанию по id
+  // Получить компанию по Pppoe
+
+  // Получить контакт по id
+  // Получить контакт по Pppoe
 };
 
 export const BX_HOOKS_LIST_ITEMS: BxMenuItem[] = Object.values(BX_HOOKS_LIST_ENT);
