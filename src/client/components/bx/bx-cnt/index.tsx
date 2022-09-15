@@ -7,23 +7,51 @@ import Box from '@mui/material/Box';
 // Components
 import LoadFile from '../../files/load-files';
 // Functions
+import * as LS from '../../../utils/local-storage';
 // Types
+import { FlexDirection } from '../../../utils/styles';
 
+
+
+const useStyles = () => ({
+  root: {
+    display: `flex`,
+    flexDirection: FlexDirection.COLUMN
+  },
+  filebox: {
+    height: 100
+  },
+  filelabel: {
+    my: 2
+  }
+});
 
 
 type Props = {
   bxId: string;
 };
 
+
 const BxContainerLogics: React.FC<Props> = ({ bxId }) => {
+  const
+    sx = useStyles(),
+    data = LS.getDataFromBGBilling();
+  
+  console.log('dataFromBG: ', data);
   console.log('bxId: ', bxId);
+
+  const handerCallback = (data: any) => {
+    console.log('data: ', data);
+    LS.setDataFromBGBilling(data);
+  };
 
 
   return (
-    <>
-      <LoadFile />
-      {/* Загрузите файл с данными новых (обновлённых) абонентов из BG биллинга. */}
-      
+    <Box sx={sx.root}>
+      <Box sx={sx.filebox}>
+        <Box sx={sx.filelabel}>Выберите файл с данными новых (обновлённых) абонентов из BG биллинга.</Box>
+        <LoadFile onCallback={handerCallback} />
+      </Box>
       
       {/* Проверьте созданные сущности. */}
 
@@ -39,7 +67,7 @@ const BxContainerLogics: React.FC<Props> = ({ bxId }) => {
             ему достался номер от предыдущего абонента или это абсолютно новый абонент)
         - Обновить только тех которые 
       */}
-    </>
+    </Box>
   )
 };
 

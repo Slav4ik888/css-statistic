@@ -14,6 +14,12 @@ import { ConfirmType } from '../../../../types';
 
 
 
+interface SxType {
+  root?    : object;
+  content? : object;
+}
+
+
 const useStyles = () => ({
   root: {
     '& .MuiDialog-paper': {
@@ -32,14 +38,13 @@ type Props = {
   question?  : string;
   classname? : object;
   children   : JSX.Element | any;
+  sx?        : SxType;
   onClose?   : () => void;
 };
 
 
-/**
- * Всплывающее окно с каким-то children
- */
-const DialogInfo: React.FC<Props> = ({ hookOpen, maxWidth = "md", fullWidth = true, title, classname, children, question, onClose }) => {
+/** Всплывающее окно с каким-то children */
+const DialogInfo: React.FC<Props> = ({ hookOpen, maxWidth = "md", fullWidth = true, title, sx: styles, children, question, onClose }) => {
   const
     sx              = useStyles(),
     theme           = useTheme(),
@@ -83,7 +88,7 @@ const DialogInfo: React.FC<Props> = ({ hookOpen, maxWidth = "md", fullWidth = tr
         title && <DialogTitle onClose={handleClose} children={title} question={question}/>
       }
 
-      <DialogContent sx={{ p: 3, ...classname }}>
+      <DialogContent sx={{ '&.MuiDialogContent-root': { pt: `20px` }, ...styles?.content }}>
         {
           children
         }

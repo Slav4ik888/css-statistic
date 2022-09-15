@@ -2,11 +2,18 @@ import * as React from 'react';
 // MUI Stuff
 import Menu from '@mui/material/Menu';
 // Functions
-import { UseGroup } from '../../../../utils/hooks';
+import { UseAnchor } from '../../../../utils/hooks';
 
 
 
-const useStyles = () => ({
+export interface Options {
+  style: {
+    width: number;
+  }
+}
+
+
+const useStyles = ({ style: { width } }: Options) => ({
   paper: {
     elevation: 0,
     sx: {
@@ -30,29 +37,31 @@ const useStyles = () => ({
         bgcolor: 'background.paper',
         transform: 'translateY(-50%) rotate(45deg)',
         zIndex: 0,
-      }
+      },
+      width
     }
   }
 });
 
 
 type Props = {
-  hookAnchor : UseGroup<Element>;
+  hookAnchor : UseAnchor<Element>;
   menuId     : string;
+  options    : Options;
   children   : JSX.Element | JSX.Element[];
 };
 
 /** Container for Navbar's menu */
-const MenuContainerLogics: React.FC<Props> = ({ hookAnchor: A, menuId, children }) => {
+const MenuContainerLogics: React.FC<Props> = ({ hookAnchor: A, menuId, options, children }) => {
   const
-    sx = useStyles();
+    sx = useStyles(options);
 
   return (
     <Menu
       id              = {menuId}
       open            = {A.open}
       onClose         = {A.setClose}
-      anchorEl        = {A.group}
+      anchorEl        = {A.anchor}
       anchorOrigin    = {{ vertical: 'top', horizontal: 'right' }}
       transformOrigin = {{ vertical: 'top', horizontal: 'right' }}
       PaperProps      = {sx.paper}

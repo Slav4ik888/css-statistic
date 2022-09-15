@@ -1,5 +1,6 @@
-//получаем json из db по указанному url
-export const getData = async function(url) {
+
+/** Получаем json из db по указанному url */
+export const getData = async function(url: string) {
 
   const response = await window.fetch(url);
   if (!response.ok) {

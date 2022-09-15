@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useGroup } from '../../../../utils/hooks';
+import { useAnchor } from '../../../../utils/hooks';
 // Components
 import NavBtn from '../nav-btn';
 import BxMenu from '../../menus/bx';
@@ -8,10 +8,10 @@ import BxMenu from '../../menus/bx';
 
 export const BxMenuBtn: React.FC = () => {
   const
-    A = useGroup<Element>(false, null),
+    A = useAnchor<HTMLElement>(false, null),
     handlerMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
       A.setOpen();
-      A.setGroup(event.currentTarget);
+      A.setAnchor(event.currentTarget);
     };
   
   
